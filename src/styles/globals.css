@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  height: 100%;
+}
+
+body {
+  height: fit-content;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+:root {
+  font-size: 17px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:focus-visible {
+  outline: none !important;
+  outline-style: none !important;
+  outline-width: 0 !important;
+  outline-color: transparent !important;
+}
+
+@layer base {
+  :root {
+
+    --background: #FFFFFFFF;
+    --foreground: #020817FF;
+
+    --card: #FFFFFFFF;
+    --card-foreground: #020817FF;
+
+    --popover: #FFFFFFFF;
+    --popover-foreground: #020817FF;
+
+    --primary: #ED6700FF;
+    --primary-foreground: #F8FAFCFF;
+
+    --secondary: #fff8dcff;
+    --secondary-foreground: #8b0000ff;
+
+    --muted: #F1F5F9FF;
+    --muted-foreground: #64748BFF;
+
+    --accent: #F1F5F9FF;
+    --accent-foreground: #0F172AFF;
+
+    --destructive: #EF4444FF;
+    --destructive-foreground: #F8FAFCFF;
+
+    --border: #E2E8F0FF;
+    --input: #E2E8F0FF;
+    --ring: #02081700;
+
+    --radius: 8px;
+  }
+
+  .dark {
+    --background: #020817FF;
+    --foreground: 210 40% 98%;
+
+    --card: #020817FF;
+    --card-foreground: 210 40% 98%;
+
+    --popover: #020817FF;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  /* * {
+    @apply border-border;
+  } */
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #000 !important;
+}
