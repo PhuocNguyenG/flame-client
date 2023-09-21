@@ -21,7 +21,7 @@ const SearchButton = () => {
 
   React.useEffect(() => {
     const setSearch = setTimeout(() => {
-      console.log("call api");
+      
     }, 1000);
 
     return () => {

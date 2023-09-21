@@ -1,6 +1,6 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
-import {Pagination } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -8,9 +8,10 @@ const Carousel = () => {
   return (
     <div className="min-h-[calc(100vh-60px)]">
       <Swiper
-        modules={[ Pagination]}
+        modules={[Pagination]}
         pagination={{ clickable: true }}
         //onSlideChange={(swiper) => console.log(swiper)}
+        loop
       >
         <SwiperSlide className="min-h-[calc(100vh-60px)] bg-orange-300">
           Slide 1

@@ -34,7 +34,7 @@ export interface ApiResult {
   result: any;
 }
 
-export interface ExportProductResult {
+export interface ExportDetailResult {
   _id: string;
   enSlug: string;
   vnSlug: string;
@@ -63,7 +63,7 @@ export interface ExportProductResult {
   isFeatured: boolean;
 }
 
-export interface ExportCategoryResult {
+export interface ExportRouterResult {
   en: string;
   enSlug: string;
   vn: string;

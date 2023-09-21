@@ -19,7 +19,12 @@ import { useTransClient } from "@/lib/i18n/client";
 import { Locale } from "@/lib/i18n/setting";
 import { useParams, usePathname } from "next/navigation";
 import Link from "../link";
-import { ExportCategoryResult } from "@/lib/type";
+import { ExportRouterResult } from "@/lib/type";
+import FlameLogo from "@/assets/logo/flame-logo.svg";
+import Image from "next/image";
+import { useDispatch } from "react-redux";
+import { setCategoryExportTrans } from "@/lib/redux/slice/router";
+import { RootState } from "@/lib/redux/store";
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -60,13 +65,23 @@ const components: { title: string; href: string; description: string }[] = [
 ];
 
 export function MainNavBar({
-  itemExport,
+  cateExport,
+  slugExport,
 }: {
-  itemExport: ExportCategoryResult[];
+  cateExport: ExportRouterResult[];
+  slugExport?: [{ enSlug: string; vnSlug: string }];
 }) {
   const pathname = usePathname();
   const lang = getLangByPathname(pathname);
   const { t } = useTransClient(lang);
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(
+      setCategoryExportTrans(
+        cateExport as RootState["router"]["categoryExportTrans"]
+      )
+    );
+  }, [cateExport]);
 
   return (
     <div className="flex flex-row w-full h-full justify-center items-center gap-2">
@@ -105,21 +120,25 @@ export function MainNavBar({
             <NavigationMenuItem>
               <NavigationMenuTrigger>{t("Gift_Product")}</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                {/* <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                   <li className="row-span-3">
-                    <NavigationMenuLink asChild>
-                      <a
-                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-5 no-underline outline-none focus:shadow-md"
-                        href="/"
-                      >
-                        <div className="mb-2 mt-4 text-lg font-medium">
-                          Quà tặng
-                        </div>
-                        <p className="text-sm leading-tight text-muted-foreground">
-                          Dùng làm quà cho gia đình, bạn bè, đồng nghiệp, ...
-                        </p>
-                      </a>
-                    </NavigationMenuLink>
+                    <Link
+                      href={lang === "en" ? "gift" : "qua-tang-qua-bieu"}
+                      pathName={pathname}
+                      legacyBehavior
+                      passHref
+                    >
+                      <NavigationMenuLink asChild>
+                        <a className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-5 no-underline outline-none focus:shadow-md">
+                          <div className="mb-2 mt-4 text-lg font-medium">
+                            Quà tặng
+                          </div>
+                          <p className="text-sm leading-tight text-muted-foreground">
+                            Dùng làm quà cho gia đình, bạn bè, đồng nghiệp, ...
+                          </p>
+                        </a>
+                      </NavigationMenuLink>
+                    </Link>
                   </li>
                   <Link href={"/san-pham-say/combo-3"} pathName={pathname}>
                     <ListItem title="Combo 3 loại trái cây">
@@ -135,16 +154,33 @@ export function MainNavBar({
                   <ListItem href="/san-pham-say/tuy-chon" title="Tùy chọn ...">
                     Hạt dưa, bí, sen, thơm sấy, cóc, dừa, ...
                   </ListItem>
-                </ul>
+                </ul> */}
+                <div className="grid gap-3 p-4 md:w-[300px] lg:w-[300px] text-center">
+                  Coming soon
+                </div>
               </NavigationMenuContent>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
       </div>
+
       {/* Logo */}
-      <div className=" min-w-[200px] h-[60px] flex justify-center items-center bg-black">
-        <Link pathName={pathname} href={"/"} className="text-white">
-          Flame logo
+      <div className="min-w-[100px] max-w-fit h-full justify-center items-center inline-block ">
+        <Link
+          pathName={pathname}
+          href={"/"}
+          className="min-w-[106px] p-[3px] !pt-[2px] pb-[0px] bg-white block relative top-[2px] rounded-full group overflow-hidden"
+        >
+          <Image
+            alt="Flame | Agricultural by PhuocLinh"
+            src={FlameLogo}
+            height={90}
+            width={90}
+            sizes="100px"
+            className="w-[100px] h-[100px]"
+            priority
+          />
+          <div className="absolute top-0 -inset-full h-full w-1/2 z-0 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-30 group-hover:animate-shine" />
         </Link>
       </div>
 
@@ -163,7 +199,7 @@ export function MainNavBar({
                     >
                       <ListItem key={"export"} title={"Tất cả"}></ListItem>
                     </Link>
-                    {itemExport.map((component, idx) => {
+                    {cateExport?.map((component, idx) => {
                       const title = lang === "en" ? component.en : component.vn;
                       const href =
                         lang === "en"
@@ -182,9 +218,9 @@ export function MainNavBar({
           </NavigationMenu>
           <div className="flex flex-row gap-4 items-center">
             <SearchButton />
+            <SwitchLanguage slugExportTrans={slugExport} />
             <Basket />
             <AccountDropdown />
-            <SwitchLanguage />
           </div>
         </div>
       </div>

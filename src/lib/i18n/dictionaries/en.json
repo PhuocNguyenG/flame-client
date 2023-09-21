@@ -11,5 +11,9 @@
   "Register":"Register",
   "SignIn": "Sign in",
   "SignOut": "Sign out",
-  "Or":"Or"
+  "Or":"Or",
+  "Basket":"Basket",
+  "All":"All",
+  "CategoriesFilter":"Categories:",
+  "ExportProduct":"Export product"
 }

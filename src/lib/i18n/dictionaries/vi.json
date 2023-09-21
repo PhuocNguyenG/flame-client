@@ -11,5 +11,9 @@
   "Register": "Đăng ký",
   "SignIn": "Đăng nhập",
   "SignOut": "Đăng xuất",
-  "Or": "Hoặc"
+  "Or": "Hoặc",
+  "Basket": "Giỏ hàng",
+  "All": "Tất cả",
+  "CategoriesFilter":"Lọc theo loại:",
+  "ExportProduct":"Sản phẩm xuất khẩu"
 }

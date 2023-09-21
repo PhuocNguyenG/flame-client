@@ -6,6 +6,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "**.amazonaws.com",
       },
+      {
+        protocol: "https",
+        hostname: "**.techcombank.com",
+      },
     ],
   },
   async rewrites() {
@@ -15,9 +19,12 @@ const nextConfig = {
         destination: "/vi/export/:category*",
       },
       {
-        source: "/vi/gio-hang/:path*",
-        destination: "/vi/cart/:path*",
-        locale: false,
+        source: "/vi/qua-tang-qua-bieu/:category*",
+        destination: "/vi/gift/:category*",
+      },
+      {
+        source: "/vi/gio-hang",
+        destination: "/vi/cart",
       },
     ];
   },

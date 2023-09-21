@@ -16,8 +16,8 @@ export async function middleware(request: NextRequest) {
   //         // Check for execution status of previous iteration, i.e. wait for it to get finished
   //         await referencePoint;
   //         // Process the current iteration
-  //         if (name.includes(`/${item.vnRoute}`)) {
-  //           result = name.replace(`/${item.vnRoute}`, `/${item.enRoute}`);
+  //         if (name.includes(`/${item.vnSlug}`)) {
+  //           result = name.replace(`/${item.vnSlug}`, `/${item.enSlug}`);
   //         }
   //       }, Promise.resolve())
   //       .then(() => {
@@ -30,8 +30,8 @@ export async function middleware(request: NextRequest) {
   //         // Check for execution status of previous iteration, i.e. wait for it to get finished
   //         await referencePoint;
   //         // Process the current iteration
-  //         if (name.includes(`/${item.enRoute}`)) {
-  //           result = name.replace(`/${item.enRoute}`, `/${item.vnRoute}`);
+  //         if (name.includes(`/${item.enSlug}`)) {
+  //           result = name.replace(`/${item.enSlug}`, `/${item.vnSlug}`);
   //         }
   //       }, Promise.resolve())
   //       .then(() => {

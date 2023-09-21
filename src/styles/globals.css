@@ -2,31 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  height: 100%;
-}
-
-body {
-  height: fit-content;
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-main {
-  flex: 1;
-}
-
-:root {
-  font-size: 17px;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
 :focus-visible {
   outline: none !important;
   outline-style: none !important;
@@ -36,46 +11,48 @@ main {
 
 @layer base {
   :root {
+    --background: #ffffffff;
+    --foreground: #020817ff;
 
-    --background: #FFFFFFFF;
-    --foreground: #020817FF;
+    --card: #ffffffff;
+    --card-foreground: #020817ff;
 
-    --card: #FFFFFFFF;
-    --card-foreground: #020817FF;
+    --popover: #ffffffff;
+    --popover-foreground: #020817ff;
 
-    --popover: #FFFFFFFF;
-    --popover-foreground: #020817FF;
+    --main:#ffba4aff;
+    --main-background:#053729ff;
 
-    --primary: #ED6700FF;
-    --primary-foreground: #F8FAFCFF;
+    --primary: #8b0000ff;
+    --primary-foreground: #fff8dcff;
 
-    --secondary: #fff8dcff;
-    --secondary-foreground: #8b0000ff;
+    --secondary: #053729ff;
+    --secondary-foreground: #f8fafcff;
 
-    --muted: #F1F5F9FF;
-    --muted-foreground: #64748BFF;
+    --muted: #f1f5f9ff;
+    --muted-foreground: #64748bff;
 
-    --accent: #F1F5F9FF;
-    --accent-foreground: #0F172AFF;
+    --accent: #f1f5f9ff;
+    --accent-foreground: #0f172aff;
 
-    --destructive: #EF4444FF;
-    --destructive-foreground: #F8FAFCFF;
+    --destructive: #ef4444ff;
+    --destructive-foreground: #f8fafcff;
 
-    --border: #E2E8F0FF;
-    --input: #E2E8F0FF;
+    --border: #87000029;
+    --input: #e2e8f0ff;
     --ring: #02081700;
 
     --radius: 8px;
   }
 
   .dark {
-    --background: #020817FF;
+    --background: #020817ff;
     --foreground: 210 40% 98%;
 
-    --card: #020817FF;
+    --card: #020817ff;
     --card-foreground: 210 40% 98%;
 
-    --popover: #020817FF;
+    --popover: #020817ff;
     --popover-foreground: 210 40% 98%;
 
     --primary: 210 40% 98%;
@@ -109,6 +86,57 @@ main {
   }
 }
 
+html {
+  height: 100%;
+}
+
+body {
+  height: fit-content;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+:root {
+  font-size: 16px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 .swiper-pagination-bullet-active {
-  background-color: #000 !important;
+  background-color: #053729 !important;
+}
+
+@media screen and (max-width: 639px) {
+  .app_padding {
+    padding: 0px 10px;
+  }
+}
+@media screen and (min-width: 640px) {
+  .app_padding {
+    padding: 0px 20px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .app_padding {
+    padding: 0px 40px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .app_padding {
+    padding: 0px 60px;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .app_padding {
+    padding: 0px 80px;
+  }
 }

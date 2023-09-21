@@ -1,14 +1,15 @@
+import { Locale } from "../i18n/setting";
 import * as Type from "../type";
 
 /**
  * Get all export product
- * @returns Array <ExportProductResult[]>
+ * @returns Array <ExportDetailResult[]>
  */
 export const getAllExportProduct = async (): Promise<
-  Type.ExportProductResult[]
+  Type.ExportDetailResult[]
 > => {
   const api = (await fetch(
-    process.env.URL + "/export/get-all-products-export",
+    process.env.URL + "/export/get-all-export-products",
     { method: "GET" }
   ).then((res) => {
     if (res.ok) {
@@ -24,26 +25,58 @@ export const getAllExportProduct = async (): Promise<
 
 /**
  * List category name and slug of export product
- * @returns Array <ExportCategoryResult[]>
+ * @returns Array <ExportRouterResult[]>
  */
 export const getListCateExportProduct = async (): Promise<
-  Type.ExportCategoryResult[]
+  Type.ExportRouterResult[]
 > => {
-  // const api = (await fetch(
-  //   process.env.URL + "/export/get-all-type-export",
-  //   { method: "GET" }
-  // ).then((res) => {
-  //   if (res.ok) {
-  //     return res.json();
-  //   }
-  // })) as Type.ApiResult;
-  // if (api.statusCode === Type.Status.OK) {
-  //   return api.result;
-  // } else {
-  //   return [];
-  // }
-  return [
-    { en: "Organic", enSlug: "organic", vn: "Hữu cơ", vnSlug: "huu-co" },
-    { en: "Dry", enSlug: "dry", vn: "Khô", vnSlug: "kho" },
-  ] as Type.ExportCategoryResult[];
+  try {
+    const api = (await fetch(process.env.URL + "/type/get-export-type", {
+      method: "GET",
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+    })) as Type.ApiResult;
+
+    if (api.statusCode === Type.Status.OK) {
+      const result = api.result as Type.ExportRouterResult[];
+      return result;
+    } else {
+      return [];
+    }
+  } catch (error) {
+    console.log(error);
+
+    return [];
+  }
+};
+
+/**
+ * List category name and slug of export product
+ * @returns Array <ExportRouterResult[]>
+ */
+export const getDetailExportProduct = async (
+  slug: string,
+  lang: Locale
+): Promise<Type.ExportDetailResult> => {
+  try {
+    const api = (await fetch(process.env.URL + `/export/${slug}-${lang}`, {
+      method: "GET",
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+    })) as Type.ApiResult;
+
+    if (api.statusCode === Type.Status.OK) {
+      const result = api.result as Type.ExportDetailResult;
+      return result;
+    } else {
+      return null!;
+    }
+  } catch (error) {
+    console.log(error);
+    return null!;
+  }
 };

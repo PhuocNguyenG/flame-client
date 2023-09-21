@@ -3,10 +3,12 @@ import "../../styles/globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Head from "next/head";
-import { NextAuthProvider } from "@/provider";
+import ReduxProvider, { NextAuthProvider } from "@/provider";
 import { Locale } from "@/lib/i18n/setting";
 import Footer from "@/components/footer/footer";
 import NextTopLoader from "nextjs-toploader";
+import { headers } from "next/headers";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin", "vietnamese"] });
 
@@ -17,25 +19,30 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
-  params: { lang },
+  params,
 }: {
   children: React.ReactNode;
-  params: { lang: Locale };
+  params: any;
 }) {
+  //const pathname = headers().get("x-invoke-path") || "";
+
   return (
-    <html lang={lang}>
+    <html lang={params.lang}>
       <Head>{/* <link rel="icon" href="/favicon.ico" /> */}</Head>
       <body className={inter.className}>
-        <NextAuthProvider>
-          <NextTopLoader
-            color="#1A0004ED"
-            showSpinner={true}
-            initialPosition={0.3}
-          />
-          <NavBar />
-          {children}
-          <Footer />
-        </NextAuthProvider>
+        <ReduxProvider>
+          <NextAuthProvider>
+            <NextTopLoader
+              color="#1A0004ED"
+              initialPosition={0.3}
+            />
+            <NavBar>
+              <main>{children}</main>
+              <Toaster />
+              <Footer />
+            </NavBar>
+          </NextAuthProvider>
+        </ReduxProvider>
       </body>
     </html>
   );

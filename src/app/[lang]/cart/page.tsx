@@ -7,8 +7,8 @@ export default function Page({
   params: { lang: Locale };
 }) {
   return (
-    <main>
-    
-    </main>
+    <>
+    Cart
+    </>
   );
 }
