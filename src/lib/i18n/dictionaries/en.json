@@ -1,11 +1,13 @@
 {
   "Home": "Home",
   "Product": "Product",
+  "Products": "Products",
   "Gift_Product": "Gift",
   "Export": "Export",
   "Search": "Search",
   "Result": "Result",
   "404": "Sorry! We can't seem to find the page you're looking for. Let's try again.",
+  "ComingSoon":"Coming soon!",
   "BackToHome": "Back to home",
   "Account": "Account",
   "Register":"Register",
@@ -15,5 +17,15 @@
   "Basket":"Basket",
   "All":"All",
   "CategoriesFilter":"Categories:",
-  "ExportProduct":"Export product"
+  "ExportProduct":"Export product",
+  "Origin":"Origin",
+  "Ingredients":"Ingredients",
+  "Preserve":"Preserve",
+  "HowToUse":"How to use",
+  "Description":"Description",
+  "Information": "Information",
+  "Introduce":"Introduce",
+  "ContactUs":"Contact",
+  "ContactViaZalo":"Contact via Zalo",
+  "ContactViaWhatsApp":"Contact via WhatsApp"
 }

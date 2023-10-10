@@ -9,6 +9,7 @@ export const BannerExport = () => {
         }
         alt="Export banner"
         sizes="100vw"
+        priority
         width={1000}
         height={1000}
         className="min-w-full w-0 max-w-full max-h-[100px] object-cover"

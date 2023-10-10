@@ -13,16 +13,33 @@ import { Separator } from "../ui/separator";
 import { useTranslation } from "react-i18next";
 import { useTransClient } from "@/lib/i18n/client";
 import { Locale } from "@/lib/i18n/setting";
+import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 
-const SearchButton = () => {
-  const [inputValue, setInputValue] = React.useState("");
+const SearchButton = ({
+  showOnTop = false,
+  inputValue,
+  setInputValue,
+}: {
+  showOnTop?: boolean;
+  inputValue: string;
+  setInputValue: React.Dispatch<React.SetStateAction<string>>;
+}) => {
+  const [showSearchBtn, setShowSearchBtn] = React.useState(false);
   const { i18n } = useTranslation();
   const { t } = useTransClient(i18n.language as Locale);
 
   React.useEffect(() => {
-    const setSearch = setTimeout(() => {
-      
-    }, 1000);
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 90) {
+        setShowSearchBtn(true);
+      } else {
+        setShowSearchBtn(false);
+      }
+    });
+  }, []);
+
+  React.useEffect(() => {
+    const setSearch = setTimeout(() => {}, 1000);
 
     return () => {
       clearTimeout(setSearch);
@@ -40,17 +57,43 @@ const SearchButton = () => {
 
   return (
     <Dialog>
-      <DialogTrigger>
-        <Input
-          defaultValue={inputValue}
-          placeholder={t("Search")}
-          className="w-[130px] text-transparent font-normal"
-          style={{ textShadow: " 0 0 black" }}
+      <DialogTrigger
+        className="w-full"
+        {...(!showOnTop ? { hidden: !showSearchBtn } : {})}
+      >
+        <div
+          className={`flex flex-row items-center ${
+            showOnTop
+              ? "border-2 shadow border-primary p-1 pr-2"
+              : inputValue
+              ? "border shadow border-secondary-foreground/60"
+              : "border-none"
+          } rounded-md w-full`}
           tabIndex={-1}
-          readOnly
-        />
+        >
+          <Input
+            value={inputValue}
+            placeholder={t("Search")}
+            className={`${
+              showOnTop ? "text-primary" : "text-secondary-foreground"
+            } font-normal border-none shadow-none focus-visible:ring-0 hover:cursor-pointer opacity-70`}
+            style={{ textShadow: " 0 0 black" }}
+            tabIndex={-1}
+            readOnly
+          />
+          <MagnifyingGlassIcon
+            focusable={"false"}
+            className={` w-8 h-8 opacity-100 ${
+              showOnTop ? "text-primary" : "text-white"
+            } focus:outline-none `}
+            tabIndex={-1}
+          />
+        </div>
       </DialogTrigger>
-      <DialogContent className="!top-[15%]" iconClose={false}>
+      <DialogContent
+        className="!top-[15%] bg-primary text-primary-foreground"
+        iconClose={false}
+      >
         <DialogHeader>
           <DialogTitle>
             <Input
@@ -59,11 +102,12 @@ const SearchButton = () => {
               onChange={(value) => {
                 setInputValue(value.target.value);
               }}
+              className="border-primary-foreground/50"
               autoFocus
             />
           </DialogTitle>
           <Separator />
-          <DialogDescription>{t("Result")}:</DialogDescription>
+          <DialogDescription className="text-secondary-foreground">{t("Result")}:</DialogDescription>
         </DialogHeader>
       </DialogContent>
     </Dialog>

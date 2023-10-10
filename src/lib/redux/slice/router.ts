@@ -4,16 +4,18 @@ import type { RootState } from "@/lib/redux/store";
 
 // Define a type for the slice state
 interface RouterState {
-  categoryExportTrans: [
+  slugCategoriesTrans: [
     { en: string; enSlug: string; vn: string; vnSlug: string }
   ];
-  slugExportTrans: [{ en: string; enSlug: string; vn: string; vnSlug: string  }];
+  slugProductDetailTrans: [
+    { en: string; enSlug: string; vn: string; vnSlug: string }
+  ];
 }
 
 // Define the initial state using that type
 const initialState: RouterState = {
-  categoryExportTrans: [{ en: "", enSlug: "", vn: "", vnSlug: "" }],
-  slugExportTrans: [
+  slugCategoriesTrans: [{ en: "", enSlug: "", vn: "", vnSlug: "" }],
+  slugProductDetailTrans: [
     {
       en: "",
       enSlug: "",
@@ -27,26 +29,27 @@ export const routerSlice = createSlice({
   name: "router",
   initialState,
   reducers: {
-    setCategoryExportTrans: (
+    // (main): use for trans slug when switch lang
+    setSlugCategoriesTrans: (
       state,
-      action: PayloadAction<RouterState["categoryExportTrans"]>
+      action: PayloadAction<RouterState["slugCategoriesTrans"]>
     ) => {
-      state.categoryExportTrans = action.payload;
+      state.slugCategoriesTrans = action.payload;
     },
-    setSlugExportTrans: (
+    setSlugProductDetailTrans: (
       state,
-      action: PayloadAction<RouterState["slugExportTrans"]>
+      action: PayloadAction<RouterState["slugProductDetailTrans"]>
     ) => {
-      state.slugExportTrans = action.payload;
+      state.slugProductDetailTrans = action.payload;
     },
   },
 });
 
-export const { setCategoryExportTrans, setSlugExportTrans } =
+export const { setSlugCategoriesTrans, setSlugProductDetailTrans } =
   routerSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectCategoryExportTrans = (state: RootState) =>
-  state.router.categoryExportTrans;
+  state.router.slugCategoriesTrans;
 
 export default routerSlice.reducer;

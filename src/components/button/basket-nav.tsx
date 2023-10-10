@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import basket from "@/assets/icon/basket.svg";
 import Image from "next/image";
@@ -22,16 +23,16 @@ const Basket = () => {
       <Tooltip >
         <TooltipTrigger className="hover:scale-105 transition-all duration-300 min-w-[23px] min-h-[23px]">
           <Link
-            href={lang === "en" ? "/cart" : "/gio-hang"}
+            href={"/cart"}
             pathName={pathname}
-            className="w-[23px] h-[23px] relative"
+            className="w-[25px] h-[25px] relative"
           >
-            <Badge className="absolute right-[-10px] bottom-[-10px]">19</Badge>
-            <Image src={basket} alt="Basket" className="w-[23px] h-[23px]" />
+            <Badge className="absolute right-[-5px] bottom-[-10px]">0</Badge>
+            <Image src={basket} alt="Basket" className="w-[25px] h-[25px]" />
           </Link>
         </TooltipTrigger>
-        <TooltipContent>
-          <div>{t("Basket")}</div>
+        <TooltipContent side="bottom">
+          <p>{t("Basket")}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

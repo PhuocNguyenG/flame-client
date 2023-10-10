@@ -1,11 +1,13 @@
 {
   "Home": "Trang chủ",
   "Product": "Sản phẩm",
+  "Products": "Các sản phẩm",
   "Gift_Product": "Quà tặng / biếu",
   "Export": "Xuất khẩu",
   "Search": "Tìm kiếm",
   "Result": "Kết quả",
-  "404": "Không thể tìm thấy trang này!",
+  "404": "Không thể tìm thấy trang!",
+  "ComingSoon":"Sắp ra mắt!",
   "BackToHome": "Trở về trang chủ",
   "Account": "Tài khoản",
   "Register": "Đăng ký",
@@ -15,5 +17,15 @@
   "Basket": "Giỏ hàng",
   "All": "Tất cả",
   "CategoriesFilter":"Lọc theo loại:",
-  "ExportProduct":"Sản phẩm xuất khẩu"
+  "ExportProduct":"Sản phẩm xuất khẩu",
+  "Origin":"Xuất xứ",
+  "Ingredients":"Thành phần",
+  "Preserve":"Bảo quản",
+  "HowToUse":"Cách sử dụng",
+  "Description":"Mô tả",
+  "Information":"Thông tin",
+  "Introduce":"Giới thiệu",
+  "ContactUs":"Liên hệ",
+  "ContactViaZalo":"Liên hệ qua Zalo",
+  "ContactViaWhatsApp":"Liên hệ qua WhatsApp"
 }

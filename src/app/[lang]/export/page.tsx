@@ -1,8 +1,6 @@
 import ExportItem from "@/components/export/item-list";
 import LayoutCategory from "@/components/export/layout-list";
 import Loading from "@/components/export/loading-item-list";
-import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { getListCateExportProduct } from "@/lib/api/server-side";
 
 import { Locale } from "@/lib/i18n/setting";
 import { headers } from "next/headers";

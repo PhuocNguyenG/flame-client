@@ -10,7 +10,7 @@ export const getAllExportProduct = async (): Promise<
 > => {
   const api = (await fetch(
     process.env.URL + "/export/get-all-export-products",
-    { method: "GET" }
+    { method: "GET", next: { revalidate: false } }
   ).then((res) => {
     if (res.ok) {
       return res.json();
@@ -25,36 +25,7 @@ export const getAllExportProduct = async (): Promise<
 
 /**
  * List category name and slug of export product
- * @returns Array <ExportRouterResult[]>
- */
-export const getListCateExportProduct = async (): Promise<
-  Type.ExportRouterResult[]
-> => {
-  try {
-    const api = (await fetch(process.env.URL + "/type/get-export-type", {
-      method: "GET",
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-    })) as Type.ApiResult;
-
-    if (api.statusCode === Type.Status.OK) {
-      const result = api.result as Type.ExportRouterResult[];
-      return result;
-    } else {
-      return [];
-    }
-  } catch (error) {
-    console.log(error);
-
-    return [];
-  }
-};
-
-/**
- * List category name and slug of export product
- * @returns Array <ExportRouterResult[]>
+ * @returns Array <TypeItemCategoryProduct[]>
  */
 export const getDetailExportProduct = async (
   slug: string,
@@ -71,6 +42,92 @@ export const getDetailExportProduct = async (
 
     if (api.statusCode === Type.Status.OK) {
       const result = api.result as Type.ExportDetailResult;
+      return result;
+    } else {
+      return null!;
+    }
+  } catch (error) {
+    console.log(error);
+    return null!;
+  }
+};
+
+/**
+ * List category name and slug of main product
+ * @returns <TypeCategoryProduct>
+ */
+export const getListCateProduct =
+  async (): Promise<Type.TypeCategoryProduct> => {
+    try {
+      const api = (await fetch(process.env.URL + "/type/get-product-type", {
+        method: "GET",
+        next: { revalidate: false },
+      }).then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })) as Type.ApiResult;
+
+      if (api.statusCode === Type.Status.OK) {
+        const result = api.result as Type.TypeCategoryProduct;
+        return result;
+      } else {
+        return {
+          Product: [],
+          Export: [],
+        };
+      }
+    } catch (error) {
+      console.log(error);
+
+      return {
+        Product: [],
+        Export: [],
+      };
+    }
+  };
+
+/**
+ * Get all main product
+ * @returns Array <ExportDetailResult[]>
+ */
+export const getAllProduct = async (): Promise<
+  Type.ItemListProductResult[]
+> => {
+  const api = (await fetch(process.env.URL + "/product/get-all-products", {
+    method: "GET",
+    next: { revalidate: false },
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
+    }
+  })) as Type.ApiResult;
+  if (api.statusCode === Type.Status.OK) {
+    return api.result;
+  } else {
+    return [];
+  }
+};
+
+/**
+ * List category name and slug of export product
+ * @returns Array <TypeItemCategoryProduct[]>
+ */
+export const getDetailProduct = async (
+  slug: string,
+  lang: Locale
+): Promise<Type.ProductDetailResult> => {
+  try {
+    const api = (await fetch(process.env.URL + `/product/${slug}-${lang}`, {
+      method: "GET",
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+    })) as Type.ApiResult;
+
+    if (api.statusCode === Type.Status.OK) {
+      const result = api.result as Type.ProductDetailResult;
       return result;
     } else {
       return null!;

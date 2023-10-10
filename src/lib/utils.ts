@@ -21,3 +21,18 @@ export const getLangByPathname = (pathname: string) => {
 //   const pathname = headersList.get("x-invoke-path") || "";
 //   return pathname
 // }
+
+export const getPositionElement = (element: HTMLDivElement) => {
+  var xPosition = 0,
+    yPosition = 0;
+
+  while (element) {
+    xPosition += element.offsetLeft + element.clientLeft;
+    yPosition += element.offsetTop + element.clientTop;
+    element = element.offsetParent as HTMLDivElement;
+  }
+  return {
+    x: xPosition,
+    y: yPosition,
+  };
+};

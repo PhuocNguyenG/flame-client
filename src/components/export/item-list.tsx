@@ -1,12 +1,9 @@
 import { Locale } from "@/lib/i18n/setting";
 import Link from "../link";
-import {
-  getAllExportProduct,
-  getListCateExportProduct,
-} from "@/lib/api/server-side";
+import { getAllExportProduct, getListCateProduct } from "@/lib/api/server-side";
 import Image from "next/image";
 import { RootState, store } from "@/lib/redux/store";
-import { setSlugExportTrans } from "@/lib/redux/slice/router";
+import { setSlugProductDetailTrans } from "@/lib/redux/slice/router";
 
 export default async function ExportItem({
   lang,
@@ -17,11 +14,12 @@ export default async function ExportItem({
   pathname: string;
   category?: string;
 }) {
-  const fetchCategory =  getListCateExportProduct();
-  const fetchAllProduct =  getAllExportProduct();
-  const fetchData = await Promise.all([fetchCategory,fetchAllProduct])
+  const fetchCategory = (getListCateProduct());
+  const fetchAllProduct = getAllExportProduct();
+  const fetchData = await Promise.all([fetchCategory, fetchAllProduct]);
 
-  const dataCategory = fetchData[0];
+  const dataCategory = fetchData[0].Export;
+
   const product = fetchData[1];
 
   const cateSearch = dataCategory.find((item) => {
@@ -30,7 +28,6 @@ export default async function ExportItem({
     }
   })?.enSlug;
 
-  
   const result =
     category !== "all"
       ? product.filter((item) => item.productType === cateSearch)
@@ -49,7 +46,10 @@ export default async function ExportItem({
               ? "/export/" + cate?.enSlug + "/" + item.enSlug
               : "/xuat-khau/" + cate?.vnSlug + "/" + item.vnSlug;
           return (
-            <li className="flex p-[0px_8px_25px_8px] h-[340px] w-[300px]" key={idx}>
+            <li
+              className="flex p-[0px_8px_25px_8px] h-[340px] w-[300px]"
+              key={idx}
+            >
               <Link href={href} pathName={pathname} className="w-full h-full">
                 <div className="bg-white rounded-md shadow-md hover:shadow-[0px_9px_16px_3px_#32323233] flex flex-col overflow-hidden w-full h-full border border-[#87000029] hover:cursor-pointer transition-all duration-500 group">
                   <div className="w-full min-h-[240px] max-h-[240px] p-3 rounded-md">
@@ -61,7 +61,6 @@ export default async function ExportItem({
                       width={100}
                       height={230}
                     />
-                    
                   </div>
                   <div className="flex-1 p-2 text-secondary">
                     <h2 className="text-lg font-bold tracking-wide capitalize m-0">

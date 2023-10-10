@@ -18,9 +18,7 @@ export default function Layout({
     <>
       <div className="flex flex-col w-full h-full">
         <BannerExport />
-        <div className="flex flex-col w-full h-fit app_padding ">
-          {children}
-        </div>
+        <div className="flex flex-col w-full h-fit  ">{children}</div>
       </div>
     </>
   );

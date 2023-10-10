@@ -1,7 +1,7 @@
 import { getLangByPathname } from "@/lib/utils";
 import NextLink, { LinkProps } from "next/link";
 import { HTMLProps, FC } from "react";
-
+import { listRoute } from "@/map-route";
 type MyLink = {
   pathName: string;
 } & LinkProps &
@@ -22,7 +22,28 @@ const Link = ({
 }: MyLink) => {
   const lang = getLangByPathname(pathName);
   const oldHref = href[0] === "/" ? href : `/${href}`;
-  const newHref = lang === "en" ? `/en${oldHref}` : oldHref;
+  const newHref =
+    lang === "en"
+      ? `/en${oldHref
+          .split("/")
+          .map((item) => {
+            const routeTrans = listRoute.find((rou) => {
+              return rou.vnSlug === item;
+            })?.enSlug;
+
+            return routeTrans ? routeTrans : item;
+          })
+          .join("/")}`
+      : oldHref
+          .split("/")
+          .map((item) => {
+            const routeTrans = listRoute.find((rou) => {
+              return rou.enSlug === item;
+            })?.vnSlug;
+
+            return routeTrans ? routeTrans : item;
+          })
+          .join("/");
 
   return (
     <NextLink

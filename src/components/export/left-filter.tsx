@@ -1,9 +1,9 @@
 import { Locale } from "@/lib/i18n/setting";
 import Link from "../link";
-import { ExportRouterResult } from "@/lib/type";
+import { TypeItemCategoryProduct } from "@/lib/type";
 import { useTransServer } from "@/lib/i18n/server";
 import { Button } from "../ui/button";
-import { getListCateExportProduct } from "@/lib/api/server-side";
+import { getListCateProduct } from "@/lib/api/server-side";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Label } from "../ui/label";
 
@@ -16,13 +16,13 @@ export const LeftFilterExport = async ({
   pathname: string;
   category: string;
 }) => {
-  const categoryData = await getListCateExportProduct();
+  const categoryData = (await getListCateProduct()).Export;
   const { t } = await useTransServer(lang);
 
   return (
     <>
       <div className="flex flex-col border border-border rounded-md bg-slate-50 [&>*]:p-2 ">
-        <div className="font-bold bg-main pb-0 rounded-t-md">
+        <div className="font-bold bg-primary-foreground pb-0 rounded-t-md">
           {t("CategoriesFilter")}
         </div>
         <RadioGroup

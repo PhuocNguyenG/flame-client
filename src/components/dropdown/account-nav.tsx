@@ -37,7 +37,7 @@ const AccountDropdown = () => {
         {session?.user?.name}
         <Separator />
         <Button
-          className="bg-white text-black active:!bg-slate-200"
+          className="bg-secondary-foreground text-secondary active:!bg-slate-200"
           onClick={() => signOut()}
         >
           {t("SignOut")}
@@ -106,9 +106,10 @@ const AccountDropdown = () => {
         )}
       </PopoverTrigger>
       <PopoverContent
-        sideOffset={17}
+        sideOffset={11}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        className="bg-primary text-secondary-foreground !border-t !border-primary-foreground border-0"
       >
         {session?.user ? SignedIn() : NotSignIn()}
       </PopoverContent>

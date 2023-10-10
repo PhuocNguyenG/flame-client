@@ -1,8 +1,8 @@
-import { getListCateExportProduct } from "@/lib/api/server-side";
+import { getListCateProduct } from "@/lib/api/server-side";
 import { Breadcrumb } from "../ui/breadcrumb";
 import { useTransServer } from "@/lib/i18n/server";
 import { Locale } from "@/lib/i18n/setting";
-import { ExportRouterResult } from "@/lib/type";
+import { TypeItemCategoryProduct } from "@/lib/type";
 import { notFound } from "next/navigation";
 
 export const BreadcrumbExport = async ({
@@ -12,15 +12,20 @@ export const BreadcrumbExport = async ({
 }: {
   lang: Locale;
   category?: string;
-  detailData?: ExportRouterResult;
+  detailData?: TypeItemCategoryProduct;
 }) => {
   const { t } = await useTransServer(lang);
-  const listCate = await getListCateExportProduct();
+  const listCate = (await getListCateProduct()).Export;
   const categoryData = listCate.find((item) => {
     if (item.vnSlug === category || item.enSlug === category) {
       return item;
     }
-  }) as ExportRouterResult;
+  }) as TypeItemCategoryProduct;
+
+  if (detailData && !categoryData) {
+    notFound();
+  }
+
   const defaultData = [
     {
       name: t("Export"),
@@ -46,9 +51,6 @@ export const BreadcrumbExport = async ({
       })
     : defaultData;
 
-  if(detailData && !categoryData){
-    notFound();
-  }
   return (
     <>
       <Breadcrumb data={defaultData} />

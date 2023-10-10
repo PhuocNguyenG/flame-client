@@ -2,13 +2,12 @@ import NavBar from "@/components/header/nav";
 import "../../styles/globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Head from "next/head";
 import ReduxProvider, { NextAuthProvider } from "@/provider";
-import { Locale } from "@/lib/i18n/setting";
-import Footer from "@/components/footer/footer";
+import Footer from "@/components/footer";
 import NextTopLoader from "nextjs-toploader";
-import { headers } from "next/headers";
 import { Toaster } from "@/components/ui/toaster";
+import { FloatButton } from "@/components/button/group-float-button";
+import { Locale } from "@/lib/i18n/setting";
 
 const inter = Inter({ subsets: ["latin", "vietnamese"] });
 
@@ -19,27 +18,29 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
+  lang,
   params,
 }: {
   children: React.ReactNode;
+  lang:Locale
   params: any;
 }) {
   //const pathname = headers().get("x-invoke-path") || "";
 
   return (
     <html lang={params.lang}>
-      <Head>{/* <link rel="icon" href="/favicon.ico" /> */}</Head>
       <body className={inter.className}>
         <ReduxProvider>
           <NextAuthProvider>
             <NextTopLoader
-              color="#1A0004ED"
+              color="#F7E50985"
               initialPosition={0.3}
             />
             <NavBar>
               <main>{children}</main>
               <Toaster />
-              <Footer />
+              <FloatButton/>
+              <Footer lang={lang}/>
             </NavBar>
           </NextAuthProvider>
         </ReduxProvider>
