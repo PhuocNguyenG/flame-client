@@ -26,12 +26,11 @@ export const CarouselDetailItem = ({
             "--swiper-pagination-color": "#000",
           } as CSSProperties
         }
-        loop={true}
         spaceBetween={10}
         navigation={data.length > 1 ? true : false}
         thumbs={{ swiper: thumbsSwiper }}
         modules={[FreeMode, Navigation, Thumbs]}
-        className=" h-[500px]"
+        className="h-[500px] [&_.swiper-button-prev:after]:bg-white/80 [&_.swiper-button-prev:after]:p-1 [&_.swiper-button-prev:after]:rounded-md [&_.swiper-button-next:after]:bg-white/80 [&_.swiper-button-next:after]:p-1 [&_.swiper-button-next:after]:rounded-md  "
       >
         {data?.map((item, idx) => {
           return (
@@ -55,7 +54,7 @@ export const CarouselDetailItem = ({
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="max-w-[500px] mt-[10px] [&_.swiper-slide-thumb-active]:opacity-100 [&_.swiper-slide-thumb-active]:border [&_.swiper-slide-thumb-active]:transition-opacity"
+        className="max-w-[500px] mt-[10px] [&_.swiper-slide-thumb-active]:opacity-100 [&_.swiper-slide-thumb-active]:border [&_.swiper-slide-thumb-active]:transition-opacity "
       >
         {data.map((item, idx) => {
           return (

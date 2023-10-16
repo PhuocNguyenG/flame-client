@@ -40,7 +40,7 @@ NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName;
 const NavigationMenuItem = NavigationMenuPrimitive.Item;
 
 const navigationMenuTriggerStyle = cva(
-  "group inline-flex h-[calc(2.25rem+7px)] w-max items-center justify-center rounded-b-md text-secondary-foreground px-4 py-2 pt-[14px] text-sm uppercase font-normal transition-colors hover:text-secondary-foreground focus:text-secondary-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:!bg-primary-foreground data-[active]:text-primary data-[active]:font-semibold data-[state=open]:bg-primary-foreground/10"
+  "group inline-flex h-[calc(2.25rem+8px)] w-max items-center justify-center rounded-b-md text-secondary-foreground px-4 py-0 pt-[4px] text-sm uppercase font-semibold transition-colors hover:text-secondary-foreground focus:text-secondary-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:!bg-primary-foreground data-[active]:text-primary data-[state=open]:bg-primary-foreground/10 [&>a]:h-full [&>a]:flex [&>a]:items-center"
 );
 
 const navigationMenuActiveStyle = cva(
@@ -89,7 +89,7 @@ const NavigationMenuViewport = React.forwardRef<
   <div className={cn("absolute top-full flex justify-center")}>
     <NavigationMenuPrimitive.Viewport
       className={cn(
-        "origin-top-center relative mt-[7px] h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border-t border-primary-foreground bg-primary text-secondary-foreground shadow data-[state=open]:animate-fadeIn data-[state=closed]:animate-out md:w-[var(--radix-navigation-menu-viewport-width)] duration-150 transition-all",
+        "origin-top-center relative mt-[6px] h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border-t border-primary-foreground bg-primary text-secondary-foreground shadow data-[state=open]:animate-fadeIn data-[state=closed]:animate-out md:w-[var(--radix-navigation-menu-viewport-width)] duration-150 transition-all",
         className
       )}
       ref={ref}
@@ -107,7 +107,7 @@ const NavigationMenuIndicator = React.forwardRef<
   <NavigationMenuPrimitive.Indicator
     ref={ref}
     className={cn(
-      "top-full z-[1] flex h-[6px] items-end justify-center overflow-hidden  data-[state=hidden]:fade-out data-[state=visible]:fade-in transition-all duration-500",
+      "top-full z-[1] flex h-[5px] items-end justify-center overflow-hidden  data-[state=hidden]:fade-out data-[state=visible]:fade-in transition-all duration-500",
       className
     )}
     {...props}

@@ -16,12 +16,6 @@ export const getLangByPathname = (pathname: string) => {
   return "vi";
 };
 
-// export const usePathNameServer = () => {
-//   const headersList = headers();
-//   const pathname = headersList.get("x-invoke-path") || "";
-//   return pathname
-// }
-
 export const getPositionElement = (element: HTMLDivElement) => {
   var xPosition = 0,
     yPosition = 0;

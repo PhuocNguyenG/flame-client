@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import basket from "@/assets/icon/basket.svg";
 import Image from "next/image";
@@ -20,14 +20,18 @@ const Basket = () => {
   const { t } = useTransClient(lang);
   return (
     <TooltipProvider delayDuration={300}>
-      <Tooltip >
-        <TooltipTrigger className="hover:scale-105 transition-all duration-300 min-w-[23px] min-h-[23px]">
+      <Tooltip>
+        <TooltipTrigger className="transition-all duration-300 min-w-[23px] min-h-[23px]">
           <Link
             href={"/cart"}
-            pathName={pathname}
+            lang={lang}
             className="w-[25px] h-[25px] relative"
           >
-            <Badge className="absolute right-[-5px] bottom-[-10px]">0</Badge>
+            <Badge
+              className={`absolute right-[-5px] bottom-[-10px] border border-primary-foreground`}
+            >
+              0
+            </Badge>
             <Image src={basket} alt="Basket" className="w-[25px] h-[25px]" />
           </Link>
         </TooltipTrigger>

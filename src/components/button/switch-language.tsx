@@ -46,7 +46,7 @@ const SwitchLanguage = () => {
             }
             width={40}
             height={35}
-            className="h-auto bg-secondary pl-[1px]"
+            className="h-auto pl-[1px]"
             alt="vi"
           />
         </Link>
@@ -71,8 +71,8 @@ const SwitchLanguage = () => {
             }
             width={40}
             height={35}
-            className="h-auto bg-secondary pl-[1px]"
-            alt="English"
+            className="h-auto pl-[1px]"
+            alt="en"
           />
         </Link>
       </div>

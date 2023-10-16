@@ -5,21 +5,35 @@ import "swiper/css";
 import "swiper/css/pagination";
 import Image from "next/image";
 
+/**
+ * (ratio: height x 2.5 = width) Example: Image width 1375px, height 550px 
+ */
 const Carousel = () => {
   return (
     <div className="">
       <Swiper
         modules={[Pagination, Autoplay]}
         pagination={{ clickable: true }}
-        //onSlideChange={(swiper) => console.log(swiper)}
+        // onSlideChange={(swiper) => console.log(swiper)}
         autoplay={{
           delay: 3000,
           disableOnInteraction: false,
         }}
         loop
-        className="h-full max-h-[580px]"
+        className="max-w-[1300px]"
       >
-        <SwiperSlide className="!h-auto max-h-[600px] bg-white">
+        <SwiperSlide className="!h-auto max-h-[550px] bg-white">
+          <Image
+            alt="Flame banner"
+            priority
+            src={`https://pub-1b78f46b31aa4b9d89b9fa57dedf700f.r2.dev/banner1.webp`}
+            width={1200}
+            height={600}
+            sizes="100vw"
+            className="min-w-full w-0 max-w-full max-h-full object-cover"
+          />
+        </SwiperSlide>
+        <SwiperSlide className="!h-auto max-h-[550px] bg-white">
           <Image
             alt="Flame banner"
             priority
@@ -27,10 +41,10 @@ const Carousel = () => {
             width={1200}
             height={600}
             sizes="100vw"
-            className="w-full h-auto object-cover"
+            className="min-w-full w-0 max-w-full max-h-full object-cover"
           />
         </SwiperSlide>
-        <SwiperSlide className="!h-auto max-h-[600px] bg-white">
+        <SwiperSlide className="!h-auto max-h-[550px] bg-white">
           <Image
             alt="Flame banner"
             priority
@@ -38,18 +52,7 @@ const Carousel = () => {
             width={1200}
             height={600}
             sizes="100vw"
-            className="w-full h-full object-cover"
-          />
-        </SwiperSlide>
-        <SwiperSlide className="!h-auto max-h-[600px] bg-white">
-          <Image
-            alt="Flame banner"
-            priority
-            src={`https://pub-1b78f46b31aa4b9d89b9fa57dedf700f.r2.dev/BANNER-1.png`}
-            width={1200}
-            height={600}
-            sizes="100vw"
-            className="w-full h-full object-cover"
+            className="min-w-full w-0 max-w-full max-h-full object-cover"
           />
         </SwiperSlide>
       </Swiper>

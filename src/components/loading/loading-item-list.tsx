@@ -5,10 +5,10 @@ export default function Loading() {
 
   return (
     <>
-      <ul className="grid grid-cols-[repeat(auto-fill,300px)] list-none p-0 m-0 items-center justify-around ">
+      <ul className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-5 list-none p-0 m-0 ">
         {result?.map((item) => {
           return (
-            <li className="flex p-2 h-[340px] w-[300px]" key={item}>
+            <li className="flex h-[340px]" key={item}>
               <div className="w-full h-full">
                 <div className="bg-white rounded-md flex flex-col overflow-hidden w-full h-full border border-border ">
                   <div className="w-full h-[240px] p-3 rounded-md">

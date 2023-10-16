@@ -49,7 +49,7 @@ const AccountDropdown = () => {
     return (
       <div className="flex flex-col gap-2 w-[150px] items-center">
         <GoogleButton />
-        <Separator />
+        {/* <Separator />
         {t("Or")}
         <Input type="text" className="w-100%" placeholder="Email" />
         <Input type="text" className="w-100%" placeholder="Password" />
@@ -74,7 +74,7 @@ const AccountDropdown = () => {
           }
         >
           {t("Register")}
-        </Button>
+        </Button> */}
       </div>
     );
   };
@@ -101,7 +101,7 @@ const AccountDropdown = () => {
           <PersonIcon
             width={26}
             height={26}
-            className="hover:scale-105 transition-all duration-300"
+            className="hover:scale-105 transition-all duration-300 text-secondary-foreground"
           />
         )}
       </PopoverTrigger>

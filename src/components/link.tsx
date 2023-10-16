@@ -1,9 +1,10 @@
+"use client"
 import { getLangByPathname } from "@/lib/utils";
 import NextLink, { LinkProps } from "next/link";
 import { HTMLProps, FC } from "react";
 import { listRoute } from "@/map-route";
 type MyLink = {
-  pathName: string;
+  lang: string;
 } & LinkProps &
   React.RefAttributes<HTMLAnchorElement> &
   HTMLProps<HTMLAnchorElement>;
@@ -16,15 +17,15 @@ const Link = ({
   scroll,
   shallow,
   passHref,
-  pathName,
+  lang,
   legacyBehavior,
   ...rest
 }: MyLink) => {
-  const lang = getLangByPathname(pathName);
   const oldHref = href[0] === "/" ? href : `/${href}`;
+
   const newHref =
     lang === "en"
-      ? `/en${oldHref
+      ? `/en` + oldHref
           .split("/")
           .map((item) => {
             const routeTrans = listRoute.find((rou) => {
@@ -33,7 +34,7 @@ const Link = ({
 
             return routeTrans ? routeTrans : item;
           })
-          .join("/")}`
+          .join("/")
       : oldHref
           .split("/")
           .map((item) => {

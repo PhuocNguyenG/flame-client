@@ -9,10 +9,12 @@ export const BreadcrumbExport = async ({
   lang,
   category,
   detailData,
+  className
 }: {
   lang: Locale;
   category?: string;
   detailData?: TypeItemCategoryProduct;
+  className?:React.HTMLProps<HTMLElement>["className"]
 }) => {
   const { t } = await useTransServer(lang);
   const listCate = (await getListCateProduct()).Export;
@@ -52,8 +54,8 @@ export const BreadcrumbExport = async ({
     : defaultData;
 
   return (
-    <>
+    <div className={className}>
       <Breadcrumb data={defaultData} />
-    </>
+    </div>
   );
 };

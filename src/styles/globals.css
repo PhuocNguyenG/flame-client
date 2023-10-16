@@ -22,13 +22,16 @@
     --popover: 255 255 255;
     --popover-foreground: 2 8 23;
 
+    /* rgb(234, 240, 239) */
+    --background-body: 234 240 239;
+
     /* rgb(35, 2, 2)*/
     --primary: 35 2 2;
     /* rgb(247, 219, 9) */
     --primary-foreground: 247 219 9;
 
-    /* rgb(5, 55, 41) */
-    --secondary: 5 55 41;
+    /* rgb(7, 74, 55) */
+    --secondary: 7 74 55;
     /* rgb(248, 250, 252) */
     --secondary-foreground: 248 250 252;
 
@@ -42,8 +45,8 @@
     /* rgb(34, 34, 34) */
     --accent-foreground: 34 34 34;
 
-    /* rgb(239, 68, 68) */
-    --destructive: 239 68 68;
+    /* rgb(239, 68, 28) */
+    --destructive: 239 68 28;
     /* rgb(248, 250, 252) */
     --destructive-foreground: 248 250 252;
 
@@ -128,24 +131,16 @@ main {
   background-color: #053729 !important;
 }
 
-.map-marker{
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  margin-left: 115px;
-  
-  border-radius: 50%;
-  border: 8px solid #fff;
-  width: 8px;
-  height: 8px;
+/* Scroll bar */
+::-webkit-scrollbar-track {
+  background-color: #f4f3f3;
 }
-.map-marker::after {
-  position: absolute;
-  content: '';
-  width: 0px;
-  height: 0px;
-  bottom: -30px;
-  left: -6px;
-  border: 10px solid transparent;
-  border-top: 17px solid #fff;
+
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: #ffffff;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(35, 34, 34, 0.874);
 }

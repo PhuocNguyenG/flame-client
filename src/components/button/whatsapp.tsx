@@ -18,29 +18,13 @@ export const WhatsAppButton = () => {
   const { t } = useTransClient(lang);
   return (
     <>
-      <TooltipProvider delayDuration={200}>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              className="bg-[#16BE45]"
-              size={"icon"}
-              onClick={() =>
-                window.open(`https://wa.me/+84973912839`, "_blank")
-              }
-            >
-              <Image
-                src={WhatsApp}
-                alt="Whatsapp Flame"
-                width={27}
-                height={27}
-              />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>{t("ContactViaWhatsApp")}</p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+      <Button
+        className="bg-[#16BE45]"
+        size={"icon"}
+        onClick={() => window.open(`https://wa.me/+84973912839`, "_blank")}
+      >
+        <Image src={WhatsApp} alt="Whatsapp Flame" width={27} height={27} />
+      </Button>
     </>
   );
 };

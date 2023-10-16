@@ -16,31 +16,30 @@ export const metadata: Metadata = {
   description: "Flame Agricultural by PhuocLinh",
 };
 
+export async function generateStaticParams() {
+  return [{ lang: "vi" }, { lang: "en" }];
+}
+
 export default async function RootLayout({
   children,
-  lang,
-  params,
+  params: { lang },
 }: {
   children: React.ReactNode;
-  lang:Locale
-  params: any;
+
+  params: { lang: Locale };
 }) {
-  //const pathname = headers().get("x-invoke-path") || "";
 
   return (
-    <html lang={params.lang}>
+    <html lang={lang}>
       <body className={inter.className}>
         <ReduxProvider>
           <NextAuthProvider>
-            <NextTopLoader
-              color="#F7E50985"
-              initialPosition={0.3}
-            />
-            <NavBar>
+            <NextTopLoader color="#F7E509" initialPosition={0.3} />
+            <NavBar lang={lang}>
               <main>{children}</main>
               <Toaster />
-              <FloatButton/>
-              <Footer lang={lang}/>
+              <FloatButton />
+              <Footer lang={lang} />
             </NavBar>
           </NextAuthProvider>
         </ReduxProvider>

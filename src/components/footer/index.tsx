@@ -8,30 +8,41 @@ import {
 import { useTransServer } from "@/lib/i18n/server";
 import { Locale } from "@/lib/i18n/setting";
 import Link from "../link";
-import { headers } from "next/headers";
 import { WhatsAppButton } from "../button/whatsapp";
 import { ZaloButton } from "../button/zalo";
+import { getListCateProduct } from "@/lib/api/server-side";
+import { Separator } from "../ui/separator";
 
 export default async function Footer({ lang }: { lang: Locale }) {
-  const headerList = headers();
-  const pathname = headerList.get("x-invoke-path") || "";
-  const { t } = await useTransServer(lang);
+  const fetchData = await Promise.all([
+    useTransServer(lang),
+    getListCateProduct(),
+  ]);
+  const { t } = fetchData[0];
+  const products = fetchData[1].Product;
 
   return (
-    <footer className="flex flex-col w-full h-[300px] bg-[#140101f2] mt-5 text-secondary-foreground !pt-5">
-      <div className="w-full flex-row hidden md:!flex container [&_h2]:text-primary-foreground [&_h2]:text-lg [&_h2]:font-semibold [&_h2]:mb-2">
-        <div className="max-w-[400px] w-1/3 [&_a]:text-secondary-foreground/70 [&>a:hover]:text-secondary-foreground [&>a:hover]:ml-1 [&_a]:transition-all [&_a]:duration-300 [&_a]:w-fit">
+    <footer className="flex flex-col w-full h-fit bg-[#140101f2] text-secondary-foreground !pt-5">
+      <div className="w-full flex-row hidden md:!flex container [&_h2]:text-primary-foreground [&_h2]:text-lg [&_h2]:font-semibold [&_h2]:mb-2 mb-4">
+        <div className="flex flex-col gap-1 max-w-[400px] w-1/3 [&_a]:text-secondary-foreground/80 [&>a:hover]:text-secondary-foreground [&_a]:transition-all [&_a]:duration-300 [&_a]:w-fit">
           <h2>{t("Products")}</h2>
-          <Link
-            href={lang === "en" ? "/export" : "/xuat-khau"}
-            pathName={pathname}
-          >
+          {products?.map((item, idx) => {
+            const href = lang === "en" ? item.enSlug : item.vnSlug;
+            const name = lang === "en" ? item.en : item.vn;
+
+            return (
+              <Link href={`/product/${href}`} lang={lang} key={idx}>
+                {name}
+              </Link>
+            );
+          })}
+          <Link href={"/export"} lang={lang}>
             {t("Export")}
           </Link>
         </div>
-        <div className="max-w-[400px] w-1/3  [&_a]:text-secondary-foreground/70 [&>a:hover]:text-secondary-foreground [&>a:hover]:ml-1 [&_a]:transition-all [&_a]:duration-300 [&_a]:w-fit">
+        <div className="max-w-[400px] w-1/3  [&_a]:text-secondary-foreground/70 [&>a:hover]:text-secondary-foreground [&_a]:transition-all [&_a]:duration-300 [&_a]:w-fit">
           <h2>{t("Information")}</h2>
-          <Link href={"/introduce"} pathName={pathname}>
+          <Link href={"/introduce"} lang={lang}>
             {t("Introduce")}
           </Link>
         </div>
@@ -42,6 +53,31 @@ export default async function Footer({ lang }: { lang: Locale }) {
             <ZaloButton />
           </div>
         </div>
+      </div>
+      <Separator className="container bg-primary-foreground/40 m-auto mb-3" />
+      <div className="w-full flex-row hidden md:!flex container [&_h2]:text-primary-foreground [&_h2]:text-lg [&_h2]:font-semibold [&_h2]:mb-2 mb-3">
+        <div className="flex flex-col gap-1 [&_p]:text-secondary-foreground/80 [&_a]:w-fit">
+          <h2>{t("NameCompany")}</h2>
+          <p>
+            {t("Tax_Code")}
+            {t("TaxCompany")}
+          </p>
+          <p>
+            {t("Address")}
+            {t("AddressCompany")}
+          </p>
+          <p>
+            {t("Phone_Number")}
+            {t("PhoneCompany")}
+          </p>
+          <p>
+            {t("Email")}
+            {t("MailCompany")}
+          </p>
+        </div>
+      </div>
+      <div className="w-full flex-row hidden md:!flex container text-secondary-foreground/80 mb-2 justify-center">
+        ©{new Date().getFullYear()} - {t("NameCompany")}
       </div>
       <Accordion type="multiple" className="w-full block md:hidden">
         <AccordionItem value="item-1">

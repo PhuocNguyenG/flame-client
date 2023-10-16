@@ -9,14 +9,16 @@ export const BreadcrumbProduct = async ({
   lang,
   category,
   detailData,
+  className
 }: {
   lang: Locale;
   category?: string;
   detailData?: TypeItemCategoryProduct;
+  className?:React.HTMLProps<HTMLElement>["className"]
 }) => {
   const { t } = await useTransServer(lang);
   const listCate = (await getListCateProduct()).Product;
-  const categoryData = listCate.find((item) => {
+  const categoryData = listCate?.find((item) => {
     if (item.vnSlug === category || item.enSlug === category) {
       return item;
     }
@@ -52,8 +54,8 @@ export const BreadcrumbProduct = async ({
     : defaultData;
 
   return (
-    <>
+    <div className={className}>
       <Breadcrumb data={defaultData} />
-    </>
+    </div>
   );
 };

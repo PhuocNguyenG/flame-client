@@ -9,11 +9,9 @@ import { Label } from "../ui/label";
 
 export const LeftFilterProduct = async ({
   lang,
-  pathname,
   category,
 }: {
   lang: Locale;
-  pathname: string;
   category: string;
 }) => {
   const categoryData = (await getListCateProduct()).Product;
@@ -21,19 +19,19 @@ export const LeftFilterProduct = async ({
 
   return (
     <>
-      <div className="flex flex-col border border-border rounded-md bg-slate-50 [&>*]:p-2 ">
-        <div className="font-bold bg-primary-foreground pb-0 rounded-t-md">
-          {t("CategoriesFilter")}
+      <div className="flex flex-col border border-border rounded-md bg-slate-50 [&>*]:p-3 ">
+        <div className="font-bold bg-primary-foreground pb-0 rounded-t-md !p-2 !px-3">
+          {t("Category")}:
         </div>
         <RadioGroup
           defaultValue={category}
-          className=" [&_a]:opacity-70 [&_a:has([data-state=checked])]:opacity-100 [&_label]:text-[15px]"
+          className="[&_a]:opacity-70 [&_a:has([data-state=checked])]:opacity-100 [&_label]:text-base [&_label]:leading-none [&_label]:font-semibold"
         >
           <div className="flex items-center">
             <Link
               href={"/product"}
-              pathName={pathname}
-              className="space-x-2 hover:opacity-100"
+              lang={lang}
+              className="space-x-2 hover:opacity-100 flex flex-row items-center"
             >
               <RadioGroupItem value="all" id="all" />
               <Label htmlFor="all" className="hover:cursor-pointer ">
@@ -51,16 +49,14 @@ export const LeftFilterProduct = async ({
               <div className="flex items-center " key={idx}>
                 <Link
                   href={href}
-                  pathName={pathname}
-                  className="space-x-2 hover:opacity-100"
+                  lang={lang}
+                  className="space-x-2 hover:opacity-100 flex flex-row items-center"
                 >
                   <RadioGroupItem
                     value={lang === "en" ? item.enSlug : item.vnSlug}
                   />
                   <Label
-                    htmlFor={
-                      lang === "en" ? item.enSlug : item.vnSlug
-                    }
+                    htmlFor={lang === "en" ? item.enSlug : item.vnSlug}
                     className="hover:cursor-pointer"
                   >
                     {title}

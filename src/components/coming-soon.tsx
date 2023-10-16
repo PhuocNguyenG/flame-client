@@ -14,7 +14,7 @@ export default function ComingSoon() {
     <div className="h-[500px] flex flex-col justify-center items-center gap-4">
       <h2 className="font-medium text-lg">{t("ComingSoon")}</h2>
       <Button asChild variant={"outline"}>
-        <Link href="/" pathName={pathname}>
+        <Link href="/" lang={lang}>
           {t("BackToHome")}
         </Link>
       </Button>

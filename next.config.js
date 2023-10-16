@@ -23,6 +23,10 @@ const nextConfig = {
   async rewrites() {
     return [
       {
+        source: "/vi/gioi-thieu",
+        destination: "/vi/introduce",
+      },
+      {
         source: "/vi/san-pham/:category*",
         destination: "/vi/product/:category*",
       },
@@ -35,8 +39,8 @@ const nextConfig = {
         destination: "/vi/export/:category*",
       },
       {
-        source: "/vi/gioi-thieu",
-        destination: "/vi/introduce",
+        source: "/vi/lien-he",
+        destination: "/vi/contact",
       },
       {
         source: "/vi/gio-hang",

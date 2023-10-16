@@ -78,6 +78,7 @@ export function MainNavBar({
     } else if (value === "") {
       setOffset(null);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTrigger, value]);
 
   React.useEffect(() => {
@@ -88,32 +89,35 @@ export function MainNavBar({
         ) as RootState["router"]["slugCategoriesTrans"]
       )
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cateExport, cateProduct]);
 
   return (
     <>
-      <div className="h-[28px] w-full bg-primary flex flex-row flex-wrap justify-around items-center text-secondary-foreground text-sm font-medium">
-        <div className="opacity-95">Chào mừng bạn đến với Nông sản Flame</div>
-        <div className="flex flex-row flex-wrap h-full items-center justify-center gap-2">
-          <Image
-            src={MapMarkedIcon}
-            alt="Map marker"
-            width={18}
-            height={18}
-            sizes="30"
-            className="h-auto opacity-80"
-          />
-          <p>108/14 TX21, Phường Thạnh Xuân, Quận 12, Tp.HCM</p>
-          <Separator
-            orientation="vertical"
-            className="bg-secondary-foreground h-4/6"
-          />
+      <div className="h-[28px] w-full bg-primary ">
+        <div className="container h-full flex flex-row flex-wrap justify-between items-center text-secondary-foreground text-sm font-medium">
+          <div className=""></div>
+          <div className="flex flex-row flex-wrap h-full items-center justify-center gap-2 ">
+            <Image
+              src={MapMarkedIcon}
+              alt="Map marker"
+              width={18}
+              height={18}
+              sizes="30"
+              className="h-auto opacity-80"
+            />
+            <p>{t("AddressDetail")}</p>
+            <Separator
+              orientation="vertical"
+              className="bg-secondary-foreground h-4/6"
+            />
+          </div>
         </div>
       </div>
       <div className="flex flex-row gap-5 h-[112px] items-center justify-around w-full container">
         <div className="min-w-[100px] max-w-fit h-fit justify-center items-center inline-block bg-primary p-[1px] rounded-full">
           <Link
-            pathName={pathname}
+            lang={lang}
             href={"/"}
             className="min-w-[100px] block relative top-[2px] rounded-full group overflow-hidden"
           >
@@ -148,9 +152,11 @@ export function MainNavBar({
             />
           </div>
           <div>
-            <b className="text-[15px] whitespace-nowrap">Hỗ trợ khách hàng</b>
+            <b className="text-[15px] whitespace-nowrap">
+              {t("CustomerSupport")}
+            </b>
             <p className="font-semibold text-[18px] text-red-600">
-              097 3912839
+              {t("PhoneNumber")}
             </p>
           </div>
         </div>
@@ -167,7 +173,7 @@ export function MainNavBar({
           >
             <NavigationMenuList ref={listRef as any}>
               <NavigationMenuItem value={"Home"}>
-                <Link pathName={pathname} legacyBehavior href="/" passHref>
+                <Link lang={lang} legacyBehavior href="/" passHref>
                   <NavigationMenuLink
                     active={!!["/", "/en"].find((x) => x === pathname)}
                     className={navigationMenuTriggerStyle()}
@@ -189,7 +195,7 @@ export function MainNavBar({
                     return node;
                   }}
                 >
-                  <Link href={"/product"} pathName={pathname}>
+                  <Link href={"/product"} lang={lang}>
                     {t("Product")}
                   </Link>
                 </NavigationMenuTrigger>
@@ -201,28 +207,31 @@ export function MainNavBar({
                     return node;
                   }}
                 >
-                  <ul className="grid w-[300px] gap-3 p-4 md:w-[400px] md:grid-cols-3 lg:w-[400px] ">
+                  <ul className="grid w-[300px] gap-3 p-4 md:w-[300px] md:grid-cols-2 lg:w-[300px] ">
                     {cateProduct.map((item, idx) => {
                       const title = lang === "en" ? item.en : item.vn;
-                      const href = `/product/${
-                        lang === "en" ? item.enSlug : item.vnSlug
-                      }`;
+                      const cate = lang === "en" ? item.enSlug : item.vnSlug;
+                      const href = `/product/${cate}`;
 
                       return (
-                        <>
-                          <Link
-                            href={href}
-                            pathName={pathname}
-                            key={idx}
-                            passHref
-                            legacyBehavior
-                          >
-                            <ListItem
-                              className={navigationMenuActiveStyle()}
-                              title={title}
-                            ></ListItem>
-                          </Link>
-                        </>
+                        <Link
+                          href={href}
+                          lang={lang}
+                          key={idx}
+                          passHref
+                          legacyBehavior
+                        >
+                          <ListItem
+                            {...(!!["/product", "/san-pham"].find((x) =>
+                              pathname.includes(x)
+                            ) &&
+                              pathname.includes(`/${cate}`) && {
+                                "data-active": true,
+                              })}
+                            className={navigationMenuActiveStyle()}
+                            title={title}
+                          ></ListItem>
+                        </Link>
                       );
                     })}
                   </ul>
@@ -255,7 +264,7 @@ export function MainNavBar({
                   <li className="row-span-3">
                   <Link
                       href={lang === "en" ? "gift" : "qua-tang-qua-bieu"}
-                      pathName={pathname}
+                      lang={lang}
                       legacyBehavior
                       passHref
                     >
@@ -271,7 +280,7 @@ export function MainNavBar({
                             </NavigationMenuLink>
                             </Link>
                             </li>
-                            <Link href={"/san-pham-say/combo-3"} pathName={pathname}>
+                            <Link href={"/san-pham-say/combo-3"} lang={lang}>
                             <ListItem title="Combo 3 loại trái cây">
                             Mít sấy, chuối sấy, hạt điều.
                             </ListItem>
@@ -287,7 +296,7 @@ export function MainNavBar({
                   </ListItem>
                 </ul> */}
                   <div className="grid gap-3 p-4 md:w-[300px] lg:w-[300px] text-center">
-                    Coming soon
+                    {t("ComingSoon")}
                   </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
@@ -303,8 +312,8 @@ export function MainNavBar({
                     return node;
                   }}
                 >
-                  <Link href={"/export"} pathName={pathname}>
-                    {t("Export")}
+                  <Link href={"/export"} lang={lang}>
+                    {t("ExportProduct")}
                   </Link>
                 </NavigationMenuTrigger>
                 <NavigationMenuContent
@@ -315,22 +324,27 @@ export function MainNavBar({
                     return node;
                   }}
                 >
-                  <ul className="grid w-[300px] gap-3 p-3 md:w-[400px] md:grid-cols-3 lg:w-[400px]">
-                    {cateExport.map((component, idx) => {
-                      const title = lang === "en" ? component.en : component.vn;
-                      const href = `/export/${
-                        lang === "en" ? component.enSlug : component.vnSlug
-                      }`;
+                  <ul className="grid w-[300px] gap-3 p-3 md:w-[300px] md:grid-cols-2 lg:w-[300px]">
+                    {cateExport.map((item, idx) => {
+                      const title = lang === "en" ? item.en : item.vn;
+                      const cate = lang === "en" ? item.enSlug : item.vnSlug;
+                      const href = `/export/${cate}`;
 
                       return (
                         <Link
                           href={href}
-                          pathName={pathname}
+                          lang={lang}
                           key={idx}
                           passHref
                           legacyBehavior
                         >
                           <ListItem
+                            {...(!!["/export", "/xuat-khau"].find((x) =>
+                              pathname.includes(x)
+                            ) &&
+                              pathname.includes(`/${cate}`) && {
+                                "data-active": true,
+                              })}
                             className={navigationMenuActiveStyle()}
                             title={title}
                           ></ListItem>
@@ -339,6 +353,16 @@ export function MainNavBar({
                     })}
                   </ul>
                 </NavigationMenuContent>
+              </NavigationMenuItem>
+              <NavigationMenuItem value={"Contact"}>
+                <Link lang={lang} legacyBehavior href="/contact" passHref>
+                  <NavigationMenuLink
+                    active={!!["/lien-he", "/en/contact"].find((x) => x === pathname)}
+                    className={navigationMenuTriggerStyle()}
+                  >
+                    {t("ContactUs")}
+                  </NavigationMenuLink>
+                </Link>
               </NavigationMenuItem>
               <NavigationMenuIndicator />
             </NavigationMenuList>

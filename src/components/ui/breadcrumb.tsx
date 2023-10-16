@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { usePathname } from "next/navigation";
 import Link from "../link";
 import { getLangByPathname } from "@/lib/utils";
@@ -14,11 +14,11 @@ export const Breadcrumb = ({
   return (
     <>
       {data?.length > 0 && (
-        <nav className="flex m-[10px_0px]" aria-label="Breadcrumb">
+        <nav className="flex m-[15px_0px] ml-4" aria-label="Breadcrumb">
           <ol className="inline-flex items-center space-x-1 md:space-x-3">
             <li className="inline-flex items-center">
               <Link
-                pathName={pathname}
+                lang={lang}
                 href={"/"}
                 className="inline-flex items-center text-sm font-medium text-gray-500 "
               >
@@ -58,7 +58,7 @@ export const Breadcrumb = ({
                       </p>
                     ) : (
                       <Link
-                        pathName={pathname}
+                        lang={lang}
                         href={item.href}
                         className="ml-1 text-sm font-medium text-gray-400"
                       >

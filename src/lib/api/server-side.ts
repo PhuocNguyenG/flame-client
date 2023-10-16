@@ -10,7 +10,7 @@ export const getAllExportProduct = async (): Promise<
 > => {
   const api = (await fetch(
     process.env.URL + "/export/get-all-export-products",
-    { method: "GET", next: { revalidate: false } }
+    { method: "GET" }
   ).then((res) => {
     if (res.ok) {
       return res.json();
@@ -61,7 +61,6 @@ export const getListCateProduct =
     try {
       const api = (await fetch(process.env.URL + "/type/get-product-type", {
         method: "GET",
-        next: { revalidate: false },
       }).then((res) => {
         if (res.ok) {
           return res.json();
@@ -96,7 +95,6 @@ export const getAllProduct = async (): Promise<
 > => {
   const api = (await fetch(process.env.URL + "/product/get-all-products", {
     method: "GET",
-    next: { revalidate: false },
   }).then((res) => {
     if (res.ok) {
       return res.json();

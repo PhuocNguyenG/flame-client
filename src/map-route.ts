@@ -1,5 +1,9 @@
 export const listRoute = [
   {
+    enSlug: "introduce",
+    vnSlug: "gioi-thieu",
+  },
+  {
     enSlug: "product",
     vnSlug: "san-pham",
   },
@@ -12,8 +16,8 @@ export const listRoute = [
     vnSlug: "xuat-khau",
   },
   {
-    enSlug: "introduce",
-    vnSlug: "gioi-thieu",
+    enSlug: "contact",
+    vnSlug: "lien-he",
   },
   {
     enSlug: "cart",

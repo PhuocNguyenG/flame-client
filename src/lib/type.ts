@@ -83,6 +83,7 @@ export interface ItemListProductResult {
   enSlug: string;
   vnSlug: string;
   productType: string;
+  price?: number
   en: {
     name: string;
     ingredients: string;
@@ -93,7 +94,6 @@ export interface ItemListProductResult {
     ingredients: string;
     origin: string;
   };
-
   isFeatured: boolean;
 }
 
@@ -106,6 +106,8 @@ export interface ProductDetailResult {
   listImages?: string[];
   weight?: string;
   productType: string;
+  price: number;
+  available:boolean;
 
   en: {
     name: string;

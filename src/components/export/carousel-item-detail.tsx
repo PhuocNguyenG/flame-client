@@ -31,7 +31,7 @@ export const CarouselDetailItem = ({
         navigation={data.length > 1 ? true : false}
         thumbs={{ swiper: thumbsSwiper }}
         modules={[FreeMode, Navigation, Thumbs]}
-        className=" h-[500px]"
+        className=" h-[500px] [&_.swiper-button-prev:after]:bg-white/80 [&_.swiper-button-prev:after]:p-1 [&_.swiper-button-prev:after]:rounded-md [&_.swiper-button-next:after]:bg-white/80 [&_.swiper-button-next:after]:p-1 [&_.swiper-button-next:after]:rounded-md"
       >
         {data?.map((item, idx) => {
           return (
@@ -60,7 +60,7 @@ export const CarouselDetailItem = ({
         {data.map((item, idx) => {
           return (
             <SwiperSlide
-              className="!flex p-1 !h-[unset] opacity-30 border-primary-foreground rounded-sm"
+              className="!flex p-1 !h-[unset] opacity-30 border-primary rounded-sm"
               key={idx}
             >
               <Image

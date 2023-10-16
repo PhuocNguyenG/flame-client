@@ -19,30 +19,19 @@ export const ZaloButton = () => {
 
   return (
     <>
-      <TooltipProvider delayDuration={200}>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              className="bg-blue-200"
-              size={"icon"}
-              onClick={() =>
-                window.open(`https://zalo.me/0973912839`, "_blank")
-              }
-            >
-              <Image
-                src={Zalo}
-                alt="Zalo Flame"
-                width={30}
-                height={30}
-                className="w-full h-full"
-              />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>{t("ContactViaZalo")}</p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+      <Button
+        className="bg-blue-200"
+        size={"icon"}
+        onClick={() => window.open(`https://zalo.me/0973912839`, "_blank")}
+      >
+        <Image
+          src={Zalo}
+          alt="Zalo Flame"
+          width={30}
+          height={30}
+          className="w-full h-full"
+        />
+      </Button>
     </>
   );
 };

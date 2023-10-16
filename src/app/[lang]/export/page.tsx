@@ -1,10 +1,6 @@
-import ExportItem from "@/components/export/item-list";
-import LayoutCategory from "@/components/export/layout-list";
-import Loading from "@/components/export/loading-item-list";
-
+import ExportItem from "@/components/export/list-item";
+import LayoutCategory from "@/components/export/list-layout";
 import { Locale } from "@/lib/i18n/setting";
-import { headers } from "next/headers";
-
 import React, { Suspense } from "react";
 
 export default async function Page({
@@ -12,14 +8,9 @@ export default async function Page({
 }: {
   params: { lang: Locale };
 }) {
-  const headersList = headers();
-  const pathname = headersList.get("x-invoke-path") || "";
-
   return (
-    <LayoutCategory lang={lang} pathname={pathname}>
-      <Suspense fallback={<Loading />}>
-        <ExportItem lang={lang} pathname={pathname} />
-      </Suspense>
+    <LayoutCategory lang={lang}>
+      <ExportItem lang={lang} />
     </LayoutCategory>
   );
 }

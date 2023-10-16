@@ -20,8 +20,12 @@ module.exports = {
         border: "rgb(var(--border)",
         input: "rgb(var(--input))",
         ring: "rgb(var(--ring))",
-        background: "rgb(var(--background))",
+        background: {
+          DEFAULT: "rgb(var(--background))",
+          body: "rgb(var(--background-body))",
+        },
         foreground: "rgb(var(--foreground))",
+
         primary: {
           DEFAULT: "rgb(var(--primary))",
           foreground: "rgb(var(--primary-foreground))",
@@ -77,7 +81,7 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         fadeIn: "fadeIn 200ms ease",
-        shine: "shine 1s",
+        shine: "shine 0.8s",
       },
     },
   },
