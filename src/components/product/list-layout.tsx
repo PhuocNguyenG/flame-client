@@ -1,4 +1,3 @@
-import { BannerProduct } from "./banner";
 import { BreadcrumbProduct } from "./breadcrumb";
 import { Locale } from "@/lib/i18n/setting";
 import { LeftFilterProduct } from "./left-filter";

@@ -63,12 +63,12 @@ export default async function ProductItem({
                 className="w-full min-h-[240px] max-h-[240px] p-3 rounded-md"
               >
                 <Image
-                  loading="eager"
+                  loading="lazy"
                   src={item.banner}
-                  alt=""
+                  alt={detail.name}
                   className="w-full h-full object-contain rounded-md duration-500"
-                  width={100}
-                  height={230}
+                  width={200}
+                  height={150}
                 />
               </Link>
               <div className="flex-1 px-3 py-1 text-secondary">
@@ -93,7 +93,7 @@ export default async function ProductItem({
                       {item.price
                         .toString()
                         .replace(/\B(?=(\d{3})+(?!\d))/gm, ".")}{" "}
-                      VND
+                      đ
                     </Link>
                   ) : (
                     <div className="text-sm">{t("ContactForPrice")}</div>

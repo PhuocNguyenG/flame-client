@@ -7,38 +7,7 @@ import { listRoute } from "./map-route";
 export async function middleware(request: NextRequest) {
   // Check if there is any supported locale in the pathname
   const pathname = request.nextUrl.pathname;
-
-  // const TransRoute = async (name: string): Promise<string> => {
-  //   if (name.startsWith(`/en/`) || name === `/en`) {
-  //     let result: string = name;
-  //     return await listRoute
-  //       .reduce(async (referencePoint, item) => {
-  //         // Check for execution status of previous iteration, i.e. wait for it to get finished
-  //         await referencePoint;
-  //         // Process the current iteration
-  //         if (name.includes(`/${item.vnSlug}`)) {
-  //           result = name.replace(`/${item.vnSlug}`, `/${item.enSlug}`);
-  //         }
-  //       }, Promise.resolve())
-  //       .then(() => {
-  //         return result;
-  //       });
-  //   } else {
-  //     let result: string = name;
-  //     return await listRoute
-  //       .reduce(async (referencePoint, item) => {
-  //         // Check for execution status of previous iteration, i.e. wait for it to get finished
-  //         await referencePoint;
-  //         // Process the current iteration
-  //         if (name.includes(`/${item.enSlug}`)) {
-  //           result = name.replace(`/${item.enSlug}`, `/${item.vnSlug}`);
-  //         }
-  //       }, Promise.resolve())
-  //       .then(() => {
-  //         return result;
-  //       });
-  //   }
-  // };
+console.log(request.nextUrl);
 
   // Check if the default locale is in the pathname
   if (

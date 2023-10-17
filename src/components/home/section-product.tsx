@@ -72,7 +72,7 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                         : "/san-pham/" + cate?.vnSlug + "/" + item.vnSlug;
                     return (
                       <div
-                        className="bg-white rounded-md hover:shadow-lg flex flex-col overflow-hidden w-full h-full [&_a:hover]:cursor-pointer border-2 border-primary hover:scale-[1.03] transition-all"
+                        className="bg-white rounded-md hover:shadow-lg flex flex-col overflow-hidden w-full h-full [&_a:hover]:cursor-pointer border-2 border-primary transition-all"
                         key={idx}
                       >
                         <Link
@@ -81,12 +81,12 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                           className="w-full min-h-[240px] max-h-[240px] p-3 rounded-md"
                         >
                           <Image
-                            loading="eager"
+                            loading="lazy"
                             src={item.banner}
-                            alt=""
+                            alt={detail.name}
                             className="w-full h-full object-contain rounded-md duration-500"
-                            width={100}
-                            height={230}
+                            width={200}
+                            height={150}
                           />
                         </Link>
                         <div className="flex-1 px-3 py-1 text-secondary">
@@ -118,96 +118,98 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
           )
         );
       })}
-      <section className="flex flex-col w-full h-fit mb-14 ">
-        <div className="flex flex-row items-center w-full h-full border-b-4 border-primary">
-          <div className="relative w-fit text-primary-foreground bg-primary px-4 py-2.5 text-lg font-bold rounded-t-md !before:content-none before:absolute before:top-0 before:-right-[1.2rem] before:bg-primary before:rounded-tr-sm before:h-[calc(100%)] before:w-3/4 before:skew-x-[40deg] before:z-[1] h-full">
-            <Link
-              href={`/export`}
-              lang={lang}
-              className="z-[2] relative inline-block"
-            >
-              {t("Export")}
-            </Link>
-          </div>
-          <div className="flex flex-row flex-wrap ml-auto h-full gap-2">
-            {exportCates?.map((cate, idx) => {
-              const cateName = lang === "en" ? cate.en : cate.vn;
-              const cateHref = `/export/${
-                lang === "en" ? cate.enSlug : cate.vnSlug
-              }`;
-              return (
-                <Link
-                  href={cateHref}
-                  lang={lang}
-                  key={idx}
-                  className="hover:underline hover:underline-offset-2 bg-slate-100 px-1 rounded-md transition-all"
-                >
-                  {cateName}
-                </Link>
-              );
-            })}
-            <Separator
-              orientation={"vertical"}
-              className="bg-primary h-[unset] w-[2px]"
-            />
-            <Link
-              href={`/export`}
-              lang={lang}
-              className="hover:underline hover:underline-offset-2"
-            >
-              Xem tất cả {"->"}
-            </Link>
-          </div>
-        </div>
-        <div className="h-fit  p-5">
-          <div className="grid grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-5 list-none p-0 m-0">
-            {exportItems?.map((item, idx) => {
-              const detail = lang === "en" ? item.en : item.vn;
-              const cate = exportCates?.find(
-                (x) => x.enSlug === item.productType
-              );
-              const href = `/export/${
-                lang === "en"
-                  ? cate?.enSlug + "/" + item.enSlug
-                  : cate?.vnSlug + "/" + item.vnSlug
-              }`;
-              return (
-                <div
-                  className="bg-white rounded-md hover:shadow-lg flex flex-col overflow-hidden w-full h-full [&_a:hover]:cursor-pointer border-2 border-primary hover:scale-[1.03] transition-all"
-                  key={idx}
-                >
+      {exportItems?.length >= 1 && (
+        <section className="flex flex-col w-full h-fit mb-14 ">
+          <div className="flex flex-row items-center w-full h-full border-b-4 border-primary">
+            <div className="relative w-fit text-primary-foreground bg-primary px-4 py-2.5 text-lg font-bold rounded-t-md !before:content-none before:absolute before:top-0 before:-right-[1.2rem] before:bg-primary before:rounded-tr-sm before:h-[calc(100%)] before:w-3/4 before:skew-x-[40deg] before:z-[1] h-full">
+              <Link
+                href={`/export`}
+                lang={lang}
+                className="z-[2] relative inline-block"
+              >
+                {t("Export")}
+              </Link>
+            </div>
+            <div className="flex flex-row flex-wrap ml-auto h-full gap-2">
+              {exportCates?.map((cate, idx) => {
+                const cateName = lang === "en" ? cate.en : cate.vn;
+                const cateHref = `/export/${
+                  lang === "en" ? cate.enSlug : cate.vnSlug
+                }`;
+                return (
                   <Link
-                    href={href}
+                    href={cateHref}
                     lang={lang}
-                    className="w-full min-h-[240px] max-h-[240px] p-3 rounded-md"
+                    key={idx}
+                    className="hover:underline hover:underline-offset-2 bg-slate-100 px-1 rounded-md transition-all"
                   >
-                    <Image
-                      loading="eager"
-                      src={item.banner}
-                      alt=""
-                      className="w-full h-full object-contain rounded-md duration-500"
-                      width={100}
-                      height={230}
-                    />
+                    {cateName}
                   </Link>
-                  <div className="flex-1 px-3 py-1 text-secondary">
+                );
+              })}
+              <Separator
+                orientation={"vertical"}
+                className="bg-primary h-[unset] w-[2px]"
+              />
+              <Link
+                href={`/export`}
+                lang={lang}
+                className="hover:underline hover:underline-offset-2"
+              >
+                Xem tất cả {"->"}
+              </Link>
+            </div>
+          </div>
+          <div className="h-fit  p-5">
+            <div className="grid grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-5 list-none p-0 m-0">
+              {exportItems?.map((item, idx) => {
+                const detail = lang === "en" ? item.en : item.vn;
+                const cate = exportCates?.find(
+                  (x) => x.enSlug === item.productType
+                );
+                const href = `/export/${
+                  lang === "en"
+                    ? cate?.enSlug + "/" + item.enSlug
+                    : cate?.vnSlug + "/" + item.vnSlug
+                }`;
+                return (
+                  <div
+                    className="bg-white rounded-md hover:shadow-lg flex flex-col overflow-hidden w-full h-full [&_a:hover]:cursor-pointer border-2 border-primary hover:scale-[1.03] transition-all"
+                    key={idx}
+                  >
                     <Link
                       href={href}
                       lang={lang}
-                      className="flex w-full text-lg font-bold tracking-wide capitalize m-0"
+                      className="w-full min-h-[240px] max-h-[240px] p-3 rounded-md"
                     >
-                      {detail.name}
+                      <Image
+                        loading="eager"
+                        src={item.banner}
+                        alt={detail.name}
+                        className="w-full h-full object-contain rounded-md duration-500"
+                        width={200}
+                        height={150}
+                      />
                     </Link>
-                    <div className="flex items-center text-lg font-semibold h-8 w-full text-red-500">
-                      <div className="text-sm">{t("ContactForPrice")}</div>
+                    <div className="flex-1 px-3 py-1 text-secondary">
+                      <Link
+                        href={href}
+                        lang={lang}
+                        className="flex w-full text-lg font-bold tracking-wide capitalize m-0"
+                      >
+                        {detail.name}
+                      </Link>
+                      <div className="flex items-center text-lg font-semibold h-8 w-full text-red-500">
+                        <div className="text-sm">{t("ContactForPrice")}</div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </>
   );
 };

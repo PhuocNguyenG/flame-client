@@ -65,10 +65,10 @@ export const CarouselDetailItem = ({
               <Image
                 src={item}
                 className="m-auto rounded-sm w-[80px] h-[80px] object-cover"
-                priority
                 alt={alt}
                 height={80}
                 width={80}
+                quality={30}
               />
             </SwiperSlide>
           );

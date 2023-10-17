@@ -32,7 +32,7 @@ const Basket = () => {
             >
               0
             </Badge>
-            <Image src={basket} alt="Basket" className="w-[25px] h-[25px]" />
+            <Image src={basket} alt="Basket" className="max-w-[25px] w-[25px] h-[25px]" width={25} height={25} unoptimized />
           </Link>
         </TooltipTrigger>
         <TooltipContent side="bottom">

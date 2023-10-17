@@ -62,12 +62,12 @@ export default async function ExportItem({
                     className="w-full min-h-[240px] max-h-[240px] p-3 rounded-md"
                   >
                     <Image
-                      loading="eager"
+                      loading="lazy"
                       src={item.banner}
-                      alt=""
+                      alt={detail.name}
                       className="w-full h-full object-contain rounded-md duration-500"
-                      width={100}
-                      height={230}
+                      width={200}
+                  height={150}
                     />
                   </Link>
 

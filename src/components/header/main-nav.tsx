@@ -105,6 +105,7 @@ export function MainNavBar({
               height={18}
               sizes="30"
               className="h-auto opacity-80"
+              unoptimized
             />
             <p>{t("AddressDetail")}</p>
             <Separator
@@ -149,6 +150,7 @@ export function MainNavBar({
               width={30}
               height={30}
               className="min-w-[30px]"
+              unoptimized
             />
           </div>
           <div>

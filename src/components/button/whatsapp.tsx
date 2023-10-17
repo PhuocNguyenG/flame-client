@@ -23,7 +23,7 @@ export const WhatsAppButton = () => {
         size={"icon"}
         onClick={() => window.open(`https://wa.me/+84973912839`, "_blank")}
       >
-        <Image src={WhatsApp} alt="Whatsapp Flame" width={27} height={27} />
+        <Image src={WhatsApp} alt="Whatsapp Flame" width={27} height={27} unoptimized/>
       </Button>
     </>
   );

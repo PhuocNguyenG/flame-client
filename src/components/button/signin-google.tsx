@@ -11,7 +11,7 @@ const GoogleButton = () => {
       className="bg-white active:!bg-slate-200"
       onClick={() => signIn("google")}
     >
-      <Image src={googleIcon} alt="Google SignIn" width={30} height={30} />
+      <Image src={googleIcon} alt="Google SignIn" width={30} height={30} unoptimized />
     </Button>
   );
 };

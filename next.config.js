@@ -27,12 +27,19 @@ const nextConfig = {
         destination: "/vi/introduce",
       },
       {
+        source: "/vi/san-pham",
+        destination: "/vi/product",
+      },
+      {
         source: "/vi/san-pham/:category*",
         destination: "/vi/product/:category*",
       },
       {
         source: "/vi/qua-tang-qua-bieu/:category*",
         destination: "/vi/gift/:category*",
+      },{
+        source: "/vi/xuat-khau",
+        destination: "/vi/export",
       },
       {
         source: "/vi/xuat-khau/:category*",
