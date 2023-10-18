@@ -7,7 +7,7 @@ import { listRoute } from "./map-route";
 export async function middleware(request: NextRequest) {
   // Check if there is any supported locale in the pathname
   const pathname = request.nextUrl.pathname;
-console.log(request.nextUrl); 
+console.log(request.nextUrl);
 
   // Check if the default locale is in the pathname
   if (
