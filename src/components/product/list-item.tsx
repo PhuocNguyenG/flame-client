@@ -50,7 +50,7 @@ export default async function ProductItem({
           const href =
             lang === "en"
               ? "/product/" + cateObject?.enSlug + "/" + item.enSlug
-              : "/san-pham/" + cateObject?.vnSlug + "/" + item.vnSlug;
+              : "/product/" + cateObject?.vnSlug + "/" + item.vnSlug;
 
           return (
             <li

@@ -39,7 +39,7 @@ const Link = ({
           .split("/")
           .map((item) => {
             const routeTrans = listRoute.find((rou) => {
-              return rou.enSlug === item;
+              return (rou.enSlug === item && item !="product");
             })?.vnSlug;
 
             return routeTrans ? routeTrans : item;
