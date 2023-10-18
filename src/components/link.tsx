@@ -35,7 +35,7 @@ const Link = ({
             return routeTrans ? routeTrans : item;
           })
           .join("/")
-      : oldHref
+      :  `/vi` +oldHref
           .split("/")
           .map((item) => {
             const routeTrans = listRoute.find((rou) => {
