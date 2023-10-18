@@ -66,10 +66,11 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                       ?.toString()
                       .replace(/\B(?=(\d{3})+(?!\d))/gm, ".")} đ`;
 
-                    const href =
-                      "/product/" + lang === "en"
-                        ? cate?.enSlug + "/" + item.enSlug
-                        : cate?.vnSlug + "/" + item.vnSlug;
+                    const href = `/product/${
+                      lang === "en"
+                        ? `${cate?.enSlug}/${item.enSlug}`
+                        : `${cate?.vnSlug}/${item.vnSlug}`
+                    }`;
                     return (
                       <div
                         className="bg-white rounded-md hover:shadow-lg flex flex-col overflow-hidden w-full h-full [&_a:hover]:cursor-pointer border-2 border-primary transition-all"

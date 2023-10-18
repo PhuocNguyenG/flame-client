@@ -47,10 +47,11 @@ export default async function ProductItem({
           const detail = lang === "en" ? item.en : item.vn;
           const categoryName = lang === "en" ? cateObject?.en : cateObject?.vn;
 
-          const href =
+          const href = `/product/${
             lang === "en"
-              ? "/product/" + cateObject?.enSlug + "/" + item.enSlug
-              : "/product/" + cateObject?.vnSlug + "/" + item.vnSlug;
+              ? `${cateObject?.enSlug}/${item.enSlug}`
+              : `${cateObject?.vnSlug}/${item.vnSlug}`
+          }`;
 
           return (
             <li

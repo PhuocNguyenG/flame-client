@@ -48,10 +48,11 @@ export default async function ExportItem({
           );
           const categoryName = lang === "en" ? cateObject?.en : cateObject?.vn;
 
-          const href =
+          const href = `/export/${
             lang === "en"
-              ? "/export/" + cateObject?.enSlug + "/" + item.enSlug
-              : "/xuat-khau/" + cateObject?.vnSlug + "/" + item.vnSlug;
+              ? `${cateObject?.enSlug}/${item.enSlug}`
+              : `${cateObject?.vnSlug}/${item.vnSlug}`
+          }`;
           return (
             <li className="flex h-[340px]" key={idx}>
               <div className="w-full h-full">
@@ -67,7 +68,7 @@ export default async function ExportItem({
                       alt={detail.name}
                       className="w-full h-full object-contain rounded-md duration-500"
                       width={200}
-                  height={150}
+                      height={150}
                     />
                   </Link>
 

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { getLangByPathname } from "@/lib/utils";
 import NextLink, { LinkProps } from "next/link";
 import { HTMLProps, FC } from "react";
@@ -25,7 +25,8 @@ const Link = ({
 
   const newHref =
     lang === "en"
-      ? `/en` + oldHref
+      ? `/en` +
+        oldHref
           .split("/")
           .map((item) => {
             const routeTrans = listRoute.find((rou) => {
@@ -35,11 +36,11 @@ const Link = ({
             return routeTrans ? routeTrans : item;
           })
           .join("/")
-      :  `/vi` +oldHref
+      : oldHref
           .split("/")
           .map((item) => {
             const routeTrans = listRoute.find((rou) => {
-              return (rou.enSlug === item && item !="product");
+              return rou.enSlug === item && item != "product";
             })?.vnSlug;
 
             return routeTrans ? routeTrans : item;
