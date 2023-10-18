@@ -13,8 +13,8 @@ export async function middleware(request: NextRequest) {
     pathname.startsWith(`/${fallbackLng}/`) ||
     pathname === `/${fallbackLng}`
   ) {
-    // e.g. incoming request is /vi/about
-    // The new URL is now /about
+    // e.g. incoming request is /vi/product
+    // The new URL is now /product
     return NextResponse.redirect(
       new URL(
         pathname.replace(
@@ -34,11 +34,20 @@ export async function middleware(request: NextRequest) {
     // We are on the default locale
     // Rewrite so Next.js understands
 
-    // e.g. incoming request is /about
-    // Tell Next.js it should pretend it's /vi/about
+    // e.g. incoming request is /san-pham
+    // Tell Next.js it should pretend it's /vi/product
+    const newPathname = pathname.split("/")
+    .map((item) => {
+      const routeTrans = listRoute.find((rou) => {
+        return rou.vnSlug === item;
+      })?.enSlug;
+
+      return routeTrans ? routeTrans : item;
+    })
+    .join("/")
 
     return NextResponse.rewrite(
-      new URL(`/${fallbackLng}${pathname}`, request.url)
+      new URL(`/${fallbackLng}${newPathname}`, request.url)
     );
   }
 }
