@@ -77,7 +77,7 @@ export default async function ItemProductDetail({
             <h2 className="mb-8 text-3xl font-extrabold leading-none tracking-tight text-gray-900 ml-0">
               {name}
             </h2>
-            <table className="text-base font-normal w-full [&_tr]:flex [&_tr]:mb-3 first:[&_tr>td]:font-semibold first:[&_tr>td]:max-w-[140px] first:[&_tr>td]:text-gray-700 first:[&_tr>td]:w-full">
+            <table className="table-auto text-base font-normal w-full [&_tr]:flex [&_tr]:mb-3 first:[&_tr>td]:font-semibold first:[&_tr>td]:max-w-[140px] first:[&_tr>td]:text-gray-700 first:[&_tr>td]:w-full">
               <tbody>
                 {categoryObject && (
                   <tr>
