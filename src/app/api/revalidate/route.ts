@@ -1,6 +1,12 @@
 import { NextRequest } from "next/server";
 import { revalidatePath, revalidateTag } from "next/cache";
 
+export const corsHeaders = {
+  "Access-Control-Allow-Origin": "https://flame-agri-admin.web.app",
+  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization",
+};
+
 // e.g a webhook to `your-website.com/api/revalidate?tag=collection&secret=<token>`
 export async function POST(request: NextRequest) {
   const secret = request.nextUrl.searchParams.get("secret");
@@ -24,3 +30,9 @@ export async function POST(request: NextRequest) {
 
   return Response.json({ revalidated: true, now: Date.now() });
 }
+
+
+export async function OPTIONS(req: NextRequest) {
+  return Response.json({}, { headers: corsHeaders });
+}
+

@@ -26,17 +26,6 @@ const Carousel = () => {
           <Image
             alt="Flame banner"
             priority
-            src={`https://pub-1b78f46b31aa4b9d89b9fa57dedf700f.r2.dev/banner1.webp`}
-            width={1200}
-            height={550}
-            sizes="100vw"
-            className="min-w-full w-0 max-w-full max-h-full object-cover"
-          />
-        </SwiperSlide>
-        <SwiperSlide className="!h-auto max-h-[550px] bg-white">
-          <Image
-            alt="Flame banner"
-            priority
             src={`https://res.cloudinary.com/flame-media/image/upload/v1695795540/dev/banner/ahb17kyh3n3yzty4mt0u.jpg`}
             width={1200}
             height={550}
