@@ -23,35 +23,35 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: "/vi/gioi-thieu",
-        destination: "/vi/introduce",
+        source: "/:lang/gioi-thieu",
+        destination: "/:lang/introduce",
       },
       {
-        source: "/vi/san-pham",
-        destination: "/vi/product",
+        source: "/:lang/san-pham",
+        destination: "/:lang/product",
       },
       {
-        source: "/vi/san-pham/:category*",
-        destination: "/vi/product/:category*",
+        source: "/:lang/san-pham/:category*",
+        destination: "/:lang/product/:category*",
       },
       {
-        source: "/vi/qua-tang-qua-bieu/:category*",
-        destination: "/vi/gift/:category*",
+        source: "/:lang/qua-tang-qua-bieu/:category*",
+        destination: "/:lang/gift/:category*",
       },{
-        source: "/vi/xuat-khau",
-        destination: "/vi/export",
+        source: "/:lang/xuat-khau",
+        destination: "/:lang/export",
       },
       {
-        source: "/vi/xuat-khau/:category*",
-        destination: "/vi/export/:category*",
+        source: "/:lang/xuat-khau/:category*",
+        destination: "/:lang/export/:category*",
       },
       {
-        source: "/vi/lien-he",
-        destination: "/vi/contact",
+        source: "/:lang/lien-he",
+        destination: "/:lang/contact",
       },
       {
-        source: "/vi/gio-hang",
-        destination: "/vi/cart",
+        source: "/:lang/gio-hang",
+        destination: "/:lang/cart",
       },
     ];
   },
