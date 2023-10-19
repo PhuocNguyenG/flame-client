@@ -1,6 +1,7 @@
 import ItemProductDetail from "@/components/product/detail-item";
 import { getAllProduct, getListCateProduct } from "@/lib/api/server-side";
 import { Locale } from "@/lib/i18n/setting";
+
 export async function generateStaticParams({
   params: { lang },
 }: {
@@ -10,12 +11,12 @@ export async function generateStaticParams({
   const cates = fetchData[0].Product;
   const products = fetchData[1];
 
-  const result = products.map((product) => ({
+  const result = products.map((item) => ({
     category:
       lang === "en"
-        ? cates.find((x) => x.enSlug === product.productType)?.enSlug
-        : cates.find((x) => x.enSlug === product.productType)?.vnSlug,
-    slug: lang === "en" ? product.enSlug : product.vnSlug,
+        ? cates.find((x) => x.enSlug === item.productType)?.enSlug
+        : cates.find((x) => x.enSlug === item.productType)?.vnSlug,
+    slug: lang === "en" ? item.enSlug : item.vnSlug,
   }));
 
   return result;

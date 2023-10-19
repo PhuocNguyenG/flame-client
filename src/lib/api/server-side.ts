@@ -33,7 +33,7 @@ export const getDetailExportProduct = async (
 ): Promise<Type.ExportDetailResult> => {
   const api = (await fetch(process.env.URL + `/export/${slug}-${lang}`, {
     method: "GET",
-    next: { tags: ["/export/${slug}-${lang}"] },
+    next: { tags: [`export-${slug}-${lang}`] },
   }).then((res) => {
     if (res.ok) {
       return res.json();
@@ -103,7 +103,7 @@ export const getDetailProduct = async (
   const api = (await fetch(process.env.URL + `/product/${slug}-${lang}`, {
     method: "GET",
     next: {
-      tags: [`/product/${slug}-${lang}`],
+      tags: [`product-${slug}-${lang}`],
     },
   }).then((res) => {
     if (res.ok) {

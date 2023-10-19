@@ -3,6 +3,7 @@ import Link from "next/link";
 import { headers } from "next/headers";
 import { getLangByPathname } from "@/lib/utils";
 import { useTransServer } from "@/lib/i18n/server";
+
 export default async function NotFound() {
   const headersList = headers();
   const pathname = headersList.get("x-invoke-path") || "";

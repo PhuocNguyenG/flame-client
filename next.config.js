@@ -13,8 +13,9 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "**.flameagricultural.com",
-      }
+      },
     ],
+    minimumCacheTTL: 60,
   },
   experimental: {
     serverActions: true,

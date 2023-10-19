@@ -5,9 +5,9 @@ import { Locale } from "@/lib/i18n/setting";
 import React, { Suspense } from "react";
 
 export default function ProductByCate({
-  params: { lang, category },
+  params: { lang,  },
 }: {
-  params: { lang: Locale; category: string };
+  params: { lang: Locale; };
 }) {
   return (
     <LayoutProductCategory lang={lang} category={"all"}>
