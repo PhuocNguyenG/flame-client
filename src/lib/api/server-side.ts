@@ -2,11 +2,33 @@ import { Locale } from "../i18n/setting";
 import * as Type from "../type";
 
 /**
+ * Get all main product
+ * @returns Array <ItemListProductResult[]>
+ */
+export const getAllProduct = async (): Promise<
+  Type.ItemListProductResult[]
+> => {
+  const api = (await fetch(process.env.URL + "/product/get-all-products", {
+    method: "GET",
+    next: { tags: ["get-all-products"] },
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
+    }
+  })) as Type.ApiResult;
+  if (api.statusCode === Type.Status.OK) {
+    return api.result;
+  } else {
+    return [];
+  }
+};
+
+/**
  * Get all export product
- * @returns Array <ExportDetailResult[]>
+ * @returns Array <ItemListExportsResult[]>
  */
 export const getAllExportProduct = async (): Promise<
-  Type.ExportDetailResult[]
+  Type.ItemListExportsResult[]
 > => {
   const api = (await fetch(
     process.env.URL + "/export/get-all-export-products",
@@ -24,8 +46,35 @@ export const getAllExportProduct = async (): Promise<
 };
 
 /**
- * List category name and slug of export product
- * @returns Array <TypeItemCategoryProduct[]>
+ * Product detail
+ * @returns <ProductDetailResult>
+ */
+export const getDetailProduct = async (
+  slug: string,
+  lang: Locale
+): Promise<Type.ProductDetailResult> => {
+  const api = (await fetch(process.env.URL + `/product/${slug}-${lang}`, {
+    method: "GET",
+    next: {
+      tags: [`product-${slug}-${lang}`],
+    },
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
+    }
+  })) as Type.ApiResult;
+
+  if (api.statusCode === Type.Status.OK) {
+    const result = api.result as Type.ProductDetailResult;
+    return result;
+  } else {
+    return null!;
+  }
+};
+
+/**
+ * Export detail
+ * @returns <ExportDetailResult>
  */
 export const getDetailExportProduct = async (
   slug: string,
@@ -49,7 +98,7 @@ export const getDetailExportProduct = async (
 };
 
 /**
- * List category name and slug of main product
+ * List categories (name and slug) of Product, Export
  * @returns <TypeCategoryProduct>
  */
 export const getListCateProduct =
@@ -73,48 +122,3 @@ export const getListCateProduct =
       };
     }
   };
-
-/**
- * Get all main product
- * @returns Array <ExportDetailResult[]>
- */
-export const getAllProduct = async (): Promise<
-  Type.ItemListProductResult[]
-> => {
-  const api = (await fetch(process.env.URL + "/product/get-all-products", {
-    method: "GET",
-    next: { tags: ["get-all-products"] },
-  }).then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-  })) as Type.ApiResult;
-  if (api.statusCode === Type.Status.OK) {
-    return api.result;
-  } else {
-    return [];
-  }
-};
-
-export const getDetailProduct = async (
-  slug: string,
-  lang: Locale
-): Promise<Type.ProductDetailResult> => {
-  const api = (await fetch(process.env.URL + `/product/${slug}-${lang}`, {
-    method: "GET",
-    next: {
-      tags: [`product-${slug}-${lang}`],
-    },
-  }).then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-  })) as Type.ApiResult;
-
-  if (api.statusCode === Type.Status.OK) {
-    const result = api.result as Type.ProductDetailResult;
-    return result;
-  } else {
-    return null!;
-  }
-};
