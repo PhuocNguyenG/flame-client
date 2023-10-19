@@ -6,6 +6,7 @@ declare namespace NodeJS {
     GOOGLE_ID: string;
     GOOGLE_SECRET: string;
 
-    PHONE_NUMBER_MAIN:string;
+    URL: string;
+    MY_SECRET_VALIDATE_TOKEN: string;
   }
 }

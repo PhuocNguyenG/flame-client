@@ -8,7 +8,10 @@ export async function generateStaticParams({
 }: {
   params: { lang: Locale };
 }) {
-  const fetchData = await Promise.all([getListCateProduct(), getAllExportProduct()]);
+  const fetchData = await Promise.all([
+    getListCateProduct(),
+    getAllExportProduct(),
+  ]);
   const cates = fetchData[0].Export;
   const exports = fetchData[1];
 
@@ -22,6 +25,7 @@ export async function generateStaticParams({
 
   return result;
 }
+
 export default function Page({
   params: { lang, category, slug },
 }: {

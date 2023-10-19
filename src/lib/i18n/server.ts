@@ -26,7 +26,7 @@ export async function useTransServer(lang: Locale) {
 
   return {
     // This is the translation function we'll use in our components
-    // e.g. t('greeting')
+    // e.g. t('Product')
     t: i18nextInstance.getFixedT(lang),
   };
 }

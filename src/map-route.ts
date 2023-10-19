@@ -23,5 +23,4 @@ export const listRoute = [
     enSlug: "cart",
     vnSlug: "gio-hang",
   },
-
 ];

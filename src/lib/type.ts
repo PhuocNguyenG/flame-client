@@ -76,6 +76,26 @@ export interface ExportDetailResult {
   isFeatured: boolean;
 }
 
+
+export interface ItemListExportsResult {
+  _id: string;
+  banner: string;
+  enSlug: string;
+  vnSlug: string;
+  productType: string;
+  en: {
+    name: string;
+    ingredients: string;
+    origin: string;
+  };
+  vn: {
+    name: string;
+    ingredients: string;
+    origin: string;
+  };
+  isFeatured: boolean;
+}
+
 //Product
 export interface ItemListProductResult {
   _id: string;
