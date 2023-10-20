@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+const plugin = require("tailwindcss/plugin");
 module.exports = {
   darkMode: ["class"],
   content: [
@@ -14,6 +15,37 @@ module.exports = {
       screens: {
         "2xl": "1250px",
       },
+    },
+    screens: {
+      max375: { max: "375px" },
+
+      min376: "376px",
+
+      max480: { max: "480px" },
+
+      min481: "481px",
+
+      sm: "640px",
+      // => @media (min-width: 640px) { ... }
+
+      md: "768px",
+      // => @media (min-width: 768px) { ... }
+
+      max800: { max: "800px" },
+      // => @media (max-width: 8001px) { ... }
+
+      min801: "801px",
+      // => @media (min-width: 801px) { ... }
+
+      max1023: { max: "1023px" },
+      lg: "1024px",
+      // => @media (min-width: 1024px) { ... }
+
+      xl: "1280px",
+      // => @media (min-width: 1280px) { ... }
+
+      "2xl": "1536px",
+      // => @media (min-width: 1536px) { ... }
     },
     extend: {
       colors: {
@@ -85,5 +117,27 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    plugin(({ addUtilities }: any) => {
+      addUtilities({
+        ".none-select-text": {
+          "-webkit-touch-callout": "none",
+          "-webkit-user-select": "none",
+          /* Safari */
+          "-khtml-user-select": "none ",
+          "-moz-user-select": "none ",
+          /* Firefox */
+          "-ms-user-select": " none ",
+          /* Internet Explorer/Edge */
+          "user-select": " none ",
+          /* Non-prefixed version, currently supported by Chrome and Opera */
+          "-webkit-tap-highlight-color": "rgba(0,0,0,0)",
+        },
+      });
+    }),
+    require("tailwindcss-animate"),
+  ],
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
 };

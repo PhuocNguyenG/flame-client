@@ -19,10 +19,12 @@ const SearchButton = ({
   showOnTop = false,
   inputValue,
   setInputValue,
+  dimension,
 }: {
   showOnTop?: boolean;
   inputValue: string;
   setInputValue: React.Dispatch<React.SetStateAction<string>>;
+  dimension?: { width: number; height: number };
 }) => {
   const [showSearchBtn, setShowSearchBtn] = React.useState(false);
   const { i18n } = useTranslation();
@@ -58,16 +60,18 @@ const SearchButton = ({
   return (
     <Dialog>
       <DialogTrigger
-        className="w-full"
-        {...(!showOnTop ? { hidden: !showSearchBtn } : {})}
+        className={`w-full `}
+        {...(dimension && dimension.width <= 800
+          ? {}
+          : !showOnTop
+          ? { hidden: !showSearchBtn }
+          : {})}
       >
         <div
-          className={`flex flex-row items-center ${
+          className={`flex flex-row items-center justify-center ${
             showOnTop
               ? "border-2 shadow border-primary p-1 pr-2"
-              : inputValue
-              ? "border shadow border-secondary-foreground/60"
-              : "border-none"
+              : `border-[0px] !border-b-[1px] rounded-none !border-primary-foreground/40 min801:border-none lg:border-solid`
           } rounded-md w-full`}
           tabIndex={-1}
         >
@@ -75,7 +79,9 @@ const SearchButton = ({
             value={inputValue}
             placeholder={t("Search")}
             className={`${
-              showOnTop ? "text-primary" : "text-secondary-foreground"
+              showOnTop
+                ? "text-primary"
+                : "text-secondary-foreground hidden max800:block lg:block "
             } font-normal border-none shadow-none focus-visible:ring-0 hover:cursor-pointer opacity-70`}
             style={{ textShadow: " 0 0 black" }}
             tabIndex={-1}
@@ -83,7 +89,7 @@ const SearchButton = ({
           />
           <MagnifyingGlassIcon
             focusable={"false"}
-            className={` w-8 h-8 opacity-100 ${
+            className={`min-w-[30px] h-8 opacity-70 ${
               showOnTop ? "text-primary" : "text-white"
             } focus:outline-none `}
             tabIndex={-1}
@@ -107,7 +113,9 @@ const SearchButton = ({
             />
           </DialogTitle>
           <Separator />
-          <DialogDescription className="text-secondary-foreground">{t("Result")}:</DialogDescription>
+          <DialogDescription className="text-secondary-foreground">
+            {t("Result")}:
+          </DialogDescription>
         </DialogHeader>
       </DialogContent>
     </Dialog>

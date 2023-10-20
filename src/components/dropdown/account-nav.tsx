@@ -91,7 +91,7 @@ const AccountDropdown = () => {
         onMouseLeave={handleMouseLeave}
       >
         {session?.user ? (
-          <Avatar className="w-7 h-7">
+          <Avatar className="w-8 h-8">
             <AvatarImage src={session?.user?.image || ""} />
             <AvatarFallback>
               {session?.user?.name?.split("")[0].toLocaleUpperCase()}
