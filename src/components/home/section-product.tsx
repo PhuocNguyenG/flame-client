@@ -28,7 +28,7 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
         <div className="relative w-fit h-full rounded-md bg-primary text-primary-foreground px-6 py-2 z-[1] font-bold text-lg before:absolute before:top-0 before:-right-[1rem] before:bg-primary before:rounded-md before:h-[45px] before:w-[45px] before:-z-[1] before:rotate-45 after:absolute after:top-0 after:-left-[1rem] after:bg-primary after:rounded-md after:h-[45px] after:w-[45px] after:-z-[1] after:rotate-45">
           {t("Product")}
         </div>
-        <div className="absolute top-[calc(48%-1px)] w-1/2 h-1 bg-primary rounded-md "></div>
+        <div className="absolute top-[calc(48%-1px)] w-full sm:w-2/3 h-1 bg-primary rounded-md transition-all duration-500"></div>
       </div>
       {productCates?.map((cate, idx) => {
         const cateName = lang === "en" ? cate.en : cate.vn;
@@ -131,8 +131,10 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                 {t("Export")}
               </Link>
             </div>
-            <div className="flex flex-row flex-wrap ml-auto h-full gap-2">
-              {exportCates?.map((cate, idx) => {
+            <div className="flex flex-row flex-wrap ml-auto h-full gap-2 w-fit">
+              <div className="flex flex-row flex-wrap gap-2 w-fit max480:hidden">
+
+              {exportCates?.slice(0,2).map((cate, idx) => {
                 const cateName = lang === "en" ? cate.en : cate.vn;
                 const cateHref = `/export/${
                   lang === "en" ? cate.enSlug : cate.vnSlug
@@ -142,15 +144,17 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                     href={cateHref}
                     lang={lang}
                     key={idx}
-                    className="hover:underline hover:underline-offset-2 bg-slate-100 px-1 rounded-md transition-all"
+                    className="hover:underline hover:underline-offset-2 bg-slate-200 px-1 rounded-md transition-all"
                   >
                     {cateName}
                   </Link>
                 );
               })}
+              {exportCates.length > 2 ? <div>...</div> :""}
+                </div>
               <Separator
                 orientation={"vertical"}
-                className="bg-primary h-[unset] w-[2px]"
+                className="bg-primary h-[unset] w-[2px] max480:hidden"
               />
               <Link
                 href={`/export`}

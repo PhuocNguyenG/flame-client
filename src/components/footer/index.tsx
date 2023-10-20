@@ -54,9 +54,30 @@ export default async function Footer({ lang }: { lang: Locale }) {
           </div>
         </div>
       </div>
-      <Separator className="container bg-primary-foreground/40 m-auto mb-3" />
-      <div className="w-full flex-row hidden md:!flex container [&_h2]:text-primary-foreground [&_h2]:text-lg [&_h2]:font-semibold [&_h2]:mb-2 mb-3">
-        <div className="flex flex-col gap-1 [&_p]:text-secondary-foreground/80 [&_a]:w-fit">
+
+      <Accordion type="multiple" className="container w-full block md:hidden mb-3">
+        <AccordionItem value="item-1">
+          <AccordionTrigger className="text-primary-foreground text-base">
+           Về chúng tôi
+          </AccordionTrigger>
+          <AccordionContent className="text-sm">
+            Đang cập nhật
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-2">
+          <AccordionTrigger className="text-primary-foreground text-base">
+            Danh mục
+          </AccordionTrigger>
+          <AccordionContent className="text-sm">
+          Đang cập nhật
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+
+      <Separator className="container hidden md:block bg-primary-foreground/40 m-auto my-3 w-10/12" />
+
+      <div className="w-full flex-row flex container [&_h2]:text-primary-foreground [&_h2]:text-sm [&_h2]:font-semibold [&_h2]:mb-2 my-3">
+        <div className="flex flex-col gap-1 [&_p]:text-secondary-foreground/80 [&_p]:text-sm [&_a]:w-fit">
           <h2>{t("NameCompany")}</h2>
           <p>
             {t("Tax_Code")}
@@ -76,30 +97,9 @@ export default async function Footer({ lang }: { lang: Locale }) {
           </p>
         </div>
       </div>
-      <div className="w-full flex-row hidden md:!flex container text-secondary-foreground/80 mb-2 justify-center">
+      <div className="w-full flex-row hidden sm:flex container text-secondary-foreground/80 mb-2 justify-center">
         ©{new Date().getFullYear()} - {t("NameCompany")}
       </div>
-      <Accordion type="multiple" className="w-full block md:hidden">
-        <AccordionItem value="item-1">
-          <AccordionTrigger>Is it accessible?</AccordionTrigger>
-          <AccordionContent>
-            Yes. It adheres to the WAI-ARIA design pattern.
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="item-2">
-          <AccordionTrigger>Is it styled?</AccordionTrigger>
-          <AccordionContent>
-            Yes. It comes with default styles that matches the other
-            components&apos; aesthetic.
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="item-3">
-          <AccordionTrigger>Is it animated?</AccordionTrigger>
-          <AccordionContent>
-            Yes. s animated by default, but you can disable it if you prefer.
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
     </footer>
   );
 }

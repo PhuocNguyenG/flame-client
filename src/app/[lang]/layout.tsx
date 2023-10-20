@@ -34,7 +34,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <ReduxProvider>
           <NextAuthProvider>
-            <NextTopLoader color="#F7E509" initialPosition={0.3} />
+            <NextTopLoader color="#F7E509" initialPosition={0.3} showSpinner={false} />
             <NavBar lang={lang}>
               <main>{children}</main>
               <Toaster />

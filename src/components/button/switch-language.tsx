@@ -24,7 +24,7 @@ const SwitchLanguage = () => {
 
   return (
     <>
-      <div className="flex flex-row flex-wrap gap-3 h-fit w-fit">
+      <div className="flex flex-col md:flex-row flex-wrap gap-3 h-fit w-fit justify-center">
         <Link
           href={
             "/" +
@@ -45,8 +45,8 @@ const SwitchLanguage = () => {
               "https://res.cloudinary.com/flame-media/image/upload/v1696660624/dev/gif/g38opy7jqwm9ojrm1tlr.gif"
             }
             width={40}
-            height={35}
-            className="h-auto pl-[1px]"
+            height={30}
+            className="min-w-[40px] h-auto pl-[1px]"
             alt="vi"
           />
         </Link>
@@ -70,8 +70,8 @@ const SwitchLanguage = () => {
               "https://res.cloudinary.com/flame-media/image/upload/v1696660625/dev/gif/ek7affoa6zu5korzc9tj.gif"
             }
             width={40}
-            height={35}
-            className="h-auto pl-[1px]"
+            height={30}
+            className="min-w-[40px] h-auto pl-[1px]"
             alt="en"
           />
         </Link>
