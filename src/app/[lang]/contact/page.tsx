@@ -1,3 +1,4 @@
+import ComingSoon from "@/components/coming-soon";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { useTransServer } from "@/lib/i18n/server";
 import { Locale } from "@/lib/i18n/setting";
@@ -12,7 +13,7 @@ export default async function Page({
   return (
     <div className="container mt-2">
       <Breadcrumb data={[{ name: t("Contact"), href: "/contact" }]} />
-      
+      <ComingSoon  />
     </div>
   );
 }

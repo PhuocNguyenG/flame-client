@@ -17,7 +17,7 @@ export const SideNav = ({
   lang,
   side,
 }: {
-  lang: Locale
+  lang: Locale;
   side?: "right" | "left" | "top" | "bottom";
 }) => {
   return (
@@ -33,8 +33,7 @@ export const SideNav = ({
           <Separator className="bg-primary" />
         </SheetContent>
       </Sheet>
-      <Link lang={lang}
-            href={"/"} className="h-fit w-fit">
+      <Link lang={lang} href={"/"} className="h-fit w-fit">
         <Image
           src={FlameLogoSimple}
           alt="Flame logo"

@@ -190,7 +190,20 @@ export function MainNavBar({
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
-
+              <NavigationMenuItem value={"Introduce"}>
+                <Link lang={lang} legacyBehavior href="/introduce" passHref>
+                  <NavigationMenuLink
+                    active={
+                      !!["introduce", "gioi-thieu"].find((x) =>
+                        pathname.split("/").includes(x)
+                      )
+                    }
+                    className={navigationMenuTriggerStyle()}
+                  >
+                    {t("Introduce")}
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
               <NavigationMenuItem value={"Product"}>
                 <NavigationMenuTrigger
                   {...(!!["product", "san-pham"].find((x) =>
@@ -257,7 +270,7 @@ export function MainNavBar({
                 </NavigationMenuContent>
               </NavigationMenuItem>
 
-              <NavigationMenuItem value={"Gift"}>
+             {/* <NavigationMenuItem value={"Gift"}>
                 <NavigationMenuTrigger
                   {...(!!["gift", "qua-tang-qua-bieu"].find((x) =>
                     pathname.split("/").includes(x)
@@ -279,7 +292,7 @@ export function MainNavBar({
                     return node;
                   }}
                 >
-                  {/* <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                   <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                   <li className="row-span-3">
                   <Link
                       href={lang === "en" ? "gift" : "qua-tang-qua-bieu"}
@@ -313,12 +326,12 @@ export function MainNavBar({
                   <ListItem href="/san-pham-say/tuy-chon" title="Tùy chọn ...">
                     Hạt dưa, bí, sen, thơm sấy, cóc, dừa, ...
                   </ListItem>
-                </ul> */}
+                </ul> 
                   <div className="grid gap-3 p-4 md:w-[300px] lg:w-[300px] text-center">
                     {t("ComingSoon")}
                   </div>
                 </NavigationMenuContent>
-              </NavigationMenuItem>
+              </NavigationMenuItem>*/}
               <NavigationMenuItem value="Export">
                 <NavigationMenuTrigger
                   {...(!!["export", "xuat-khau"].find((x) =>
@@ -384,10 +397,7 @@ export function MainNavBar({
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
-              <NavigationMenuItem
-                value={"Contact"}
-                className="hidden lg:block"
-              >
+              <NavigationMenuItem value={"Contact"} className="hidden lg:block">
                 <Link lang={lang} legacyBehavior href="/contact" passHref>
                   <NavigationMenuLink
                     active={

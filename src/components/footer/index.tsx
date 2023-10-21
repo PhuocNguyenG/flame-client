@@ -55,28 +55,54 @@ export default async function Footer({ lang }: { lang: Locale }) {
         </div>
       </div>
 
-      <Accordion type="multiple" className="container w-full block md:hidden mb-3">
+      <Accordion
+        type="multiple"
+        className="container w-full block md:hidden mb-3"
+      >
         <AccordionItem value="item-1">
-          <AccordionTrigger className="text-primary-foreground text-base">
-           Về chúng tôi
+          <AccordionTrigger className="text-primary-foreground text-base uppercase">
+            Về chúng tôi
           </AccordionTrigger>
-          <AccordionContent className="text-sm">
-            Đang cập nhật
+          <AccordionContent>
+            <div className="flex flex-col gap-1 text-base text-secondary-foreground/80">
+              <Link href={"/introduce"} lang={lang} className="w-fit">
+                {t("Introduce")}
+              </Link>
+            </div>
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-2">
-          <AccordionTrigger className="text-primary-foreground text-base">
+          <AccordionTrigger className="text-primary-foreground text-base uppercase">
             Danh mục
           </AccordionTrigger>
-          <AccordionContent className="text-sm">
-          Đang cập nhật
+          <AccordionContent>
+            <div className="flex flex-col gap-1 text-base text-secondary-foreground/80 w-fit">
+              {products?.map((item, idx) => {
+                const href = lang === "en" ? item.enSlug : item.vnSlug;
+                const name = lang === "en" ? item.en : item.vn;
+
+                return (
+                  <Link
+                    href={`/product/${href}`}
+                    lang={lang}
+                    key={idx}
+                    className="w-fit"
+                  >
+                    {name}
+                  </Link>
+                );
+              })}
+              <Link href={"/export"} lang={lang} className="w-fit">
+                {t("Export")}
+              </Link>
+            </div>
           </AccordionContent>
         </AccordionItem>
       </Accordion>
 
       <Separator className="container hidden md:block bg-primary-foreground/40 m-auto my-3 w-10/12" />
 
-      <div className="w-full flex-row flex container [&_h2]:text-primary-foreground [&_h2]:text-sm [&_h2]:font-semibold [&_h2]:mb-2 my-3">
+      <div className="w-full flex-row flex container [&_h2]:text-primary-foreground [&_h2]:text-base [&_h2]:font-semibold [&_h2]:mb-2 my-3">
         <div className="flex flex-col gap-1 [&_p]:text-secondary-foreground/80 [&_p]:text-sm [&_a]:w-fit">
           <h2>{t("NameCompany")}</h2>
           <p>
