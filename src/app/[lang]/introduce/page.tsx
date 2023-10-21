@@ -1,7 +1,11 @@
 import ComingSoon from "@/components/coming-soon";
 import { Locale } from "@/lib/i18n/setting";
 
-export default function Introduce({ lang }: { lang: Locale }) {
+export default async function Page({
+  params: { lang },
+}: {
+  params: { lang: Locale };
+}) {
   return (
     <>
       <ComingSoon />
