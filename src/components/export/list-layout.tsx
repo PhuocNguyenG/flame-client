@@ -20,7 +20,7 @@ export default async function LayoutCategory({
         <div className="container flex flex-col w-full h-fit ">
           <BreadcrumbExport lang={lang} category={category} />
 
-          <div className="flex flex-row w-full flex-wrap min-[890px]:flex-nowrap h-full gap-5">
+          <div className="flex flex-row w-full flex-wrap min801:flex-nowrap h-full gap-5">
             <div className="!sticky top-[60px] min-w-[200px] h-fit hidden md:block ">
               <LeftFilterExport
                 category={category}
