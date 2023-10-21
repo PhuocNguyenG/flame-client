@@ -59,11 +59,11 @@ export default async function ItemProductDetail({
       <SetStateToClient
         dispatch={setSlugProductDetailTrans([slugExportTrans])}
       />
-        <BreadcrumbProduct
-          lang={lang}
-          category={category}
-          detailData={slugExportTrans}
-        />
+      <BreadcrumbProduct
+        lang={lang}
+        category={category}
+        detailData={slugExportTrans}
+      />
 
       <div className="flex flex-row flex-wrap w-full h-full gap-5 mt-10 mb-10">
         <div className="flex-[1_1_400px] w-1/2 h-fit">

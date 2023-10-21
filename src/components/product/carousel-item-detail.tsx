@@ -38,10 +38,10 @@ export const CarouselDetailItem = ({
               <Image
                 src={item}
                 alt={alt}
-                className="m-auto object-contain w-fit h-full rounded-sm"
+                className="m-auto object-contain h-auto rounded-sm"
                 priority
-                height={500}
-                width={500}
+                fill
+                sizes="500px"
               />
             </SwiperSlide>
           );
@@ -64,7 +64,7 @@ export const CarouselDetailItem = ({
             >
               <Image
                 src={item}
-                className="m-auto rounded-sm w-[80px] h-[80px] object-cover"
+                className="m-auto rounded-sm w-[80px] h-auto object-cover"
                 alt={alt}
                 height={80}
                 width={80}

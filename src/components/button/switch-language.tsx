@@ -58,7 +58,6 @@ const SwitchLanguage = () => {
                 const routeTrans = listRouteTrans.find((rou) => {
                   return rou.vnSlug == item;
                 })?.enSlug;
-
                 return routeTrans ? routeTrans : item;
               })
               .join("/")
