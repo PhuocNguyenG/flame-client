@@ -38,7 +38,7 @@ export default async function ProductItem({
 
   return (
     <>
-      <ul className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-5 list-none p-0 m-0 ">
+      <ul className="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-5 list-none p-0 m-0 ">
         {result?.map((item, idx) => {
           const cateObject = dataCategory.find(
             (cate) => cate.enSlug === item.productType

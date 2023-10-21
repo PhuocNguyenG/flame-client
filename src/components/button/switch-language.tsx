@@ -48,6 +48,7 @@ const SwitchLanguage = () => {
             height={30}
             className="min-w-[40px] h-auto pl-[1px]"
             alt="vi"
+            unoptimized
           />
         </Link>
         <Link
@@ -72,6 +73,7 @@ const SwitchLanguage = () => {
             height={30}
             className="min-w-[40px] h-auto pl-[1px]"
             alt="en"
+            unoptimized
           />
         </Link>
       </div>

@@ -40,7 +40,7 @@ export default async function ExportItem({
 
   return (
     <>
-      <ul className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-5 list-none p-0 m-0 ">
+      <ul className="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-5 list-none p-0 m-0 ">
         {result?.map((item, idx) => {
           const detail = lang === "en" ? item.en : item.vn;
           const cateObject = dataCategory.find(
