@@ -76,7 +76,6 @@ export interface ExportDetailResult {
   isFeatured: boolean;
 }
 
-
 export interface ItemListExportsResult {
   _id: string;
   banner: string;
@@ -103,7 +102,7 @@ export interface ItemListProductResult {
   enSlug: string;
   vnSlug: string;
   productType: string;
-  price?: number
+  price?: number;
   en: {
     name: string;
     ingredients: string;
@@ -117,7 +116,6 @@ export interface ItemListProductResult {
   isFeatured: boolean;
 }
 
-
 export interface ProductDetailResult {
   _id: string;
   enSlug: string;
@@ -127,7 +125,7 @@ export interface ProductDetailResult {
   weight?: string;
   productType: string;
   price: number;
-  available:boolean;
+  available: boolean;
 
   en: {
     name: string;
@@ -147,4 +145,9 @@ export interface ProductDetailResult {
   };
 
   isFeatured: boolean;
+}
+
+export interface IntroduceDetailResult {
+  en: string;
+  vn: string;
 }
