@@ -16,6 +16,11 @@ export async function generateMetadata({
       lang === "en"
         ? `Agricultural products are provided by the Flame Agricultural brand`
         : `Sản phẩm nông sản được cung cấp bởi thương hiệu Nông sản Flame`,
+    keywords: [
+      "Agricultural products",
+      "Sản phẩm nông sản",
+      "san pham nong san",
+    ],
   };
 }
 

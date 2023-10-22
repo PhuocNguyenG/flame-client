@@ -122,3 +122,25 @@ export const getListCateProduct =
       };
     }
   };
+
+/**
+ * Introduce detail
+ * @returns <IntroduceDetailResult>
+ */
+export const getIntroduce = async (): Promise<Type.IntroduceDetailResult> => {
+  const api = (await fetch(process.env.URL + "/common/get-introduce", {
+    method: "GET",
+    next: { tags: ["get-introduce"] },
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
+    }
+  })) as Type.ApiResult;
+
+  if (api.statusCode === Type.Status.OK) {
+    const result = api.result as Type.IntroduceDetailResult;
+    return result;
+  } else {
+    return { en: "", vn: "" };
+  }
+};

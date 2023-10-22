@@ -3,6 +3,7 @@ import { FeaturedSection } from "@/components/home/section-featured";
 import { ProductByCate } from "@/components/home/section-product";
 import { Locale } from "@/lib/i18n/setting";
 import { Metadata } from "next";
+import FlameLogoSimple from "@/assets/logo/flame-logo-simple.png";
 
 export async function generateMetadata({
   params: { lang },
@@ -18,7 +19,18 @@ export async function generateMetadata({
       lang === "en"
         ? "Flame agricultural is a brand created by PHUOC LINH Import Export Co., Ltd., specializing in providing agricultural products and also exporting them worldwide."
         : "Nông sản Flame là thương hiệu được tạo bởi Công ty TNHH Xuất Nhập Khẩu PHƯỚC LINH, chuyên cung cấp các mặt hàng về nông sản và cũng xuất khẩu đi toàn thế giới.",
+    keywords: [
+      "flame",
+      "nong san phuoc linh",
+      "flame agricultural",
+      "nong san flame",
+    ],
     openGraph: {
+      title:
+        lang === "en"
+          ? "Flame | Agricultural products, import and export"
+          : "Flame | Sản phẩm nông sản và xuất nhập khẩu",
+      images: "https://cdn.flameagricultural.com/Flame%20logo-1.png",
       url:
         lang === "en"
           ? "https://flameagricultural.com/en"
