@@ -9,12 +9,12 @@ export const BreadcrumbProduct = async ({
   lang,
   category,
   detailData,
-  className
+  className,
 }: {
   lang: Locale;
   category?: string;
   detailData?: TypeItemCategoryProduct;
-  className?:React.HTMLProps<HTMLElement>["className"]
+  className?: React.HTMLProps<HTMLElement>["className"];
 }) => {
   const { t } = await useTransServer(lang);
   const listCate = (await getListCateProduct()).Product;

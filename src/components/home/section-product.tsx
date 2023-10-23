@@ -28,7 +28,7 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
         <div className="relative w-fit h-full rounded-md bg-primary text-primary-foreground px-6 py-2 z-[1] font-bold text-lg before:absolute before:top-0 before:-right-[1rem] before:bg-primary before:rounded-md before:h-[45px] before:w-[45px] before:-z-[1] before:rotate-45 after:absolute after:top-0 after:-left-[1rem] after:bg-primary after:rounded-md after:h-[45px] after:w-[45px] after:-z-[1] after:rotate-45">
           {t("Product")}
         </div>
-        <div className="absolute top-[calc(48%-1px)] w-full sm:w-2/3 h-1 bg-primary rounded-md transition-all duration-500"></div>
+        <div className="absolute top-[calc(48%-1px)] w-full sm:w-2/3 h-1 bg-primary rounded-md transition-all duration-500  "></div>
       </div>
       {productCates?.map((cate, idx) => {
         const cateName = lang === "en" ? cate.en : cate.vn;

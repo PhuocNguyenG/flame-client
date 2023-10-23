@@ -8,7 +8,12 @@ import { RootState, store, useAppSelector } from "@/lib/redux/store";
 import { GlobeIcon, TriangleDownIcon } from "@radix-ui/react-icons";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import Image from "next/image";
-const SwitchLanguage = () => {
+import { cn } from "@/lib/utils";
+const SwitchLanguage = ({
+  className
+}:{
+  className?: React.HTMLProps<HTMLElement>["className"]
+}) => {
   const params = useParams();
   const urlSegments = useSelectedLayoutSegments();
   const lang = params.lang as Locale;
@@ -24,7 +29,7 @@ const SwitchLanguage = () => {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row flex-wrap gap-3 h-fit w-fit justify-center">
+      <div className={cn("flex flex-col md:flex-row flex-wrap gap-3 h-fit w-fit justify-center",className)}>
         <Link
           href={
             "/" +

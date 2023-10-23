@@ -23,8 +23,6 @@ import { Locale } from "@/lib/i18n/setting";
 import { useParams, usePathname } from "next/navigation";
 import Link from "../link";
 import { TypeItemCategoryProduct } from "@/lib/type";
-import FlameLogo from "@/assets/logo/flame-logo.svg";
-import PhoneIcon from "@/assets/icon/phone-call.svg";
 import MapMarkedIcon from "@/assets/icon/map-marked.svg";
 import Image from "next/image";
 
@@ -32,6 +30,8 @@ import { setSlugCategoriesTrans } from "@/lib/redux/slice/router";
 import { RootState, useAppDispatch } from "@/lib/redux/store";
 import { Separator } from "../ui/separator";
 import { SideNav } from "./side-nav";
+import HotLine from "./hot-line";
+import LogoHeader from "./logo-large";
 
 export function MainNavBar({
   cateProduct,
@@ -118,24 +118,9 @@ export function MainNavBar({
         </div>
       </div>
       <div className="flex flex-row gap-5 max800:hidden h-[112px] items-center justify-around w-full container">
-        <div className="min-w-[100px] max-w-fit h-fit justify-center items-center inline-block bg-primary p-[1px] rounded-full">
-          <Link
-            lang={lang}
-            href={"/"}
-            className="min-w-[100px] block relative top-[2px] rounded-full group overflow-hidden"
-          >
-            <Image
-              alt="Flame | Agricultural by PhuocLinh"
-              src={FlameLogo}
-              height={90}
-              width={90}
-              sizes="100px"
-              className="w-[100px] h-[100px]"
-              priority
-            />
-            <div className="absolute top-0 -inset-full h-full w-1/2 z-0 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-30 group-hover:animate-shine" />
-          </Link>
-        </div>
+
+        <LogoHeader lang={lang} />
+
         <div className="max-w-[500px] lg:w-[inherit] w-[28%]">
           <SearchButton
             showOnTop
@@ -143,35 +128,18 @@ export function MainNavBar({
             setInputValue={setSearchInputValue}
           />
         </div>
-        <div className="flex flex-row gap-2 justify-center items-center ">
-          <div>
-            <Image
-              src={PhoneIcon}
-              alt="Hỗ trợ khách hàng"
-              sizes="30px"
-              width={30}
-              height={30}
-              className="min-w-[30px]"
-              unoptimized
-            />
-          </div>
-          <div>
-            <b className="text-[15px] whitespace-nowrap">
-              {t("CustomerSupport")}
-            </b>
-            <p className="font-semibold text-[18px] text-red-600">
-              {t("PhoneNumber")}
-            </p>
-          </div>
-        </div>
+
+        <HotLine lang={lang} />
+
         <div>
           <SwitchLanguage />
         </div>
       </div>
       <nav className="sticky flex flex-row w-full h-[60px] min801:h-[50px] bg-primary drop-shadow-[0_5px_20px_rgba(0,0,0,.1)] top-0 z-10 transition-all duration-500">
         <div className="flex flex-row w-full h-[60px] min801:h-[50px] justify-center items-start gap-2 container transition-all duration-500">
+          {/* Side bar */}
           <div className="hidden max800:flex w-fit h-fit my-auto">
-            <SideNav lang={lang} side="left" />
+            <SideNav lang={lang} cateProduct={cateProduct} cateExport={cateExport} />
           </div>
           <NavigationMenu
             value={value}
@@ -270,7 +238,7 @@ export function MainNavBar({
                 </NavigationMenuContent>
               </NavigationMenuItem>
 
-             {/* <NavigationMenuItem value={"Gift"}>
+              {/* <NavigationMenuItem value={"Gift"}>
                 <NavigationMenuTrigger
                   {...(!!["gift", "qua-tang-qua-bieu"].find((x) =>
                     pathname.split("/").includes(x)
