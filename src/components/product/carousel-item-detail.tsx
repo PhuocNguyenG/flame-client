@@ -64,7 +64,7 @@ export const CarouselDetailItem = ({
             >
               <Image
                 src={item}
-                className="m-auto rounded-sm w-[80px] h-auto object-cover"
+                className="m-auto rounded-sm w-[80px] h-auto min-h-[80px] max-h-[80px] object-cover"
                 alt={alt}
                 height={80}
                 width={80}

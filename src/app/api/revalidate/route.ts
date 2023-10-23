@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
     );
   } else if (tag.length > 0) {
     tag.forEach((x) => {
-      revalidateTag(x);
+     revalidateTag(x);
     });
   } else if (path.length > 0) {
     path.forEach((x) => {

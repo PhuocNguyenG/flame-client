@@ -57,9 +57,9 @@ export default async function Footer({ lang }: { lang: Locale }) {
 
       <Accordion
         type="multiple"
-        className="container w-full block md:hidden mb-3"
+        className="container w-full block md:hidden mb-3 [&_svg]:text-primary-foreground"
       >
-        <AccordionItem value="item-1">
+        <AccordionItem value="AboutUs">
           <AccordionTrigger className="text-primary-foreground text-base uppercase">
             Về chúng tôi
           </AccordionTrigger>
@@ -71,7 +71,7 @@ export default async function Footer({ lang }: { lang: Locale }) {
             </div>
           </AccordionContent>
         </AccordionItem>
-        <AccordionItem value="item-2">
+        <AccordionItem value="Menu">
           <AccordionTrigger className="text-primary-foreground text-base uppercase">
             Danh mục
           </AccordionTrigger>
