@@ -54,11 +54,16 @@ export default async function ItemProductDetail({
   const howToUse = lang === "en" ? data.en.howToUse : data.vn.howToUse;
   const description = lang === "en" ? data.en.description : data.vn.description;
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: name,
+    image: data.banner,
+    description: description.replace(/<[^>]+>/g, ''),
+  }
+
   return (
     <>
-      <SetStateToClient
-        dispatch={setSlugProductDetailTrans([slugExportTrans])}
-      />
       <BreadcrumbProduct
         lang={lang}
         category={category}
@@ -184,6 +189,14 @@ export default async function ItemProductDetail({
           dangerouslySetInnerHTML={{ __html: description }}
         />
       </div>
+      {/* Config */}
+      <SetStateToClient
+        dispatch={setSlugProductDetailTrans([slugExportTrans])}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </>
   );
 }

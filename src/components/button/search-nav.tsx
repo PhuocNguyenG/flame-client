@@ -72,7 +72,7 @@ const SearchButton = ({
             showOnTop
               ? "border-2 shadow border-primary p-1 pr-2"
               : `border-[0px] !border-b-[1px] rounded-none !border-primary-foreground/40 min801:border-none lg:border-solid`
-          } rounded-md w-full`}
+          } rounded-md w-full none-select-text`}
           tabIndex={-1}
         >
           <Input
@@ -97,7 +97,7 @@ const SearchButton = ({
         </div>
       </DialogTrigger>
       <DialogContent
-        className="!top-[15%] bg-primary text-primary-foreground"
+        className="!top-[15%] bg-white text-primary"
         iconClose={false}
       >
         <DialogHeader>
@@ -110,10 +110,11 @@ const SearchButton = ({
               }}
               className="border-primary-foreground/50"
               autoFocus
+              type="search"
             />
           </DialogTitle>
           <Separator />
-          <DialogDescription className="text-secondary-foreground">
+          <DialogDescription className="text-primary">
             {t("Result")}:
           </DialogDescription>
         </DialogHeader>

@@ -1,4 +1,4 @@
-import { HamburgerMenuIcon } from "@radix-ui/react-icons";
+import { Cross2Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { Separator } from "../ui/separator";
 import FlameLogoSimple from "@/assets/logo/flame-logo-simple.png";
 import Image from "next/image";
@@ -14,8 +14,9 @@ import { useTransClient } from "@/lib/i18n/client";
 import HotLine from "./hot-line";
 import LogoHeader from "./logo-large";
 import SwitchLanguage from "../button/switch-language";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TypeItemCategoryProduct } from "@/lib/type";
+import UserSideBarSection from "../user/side-bar-section";
 
 export const SideNav = ({
   lang,
@@ -26,15 +27,34 @@ export const SideNav = ({
   cateProduct: TypeItemCategoryProduct[];
   cateExport: TypeItemCategoryProduct[];
 }) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const { t } = useTransClient(lang);
-
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflowY = "hidden";
+      document.getElementById("mask-side-bar")?.classList.add("!translate-x-0");
+      document.getElementById("mask-side-bar")?.classList.add("!opacity-70");
+    } else {
+      document.body.style.overflowY = "unset";
+      document.getElementById("mask-side-bar")?.classList.remove("!opacity-70");
+      if (
+        document
+          .getElementById("mask-side-bar")
+          ?.classList.contains("!translate-x-0")
+      )
+        setTimeout(() => {
+          document
+            .getElementById("mask-side-bar")
+            ?.classList.remove("!translate-x-0");
+        }, 500);
+    }
+  }, [open]);
   return (
     <>
-      <div className="flex flex-row gap-4 mr-1 overscroll-contain">
+      <div className="flex flex-row gap-4 mr-1 ">
         <HamburgerMenuIcon
           className="text-primary-foreground min-w-[33px] h-full"
-          onClick={() => setOpen(!open)}
+          onClick={() => setOpen(true)}
         />
         <Link lang={lang} href={"/"} className="h-fit w-fit">
           <Image
@@ -49,22 +69,41 @@ export const SideNav = ({
         </Link>
       </div>
       <div
-        className="z-50 w-screen h-screen top-0 left-0 fixed opacity-0 bg-primary/0 hidden data-[state]:block overscroll-contain pointer-events-auto"
-        {...(open ? { "data-state": true } : {})}
+        id="mask-side-bar"
+        className="z-50 w-screen h-full top-0 left-0 fixed opacity-0 bg-primary/50 translate-x-[-101vw] transition-opacity duration-500"
         onClick={() => setOpen(false)}
       />
 
       <div
-        className={`flex flex-col z-50 bg-white w-[270px] h-screen p-3 border-r-0 transition-all duration-500 absolute top-0 left-0 px-5 gap-3 overflow-x-hidden overflow-y-scroll overscroll-contain`}
+        className={`flex flex-col z-50 bg-white w-[270px] h-full p-3 border-r-0 transition-all duration-500 fixed top-0 left-0 px-5 gap-3 overflow-x-hidden overflow-y-scroll`}
         style={{
           transform: open ? "translateX(0)" : "translateX(-101%)",
         }}
       >
-        <LogoHeader lang={lang} className="min-w-[80px] max-w-[80px]" />
+        <div className="flex flex-row gap-3">
+          <LogoHeader lang={lang} className="min-w-[70px] max-w-[70 px]" />
+          <div className="flex flex-col justify-center w-fit h-full font-bold text-green-600 leading-8">
+            {lang === "en" ? (
+              <>
+                <p className="text-[2.125rem] text-logo">Flame</p>
+                <p className="text-sm text-primary">Agricultural</p>
+              </>
+            ) : (
+              <>
+                <p className="text-base text-primary">Nông sản</p>
+                <p className="text-[2.125rem] text-logo">Flame</p>
+              </>
+            )}
+          </div>
+          <Cross2Icon
+            className="w-8 h-8 text-primary rounded-sm fixed top-3 right-3"
+            onClick={() => setOpen(false)}
+          />
+        </div>
 
         <Accordion
           type="multiple"
-          className="w-full h-full mt-1 [&>div]:border-primary  [&_[role=region]]:bg-green-100 [&_[role=region]]:px-0 [&_[role=region]]:rounded-sm [&_[role=region]]:pt-0 [&_[role=region]>div]:flex [&_[role=region]>div]:flex-col [&_[role=region]>div]:gap-0 [&_[role=region]>div]:pb-0 [&_[role=region]>div>a]:text-sm [&_[role=region]>div>a]:py-2 [&_[role=region]>div>a]:px-3 [&_[role=region]>div>a]:border-b [&_[role=region]>div>a:hover]:bg-primary/10 [&_[role=region]>div>a:hover]:rounded-sm [&_[id=simple]]:flex [&_[id=simple]_a]:w-full [&_[id=simple]]:py-3 [&_[id=simple]]:border-primary/10 [&_[id=simple]]:border-b  text-base font-medium"
+          className="w-full h-full mt-1 [&_button]:font-semibold [&>div]:border-primary [&_[role=region]]:bg-logo/10 [&_[role=region]]:px-0 [&_[role=region]]:rounded-sm [&_[role=region]]:pt-0 [&>[data-state=open]]:border-b-primary/0 [&>[data-state=open]]:transition-all [&>[data-state=open]]:duration-500 [&_[role=region]>div]:flex [&_[role=region]>div]:flex-col [&_[role=region]>div]:gap-0 [&_[role=region]>div]:pb-0 [&_[role=region]>div>a]:text-sm [&_[role=region]>div>a]:py-2 [&_[role=region]>div>a]:px-3 [&_[role=region]>div>a]:border-b last:[&_[role=region]>div>a]:border-none [&_[role=region]>div>a:hover]:bg-primary/10 [&_[role=region]>div>a:hover]:rounded-sm [&_[id=simple]]:flex [&_[id=simple]_a]:w-full [&_[id=simple]]:py-3 [&_[id=simple]]:border-primary/10 [&_[id=simple]]:border-b [&_[id=simple]]:font-semibold text-base font-medium"
         >
           <div id="simple">
             <Link href={"/"} lang={lang} onClick={() => setOpen(false)}>
@@ -136,9 +175,9 @@ export const SideNav = ({
             </Link>
           </div>
         </Accordion>
-
         <SwitchLanguage className="flex flex-row w-full" />
-        <HotLine lang={lang} />
+
+        <UserSideBarSection lang={lang} />
       </div>
     </>
   );

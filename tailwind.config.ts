@@ -17,11 +17,11 @@ module.exports = {
       },
     },
     screens: {
-      max375: { 'max': "375px" },
+      max375: { max: "375px" },
 
       min376: "376px",
 
-      max480: { 'max': "480px" },
+      max480: { max: "480px" },
 
       min481: "481px",
 
@@ -31,13 +31,13 @@ module.exports = {
       md: "768px",
       // => @media (min-width: 768px) { ... }
 
-      max800: { 'max': "800px" },
+      max800: { max: "800px" },
       // => @media (max-width: 8001px) { ... }
 
       min801: "801px",
       // => @media (min-width: 801px) { ... }
 
-      max1023: { 'max': "1023px" },
+      max1023: { max: "1023px" },
       lg: "1024px",
       // => @media (min-width: 1024px) { ... }
 
@@ -65,6 +65,10 @@ module.exports = {
         secondary: {
           DEFAULT: "rgb(var(--secondary))",
           foreground: "rgb(var(--secondary-foreground))",
+        },
+        logo: {
+          DEFAULT: "rgb(var(--logo-text))",
+          foreground: "rgb(var(--logo-foreground))",
         },
         destructive: {
           DEFAULT: "rgb(var(--destructive))",
