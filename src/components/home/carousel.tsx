@@ -22,7 +22,7 @@ const Carousel = () => {
         loop
         className="max-w-[1300px]"
       >
-        <SwiperSlide className="!h-auto max-h-[550px] bg-white">
+        {/* <SwiperSlide className="!h-auto max-h-[550px] bg-white">
           <Image
             alt="Flame banner"
             priority
@@ -32,7 +32,7 @@ const Carousel = () => {
             sizes="100vw"
             className="min-w-full w-0 max-w-full max-h-auto object-cover"
           />
-        </SwiperSlide>
+        </SwiperSlide> */}
       </Swiper>
     </div>
   );
