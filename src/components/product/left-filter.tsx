@@ -21,7 +21,7 @@ export const LeftFilterProduct = async ({
     <>
       <div className="flex flex-col border border-border rounded-md bg-slate-50 [&>*]:p-3 ">
         <div className="font-bold bg-primary-foreground pb-0 rounded-t-md !p-2 !px-3">
-          {t("Category")}:
+          {t("AdvancedFilter")}:
         </div>
         <RadioGroup
           defaultValue={category}

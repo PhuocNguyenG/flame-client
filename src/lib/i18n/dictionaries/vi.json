@@ -4,6 +4,7 @@
   "Products": "Các sản phẩm",
   "Gift_Product": "Quà tặng / biếu",
   "Export": "Xuất khẩu",
+  "AboutUs":"Về chúng tôi",
   "Search": "Tìm kiếm",
   "Result": "Kết quả",
   "404": "Không thể tìm thấy trang!",
@@ -18,7 +19,7 @@
   "All": "Tất cả",
   "AdvancedFilter": "Bộ lọc nâng cao",
   "ExportProduct": "Sản phẩm xuất khẩu",
-  "Category":"Loại",
+  "Type":"Loại",
   "Origin": "Xuất xứ",
   "Ingredients": "Thành phần",
   "Weight":"Khối lượng",
@@ -39,7 +40,6 @@
   "CustomerSupport":"Hỗ trợ khách hàng",
   "PhoneNumber":"097 3912839",
   "AddressDetail":"108/14, Đường TX21, Phường Thạnh Xuân, Quận 12, Tp.HCM",
-  "---Footer---": "---Footer---",
   "Copyright": "©2023 Bản quyền thuộc công ty TNHH Phước Linh  ",
   "Address": "Địa chỉ: ",
   "Email": "Email: ",
@@ -53,5 +53,6 @@
   "AddressCompany": "108/14, Thạnh Xuân 21, Phường Thạnh Xuân, Quận 12, Tp. Hồ chí Minh",
   "PhoneCompany": "097 3912839",
   "TaxCompany": "0312913118",
-  "MailCompany": "phuoclinh79@gmail.com"
+  "MailCompany": "phuoclinh79@gmail.com",
+  "Categories":"Danh mục"
 }

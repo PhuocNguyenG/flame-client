@@ -83,7 +83,7 @@ export default async function ItemDetailExport({
               <tbody>
                 <tr>
                   <td >
-                    {t("Category")}:
+                    {t("Type")}:
                   </td>
                   <td>{categoryName}</td>
                 </tr>
