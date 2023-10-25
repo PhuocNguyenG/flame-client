@@ -14,7 +14,7 @@ import {
   navigationMenuActiveStyle,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import AccountDropdown from "../dropdown/account-nav";
+import AccountDropdown from "../user/dropdown-top-nav";
 import SearchButton from "../button/search-nav";
 import Basket from "../button/basket-nav";
 import SwitchLanguage from "../button/switch-language";
@@ -135,7 +135,7 @@ export function MainNavBar({
           <SwitchLanguage />
         </div>
       </div>
-      <nav className="sticky flex flex-row w-full h-[60px] min801:h-[50px] bg-primary drop-shadow-[0_5px_20px_rgba(0,0,0,.1)] top-0 z-10 transition-all duration-500">
+      <nav className="sticky flex flex-row w-full h-[60px] min801:h-[50px] bg-primary top-0 z-10 transition-all duration-500">
         <div className="flex flex-row w-full h-[60px] min801:h-[50px] justify-center items-start gap-2 container transition-all duration-500">
           {/* Side bar */}
           <div className="hidden max800:flex w-fit h-fit my-auto">

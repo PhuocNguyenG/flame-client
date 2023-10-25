@@ -66,12 +66,12 @@ export async function generateMetadata({
   return {
     title: lang === "en" ? product.en.name : product.vn.name,
     description:
-      lang === "en" ? product.en.description : product.vn.description,
+      lang === "en" ? product.en.description.replace(/<[^>]+>/g, '') : product.vn.description.replace(/<[^>]+>/g, ''),
     keywords: [lang === "en" ? product.en.name : product.vn.name],
     openGraph: {
       title: lang === "en" ? product.en.name : product.vn.name,
       description:
-        lang === "en" ? product.en.description : product.vn.description,
+        lang === "en" ? product.en.description.replace(/<[^>]+>/g, '') : product.vn.description.replace(/<[^>]+>/g, ''),
       url: urlP,
       siteName: lang === "en" ? "Flame agricultural" : "Nông sản Flame",
       images: listImgResult,

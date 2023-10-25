@@ -21,7 +21,7 @@ export default async function LayoutProductCategory({
           <BreadcrumbProduct lang={lang} category={category} />
 
           <div className="flex flex-row w-full flex-wrap min801:flex-nowrap h-full gap-5">
-            <div className="!sticky top-[60px] min-w-[200px] h-fit hidden md:block ">
+            <div className="!sticky top-[60px] min-w-[200px] h-fit hidden min801:block ">
               <LeftFilterProduct
                 category={category}
                 lang={lang}

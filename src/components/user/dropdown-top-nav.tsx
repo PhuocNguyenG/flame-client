@@ -82,13 +82,14 @@ const AccountDropdown = () => {
   return (
     <Popover
       open={open}
-      onOpenChange={() => {
-        setOpen(false);
+      onOpenChange={(open) => {
+        setOpen(open);
       }}
     >
       <PopoverTrigger
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        className="none-select-text"
       >
         {session?.user ? (
           <Avatar className="w-8 h-8">
