@@ -18,13 +18,13 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params: { lang },
 }: {
-  params: { lang: Locale };
+  params: { lang?: Locale };
 }): Promise<Metadata> {
   return {
     title:
       lang === "en"
-        ? "Flame Agricultural | Agricultural products, import and export"
-        : "Nông sản Flame | Sản phẩm nông sản và xuất nhập khẩu",
+        ? "Flame Agricultural | Vietnamese agricultural products"
+        : "Nông sản Flame",
     description:
       lang === "en"
         ? "Flame agricultural is a brand created by PHUOC LINH Import Export Co., Ltd., specializing in providing agricultural products domestically and internationally."
