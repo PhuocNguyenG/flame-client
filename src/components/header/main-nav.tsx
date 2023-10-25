@@ -425,7 +425,7 @@ export function MainNavBar({
           lang={lang}
           open={openLogin}
           callBackOpen={(isOpen) => setOpenLogin(isOpen)}
-        ></LoginModal>
+        />
       </nav>
     </>
   );
