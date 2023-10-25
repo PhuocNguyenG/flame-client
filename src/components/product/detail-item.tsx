@@ -194,6 +194,7 @@ export default async function ItemProductDetail({
         dispatch={setSlugProductDetailTrans([slugExportTrans])}
       />
       <script
+      id={data._id}
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />

@@ -7,48 +7,53 @@ import { listRoute } from "./map-route";
 export async function middleware(request: NextRequest) {
   // Check if there is any supported locale in the pathname
   const pathname = request.nextUrl.pathname;
+  if (pathname.split("/").includes("sitemap.xml")) {
+    return;
+  } else {
+    // Check if the default locale is in the pathname
+    if (
+      pathname.startsWith(`/${fallbackLng}/`) ||
+      pathname === `/${fallbackLng}`
+    ) {
+      // e.g. incoming request is /vi/product
+      // The new URL is now /product
+      return NextResponse.redirect(
+        new URL(
+          pathname.replace(
+            `/${fallbackLng}`,
+            pathname === `/${fallbackLng}` ? "/" : ""
+          ),
+          request.url
+        )
+      );
+    }
 
-  // Check if the default locale is in the pathname
-  if (
-    pathname.startsWith(`/${fallbackLng}/`) ||
-    pathname === `/${fallbackLng}`
-  ) {
-    // e.g. incoming request is /vi/product
-    // The new URL is now /product
-    return NextResponse.redirect(
-      new URL(
-        pathname.replace(
-          `/${fallbackLng}`,
-          pathname === `/${fallbackLng}` ? "/" : ""
-        ),
-        request.url
-      )
+    const pathnameIsMissingLocale = locales.every(
+      (locale) =>
+        !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
     );
-  }
 
-  const pathnameIsMissingLocale = locales.every(
-    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
-  );
+    if (pathnameIsMissingLocale) {
+      // We are on the default locale
+      // Rewrite so Next.js understands
 
-  if (pathnameIsMissingLocale) {
-    // We are on the default locale
-    // Rewrite so Next.js understands
+      // e.g. incoming request is /san-pham
+      // Tell Next.js it should pretend it's /vi/product
+      const newPathname = pathname
+        .split("/")
+        .map((item) => {
+          const routeTrans = listRoute.find((rou) => {
+            return rou.vnSlug === item;
+          })?.enSlug;
 
-    // e.g. incoming request is /san-pham
-    // Tell Next.js it should pretend it's /vi/product
-    const newPathname = pathname.split("/")
-    .map((item) => {
-      const routeTrans = listRoute.find((rou) => {
-        return rou.vnSlug === item;
-      })?.enSlug;
+          return routeTrans ? routeTrans : item;
+        })
+        .join("/");
 
-      return routeTrans ? routeTrans : item;
-    })
-    .join("/")
-
-    return NextResponse.rewrite(
-      new URL(`/${fallbackLng}${newPathname}`, request.url)
-    );
+      return NextResponse.rewrite(
+        new URL(`/${fallbackLng}${newPathname}`, request.url)
+      );
+    }
   }
 }
 
