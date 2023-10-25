@@ -30,11 +30,11 @@ export async function generateMetadata({
     return { title: lang === "en" ? `Products` : `Sản phẩm` };
   }
   return {
-    title: lang === "en" ? `${cates.en[0].toUpperCase()}${cates.en.slice(1)} products` : `Sản phẩm ${cates.vn}`,
+    title: lang === "en" ? `${cates.en} products` : `Sản phẩm ${cates.vn}`,
     description:
       lang === "en"
-        ? `${cates.en} products | Provided by Flame agricultural`
-        : `Sản phẩm ${cates.vn} | Cung cấp bởi Nông sản Flame `,
+        ? `${cates.en} products | Provided by Flame Agricultural`
+        : `Sản phẩm ${cates.vn.toLowerCase()} | Sản phẩm được chọn lọc và phân phối bởi Nông sản Flame`,
     keywords: lang === "en" ? `${cates.en} products` : `Sản phẩm ${cates.vn}`,
   };
 }

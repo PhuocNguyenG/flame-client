@@ -14,8 +14,8 @@ export const Breadcrumb = ({
   return (
     <>
       {data?.length > 0 && (
-        <nav className="flex m-[15px_0px] ml-4" aria-label="Breadcrumb">
-          <ol className="inline-flex items-center space-x-1 md:space-x-3">
+        <nav className="flex m-[15px_0px] min481:ml-4" aria-label="Breadcrumb">
+          <ol className="flex flex-row flex-wrap items-center space-x-1 md:space-x-3">
             <li className="inline-flex items-center">
               <Link
                 lang={lang}
@@ -53,14 +53,14 @@ export const Breadcrumb = ({
                       />
                     </svg>
                     {data.length - 1 === idx ? (
-                      <p className="text-sm font-medium text-gray-700 ml-2 hover:cursor-default">
+                      <p className="text-sm font-medium text-gray-700 ml-2 hover:cursor-default whitespace-nowrap">
                         {item.name}
                       </p>
                     ) : (
                       <Link
                         lang={lang}
                         href={item.href}
-                        className="ml-1 text-sm font-medium text-gray-400"
+                        className="ml-1 text-sm font-medium text-gray-400 whitespace-nowrap"
                       >
                         {item.name}
                       </Link>
