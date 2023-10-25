@@ -27,7 +27,7 @@ export const SideNav = ({
   cateProduct: TypeItemCategoryProduct[];
   cateExport: TypeItemCategoryProduct[];
 }) => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const { t } = useTransClient(lang);
   useEffect(() => {
     if (open) {
