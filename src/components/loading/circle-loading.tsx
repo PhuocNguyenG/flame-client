@@ -1,5 +1,4 @@
 export default function Loading() {
-  // You can add any UI inside Loading, including a Skeleton.
   return (
     <div className="flex w-fit h-full m-auto">
       <div className="w-fit items-center p-2  shadow font-semibold text-lg rounded-full transition ease-in-out duration-150 m-auto">

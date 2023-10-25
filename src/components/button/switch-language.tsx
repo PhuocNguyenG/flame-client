@@ -1,22 +1,18 @@
 "use client";
 import { getCookies, getCookie, setCookie, deleteCookie } from "cookies-next";
 import Link from "next/link";
-import { Locale } from "@/lib/i18n/setting";
 import { listRoute } from "@/map-route";
 import { useParams, useSelectedLayoutSegments } from "next/navigation";
 import { RootState, store, useAppSelector } from "@/lib/redux/store";
-import { GlobeIcon, TriangleDownIcon } from "@radix-ui/react-icons";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 const SwitchLanguage = ({
-  className
-}:{
-  className?: React.HTMLProps<HTMLElement>["className"]
+  className,
+}: {
+  className?: React.HTMLProps<HTMLElement>["className"];
 }) => {
   const params = useParams();
   const urlSegments = useSelectedLayoutSegments();
-  const lang = params.lang as Locale;
   const slugCategoryTransDynamic = useAppSelector(
     (state: RootState) => state.router.slugCategoriesTrans
   );
@@ -29,7 +25,12 @@ const SwitchLanguage = ({
 
   return (
     <>
-      <div className={cn("flex flex-col md:flex-row flex-wrap gap-3 h-fit w-fit justify-center",className)}>
+      <div
+        className={cn(
+          "flex flex-col md:flex-row flex-wrap gap-3 h-fit w-fit justify-center",
+          className
+        )}
+      >
         <Link
           href={
             "/" +

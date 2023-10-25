@@ -14,7 +14,7 @@ import {
   navigationMenuActiveStyle,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import AccountDropdown from "../user/dropdown-top-nav";
+import AccountDropdown from "../user/top-nav-dropdown";
 import SearchButton from "../button/search-nav";
 import Basket from "../button/basket-nav";
 import SwitchLanguage from "../button/switch-language";
@@ -32,6 +32,7 @@ import { Separator } from "../ui/separator";
 import { SideNav } from "./side-nav";
 import HotLine from "./hot-line";
 import LogoHeader from "./logo-large";
+import LoginModal from "../user/login-modal";
 
 export function MainNavBar({
   cateProduct,
@@ -46,6 +47,7 @@ export function MainNavBar({
   const dispatch = useAppDispatch();
   const dimension = useWindowSize();
 
+  const [openLogin, setOpenLogin] = React.useState(false);
   const [offset, setOffset] = React.useState<number | null>();
   const listRef = React.useRef<HTMLDivElement>();
   const [value, setValue] = React.useState<string>();
@@ -118,7 +120,6 @@ export function MainNavBar({
         </div>
       </div>
       <div className="flex flex-row gap-5 max800:hidden h-[112px] items-center justify-around w-full container">
-
         <LogoHeader lang={lang} />
 
         <div className="max-w-[500px] lg:w-[inherit] w-[28%]">
@@ -139,7 +140,12 @@ export function MainNavBar({
         <div className="flex flex-row w-full h-[60px] min801:h-[50px] justify-center items-start gap-2 container transition-all duration-500">
           {/* Side bar */}
           <div className="hidden max800:flex w-fit h-fit my-auto">
-            <SideNav lang={lang} cateProduct={cateProduct} cateExport={cateExport} />
+            <SideNav
+              lang={lang}
+              cateProduct={cateProduct}
+              cateExport={cateExport}
+              callbackOpenLogin={(isOpen) => setOpenLogin(isOpen)}
+            />
           </div>
           <NavigationMenu
             value={value}
@@ -313,7 +319,7 @@ export function MainNavBar({
                   }}
                   className="none-select-text"
                 >
-                  {t("ExportProduct")}
+                  {t("Export")}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent
                   ref={(node: any) => {
@@ -409,10 +415,17 @@ export function MainNavBar({
             </div>
             <Basket />
             <div className="hidden min481:flex w-fit h-fit">
-              <AccountDropdown />
+              <AccountDropdown
+                callbackOpenLogin={(value) => setOpenLogin(value)}
+              />
             </div>
           </div>
         </div>
+        <LoginModal
+          lang={lang}
+          open={openLogin}
+          callBackOpen={(isOpen) => setOpenLogin(isOpen)}
+        ></LoginModal>
       </nav>
     </>
   );

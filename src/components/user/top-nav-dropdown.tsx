@@ -2,17 +2,19 @@
 import React from "react";
 import { PersonIcon } from "@radix-ui/react-icons";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import GoogleButton from "../button/signin-google";
 import { Separator } from "../ui/separator";
 import { Button } from "../ui/button";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { Input } from "../ui/input";
 import { usePathname } from "next/navigation";
 import { useTransClient } from "@/lib/i18n/client";
 import { getLangByPathname } from "@/lib/utils";
 
-const AccountDropdown = () => {
+const AccountDropdown = ({
+  callbackOpenLogin,
+}: {
+  callbackOpenLogin: (isOpen: boolean) => void;
+}) => {
   const [open, setOpen] = React.useState<boolean>(false);
   const pathname = usePathname();
   const { t } = useTransClient(getLangByPathname(pathname));
@@ -28,7 +30,7 @@ const AccountDropdown = () => {
     clearTimeout(timeOut);
     timeOut = setTimeout(() => {
       setOpen(false);
-    }, 200);
+    }, 500);
   };
 
   const SignedIn = () => {
@@ -39,6 +41,7 @@ const AccountDropdown = () => {
         <Button
           className="bg-secondary-foreground text-secondary active:!bg-slate-200"
           onClick={() => signOut()}
+          loading={status === "loading"}
         >
           {t("SignOut")}
         </Button>
@@ -47,8 +50,15 @@ const AccountDropdown = () => {
   };
   const NotSignIn = () => {
     return (
-      <div className="flex flex-col gap-2 w-[150px] items-center">
-        <GoogleButton />
+      <div className="flex flex-col gap-2 w-[100px] items-center">
+        <Button
+          variant={"outline"}
+          className="text-secondary-foreground px-2 py-2 h-8 border-primary/40  "
+          loading={status === "loading"}
+          onClick={() => callbackOpenLogin(true)}
+        >
+          {t("SignIn")}
+        </Button>
         {/* <Separator />
         {t("Or")}
         <Input type="text" className="w-100%" placeholder="Email" />
@@ -99,15 +109,17 @@ const AccountDropdown = () => {
             </AvatarFallback>
           </Avatar>
         ) : (
-          <PersonIcon
-            width={26}
-            height={26}
-            className="hover:scale-105 transition-all duration-300 text-secondary-foreground"
-          />
+          <div className="flex justify-center items-center w-8 h-8">
+            <PersonIcon
+              width={28}
+              height={28}
+              className="transition-all duration-300 text-secondary-foreground"
+            />
+          </div>
         )}
       </PopoverTrigger>
       <PopoverContent
-        sideOffset={11}
+        sideOffset={9}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         className="bg-primary text-secondary-foreground !border-t !border-primary-foreground border-0"

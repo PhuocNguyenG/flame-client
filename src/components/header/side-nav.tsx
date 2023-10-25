@@ -22,10 +22,12 @@ export const SideNav = ({
   lang,
   cateProduct,
   cateExport,
+  callbackOpenLogin,
 }: {
   lang: Locale;
   cateProduct: TypeItemCategoryProduct[];
   cateExport: TypeItemCategoryProduct[];
+  callbackOpenLogin: (isOpen: boolean) => void;
 }) => {
   const [open, setOpen] = useState(false);
   const { t } = useTransClient(lang);
@@ -75,7 +77,7 @@ export const SideNav = ({
       />
 
       <div
-        className={`flex flex-col z-50 bg-white w-[270px] h-full p-3 border-r-0 transition-all duration-500 fixed top-0 left-0 px-5 gap-3 overflow-x-hidden overflow-y-scroll`}
+        className={`flex flex-col z-50 bg-white w-[270px] h-full p-3 border-r-0 transition-all duration-500 fixed top-0 left-0 px-5 pb-5 gap-4 overflow-x-hidden overflow-y-scroll`}
         style={{
           transform: open ? "translateX(0)" : "translateX(-101%)",
         }}
@@ -103,7 +105,7 @@ export const SideNav = ({
 
         <Accordion
           type="multiple"
-          className="w-full h-full mt-1 [&_button]:font-semibold [&>div]:border-primary [&_[role=region]]:bg-logo/10 [&_[role=region]]:px-0 [&_[role=region]]:rounded-sm [&_[role=region]]:pt-0 [&>[data-state=open]]:border-b-primary/0 [&>[data-state=open]]:transition-all [&>[data-state=open]]:duration-500 [&_[role=region]>div]:flex [&_[role=region]>div]:flex-col [&_[role=region]>div]:gap-0 [&_[role=region]>div]:pb-0 [&_[role=region]>div>a]:text-sm [&_[role=region]>div>a]:py-2 [&_[role=region]>div>a]:px-3 [&_[role=region]>div>a]:border-b last:[&_[role=region]>div>a]:border-none [&_[role=region]>div>a:hover]:bg-primary/10 [&_[role=region]>div>a:hover]:rounded-sm [&_[id=simple]]:flex [&_[id=simple]_a]:w-full [&_[id=simple]]:py-3 [&_[id=simple]]:border-primary/10 [&_[id=simple]]:border-b [&_[id=simple]]:font-semibold text-base font-medium"
+          className="w-full h-full [&_button]:font-semibold [&>div]:border-primary [&_[role=region]]:bg-logo/10 [&_[role=region]]:px-0 [&_[role=region]]:rounded-sm [&_[role=region]]:pt-0 [&>[data-state=open]]:border-b-primary/0 [&>[data-state=open]]:transition-all [&>[data-state=open]]:duration-500 [&_[role=region]>div]:flex [&_[role=region]>div]:flex-col [&_[role=region]>div]:gap-0 [&_[role=region]>div]:pb-0 [&_[role=region]>div>a]:text-sm [&_[role=region]>div>a]:py-2 [&_[role=region]>div>a]:px-3 [&_[role=region]>div>a]:border-b last:[&_[role=region]>div>a]:border-none [&_[role=region]>div>a:hover]:bg-primary/10 [&_[role=region]>div>a:hover]:rounded-sm [&_[id=simple]]:flex [&_[id=simple]_a]:w-full [&_[id=simple]]:py-3 [&_[id=simple]]:border-primary/10 [&_[id=simple]]:border-b [&_[id=simple]]:font-semibold text-base font-medium"
         >
           <div id="simple">
             <Link href={"/"} lang={lang} onClick={() => setOpen(false)}>
@@ -175,9 +177,11 @@ export const SideNav = ({
             </Link>
           </div>
         </Accordion>
+        <UserSideBarSection
+          lang={lang}
+          callbackOpenLogin={(isOpen) => callbackOpenLogin(isOpen)}
+        />
         <SwitchLanguage className="flex flex-row w-full" />
-
-        <UserSideBarSection lang={lang} />
       </div>
     </>
   );
