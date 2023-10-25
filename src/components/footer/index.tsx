@@ -61,7 +61,7 @@ export default async function Footer({ lang }: { lang: Locale }) {
       >
         <AccordionItem value="AboutUs">
           <AccordionTrigger className="text-primary-foreground text-base uppercase">
-            Về chúng tôi
+            {t("AboutUs")}
           </AccordionTrigger>
           <AccordionContent>
             <div className="flex flex-col gap-1 text-base text-secondary-foreground/80">
@@ -73,7 +73,7 @@ export default async function Footer({ lang }: { lang: Locale }) {
         </AccordionItem>
         <AccordionItem value="Menu">
           <AccordionTrigger className="text-primary-foreground text-base uppercase">
-            Danh mục
+           {t("Categories")}
           </AccordionTrigger>
           <AccordionContent>
             <div className="flex flex-col gap-1 text-base text-secondary-foreground/80 w-fit">

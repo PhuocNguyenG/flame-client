@@ -4,6 +4,7 @@
   "Products": "Products",
   "Gift_Product": "Gift",
   "Export": "Export",
+  "AboutUs":"About us",
   "Search": "Search",
   "Result": "Result",
   "404": "Sorry! We can't seem to find the page you're looking for. Let's try again.",
@@ -18,7 +19,7 @@
   "All": "All",
   "AdvancedFilter": "Advanced filter",
   "ExportProduct": "Export product",
-  "Category":"Category",
+  "Type":"Category",
   "Origin": "Origin",
   "Ingredients": "Ingredients",
   "Weight":"Weight",
@@ -39,7 +40,6 @@
   "CustomerSupport":"Customer support",
   "PhoneNumber":"(+84)97 3912839",
   "AddressDetail":"108/14, TX21 Str., Thanh Xuan Ward, 12 District, HCM City",
-  "---Footer---": "---Footer---",
   "Copyright": "Copyright ©2023 Phuoc Linh Co., Ltd.",
   "Address": "Address: ",
   "Email": "Email: ",
@@ -53,5 +53,6 @@
   "AddressCompany": "108/14, TX21 Str, Thanh Xuan Ward, 12 District, HCM City, Vietnam",
   "PhoneCompany": "(+84)97 3912839",
   "TaxCompany": "0312913118",
-  "MailCompany": "phuoclinh79@gmail.com"
+  "MailCompany": "phuoclinh79@gmail.com",
+  "Categories":"Categories"
 }
