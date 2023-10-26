@@ -1,7 +1,11 @@
 import ItemDetailExport from "@/components/export/detail-item";
 import { Locale } from "@/lib/i18n/setting";
 import { Suspense } from "react";
-import { getAllExportProduct, getDetailExportProduct, getListCateProduct } from "@/lib/api/server-side";
+import {
+  getAllExportProduct,
+  getDetailExportProduct,
+  getListCateProduct,
+} from "@/lib/api/server-side";
 import { Metadata } from "next";
 
 export async function generateStaticParams({
@@ -66,12 +70,16 @@ export async function generateMetadata({
   return {
     title: lang === "en" ? product.en.name : product.vn.name,
     description:
-      lang === "en" ? product.en.description.replace(/<[^>]+>/g, '') : product.vn.description.replace(/<[^>]+>/g, ''),
+      lang === "en"
+        ? product.en.description.replace(/<[^>]+>/g, "")
+        : product.vn.description.replace(/<[^>]+>/g, ""),
     keywords: [lang === "en" ? product.en.name : product.vn.name],
     openGraph: {
       title: lang === "en" ? product.en.name : product.vn.name,
       description:
-        lang === "en" ? product.en.description.replace(/<[^>]+>/g, '') : product.vn.description.replace(/<[^>]+>/g, ''),
+        lang === "en"
+          ? product.en.description.replace(/<[^>]+>/g, "")
+          : product.vn.description.replace(/<[^>]+>/g, ""),
       url: urlP,
       siteName: lang === "en" ? "Flame agricultural" : "Nông sản Flame",
       images: listImgResult,

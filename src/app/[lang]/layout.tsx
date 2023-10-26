@@ -8,6 +8,7 @@ import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "@/components/ui/toaster";
 import { FloatButton } from "@/components/button/group-float-button";
 import { Locale } from "@/lib/i18n/setting";
+import TrackingCode from "@/tracking-code";
 
 const inter = Inter({ subsets: ["latin", "vietnamese"] });
 
@@ -35,7 +36,7 @@ export async function generateMetadata({
       "nong san flame",
       "flame",
       "nong san phuoc linh",
-      "flame agricultural"
+      "flame agricultural",
     ],
     openGraph: {
       title:
@@ -63,6 +64,9 @@ export default async function RootLayout({
 }) {
   return (
     <html lang={lang}>
+      <head>
+        <TrackingCode />
+      </head>
       <body className={inter.className}>
         <ReduxProvider>
           <NextAuthProvider>
