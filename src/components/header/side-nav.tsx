@@ -173,7 +173,7 @@ export const SideNav = ({
           </AccordionItem>
           <div id="simple">
             <Link href={"/contact"} lang={lang} onClick={() => setOpen(false)}>
-              {t("ContactUs")}
+              {t("Contact")}
             </Link>
           </div>
         </Accordion>

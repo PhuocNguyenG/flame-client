@@ -30,21 +30,6 @@ i18next
     preload: runsOnServerSide ? locales : [],
   });
 
-export function useTransClient(lng: Locale) {
-  const translator = useTransAlias();
-  const { i18n } = translator;
-
-  // Run when content is rendered on server side
-  if (runsOnServerSide && lng && i18n.resolvedLanguage !== lng) {
-    i18n.changeLanguage(lng);
-  } else {
-    // Use our custom implementation when running on client side
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useCustomTranslationImplementation(i18n, lng);
-  }
-  return translator;
-}
-
 function useCustomTranslationImplementation(i18n: i18n, lng: Locale) {
   const [activeLng, setActiveLng] = useState(i18n.resolvedLanguage);
 
@@ -59,4 +44,19 @@ function useCustomTranslationImplementation(i18n: i18n, lng: Locale) {
     if (!lng || i18n.resolvedLanguage === lng) return;
     i18n.changeLanguage(lng);
   }, [lng, i18n]);
+}
+
+export function useTransClient(lng: Locale) {
+  const translator = useTransAlias();
+  const { i18n } = translator;
+
+  // Run when content is rendered on server side
+  if (runsOnServerSide && lng && i18n.resolvedLanguage !== lng) {
+    i18n.changeLanguage(lng);
+  } else {
+    // Use our custom implementation when running on client side
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useCustomTranslationImplementation(i18n, lng);
+  }
+  return translator;
 }

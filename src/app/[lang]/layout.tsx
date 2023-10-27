@@ -2,12 +2,14 @@ import NavBar from "@/components/header/nav";
 import "../../styles/globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import ReduxProvider, { NextAuthProvider } from "@/provider";
+import RootProvider, { NextAuthProvider } from "@/provider";
 import Footer from "@/components/footer";
 import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "@/components/ui/toaster";
 import { FloatButton } from "@/components/button/group-float-button";
 import { Locale } from "@/lib/i18n/setting";
+import ScriptConfig from "@/script-config";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin", "vietnamese"] });
 
@@ -35,8 +37,9 @@ export async function generateMetadata({
       "nong san flame",
       "flame",
       "nong san phuoc linh",
-      "flame agricultural"
+      "flame agricultural",
     ],
+    metadataBase: new URL("https://flameagricultural.com"),
     openGraph: {
       title:
         lang === "en"
@@ -53,6 +56,7 @@ export async function generateMetadata({
     },
   };
 }
+
 export default async function RootLayout({
   children,
   params: { lang },
@@ -62,24 +66,37 @@ export default async function RootLayout({
   params: { lang: Locale };
 }) {
   return (
-    <html lang={lang}>
-      <body className={inter.className}>
-        <ReduxProvider>
-          <NextAuthProvider>
-            <NextTopLoader
-              color="#F7E509"
-              initialPosition={0.3}
-              showSpinner={false}
-            />
-            <NavBar lang={lang}>
-              <main>{children}</main>
-              <Toaster />
-              <FloatButton />
-              <Footer lang={lang} />
-            </NavBar>
-          </NextAuthProvider>
-        </ReduxProvider>
-      </body>
-    </html>
+    <>
+      <head>
+        <ScriptConfig />
+      </head>
+      <html lang={lang}>
+        <body className={inter.className}>
+          <noscript
+            dangerouslySetInnerHTML={{
+              __html: `
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MT9NB5T9"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+            `,
+            }}
+          />
+          <RootProvider>
+            <NextAuthProvider>
+              <NextTopLoader
+                color="#F7E509"
+                initialPosition={0.3}
+                showSpinner={false}
+              />
+              <NavBar lang={lang}>
+                <main>{children}</main>
+                <Toaster />
+                <FloatButton />
+                <Footer lang={lang} />
+              </NavBar>
+            </NextAuthProvider>
+          </RootProvider>
+        </body>
+      </html>
+    </>
   );
 }

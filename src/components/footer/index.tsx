@@ -47,7 +47,7 @@ export default async function Footer({ lang }: { lang: Locale }) {
           </Link>
         </div>
         <div className="text-right ml-auto w-1/3 [&_a]:text-gray-400 [&>a:hover]:text-secondary-foreground [&_a]:transition-all [&_a]:w-fit">
-          <h2>{t("ContactUs")}</h2>
+          <h2>{t("Contact")}</h2>
           <div className="flex flex-row flex-wrap w-full justify-end gap-3">
             <WhatsAppButton />
             <ZaloButton />
@@ -73,7 +73,7 @@ export default async function Footer({ lang }: { lang: Locale }) {
         </AccordionItem>
         <AccordionItem value="Menu">
           <AccordionTrigger className="text-primary-foreground text-base uppercase">
-           {t("Categories")}
+            {t("Categories")}
           </AccordionTrigger>
           <AccordionContent>
             <div className="flex flex-col gap-1 text-base text-secondary-foreground/80 w-fit">
