@@ -122,4 +122,5 @@ export {
   DialogFooter,
   DialogTitle,
   DialogDescription,
+  DialogOverlay
 };

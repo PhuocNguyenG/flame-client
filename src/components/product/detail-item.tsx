@@ -1,16 +1,15 @@
 import { getDetailProduct, getListCateProduct } from "@/lib/api/server-side";
 import { Locale } from "@/lib/i18n/setting";
 import { setSlugProductDetailTrans } from "@/lib/redux/slice/router";
-import { store } from "@/lib/redux/store";
 import { BreadcrumbProduct } from "./breadcrumb";
 import { useTransServer } from "@/lib/i18n/server";
 import { notFound } from "next/navigation";
 import { CarouselDetailItem } from "./carousel-item-detail";
 import { SetStateToClient } from "../set-state-client";
-import { Button } from "../ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { WhatsAppButton } from "../button/whatsapp";
 import { ZaloButton } from "../button/zalo";
+import Script from "next/script";
 
 export default async function ItemProductDetail({
   lang,
@@ -53,19 +52,50 @@ export default async function ItemProductDetail({
   const storage = lang === "en" ? data.en.storage : data.vn.storage;
   const howToUse = lang === "en" ? data.en.howToUse : data.vn.howToUse;
   const description = lang === "en" ? data.en.description : data.vn.description;
+  const price = data.price
 
   const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
+    "@context": "https://schema.org",
+    "@type": "Product",
     name: name,
     image: data.banner,
-    description: description.replace(/<[^>]+>/g, ''),
-  }
+    description: description.replace(/<[^>]+>/g, ""),
+    review: {
+      "@type": "Review",
+      reviewRating: {
+        "@type": "Rating",
+        ratingValue: 5,
+        bestRating: 5,
+      },
+      author: {
+        "@type": "Person",
+        name: "Hoàng Thị Thu",
+      },
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: 5,
+      reviewCount: 1,
+    },
+    offers: {
+      "@type": "Offer",
+      url: `https://flameagricultural.com${
+        lang === "en"
+          ? `/en/product/${categoryObject?.enSlug}/${data.enSlug}`
+          : `/san-pham/${categoryObject?.vnSlug}/${data.vnSlug}`
+      }`,
+      price: price,
+      priceCurrency: "VND",
+      itemCondition: "https://schema.org/NewCondition",
+      availability: "https://schema.org/InStock",
+    },
+  };
 
   return (
     <>
       <BreadcrumbProduct
         lang={lang}
+        listCate={fetchData[2].Product}
         category={category}
         detailData={slugExportTrans}
       />
@@ -94,24 +124,24 @@ export default async function ItemProductDetail({
                   <td>{t("Origin")}:</td>
                   <td>{origin}</td>
                 </tr>
-                <tr>
-                  <td>{t("Ingredients")}:</td>
-                  <td>{ingredients}</td>
-                </tr>
+                {ingredients && (
+                  <tr>
+                    <td>{t("Ingredients")}:</td>
+                    <td>{ingredients}</td>
+                  </tr>
+                )}
                 {weight && (
                   <tr>
                     <td>{t("Weight")}:</td>
                     <td>{weight}</td>
                   </tr>
                 )}
-                {data.available && (
-                  <tr>
-                    <td>{t("Status")}:</td>
-                    <td>
-                      {data.available ? t("InStock") : t("ProductComing")}
-                    </td>
-                  </tr>
-                )}
+                {/* 
+                <tr>
+                  <td>{t("Status")}:</td>
+                  <td>{data.available ? t("InStock") : t("ProductComing")}</td>
+                </tr> */}
+
                 {storage && (
                   <tr>
                     <td>{t("Preserve")}:</td>
@@ -153,7 +183,7 @@ export default async function ItemProductDetail({
                 <div className="flex flex-wrap items-center">
                   <Popover>
                     <PopoverTrigger className="bg-primary text-primary-foreground rounded-md px-2 py-1 font-medium">
-                      {t("ContactUs")}
+                      {t("Contact")}
                     </PopoverTrigger>
                     <PopoverContent className="bg-primary">
                       <div className="flex flex-row flex-wrap w-fit gap-3 ">
@@ -167,7 +197,7 @@ export default async function ItemProductDetail({
                 <div className="flex flex-wrap items-center">
                   <Popover>
                     <PopoverTrigger className="bg-primary text-primary-foreground rounded-md px-2 py-1 font-medium">
-                      {t("ContactUs")}
+                      {t("Contact")}
                     </PopoverTrigger>
                     <PopoverContent className="bg-primary">
                       <div className="flex flex-row flex-wrap w-fit gap-3 ">
@@ -183,7 +213,7 @@ export default async function ItemProductDetail({
         </div>
       </div>
       <div className="mx-auto w-full lg:w-4/5 mb-10">
-        <h2 className="text-xl">{t("Description")}:</h2>
+        <h2 className="text-xl font-medium mb-2">{t("Description")}:</h2>
         <div
           className="inline-block"
           dangerouslySetInnerHTML={{ __html: description }}
@@ -193,8 +223,8 @@ export default async function ItemProductDetail({
       <SetStateToClient
         dispatch={setSlugProductDetailTrans([slugExportTrans])}
       />
-      <script
-      id={data._id}
+      <Script
+        id="product-detail-structured-data-script"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />

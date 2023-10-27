@@ -5,7 +5,10 @@ export enum Status {
   EXIST = "Exist",
   EXPIRED = "Expired",
 }
-
+export interface ApiResult {
+  statusCode: Status;
+  result: any;
+}
 export enum Role {
   USER = 1,
   ADMIN = 2,
@@ -34,6 +37,12 @@ export interface ApiResult {
   result: any;
 }
 
+/**
+ * en: string;
+ * enSlug: string;
+ * vn: string;
+ * vnSlug: string;
+ */
 export interface TypeItemCategoryProduct {
   en: string;
   enSlug: string;
@@ -41,7 +50,7 @@ export interface TypeItemCategoryProduct {
   vnSlug: string;
 }
 
-export interface TypeCategoryProduct {
+export interface TypeOfCategory {
   Product: TypeItemCategoryProduct[];
   Export: TypeItemCategoryProduct[];
 }
@@ -150,4 +159,14 @@ export interface ProductDetailResult {
 export interface IntroduceDetailResult {
   en: string;
   vn: string;
+}
+
+export interface SearchByKeyResponse {
+  en: { name: string };
+  vn: { name: string };
+  productType: string;
+  banner: string;
+  enSlug: string;
+  vnSlug: string;
+  price: number;
 }

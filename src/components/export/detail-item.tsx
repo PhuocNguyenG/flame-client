@@ -82,28 +82,20 @@ export default async function ItemDetailExport({
             <table className="table-auto text-base font-normal w-full [&_tr]:flex [&_tr]:mb-3 first:[&_tr>td]:font-semibold first:[&_tr>td]:max-w-[140px]  first:[&_tr>td]:text-gray-700 first:[&_tr>td]:w-full">
               <tbody>
                 <tr>
-                  <td >
-                    {t("Type")}:
-                  </td>
+                  <td>{t("Type")}:</td>
                   <td>{categoryName}</td>
                 </tr>
                 <tr>
-                  <td >
-                    {t("Origin")}:
-                  </td>
+                  <td>{t("Origin")}:</td>
                   <td>{origin}</td>
                 </tr>
                 <tr>
-                  <td >
-                    {t("Ingredients")}:
-                  </td>
+                  <td>{t("Ingredients")}:</td>
                   <td>{ingredients}</td>
                 </tr>
                 {storage && (
                   <tr>
-                    <td >
-                      {t("Preserve")}:
-                    </td>
+                    <td>{t("Preserve")}:</td>
                     <td>
                       <div
                         className=" inline-block"
@@ -114,9 +106,7 @@ export default async function ItemDetailExport({
                 )}
                 {howToUse && (
                   <tr>
-                    <td >
-                      {t("HowToUse")}:
-                    </td>
+                    <td>{t("HowToUse")}:</td>
                     <td>
                       <div
                         className="inline-block"
@@ -131,7 +121,7 @@ export default async function ItemDetailExport({
             <div className="flex flex-wrap items-center mt-5">
               <Popover>
                 <PopoverTrigger className="bg-primary text-primary-foreground rounded-md px-2 py-1 font-medium">
-                  {t("ContactUs")}
+                  {t("Contact")}
                 </PopoverTrigger>
                 <PopoverContent className="bg-primary">
                   <div className="flex flex-row flex-wrap w-fit gap-3 ">

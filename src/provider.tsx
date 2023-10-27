@@ -4,7 +4,8 @@ import { SessionProvider } from "next-auth/react";
 import type { Session } from "next-auth";
 import { store } from "@/lib/redux/store";
 import React, { ReactNode } from "react";
-import { Provider } from "react-redux";
+import { Provider as Redux } from "react-redux";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 type Props = {
   children?: React.ReactNode;
@@ -15,12 +16,16 @@ export const NextAuthProvider = ({ children, session }: Props) => {
   return <SessionProvider session={session}> {children} </SessionProvider>;
 };
 
-type ReduxProviderType = {
+type RootProviderType = {
   children: ReactNode;
 };
-
-function ReduxProvider({ children }: ReduxProviderType) {
-  return <Provider store={store}>{children}</Provider>;
+const queryClient = new QueryClient();
+function RootProvider({ children }: RootProviderType) {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Redux store={store}>{children}</Redux>
+    </QueryClientProvider>
+  );
 }
 
-export default ReduxProvider;
+export default RootProvider;

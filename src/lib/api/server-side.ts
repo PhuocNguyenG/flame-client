@@ -99,29 +99,28 @@ export const getDetailExportProduct = async (
 
 /**
  * List categories (name and slug) of Product, Export
- * @returns <TypeCategoryProduct>
+ * @returns <TypeOfCategory>
  */
-export const getListCateProduct =
-  async (): Promise<Type.TypeCategoryProduct> => {
-    const api = (await fetch(process.env.URL + "/type/get-product-type", {
-      method: "GET",
-      next: { tags: ["get-product-type"] },
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-    })) as Type.ApiResult;
-
-    if (api.statusCode === Type.Status.OK) {
-      const result = api.result as Type.TypeCategoryProduct;
-      return result;
-    } else {
-      return {
-        Product: [],
-        Export: [],
-      };
+export const getListCateProduct = async (): Promise<Type.TypeOfCategory> => {
+  const api = (await fetch(process.env.URL + "/type/get-product-type", {
+    method: "GET",
+    next: { tags: ["get-product-type"] },
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
     }
-  };
+  })) as Type.ApiResult;
+
+  if (api.statusCode === Type.Status.OK) {
+    const result = api.result as Type.TypeOfCategory;
+    return result;
+  } else {
+    return {
+      Product: [],
+      Export: [],
+    };
+  }
+};
 
 /**
  * Introduce detail

@@ -13,7 +13,7 @@ export default async function NotFound() {
   return (
     <div className="h-[500px] flex flex-col justify-center items-center gap-4">
       <h2 className="font-medium text-lg">{t("404")}</h2>
-      <Button asChild variant={"outline"}>
+      <Button variant={"outline"}>
         <Link href="/">{t("BackToHome")}</Link>
       </Button>
     </div>

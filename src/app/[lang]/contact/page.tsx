@@ -13,7 +13,7 @@ export default async function Page({
   return (
     <div className="container mt-2">
       <Breadcrumb data={[{ name: t("Contact"), href: "/contact" }]} />
-      <ComingSoon  />
+      <ComingSoon />
     </div>
   );
 }
