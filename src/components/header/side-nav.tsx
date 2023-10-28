@@ -11,17 +11,17 @@ import {
   AccordionTrigger,
 } from "../ui/accordion";
 import { useTransClient } from "@/lib/i18n/client";
-import HotLine from "./hot-line";
 import LogoHeader from "./logo-large";
 import SwitchLanguage from "../button/switch-language";
 import { useEffect, useState } from "react";
 import { TypeItemCategoryProduct } from "@/lib/type";
 import UserSideBarSection from "../user/side-bar-section";
+import { usePathname, useSearchParams } from "next/navigation";
 
 export const SideNav = ({
   lang,
-  cateProduct,
-  cateExport,
+  cateProduct = [],
+  cateExport = [],
   callbackOpenLogin,
 }: {
   lang: Locale;
@@ -31,6 +31,9 @@ export const SideNav = ({
 }) => {
   const [open, setOpen] = useState(false);
   const { t } = useTransClient(lang);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
   useEffect(() => {
     if (open) {
       document.body.style.overflowY = "hidden";
@@ -50,7 +53,19 @@ export const SideNav = ({
             ?.classList.remove("!translate-x-0");
         }, 500);
     }
+    const handleResize = () => {
+      if (window.innerWidth > 800) {
+        setOpen(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, [open]);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname, searchParams]);
+
   return (
     <>
       <div className="flex flex-row gap-4 mr-1 ">
@@ -108,27 +123,19 @@ export const SideNav = ({
           className="w-full h-full [&_button]:font-semibold [&>div]:border-primary [&_[role=region]]:bg-logo/10 [&_[role=region]]:px-0 [&_[role=region]]:rounded-sm [&_[role=region]]:pt-0 [&>[data-state=open]]:border-b-primary/0 [&>[data-state=open]]:transition-all [&>[data-state=open]]:duration-500 [&_[role=region]>div]:flex [&_[role=region]>div]:flex-col [&_[role=region]>div]:gap-0 [&_[role=region]>div]:pb-0 [&_[role=region]>div>a]:text-sm [&_[role=region]>div>a]:py-2 [&_[role=region]>div>a]:px-3 [&_[role=region]>div>a]:border-b last:[&_[role=region]>div>a]:border-none [&_[role=region]>div>a:hover]:bg-primary/10 [&_[role=region]>div>a:hover]:rounded-sm [&_[id=simple]]:flex [&_[id=simple]_a]:w-full [&_[id=simple]]:py-3 [&_[id=simple]]:border-primary/10 [&_[id=simple]]:border-b [&_[id=simple]]:font-semibold text-base font-medium"
         >
           <div id="simple">
-            <Link href={"/"} lang={lang} onClick={() => setOpen(false)}>
+            <Link href={"/"} lang={lang}>
               {t("Home")}
             </Link>
           </div>
           <div id="simple">
-            <Link
-              href={"/introduce"}
-              lang={lang}
-              onClick={() => setOpen(false)}
-            >
+            <Link href={"/introduce"} lang={lang}>
               {t("Introduce")}
             </Link>
           </div>
           <AccordionItem value="Product">
             <AccordionTrigger>{t("Product")}</AccordionTrigger>
             <AccordionContent>
-              <Link
-                href={"/product"}
-                lang={lang}
-                onClick={() => setOpen(false)}
-              >
+              <Link href={"/product"} lang={lang}>
                 {t("All")}
               </Link>
               {cateProduct?.map((item, idx) => {
@@ -136,12 +143,7 @@ export const SideNav = ({
                 const cate = lang === "en" ? item.enSlug : item.vnSlug;
                 const href = `/product/${cate}`;
                 return (
-                  <Link
-                    href={href}
-                    lang={lang}
-                    onClick={() => setOpen(false)}
-                    key={idx}
-                  >
+                  <Link href={href} lang={lang} key={idx}>
                     {title}
                   </Link>
                 );
@@ -151,7 +153,7 @@ export const SideNav = ({
           <AccordionItem value="Export">
             <AccordionTrigger>{t("Export")}</AccordionTrigger>
             <AccordionContent>
-              <Link href={"/export"} lang={lang} onClick={() => setOpen(false)}>
+              <Link href={"/export"} lang={lang}>
                 {t("All")}
               </Link>
               {cateExport?.map((item, idx) => {
@@ -159,12 +161,7 @@ export const SideNav = ({
                 const cate = lang === "en" ? item.enSlug : item.vnSlug;
                 const href = `/export/${cate}`;
                 return (
-                  <Link
-                    href={href}
-                    lang={lang}
-                    onClick={() => setOpen(false)}
-                    key={idx}
-                  >
+                  <Link href={href} lang={lang} key={idx}>
                     {title}
                   </Link>
                 );
@@ -172,7 +169,7 @@ export const SideNav = ({
             </AccordionContent>
           </AccordionItem>
           <div id="simple">
-            <Link href={"/contact"} lang={lang} onClick={() => setOpen(false)}>
+            <Link href={"/contact"} lang={lang}>
               {t("Contact")}
             </Link>
           </div>
