@@ -1,3 +1,4 @@
+"use client"
 import { Cross2Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { Separator } from "../ui/separator";
 import FlameLogoSimple from "@/assets/logo/flame-logo-simple.png";
