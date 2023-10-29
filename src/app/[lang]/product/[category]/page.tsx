@@ -29,13 +29,37 @@ export async function generateMetadata({
   if (!cates) {
     return { title: lang === "en" ? `Products` : `Sản phẩm` };
   }
+
+  const urlP = `https://flameagricultural.com${
+    lang === "en" ? `/en/product/${cates.enSlug}` : `/san-pham/${cates.vnSlug}`
+  }`;
+
   return {
     title: lang === "en" ? `${cates.en} products` : `Sản phẩm ${cates.vn}`,
     description:
       lang === "en"
         ? `${cates.en} products | Provided by Flame Agricultural`
         : `Sản phẩm ${cates.vn.toLowerCase()} | Sản phẩm được chọn lọc và phân phối bởi Nông sản Flame`,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+      },
+    },
     keywords: lang === "en" ? `${cates.en} products` : `Sản phẩm ${cates.vn}`,
+    openGraph: {
+      title: lang === "en" ? `${cates.en} products` : `Sản phẩm ${cates.vn}`,
+      description:
+        lang === "en"
+          ? `${cates.en} products | Provided by Flame Agricultural`
+          : `Sản phẩm ${cates.vn.toLowerCase()} | Sản phẩm được chọn lọc và phân phối bởi Nông sản Flame`,
+      url: urlP,
+      siteName: lang === "en" ? "Flame agricultural" : "Nông sản Flame",
+      locale: lang === "en" ? "en_US" : "vi_VN",
+      type: "article",
+    },
   };
 }
 

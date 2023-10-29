@@ -40,6 +40,10 @@ export async function generateMetadata({
       "flame agricultural",
     ],
     metadataBase: new URL("https://flameagricultural.com"),
+    robots: {
+      follow: true,
+      index: true
+    },
     openGraph: {
       title:
         lang === "en"

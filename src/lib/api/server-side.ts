@@ -1,3 +1,4 @@
+import { TAGS } from "../contants";
 import { Locale } from "../i18n/setting";
 import * as Type from "../type";
 
@@ -10,7 +11,7 @@ export const getAllProduct = async (): Promise<
 > => {
   const api = (await fetch(process.env.URL + "/product/get-all-products", {
     method: "GET",
-    next: { tags: ["get-all-products"] },
+    next: { tags: [TAGS.products] },
   }).then((res) => {
     if (res.ok) {
       return res.json();
@@ -32,7 +33,7 @@ export const getAllExportProduct = async (): Promise<
 > => {
   const api = (await fetch(
     process.env.URL + "/export/get-all-export-products",
-    { method: "GET", next: { tags: ["get-all-export-products"] } }
+    { method: "GET", next: { tags: [TAGS.exports] } }
   ).then((res) => {
     if (res.ok) {
       return res.json();
@@ -56,7 +57,7 @@ export const getDetailProduct = async (
   const api = (await fetch(process.env.URL + `/product/${slug}-${lang}`, {
     method: "GET",
     next: {
-      tags: [`product-${slug}-${lang}`],
+      tags: [TAGS.products],
     },
   }).then((res) => {
     if (res.ok) {
@@ -82,7 +83,7 @@ export const getDetailExportProduct = async (
 ): Promise<Type.ExportDetailResult> => {
   const api = (await fetch(process.env.URL + `/export/${slug}-${lang}`, {
     method: "GET",
-    next: { tags: [`export-${slug}-${lang}`] },
+    next: { tags: [TAGS.exports] },
   }).then((res) => {
     if (res.ok) {
       return res.json();
@@ -104,7 +105,7 @@ export const getDetailExportProduct = async (
 export const getListCateProduct = async (): Promise<Type.TypeOfCategory> => {
   const api = (await fetch(process.env.URL + "/type/get-product-type", {
     method: "GET",
-    next: { tags: ["get-product-type"] },
+    next: { tags: [TAGS.categories] },
   }).then((res) => {
     if (res.ok) {
       return res.json();
@@ -129,7 +130,7 @@ export const getListCateProduct = async (): Promise<Type.TypeOfCategory> => {
 export const getIntroduce = async (): Promise<Type.IntroduceDetailResult> => {
   const api = (await fetch(process.env.URL + "/common/get-introduce", {
     method: "GET",
-    next: { tags: ["get-introduce"] },
+    next: { tags: [TAGS.introduce] },
   }).then((res) => {
     if (res.ok) {
       return res.json();
