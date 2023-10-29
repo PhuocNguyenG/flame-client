@@ -82,7 +82,7 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                           className="w-full min-h-[240px] max-h-[240px] p-3 rounded-md"
                         >
                           <Image
-                            loading="lazy"
+                            loading="eager"
                             src={item.banner}
                             alt={detail.name}
                             className="w-full h-full object-contain rounded-md duration-500"
@@ -133,25 +133,24 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
             </div>
             <div className="flex flex-row flex-wrap ml-auto h-full gap-2 w-fit">
               <div className="flex flex-row flex-wrap gap-2 w-fit max480:hidden">
-
-              {exportCates?.slice(0,2).map((cate, idx) => {
-                const cateName = lang === "en" ? cate.en : cate.vn;
-                const cateHref = `/export/${
-                  lang === "en" ? cate.enSlug : cate.vnSlug
-                }`;
-                return (
-                  <Link
-                    href={cateHref}
-                    lang={lang}
-                    key={idx}
-                    className="hover:underline hover:underline-offset-2 bg-slate-200 px-1 rounded-md transition-all"
-                  >
-                    {cateName}
-                  </Link>
-                );
-              })}
-              {exportCates.length > 2 ? <div>...</div> :""}
-                </div>
+                {exportCates?.slice(0, 2).map((cate, idx) => {
+                  const cateName = lang === "en" ? cate.en : cate.vn;
+                  const cateHref = `/export/${
+                    lang === "en" ? cate.enSlug : cate.vnSlug
+                  }`;
+                  return (
+                    <Link
+                      href={cateHref}
+                      lang={lang}
+                      key={idx}
+                      className="hover:underline hover:underline-offset-2 bg-slate-200 px-1 rounded-md transition-all"
+                    >
+                      {cateName}
+                    </Link>
+                  );
+                })}
+                {exportCates.length > 2 ? <div>...</div> : ""}
+              </div>
               <Separator
                 orientation={"vertical"}
                 className="bg-primary h-[unset] w-[2px] max480:hidden"
@@ -179,7 +178,7 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                 }`;
                 return (
                   <div
-                    className="bg-white rounded-md hover:shadow-lg flex flex-col overflow-hidden w-full h-full [&_a:hover]:cursor-pointer border-2 border-primary hover:scale-[1.03] transition-all"
+                    className="bg-white rounded-md hover:shadow-lg flex flex-col overflow-hidden w-full h-full [&_a:hover]:cursor-pointer border-2 border-primary transition-all"
                     key={idx}
                   >
                     <Link
