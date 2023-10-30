@@ -19,7 +19,7 @@ import { TypeItemCategoryProduct } from "@/lib/type";
 import UserSideBarSection from "../user/side-bar-section";
 import { usePathname, useSearchParams } from "next/navigation";
 
-export const SideNav = ({
+const SideNav = ({
   lang,
   cateProduct = [],
   cateExport = [],
@@ -184,3 +184,5 @@ export const SideNav = ({
     </>
   );
 };
+
+export default SideNav

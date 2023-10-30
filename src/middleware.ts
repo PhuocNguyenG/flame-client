@@ -7,7 +7,10 @@ import { listRoute } from "./map-route";
 export async function middleware(request: NextRequest) {
   // Check if there is any supported locale in the pathname
   const pathname = request.nextUrl.pathname;
-  if (pathname.split("/").includes("sitemap.xml")) {
+  if (
+    pathname.split("/").includes("sitemap.xml") ||
+    pathname.split("/").includes("static")
+  ) {
     return;
   } else {
     // Check if the default locale is in the pathname

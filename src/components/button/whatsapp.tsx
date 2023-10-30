@@ -1,21 +1,9 @@
 "use client";
 import Image from "next/image";
 import { Button } from "../ui/button";
-import WhatsApp from "@/assets/logo/whatsapp-logo.svg";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "../ui/tooltip";
-import { usePathname } from "next/navigation";
-import { getLangByPathname } from "@/lib/utils";
-import { useTransClient } from "@/lib/i18n/client";
+import WhatsApp from "@/assets/icon/whatsapp-logo.svg";
 
 export const WhatsAppButton = () => {
-  const pathname = usePathname();
-  const lang = getLangByPathname(pathname);
-  const { t } = useTransClient(lang);
   return (
     <>
       <Button

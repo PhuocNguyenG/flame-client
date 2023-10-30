@@ -10,7 +10,7 @@ export default async function Home({
 }) {
   return (
     <div className="min-h-[1000px] mx-auto">
-      <Carousel />
+        {/* <Carousel /> */}
       <div className="container mt-5">
         {/* <FeaturedSection lang={lang}/> */}
         <ProductByCate lang={lang} />

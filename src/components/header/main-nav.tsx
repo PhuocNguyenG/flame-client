@@ -14,13 +14,14 @@ import {
   navigationMenuActiveStyle,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import AccountDropdown from "../user/top-nav-dropdown";
-import SearchButton from "../button/search-nav";
-import Basket from "../button/basket-nav";
-import SwitchLanguage from "../button/switch-language";
+import dynamic from "next/dynamic";
+const AccountDropdown = dynamic(() => import("../user/top-nav-dropdown"));
+const SearchButton = dynamic(() => import("../button/search-nav"));
+const Basket = dynamic(() => import("../button/basket-nav"));
+const SwitchLanguage = dynamic(() => import("../button/switch-language"));
+const SideNav = dynamic(() => import("./side-nav"));
 import { useTransClient } from "@/lib/i18n/client";
-import { Locale } from "@/lib/i18n/setting";
-import { useParams, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Link from "../link";
 import { TypeItemCategoryProduct } from "@/lib/type";
 import MapMarkedIcon from "@/assets/icon/map-marked.svg";
@@ -28,7 +29,6 @@ import Image from "next/image";
 import { setSlugCategoriesTrans } from "@/lib/redux/slice/router";
 import { RootState, useAppDispatch } from "@/lib/redux/store";
 import { Separator } from "../ui/separator";
-import { SideNav } from "./side-nav";
 import HotLine from "./hot-line";
 import LogoHeader from "./logo-large";
 import LoginModal from "../user/login-modal";
@@ -141,14 +141,12 @@ export function MainNavBar({
         <div className="flex flex-row w-full h-[60px] min801:h-[50px] justify-center items-start gap-2 container transition-all duration-500">
           {/* Side bar */}
           <div className="hidden max800:flex w-fit h-fit my-auto">
-            <React.Suspense>
-              <SideNav
-                lang={lang}
-                cateProduct={cateProduct}
-                cateExport={cateExport}
-                callbackOpenLogin={(isOpen) => setOpenLogin(isOpen)}
-              />
-            </React.Suspense>
+            <SideNav
+              lang={lang}
+              cateProduct={cateProduct}
+              cateExport={cateExport}
+              callbackOpenLogin={(isOpen) => setOpenLogin(isOpen)}
+            />
           </div>
           <NavigationMenu
             value={value}
