@@ -14,13 +14,14 @@ import {
   navigationMenuActiveStyle,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import AccountDropdown from "../user/top-nav-dropdown";
-import SearchButton from "../button/search-nav";
-import Basket from "../button/basket-nav";
-import SwitchLanguage from "../button/switch-language";
+import dynamic from "next/dynamic";
+const AccountDropdown = dynamic(() => import("../user/top-nav-dropdown"));
+const SearchButton = dynamic(() => import("../button/search-nav"));
+const Basket = dynamic(() => import("../button/basket-nav"));
+const SwitchLanguage = dynamic(() => import("../button/switch-language"));
+const SideNav = dynamic(() => import("./side-nav"));
 import { useTransClient } from "@/lib/i18n/client";
-import { Locale } from "@/lib/i18n/setting";
-import { useParams, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Link from "../link";
 import { TypeItemCategoryProduct } from "@/lib/type";
 import MapMarkedIcon from "@/assets/icon/map-marked.svg";
@@ -28,11 +29,9 @@ import Image from "next/image";
 import { setSlugCategoriesTrans } from "@/lib/redux/slice/router";
 import { RootState, useAppDispatch } from "@/lib/redux/store";
 import { Separator } from "../ui/separator";
-import { SideNav } from "./side-nav";
 import HotLine from "./hot-line";
 import LogoHeader from "./logo-large";
 import LoginModal from "../user/login-modal";
-
 
 export function MainNavBar({
   cateProduct,
@@ -98,161 +97,155 @@ export function MainNavBar({
 
   return (
     <>
-      
-        <div className="h-[28px] w-full bg-primary max800:hidden">
-          <div className="container h-full flex flex-row flex-wrap justify-between items-center text-secondary-foreground text-sm font-medium">
-            <div className=""></div>
-            <div className="flex flex-row flex-wrap h-full items-center justify-center gap-2 ">
-              <Image
-                src={MapMarkedIcon}
-                alt="Map marker"
-                width={18}
-                height={18}
-                sizes="30"
-                className="h-auto opacity-80"
-                unoptimized
-              />
-              <p>{t("AddressDetail")}</p>
-              <Separator
-                orientation="vertical"
-                className="bg-secondary-foreground h-4/6"
-              />
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-row gap-5 max800:hidden h-[112px] items-center justify-around w-full container">
-          <LogoHeader lang={lang} />
-
-          <div className="max-w-[500px] lg:w-[inherit] w-[28%]">
-            <SearchButton
-              lang={lang}
-              listCateProduct={cateProduct}
-              showOnTop
-              inputValue={searchInputValue}
-              setInputValue={setSearchInputValue}
+      <div className="h-[28px] w-full bg-primary max800:hidden">
+        <div className="container h-full flex flex-row flex-wrap justify-between items-center text-secondary-foreground text-sm font-medium">
+          <div className=""></div>
+          <div className="flex flex-row flex-wrap h-full items-center justify-center gap-2 ">
+            <Image
+              src={MapMarkedIcon}
+              alt="Map marker"
+              width={18}
+              height={18}
+              sizes="30"
+              className="h-auto opacity-80"
+              unoptimized
+            />
+            <p>{t("AddressDetail")}</p>
+            <Separator
+              orientation="vertical"
+              className="bg-secondary-foreground h-4/6"
             />
           </div>
-
-          <HotLine lang={lang} />
-
-          <div>
-            <SwitchLanguage />
-          </div>
         </div>
-        <nav className="sticky flex flex-row w-full h-[60px] min801:h-[50px] bg-primary top-0 z-10 transition-all duration-500">
-          <div className="flex flex-row w-full h-[60px] min801:h-[50px] justify-center items-start gap-2 container transition-all duration-500">
-            {/* Side bar */}
-            <div className="hidden max800:flex w-fit h-fit my-auto">
-              <SideNav
-                lang={lang}
-                cateProduct={cateProduct}
-                cateExport={cateExport}
-                callbackOpenLogin={(isOpen) => setOpenLogin(isOpen)}
-              />
-            </div>
-            <NavigationMenu
-              value={value}
-              onValueChange={(value) => setValue(value)}
-              delayDuration={0}
-              className="max800:hidden"
-            >
-              <NavigationMenuList ref={listRef as any}>
-                <NavigationMenuItem value={"Home"}>
-                  <Link lang={lang} legacyBehavior href="/" passHref>
-                    <NavigationMenuLink
-                      active={!!["/", "/en"].find((x) => x === pathname)}
-                      className={navigationMenuTriggerStyle()}
-                    >
-                      {t("Home")}
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem>
-                <NavigationMenuItem value={"Introduce"}>
-                  <Link lang={lang} legacyBehavior href="/introduce" passHref>
-                    <NavigationMenuLink
-                      active={
-                        !!["introduce", "gioi-thieu"].find((x) =>
+      </div>
+      <div className="flex flex-row gap-5 max800:hidden h-[112px] items-center justify-around w-full container">
+        <LogoHeader lang={lang} />
+
+        <div className="max-w-[500px] lg:w-[inherit] w-[28%]">
+          <SearchButton
+            lang={lang}
+            listCateProduct={cateProduct}
+            showOnTop
+            inputValue={searchInputValue}
+            setInputValue={setSearchInputValue}
+          />
+        </div>
+
+        <HotLine lang={lang} />
+
+        <div>
+          <SwitchLanguage />
+        </div>
+      </div>
+      <nav className="sticky flex flex-row w-full h-[60px] min801:h-[50px] bg-primary top-0 z-10 transition-all duration-500">
+        <div className="flex flex-row w-full h-[60px] min801:h-[50px] justify-center items-start gap-2 container transition-all duration-500">
+          {/* Side bar */}
+          <div className="hidden max800:flex w-fit h-fit my-auto">
+            <SideNav
+              lang={lang}
+              cateProduct={cateProduct}
+              cateExport={cateExport}
+              callbackOpenLogin={(isOpen) => setOpenLogin(isOpen)}
+            />
+          </div>
+          <NavigationMenu
+            value={value}
+            onValueChange={(value) => setValue(value)}
+            delayDuration={0}
+            className="max800:hidden"
+          >
+            <NavigationMenuList ref={listRef as any}>
+              <NavigationMenuItem value={"Home"}>
+                <Link lang={lang} legacyBehavior href="/" passHref>
+                  <NavigationMenuLink
+                    active={!!["/", "/en"].find((x) => x === pathname)}
+                    className={navigationMenuTriggerStyle()}
+                  >
+                    {t("Home")}
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem value={"Introduce"}>
+                <Link lang={lang} legacyBehavior href="/introduce" passHref>
+                  <NavigationMenuLink
+                    active={
+                      !!["introduce", "gioi-thieu"].find((x) =>
+                        pathname.split("/").includes(x)
+                      )
+                    }
+                    className={navigationMenuTriggerStyle()}
+                  >
+                    {t("Introduce")}
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem value={"Product"}>
+                <NavigationMenuTrigger
+                  {...(!!["product", "san-pham"].find((x) =>
+                    pathname.split("/").includes(x)
+                  ) && { "data-active": true })}
+                  ref={(node: any) => {
+                    if ("Product" === value && activeTrigger !== node) {
+                      setActiveTrigger(node);
+                    }
+                    return node;
+                  }}
+                  className="none-select-text"
+                >
+                  {t("Product")}
+                </NavigationMenuTrigger>
+                <NavigationMenuContent
+                  ref={(node: any) => {
+                    if ("Product" === value) {
+                      setContentTrigger(node);
+                    }
+                    return node;
+                  }}
+                >
+                  <ul className="grid w-[300px] gap-3 p-4 md:w-[300px] md:grid-cols-2 lg:w-[300px] ">
+                    <Link href={`/product`} lang={lang} passHref legacyBehavior>
+                      <ListItem
+                        {...(!!["product", "san-pham"].find((x) =>
                           pathname.split("/").includes(x)
-                        )
-                      }
-                      className={navigationMenuTriggerStyle()}
-                    >
-                      {t("Introduce")}
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem>
-                <NavigationMenuItem value={"Product"}>
-                  <NavigationMenuTrigger
-                    {...(!!["product", "san-pham"].find((x) =>
-                      pathname.split("/").includes(x)
-                    ) && { "data-active": true })}
-                    ref={(node: any) => {
-                      if ("Product" === value && activeTrigger !== node) {
-                        setActiveTrigger(node);
-                      }
-                      return node;
-                    }}
-                    className="none-select-text"
-                  >
-                    {t("Product")}
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent
-                    ref={(node: any) => {
-                      if ("Product" === value) {
-                        setContentTrigger(node);
-                      }
-                      return node;
-                    }}
-                  >
-                    <ul className="grid w-[300px] gap-3 p-4 md:w-[300px] md:grid-cols-2 lg:w-[300px] ">
-                      <Link
-                        href={`/product`}
-                        lang={lang}
-                        passHref
-                        legacyBehavior
-                      >
-                        <ListItem
-                          {...(!!["product", "san-pham"].find((x) =>
-                            pathname.split("/").includes(x)
-                          ) &&
-                            !pathname.split("/")[2] && {
-                              "data-active": true,
-                            })}
-                          className={navigationMenuActiveStyle()}
-                          title={t("All")}
-                        ></ListItem>
-                      </Link>
-                      {cateProduct.map((item, idx) => {
-                        const title = lang === "en" ? item.en : item.vn;
-                        const cate = lang === "en" ? item.enSlug : item.vnSlug;
-                        const href = `/product/${cate}`;
+                        ) &&
+                          !pathname.split("/")[2] && {
+                            "data-active": true,
+                          })}
+                        className={navigationMenuActiveStyle()}
+                        title={t("All")}
+                      ></ListItem>
+                    </Link>
+                    {cateProduct.map((item, idx) => {
+                      const title = lang === "en" ? item.en : item.vn;
+                      const cate = lang === "en" ? item.enSlug : item.vnSlug;
+                      const href = `/product/${cate}`;
 
-                        return (
-                          <Link
-                            href={href}
-                            lang={lang}
-                            key={idx}
-                            passHref
-                            legacyBehavior
-                          >
-                            <ListItem
-                              {...(!!["product", "san-pham"].find((x) =>
-                                pathname.split("/").includes(x)
-                              ) &&
-                                pathname.split("/").includes(`${cate}`) && {
-                                  "data-active": true,
-                                })}
-                              className={navigationMenuActiveStyle()}
-                              title={title}
-                            ></ListItem>
-                          </Link>
-                        );
-                      })}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
+                      return (
+                        <Link
+                          href={href}
+                          lang={lang}
+                          key={idx}
+                          passHref
+                          legacyBehavior
+                        >
+                          <ListItem
+                            {...(!!["product", "san-pham"].find((x) =>
+                              pathname.split("/").includes(x)
+                            ) &&
+                              pathname.split("/").includes(`${cate}`) && {
+                                "data-active": true,
+                              })}
+                            className={navigationMenuActiveStyle()}
+                            title={title}
+                          ></ListItem>
+                        </Link>
+                      );
+                    })}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
 
-                {/* <NavigationMenuItem value={"Gift"}>
+              {/* <NavigationMenuItem value={"Gift"}>
                 <NavigationMenuTrigger
                   {...(!!["gift", "qua-tang-qua-bieu"].find((x) =>
                     pathname.split("/").includes(x)
@@ -314,140 +307,129 @@ export function MainNavBar({
                   </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>*/}
-                <NavigationMenuItem value="Export">
-                  <NavigationMenuTrigger
-                    {...(!!["export", "xuat-khau"].find((x) =>
-                      pathname.split("/").includes(x)
-                    ) && { "data-active": true })}
-                    ref={(node: any) => {
-                      if ("Export" === value && activeTrigger !== node) {
-                        setActiveTrigger(node);
-                      }
-                      return node;
-                    }}
-                    className="none-select-text"
-                  >
-                    {t("Export")}
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent
-                    ref={(node: any) => {
-                      if ("Export" === value) {
-                        setContentTrigger(node);
-                      }
-                      return node;
-                    }}
-                  >
-                    <ul className="grid w-[300px] gap-3 p-3 md:w-[300px] md:grid-cols-2 lg:w-[300px]">
-                      <Link
-                        href={`/export`}
-                        lang={lang}
-                        passHref
-                        legacyBehavior
-                      >
-                        <ListItem
-                          {...(!!["export", "xuat-khau"].find((x) =>
-                            pathname.split("/").includes(x)
-                          ) &&
-                            !pathname.split("/")[2] && {
-                              "data-active": true,
-                            })}
-                          className={navigationMenuActiveStyle()}
-                          title={t("All")}
-                        ></ListItem>
-                      </Link>
-                      {cateExport.map((item, idx) => {
-                        const title = lang === "en" ? item.en : item.vn;
-                        const cate = lang === "en" ? item.enSlug : item.vnSlug;
-                        const href = `/export/${cate}`;
-
-                        return (
-                          <Link
-                            href={href}
-                            lang={lang}
-                            key={idx}
-                            passHref
-                            legacyBehavior
-                          >
-                            <ListItem
-                              {...(!!["export", "xuat-khau"].find((x) =>
-                                pathname.split("/").includes(x)
-                              ) &&
-                                pathname.split("/").includes(`${cate}`) && {
-                                  "data-active": true,
-                                })}
-                              className={navigationMenuActiveStyle()}
-                              title={title}
-                            ></ListItem>
-                          </Link>
-                        );
-                      })}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-                <NavigationMenuItem
-                  value={"Contact"}
-                  className="hidden lg:block"
-                >
-                  <Link lang={lang} legacyBehavior href="/contact" passHref>
-                    <NavigationMenuLink
-                      active={
-                        !!["/lien-he", "/en/contact"].find(
-                          (x) => x === pathname
-                        )
-                      }
-                      className={navigationMenuTriggerStyle()}
-                    >
-                      {t("Contact")}
-                    </NavigationMenuLink>
-                  </Link>
-                </NavigationMenuItem>
-                <NavigationMenuIndicator />
-              </NavigationMenuList>
-              <div
-                style={{
-                  position: "absolute",
-                  left: 0,
-                  top: "100%",
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                <NavigationMenuViewport
-                  style={{
-                    // Avoid transitioning from initial position when first opening
-                    display: !offset ? "none" : undefined,
-                    transform: `translateX(${offset}px)`,
+              <NavigationMenuItem value="Export">
+                <NavigationMenuTrigger
+                  {...(!!["export", "xuat-khau"].find((x) =>
+                    pathname.split("/").includes(x)
+                  ) && { "data-active": true })}
+                  ref={(node: any) => {
+                    if ("Export" === value && activeTrigger !== node) {
+                      setActiveTrigger(node);
+                    }
+                    return node;
                   }}
-                />
-              </div>
-            </NavigationMenu>
+                  className="none-select-text"
+                >
+                  {t("Export")}
+                </NavigationMenuTrigger>
+                <NavigationMenuContent
+                  ref={(node: any) => {
+                    if ("Export" === value) {
+                      setContentTrigger(node);
+                    }
+                    return node;
+                  }}
+                >
+                  <ul className="grid w-[300px] gap-3 p-3 md:w-[300px] md:grid-cols-2 lg:w-[300px]">
+                    <Link href={`/export`} lang={lang} passHref legacyBehavior>
+                      <ListItem
+                        {...(!!["export", "xuat-khau"].find((x) =>
+                          pathname.split("/").includes(x)
+                        ) &&
+                          !pathname.split("/")[2] && {
+                            "data-active": true,
+                          })}
+                        className={navigationMenuActiveStyle()}
+                        title={t("All")}
+                      ></ListItem>
+                    </Link>
+                    {cateExport.map((item, idx) => {
+                      const title = lang === "en" ? item.en : item.vn;
+                      const cate = lang === "en" ? item.enSlug : item.vnSlug;
+                      const href = `/export/${cate}`;
 
-            <div className="flex flex-row gap-4 lg:gap-5 items-center ml-auto my-auto ">
-              <div className="flex justify-center max-w-[200px] min801:max-w-[150px] ">
-                <SearchButton
-                  lang={lang}
-                  listCateProduct={cateProduct}
-                  inputValue={searchInputValue}
-                  setInputValue={setSearchInputValue}
-                  dimension={dimension}
-                />
-              </div>
-              <Basket />
-              <div className="hidden min481:flex w-fit h-fit">
-                <AccountDropdown
-                  callbackOpenLogin={(value) => setOpenLogin(value)}
-                />
-              </div>
+                      return (
+                        <Link
+                          href={href}
+                          lang={lang}
+                          key={idx}
+                          passHref
+                          legacyBehavior
+                        >
+                          <ListItem
+                            {...(!!["export", "xuat-khau"].find((x) =>
+                              pathname.split("/").includes(x)
+                            ) &&
+                              pathname.split("/").includes(`${cate}`) && {
+                                "data-active": true,
+                              })}
+                            className={navigationMenuActiveStyle()}
+                            title={title}
+                          ></ListItem>
+                        </Link>
+                      );
+                    })}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+              <NavigationMenuItem value={"Contact"} className="hidden lg:block">
+                <Link lang={lang} legacyBehavior href="/contact" passHref>
+                  <NavigationMenuLink
+                    active={
+                      !!["/lien-he", "/en/contact"].find((x) => x === pathname)
+                    }
+                    className={navigationMenuTriggerStyle()}
+                  >
+                    {t("Contact")}
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+              <NavigationMenuIndicator />
+            </NavigationMenuList>
+            <div
+              style={{
+                position: "absolute",
+                left: 0,
+                top: "100%",
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <NavigationMenuViewport
+                style={{
+                  // Avoid transitioning from initial position when first opening
+                  display: !offset ? "none" : undefined,
+                  transform: `translateX(${offset}px)`,
+                }}
+              />
+            </div>
+          </NavigationMenu>
+
+          <div className="flex flex-row gap-4 lg:gap-5 items-center ml-auto my-auto ">
+            <div className="flex justify-center max-w-[200px] min801:max-w-[150px] ">
+              <SearchButton
+                lang={lang}
+                listCateProduct={cateProduct}
+                inputValue={searchInputValue}
+                setInputValue={setSearchInputValue}
+                dimension={dimension}
+              />
+            </div>
+            <Basket />
+            <div className="hidden min481:flex w-fit h-fit">
+              <AccountDropdown
+                callbackOpenLogin={(value) => setOpenLogin(value)}
+              />
             </div>
           </div>
-          <LoginModal
-            lang={lang}
-            open={openLogin}
-            callBackOpen={(isOpen) => setOpenLogin(isOpen)}
-          />
-        </nav>
-
+        </div>
+        <LoginModal
+          lang={lang}
+          open={openLogin}
+          callBackOpen={(isOpen) => setOpenLogin(isOpen)}
+        />
+      </nav>
     </>
   );
 }

@@ -6,6 +6,7 @@ import { useParams, useSelectedLayoutSegments } from "next/navigation";
 import { RootState, store, useAppSelector } from "@/lib/redux/store";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+
 const SwitchLanguage = ({
   className,
 }: {

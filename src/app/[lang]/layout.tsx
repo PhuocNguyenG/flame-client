@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import NavBar from "@/components/header/nav";
 import "../../styles/globals.css";
 import type { Metadata } from "next";
@@ -5,11 +6,18 @@ import { Inter } from "next/font/google";
 import RootProvider, { NextAuthProvider } from "@/provider";
 import Footer from "@/components/footer";
 import NextTopLoader from "nextjs-toploader";
-import { Toaster } from "@/components/ui/toaster";
-import { FloatButton } from "@/components/button/group-float-button";
+const Toaster = dynamic(() =>
+  import("@/components/ui/toaster").then(({ Toaster }) => ({
+    default: Toaster,
+  }))
+);
+const FloatButton = dynamic(() =>
+  import("@/components/button/group-float-button").then(({ FloatButton }) => ({
+    default: FloatButton,
+  }))
+);
 import { Locale } from "@/lib/i18n/setting";
 import ScriptConfig from "@/script-config";
-import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin", "vietnamese"] });
 
@@ -42,7 +50,7 @@ export async function generateMetadata({
     metadataBase: new URL("https://flameagricultural.com"),
     robots: {
       follow: true,
-      index: true
+      index: true,
     },
     openGraph: {
       title:

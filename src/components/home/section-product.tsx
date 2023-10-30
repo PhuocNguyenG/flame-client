@@ -25,7 +25,7 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
   return (
     <>
       <div className="relative flex flex-col w-full justify-center items-center overflow-hidden mb-5">
-        <div className="relative w-fit h-full rounded-md bg-primary text-primary-foreground px-6 py-2 z-[1] font-bold text-lg before:absolute before:top-0 before:-right-[1rem] before:bg-primary before:rounded-md before:h-[45px] before:w-[45px] before:-z-[1] before:rotate-45 after:absolute after:top-0 after:-left-[1rem] after:bg-primary after:rounded-md after:h-[45px] after:w-[45px] after:-z-[1] after:rotate-45">
+        <div className="relative w-fit h-full rounded-md bg-primary text-primary-foreground px-6 py-1 z-[1] font-bold text-lg before:absolute before:top-0 before:-right-[1rem] before:bg-primary before:rounded-md before:h-[35px] before:w-[35px] before:-z-[1] before:rotate-45 after:absolute after:top-0 after:-left-[1rem] after:bg-primary after:rounded-md after:h-[35px] after:w-[35px] after:-z-[1] after:rotate-45">
           {t("Product")}
         </div>
         <div className="absolute top-[calc(48%-1px)] w-full sm:w-2/3 h-1 bg-primary rounded-md transition-all duration-500  "></div>
@@ -43,7 +43,7 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
           listProduct?.length >= 1 && (
             <section className="flex flex-col w-full h-fit mb-14 " key={idx}>
               <div className="flex flex-row justify-between items-center w-full border-b-4 border-primary">
-                <div className="relative w-fit text-primary-foreground bg-primary px-4 py-2.5 text-lg font-bold rounded-t-md !before:content-none before:absolute before:top-0 before:-right-[1.2rem] before:bg-primary before:rounded-tr-sm before:h-[calc(100%)] before:w-3/4 before:skew-x-[40deg] before:z-[1] ">
+                <div className="relative w-fit text-primary-foreground bg-primary px-4 py-1.5 text-lg font-bold rounded-t-md !before:content-none before:absolute before:top-0 before:-right-[1.2rem] before:bg-primary before:rounded-tr-sm before:h-[calc(100%)] before:w-3/4 before:skew-x-[40deg] before:z-[1] ">
                   <Link
                     href={cateHref}
                     lang={lang}
@@ -58,8 +58,8 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                   </Link>
                 </div>
               </div>
-              <div className="h-fit  p-5">
-                <div className="grid grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-5 list-none p-0 m-0">
+              <div className="h-fit py-4 sm:p-5">
+                <div className="grid grid-cols-[repeat(auto-fill,minmax(158px,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-3 sm:gap-5 list-none p-0 m-0">
                   {listProduct?.map((item, idx) => {
                     const detail = lang === "en" ? item.en : item.vn;
                     const price = `${item.price
@@ -73,40 +73,38 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                     }`;
                     return (
                       <div
-                        className="bg-white rounded-md hover:shadow-lg flex flex-col overflow-hidden w-full h-full [&_a:hover]:cursor-pointer border-2 border-primary transition-all"
+                        className="bg-white rounded-md border border-primary/0 hover:border-primary/60 flex flex-col justify-between overflow-hidden w-full h-full [&_a:hover]:cursor-pointer shadow-[0px_1px_4px_0px_#0000005d] sm:shadow-[0px_1px_5px_1px_#0000003d] transition-all min-h-[260px]"
                         key={idx}
                       >
                         <Link
                           href={href}
                           lang={lang}
-                          className="w-full min-h-[240px] max-h-[240px] p-3 rounded-md"
+                          className="flex items-center h-full w-full p-3 rounded-md"
                         >
                           <Image
                             loading="eager"
                             src={item.banner}
                             alt={detail.name}
-                            className="w-full h-full object-contain rounded-md duration-500"
+                            className="w-full min-h-[160px] h-fit max-h-[220px] object-contain rounded-md duration-500"
                             width={200}
                             height={150}
                           />
                         </Link>
-                        <div className="flex-1 px-3 py-1 text-secondary">
+                        <div className="flex flex-col justify-end px-3 py-1 text-black">
                           <Link
                             href={href}
                             lang={lang}
-                            className="flex w-full text-lg font-bold tracking-wide capitalize m-0"
+                            className="flex w-full text-base sm:text-lg font-bold tracking-wide capitalize m-0 min-h-[30px] max-h-[50px] line-clamp-2"
                           >
                             {detail.name}
                           </Link>
-                          <div className="flex items-center text-lg font-semibold h-8 w-full text-red-500">
+                          <div className="flex items-center text-base sm:text-base font-semibold h-fit w-full text-price [text-shadow:0px_0px_black] italic">
                             {item.price && item.price > 0 ? (
                               <Link href={href} lang={lang} className="">
                                 {price}
                               </Link>
                             ) : (
-                              <div className="text-sm">
-                                {t("ContactForPrice")}
-                              </div>
+                              <div className="">{t("ContactForPrice")}</div>
                             )}
                           </div>
                         </div>
@@ -164,8 +162,8 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
               </Link>
             </div>
           </div>
-          <div className="h-fit  p-5">
-            <div className="grid grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-5 list-none p-0 m-0">
+          <div className="h-fit py-4 sm:p-5">
+            <div className="grid grid-cols-[repeat(auto-fill,minmax(158px,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-3 sm:gap-5 list-none p-0 m-0">
               {exportItems?.map((item, idx) => {
                 const detail = lang === "en" ? item.en : item.vn;
                 const cate = exportCates?.find(
@@ -178,33 +176,33 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                 }`;
                 return (
                   <div
-                    className="bg-white rounded-md hover:shadow-lg flex flex-col overflow-hidden w-full h-full [&_a:hover]:cursor-pointer border-2 border-primary transition-all"
+                    className="bg-white rounded-md border border-primary/0 hover:border-primary/60 flex flex-col justify-between overflow-hidden w-full h-full [&_a:hover]:cursor-pointer shadow-[0px_1px_4px_0px_#0000005d] sm:shadow-[0px_1px_5px_1px_#0000003d] transition-all min-h-[260px]"
                     key={idx}
                   >
                     <Link
                       href={href}
                       lang={lang}
-                      className="w-full min-h-[240px] max-h-[240px] p-3 rounded-md"
+                      className="flex items-center w-full p-3 rounded-md"
                     >
                       <Image
-                        loading="eager"
+                        loading="lazy"
                         src={item.banner}
                         alt={detail.name}
-                        className="w-full h-full object-contain rounded-md duration-500"
+                        className="w-full min-h-[160px] h-fit max-h-[240px] object-contain rounded-md duration-500"
                         width={200}
                         height={150}
                       />
                     </Link>
-                    <div className="flex-1 px-3 py-1 text-secondary">
+                    <div className="flex flex-col justify-end px-3 py-1 text-black">
                       <Link
                         href={href}
                         lang={lang}
-                        className="flex w-full text-lg font-bold tracking-wide capitalize m-0"
+                        className="flex w-full text-base sm:text-lg font-semibold tracking-wide capitalize m-0 min-h-[30px] max-h-[50px] line-clamp-2"
                       >
                         {detail.name}
                       </Link>
-                      <div className="flex items-center text-lg font-semibold h-8 w-full text-red-500">
-                        <div className="text-sm">{t("ContactForPrice")}</div>
+                      <div className="flex items-center text-base sm:text-base font-semibold h-fit w-full text-price [text-shadow:0px_0px_black] italic">
+                        <div>{t("ContactForPrice")}</div>
                       </div>
                     </div>
                   </div>

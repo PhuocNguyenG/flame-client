@@ -84,7 +84,7 @@ export default async function ProductItem({
                 <Link
                   href={href}
                   lang={lang}
-                  className="flex w-full text-lg font-bold tracking-wide capitalize m-0"
+                  className="flex w-full text-lg font-bold tracking-wide capitalize m-0 line-clamp-2"
                 >
                   {detail.name}
                 </Link>

@@ -25,6 +25,7 @@ module.exports = {
 
       min481: "481px",
 
+      maxSm: { max: "639px" },
       sm: "640px",
       // => @media (min-width: 640px) { ... }
 
@@ -69,6 +70,9 @@ module.exports = {
         logo: {
           DEFAULT: "rgb(var(--logo-text))",
           foreground: "rgb(var(--logo-foreground))",
+        },
+        price:{
+          DEFAULT:"rgb(var(--price))"
         },
         destructive: {
           DEFAULT: "rgb(var(--destructive))",

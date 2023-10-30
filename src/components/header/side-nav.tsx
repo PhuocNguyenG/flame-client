@@ -1,3 +1,4 @@
+"use client"
 import { Cross2Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { Separator } from "../ui/separator";
 import FlameLogoSimple from "@/assets/logo/flame-logo-simple.png";
@@ -18,7 +19,7 @@ import { TypeItemCategoryProduct } from "@/lib/type";
 import UserSideBarSection from "../user/side-bar-section";
 import { usePathname, useSearchParams } from "next/navigation";
 
-export const SideNav = ({
+const SideNav = ({
   lang,
   cateProduct = [],
   cateExport = [],
@@ -183,3 +184,5 @@ export const SideNav = ({
     </>
   );
 };
+
+export default SideNav
