@@ -25,7 +25,7 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
   return (
     <>
       <div className="relative flex flex-col w-full justify-center items-center overflow-hidden mb-5">
-        <div className="relative w-fit h-full rounded-md bg-primary text-primary-foreground px-6 py-1 z-[1] font-bold text-lg before:absolute before:top-0 before:-right-[1rem] before:bg-primary before:rounded-md before:h-[35px] before:w-[35px] before:-z-[1] before:rotate-45 after:absolute after:top-0 after:-left-[1rem] after:bg-primary after:rounded-md after:h-[35px] after:w-[35px] after:-z-[1] after:rotate-45">
+        <div className="relative w-fit h-full rounded-md bg-primary text-primary-foreground px-6 py-1.5 z-[1] font-bold text-lg before:absolute before:top-0 before:-right-[1rem] before:bg-primary before:rounded-md before:h-[40px] before:w-[40px] before:-z-[1] before:rotate-45 after:absolute after:top-0 after:-left-[1rem] after:bg-primary after:rounded-md after:h-[40px] after:w-[40px] after:-z-[1] after:rotate-45">
           {t("Product")}
         </div>
         <div className="absolute top-[calc(48%-1px)] w-full sm:w-2/3 h-1 bg-primary rounded-md transition-all duration-500  "></div>
@@ -90,11 +90,11 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                             height={150}
                           />
                         </Link>
-                        <div className="flex flex-col justify-end px-3 py-1 text-black">
+                        <div className="flex flex-col justify-between min-h-[90px] px-3 py-1 text-black">
                           <Link
                             href={href}
                             lang={lang}
-                            className="flex w-full text-base sm:text-lg font-bold tracking-wide capitalize m-0 min-h-[30px] max-h-[50px] line-clamp-2"
+                            className="flex w-full text-base sm:text-lg font-bold tracking-wide capitalize m-0 min-h-[30px] max-h-[55px] line-clamp-2"
                           >
                             {detail.name}
                           </Link>
@@ -182,7 +182,7 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                     <Link
                       href={href}
                       lang={lang}
-                      className="flex items-center w-full p-3 rounded-md"
+                      className="flex items-center h-full w-full p-3 rounded-md"
                     >
                       <Image
                         loading="lazy"
@@ -193,11 +193,11 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                         height={150}
                       />
                     </Link>
-                    <div className="flex flex-col justify-end px-3 py-1 text-black">
+                    <div className="flex flex-col justify-between min-h-[90px] px-3 py-1 text-black">
                       <Link
                         href={href}
                         lang={lang}
-                        className="flex w-full text-base sm:text-lg font-semibold tracking-wide capitalize m-0 min-h-[30px] max-h-[50px] line-clamp-2"
+                        className="flex w-full text-base sm:text-lg font-semibold tracking-wide capitalize m-0 min-h-[30px] max-h-[55px] line-clamp-2"
                       >
                         {detail.name}
                       </Link>
