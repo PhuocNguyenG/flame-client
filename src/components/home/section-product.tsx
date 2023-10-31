@@ -101,11 +101,11 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                           </Link>
                           <div className="flex items-center text-base sm:text-base font-semibold h-fit w-full text-price [text-shadow:0px_0px_black] italic">
                             {item.price && item.price > 0 ? (
-                              <Link href={href} lang={lang} className="">
+                              <Link href={href} lang={lang}>
                                 {price}
                               </Link>
                             ) : (
-                              <div className="">{t("ContactForPrice")}</div>
+                              <>{t("ContactForPrice")}</>
                             )}
                           </div>
                         </div>
@@ -203,7 +203,7 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                         {detail.name}
                       </Link>
                       <div className="flex items-center text-base sm:text-base font-semibold h-fit w-full text-price [text-shadow:0px_0px_black] italic">
-                        <div>{t("ContactForPrice")}</div>
+                        <>{t("ContactForPrice")}</>
                       </div>
                     </div>
                   </div>
