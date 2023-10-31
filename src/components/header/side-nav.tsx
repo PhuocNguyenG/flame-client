@@ -176,10 +176,10 @@ const SideNav = ({
             </Link>
           </div>
         </Accordion>
-        <UserSideBarSection
+        {/* <UserSideBarSection
           lang={lang}
           callbackOpenLogin={(isOpen) => callbackOpenLogin(isOpen)}
-        />
+        /> */}
         <SwitchLanguage className="flex flex-row w-full" />
       </div>
     </>

@@ -16,6 +16,10 @@ export const listRoute = [
     vnSlug: "xuat-khau",
   },
   {
+    enSlug: "search",
+    vnSlug: "tim-kiem",
+  },
+  {
     enSlug: "contact",
     vnSlug: "lien-he",
   },

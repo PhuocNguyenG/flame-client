@@ -100,7 +100,7 @@ export default async function Footer({ lang }: { lang: Locale }) {
         </AccordionItem>
       </Accordion>
 
-      <Separator className="container hidden md:block bg-primary-foreground/40 m-auto my-3 w-10/12" />
+      <Separator className="container hidden md:block bg-primary-foreground/20 m-auto my-3 w-10/12" />
 
       <div className="w-full flex-row flex container [&_h2]:text-primary-foreground [&_h2]:text-base [&_h2]:font-semibold [&_h2]:mb-2 my-3">
         <div className="flex flex-col gap-1 [&_p]:text-secondary-foreground/80 [&_p]:text-sm [&_a]:w-fit">
@@ -123,7 +123,8 @@ export default async function Footer({ lang }: { lang: Locale }) {
           </p>
         </div>
       </div>
-      <div className="w-full flex-row hidden sm:flex container text-secondary-foreground/80 mb-2 justify-center">
+      <Separator className="w-full bg-primary-foreground/10"/>
+      <div className="w-full flex-row hidden sm:flex container text-secondary-foreground/80 py-3 justify-center">
         ©{new Date().getFullYear()} - {t("NameCompany")}
       </div>
     </footer>

@@ -418,11 +418,11 @@ export function MainNavBar({
               />
             </div>
             <Basket />
-            <div className="hidden min481:flex w-fit h-fit">
+            {/* <div className="hidden min481:flex w-fit h-fit">
               <AccountDropdown
                 callbackOpenLogin={(value) => setOpenLogin(value)}
               />
-            </div>
+            </div> */}
           </div>
         </div>
         <LoginModal

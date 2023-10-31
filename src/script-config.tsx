@@ -8,7 +8,7 @@ const ScriptConfig = () => {
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-QG7650LCV9"
       />
-      <Script id="google-analytics" async>
+      <Script id="google-analytics" defer>
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -47,7 +47,7 @@ const ScriptConfig = () => {
       />
       {/* eslint-disable-next-line @next/next/next-script-for-ga */}
       <script
-        async
+        defer
         id="gtm-script"
         dangerouslySetInnerHTML={{
           __html: `setTimeout(() => {

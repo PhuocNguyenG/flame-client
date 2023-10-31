@@ -21,6 +21,7 @@ export const Breadcrumb = ({
                 lang={lang}
                 href={"/"}
                 className="inline-flex items-center text-sm font-medium text-gray-500 "
+                aria-label=""
               >
                 <svg
                   className="w-3 h-3"
@@ -60,7 +61,7 @@ export const Breadcrumb = ({
                       <Link
                         lang={lang}
                         href={item.href}
-                        className="ml-1 text-sm font-medium text-gray-400 whitespace-nowrap"
+                        className="ml-1 text-sm font-medium text-gray-500 whitespace-nowrap"
                       >
                         {item.name}
                       </Link>

@@ -100,6 +100,7 @@ const AccountDropdown = ({
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         className="none-select-text"
+        aria-label={t("Account")}
       >
         {session?.user ? (
           <Avatar className="w-8 h-8">
