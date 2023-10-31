@@ -13,7 +13,7 @@ const FloatButton = dynamic(
 import { Locale } from "@/lib/i18n/setting";
 import ScriptConfig from "@/script-config";
 
-const inter = Inter({ subsets: ["latin", "vietnamese"] });
+const inter = Inter({ subsets: ["latin"] });
 
 export async function generateStaticParams() {
   return [{ lang: "vi" }, { lang: "en" }];

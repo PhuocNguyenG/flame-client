@@ -4,11 +4,8 @@ const ScriptConfig = () => {
   return (
     <>
       {/* Google tag (gtag.js) */}
-      <Script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-QG7650LCV9"
-      />
-      <Script id="google-analytics" defer>
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-QG7650LCV9" />
+      <Script id="google-analytics">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -45,9 +42,7 @@ const ScriptConfig = () => {
         }}
         data-nscript="beforeInteractive"
       />
-      {/* eslint-disable-next-line @next/next/next-script-for-ga */}
-      <script
-        defer
+      <Script
         id="gtm-script"
         dangerouslySetInnerHTML={{
           __html: `setTimeout(() => {
