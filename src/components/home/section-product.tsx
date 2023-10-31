@@ -82,7 +82,7 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                           className="flex items-center h-full w-full p-3 rounded-md"
                         >
                           <Image
-                            loading="eager"
+                            priority
                             src={item.banner}
                             alt={detail.name}
                             className="w-full min-h-[160px] h-fit max-h-[220px] object-contain rounded-md duration-500"
@@ -186,7 +186,6 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                       className="flex items-center h-full w-full rounded-md relative p-3"
                     >
                       <Image
-                        loading="lazy"
                         src={item.banner}
                         alt={detail.name}
                         sizes="(max-width: 800px) 50vw, (max-width: 1060px) 33vw, 25vw"

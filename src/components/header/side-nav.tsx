@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Cross2Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { Separator } from "../ui/separator";
 import FlameLogoSimple from "@/assets/logo/flame-logo-simple.png";
@@ -76,6 +76,7 @@ const SideNav = ({
         />
         <Link lang={lang} href={"/"} className="h-fit w-fit">
           <Image
+            loading="lazy"
             src={FlameLogoSimple}
             alt="Flame logo"
             sizes="45px"
@@ -185,4 +186,4 @@ const SideNav = ({
   );
 };
 
-export default SideNav
+export default SideNav;

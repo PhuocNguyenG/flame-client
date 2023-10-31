@@ -102,6 +102,7 @@ export function MainNavBar({
           <div className=""></div>
           <div className="flex flex-row flex-wrap h-full items-center justify-center gap-2 ">
             <Image
+              loading="lazy"
               src={MapMarkedIcon}
               alt="Map marker"
               width={18}

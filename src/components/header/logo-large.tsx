@@ -25,6 +25,7 @@ function LogoHeader({
         className="min-w-full block relative top-[2px] rounded-full group overflow-hidden"
       >
         <Image
+          loading="lazy"
           alt="Flame | Agricultural by PhuocLinh"
           src={FlameLogo}
           height={90}
