@@ -16,7 +16,7 @@ const nextConfig = {
       },
     ],
     minimumCacheTTL: 60,
-    deviceSizes: [160, 400, 750],
+    deviceSizes: [450, 800, 1150, 1400, 1920],
   },
 };
 
