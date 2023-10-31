@@ -2,7 +2,7 @@
 import React from "react";
 import { ScrollToTop } from "./scroll-to-top";
 
-export const FloatButton = () => {
+export default function FloatButton() {
   const [showTopBtn, setShowTopBtn] = React.useState(false);
   React.useEffect(() => {
     window.addEventListener("scroll", () => {

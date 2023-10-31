@@ -19,5 +19,10 @@ const nextConfig = {
     deviceSizes: [450, 800, 1150, 1400, 1920],
   },
 };
-
+// const withBundleAnalyzer = require('@next/bundle-analyzer')({
+//   enabled: process.env.ANALYZE === 'true',
+// })
+// module.exports = withBundleAnalyzer({
+//   nextConfig
+// })
 module.exports = nextConfig;

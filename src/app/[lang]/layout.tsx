@@ -4,17 +4,11 @@ import "../../styles/globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import RootProvider, { NextAuthProvider } from "@/provider";
-import Footer from "@/components/footer";
+const Footer = dynamic(() => import("@/components/footer"));
 import NextTopLoader from "nextjs-toploader";
-const Toaster = dynamic(() =>
-  import("@/components/ui/toaster").then(({ Toaster }) => ({
-    default: Toaster,
-  }))
-);
-const FloatButton = dynamic(() =>
-  import("@/components/button/group-float-button").then(({ FloatButton }) => ({
-    default: FloatButton,
-  }))
+const Toaster = dynamic(() => import("@/components/ui/toaster"));
+const FloatButton = dynamic(
+  () => import("@/components/button/group-float-button")
 );
 import { Locale } from "@/lib/i18n/setting";
 import ScriptConfig from "@/script-config";
