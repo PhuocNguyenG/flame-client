@@ -9,11 +9,11 @@ import { BreadcrumbExport } from "./breadcrumb";
 import { useTransServer } from "@/lib/i18n/server";
 import { notFound } from "next/navigation";
 import { CarouselDetailItem } from "./carousel-item-detail";
-import { SetStateToClient } from "../set-state-client";
+import { SetStateToClient } from "../../set-state-client";
 import Script from "next/script";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { WhatsAppButton } from "../button/whatsapp";
-import { ZaloButton } from "../button/zalo";
+import { Popover, PopoverContent, PopoverTrigger } from "../../ui/popover";
+import { WhatsAppButton } from "../../button/whatsapp";
+import { ZaloButton } from "../../button/zalo";
 
 export default async function ItemDetailExport({
   lang,

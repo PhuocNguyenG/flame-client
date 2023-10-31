@@ -1,33 +1,31 @@
 import { Locale } from "@/lib/i18n/setting";
-import Link from "../link";
-import { getAllExportProduct, getListCateProduct } from "@/lib/api/server-side";
+import Link from "../../link";
+import { getAllProduct, getListCateProduct } from "@/lib/api/server-side";
 import Image from "next/image";
-import { RootState, store } from "@/lib/redux/store";
-import { setSlugProductDetailTrans } from "@/lib/redux/slice/router";
+import { Badge } from "../../ui/badge";
 import { useTransServer } from "@/lib/i18n/server";
-import { Badge } from "../ui/badge";
 
-export default async function ExportItem({
+export default async function ProductItem({
   lang,
-  category = "all",
+  category,
 }: {
   lang: Locale;
-  category?: string;
+  category: string;
 }) {
   const transText = useTransServer(lang);
   const fetchCategory = getListCateProduct();
-  const fetchAllProduct = getAllExportProduct();
+  const fetchAllProduct = getAllProduct();
   const fetchData = await Promise.all([
     fetchCategory,
     fetchAllProduct,
     transText,
   ]);
 
-  const dataCategory = fetchData[0].Export;
+  const dataCategory = fetchData[0].Product;
   const product = fetchData[1];
   const { t } = fetchData[2];
 
-  const cateSearch = dataCategory.find((item) => {
+  const cateSearch = dataCategory?.find((item) => {
     if (item.vnSlug === category || item.enSlug === category) {
       return item;
     }
@@ -42,20 +40,22 @@ export default async function ExportItem({
     <>
       <ul className="grid grid-cols-[repeat(auto-fill,minmax(158px,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-3 sm:gap-5 list-none p-0 m-0">
         {result?.map((item, idx) => {
-          const detail = lang === "en" ? item.en : item.vn;
           const cateObject = dataCategory.find(
             (cate) => cate.enSlug === item.productType
           );
+
+          const detail = lang === "en" ? item.en : item.vn;
           const categoryName = lang === "en" ? cateObject?.en : cateObject?.vn;
 
-          const href = `/export/${
+          const href = `/product/${
             lang === "en"
               ? `${cateObject?.enSlug}/${item.enSlug}`
               : `${cateObject?.vnSlug}/${item.vnSlug}`
           }`;
+
           return (
             <li
-              className="bg-white rounded-md hover:shadow-md flex flex-col overflow-hidden w-full h-full [&_a:hover]:cursor-pointer border border-transparent hover:border-primary transition-all duration-500 group"
+              className="bg-white rounded-md hover:shadow-md flex flex-col overflow-hidden w-full h-full [&_a:hover]:cursor-pointer border border-transparent hover:border-primary transition-all duration-500 group "
               key={idx}
             >
               <Link
@@ -73,7 +73,6 @@ export default async function ExportItem({
                   height={200}
                 />
               </Link>
-
               <div className="flex flex-col justify-between px-3 py-1 text-black">
                 <div className="flex flex-row flex-wrap text-sm leading-tight font-normal my-1">
                   <Badge
@@ -90,10 +89,23 @@ export default async function ExportItem({
                 >
                   {detail.name}
                 </Link>
-                <div className="flex items-center text-base sm:text-base font-semibold h-fit w-full italic">
-                  <div className="text-price [text-shadow:0px_0px_black]">
-                    {t("ContactForPrice")}
-                  </div>
+                <div className="flex items-center text-base  sm:text-base font-semibold h-fit w-full italic">
+                  {item.price && item.price > 0 ? (
+                    <Link
+                      href={href}
+                      lang={lang}
+                      className="text-price [text-shadow:0px_0px_black]"
+                    >
+                      {item.price
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/gm, ".")}{" "}
+                      đ
+                    </Link>
+                  ) : (
+                    <div className="text-price [text-shadow:0px_0px_black]">
+                      {t("ContactForPrice")}
+                    </div>
+                  )}
                 </div>
               </div>
             </li>

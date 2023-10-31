@@ -1,4 +1,4 @@
-import ItemDetailExport from "@/components/export/detail-item";
+import ItemDetailExport from "@/components/pages/export/detail-item";
 import { Locale } from "@/lib/i18n/setting";
 import { Suspense } from "react";
 import {

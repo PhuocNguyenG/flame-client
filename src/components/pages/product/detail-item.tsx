@@ -5,10 +5,10 @@ import { BreadcrumbProduct } from "./breadcrumb";
 import { useTransServer } from "@/lib/i18n/server";
 import { notFound } from "next/navigation";
 import { CarouselDetailItem } from "./carousel-item-detail";
-import { SetStateToClient } from "../set-state-client";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { WhatsAppButton } from "../button/whatsapp";
-import { ZaloButton } from "../button/zalo";
+import { SetStateToClient } from "../../set-state-client";
+import { Popover, PopoverContent, PopoverTrigger } from "../../ui/popover";
+import { WhatsAppButton } from "../../button/whatsapp";
+import { ZaloButton } from "../../button/zalo";
 import Script from "next/script";
 
 export default async function ItemProductDetail({

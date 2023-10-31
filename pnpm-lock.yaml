@@ -81,8 +81,11 @@ dependencies:
     specifier: 4.24.3
     version: 4.24.3(next@14.0.1)(react-dom@18.2.0)(react@18.2.0)
   nextjs-toploader:
-    specifier: 1.4.2
-    version: 1.4.2(next@14.0.1)(react-dom@18.2.0)(react@18.2.0)
+    specifier: 1.5.3
+    version: 1.5.3(next@14.0.1)(react-dom@18.2.0)(react@18.2.0)
+  nprogress:
+    specifier: ^0.2.0
+    version: 0.2.0
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -109,6 +112,9 @@ devDependencies:
   '@types/node':
     specifier: ^20.8.3
     version: 20.8.3
+  '@types/nprogress':
+    specifier: ^0.2.2
+    version: 0.2.2
   '@types/react':
     specifier: ^18.2.25
     version: 18.2.25
@@ -1345,9 +1351,8 @@ packages:
     resolution: {integrity: sha512-jxiZQFpb+NlH5kjW49vXxvxTjeeqlbsnTAdBTKpzEdPs9itay7MscYXz3Fo9VYFEsfQ6LJFitHad3faerLAjCw==}
     dev: true
 
-  /@types/nprogress@0.2.1:
-    resolution: {integrity: sha512-TYuyVnp+nOnimgdOydDIDYIxv2kSeuJZw4tF0p/KG7hpzcMF1WkHaREwM8O4blqfT1F7rq0nht6Ko2KVUfWzBA==}
-    dev: false
+  /@types/nprogress@0.2.2:
+    resolution: {integrity: sha512-2wLrSJXLztGmr7wXwM0hA/wuIOY9DznVdd+ZFofHOiXcj9JnVt+2ZeLRJ7v5ZVlmheSkUOSg3Q3O4Ce7yji79A==}
 
   /@types/prop-types@15.7.8:
     resolution: {integrity: sha512-kMpQpfZKSCBqltAJwskgePRaYRFukDkm1oItcAbC3gNELR20XIBcN9VRgg4+m8DKsTfkWeA4m4Imp4DDuWy7FQ==}
@@ -3193,14 +3198,14 @@ packages:
       - babel-plugin-macros
     dev: false
 
-  /nextjs-toploader@1.4.2(next@14.0.1)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-FS5+zCdNHLq0YA+SijkbDifOMFNayKfxkCLTiM6TIrvSaf6kAzCGlNjwgVpoG3zpampVMQSVf5L/jrWFJgs23g==}
+  /nextjs-toploader@1.5.3(next@14.0.1)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-kNqgpOxVeo7ihMZqNzxtsCNcO0lo1NNjxhCtnJ2qgTKxgppMGpuSVU4FTMaCOefamVop1mWk1Ij3C2pBP5NwPg==}
     peerDependencies:
       next: '>= 6.0.0'
       react: '>= 16.0.0'
       react-dom: '>= 16.0.0'
     dependencies:
-      '@types/nprogress': 0.2.1
+      '@types/nprogress': 0.2.2
       next: 14.0.1(react-dom@18.2.0)(react@18.2.0)(sass@1.66.1)
       nprogress: 0.2.0
       prop-types: 15.8.1

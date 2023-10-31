@@ -35,7 +35,8 @@
     "i18next-resources-to-backend": "1.1.4",
     "next": "14.0.1",
     "next-auth": "4.24.3",
-    "nextjs-toploader": "1.4.2",
+    "nextjs-toploader": "1.5.3",
+    "nprogress": "^0.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "13.2.2",
@@ -46,6 +47,7 @@
   "devDependencies": {
     "@next/bundle-analyzer": "^14.0.1",
     "@types/node": "^20.8.3",
+    "@types/nprogress": "^0.2.2",
     "@types/react": "^18.2.25",
     "@types/react-dom": "^18.2.11",
     "autoprefixer": "^10.4.16",

@@ -1,5 +1,5 @@
-import ExportItem from "@/components/export/list-item";
-import LayoutCategory from "@/components/export/list-layout";
+import ExportItem from "@/components/pages/export/list-item";
+import LayoutCategory from "@/components/pages/export/list-layout";
 import { Locale } from "@/lib/i18n/setting";
 import React, { Suspense } from "react";
 

@@ -1,11 +1,11 @@
 import { Locale } from "@/lib/i18n/setting";
-import Link from "../link";
+import Link from "../../link";
 import { TypeItemCategoryProduct } from "@/lib/type";
 import { useTransServer } from "@/lib/i18n/server";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import { getListCateProduct } from "@/lib/api/server-side";
-import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
-import { Label } from "../ui/label";
+import { RadioGroup, RadioGroupItem } from "../../ui/radio-group";
+import { Label } from "../../ui/label";
 
 export const LeftFilterProduct = async ({
   lang,

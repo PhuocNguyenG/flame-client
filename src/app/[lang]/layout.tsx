@@ -51,7 +51,7 @@ export async function generateMetadata({
         lang === "en"
           ? "Flame Agricultural | Agricultural products"
           : "Nông sản Flame | Sản phẩm nông sản xuất nhập khẩu",
-      images: "https://cdn.flameagricultural.com/Flame%20logo-1.png",
+      images: "https://cdn.flameagricultural.com/flame-simple.png",
       url:
         lang === "en"
           ? "https://flameagricultural.com/en"
@@ -89,7 +89,7 @@ export default async function RootLayout({
           <RootProvider>
             <NextAuthProvider>
               <NextTopLoader
-                color="#F7E509"
+                color="#F89B06"
                 initialPosition={0.3}
                 showSpinner={false}
               />

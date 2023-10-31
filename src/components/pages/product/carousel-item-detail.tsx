@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import Image from "next/image";
 import { Swiper as typeSwiper } from "swiper/types";
+
 export const CarouselDetailItem = ({
   data,
   alt,

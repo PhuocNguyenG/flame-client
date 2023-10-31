@@ -3,8 +3,6 @@ import React, { useState } from "react";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
-  DialogHeader,
   DialogOverlay,
   DialogTitle,
   DialogTrigger,
@@ -14,16 +12,14 @@ import { Separator } from "../ui/separator";
 import { useTranslation } from "react-i18next";
 import { useTransClient } from "@/lib/i18n/client";
 import { Locale } from "@/lib/i18n/setting";
-import {
-  MagnifyingGlassIcon,
-  SymbolIcon,
-  UpdateIcon,
-} from "@radix-ui/react-icons";
+import { MagnifyingGlassIcon, SymbolIcon } from "@radix-ui/react-icons";
 import Link from "../link";
-import { addAccentVietNamese, removeAccentVietNamese } from "@/lib/utils";
+import { addAccentVietNamese } from "@/lib/utils";
 import { QueryApiSearchByKey } from "@/lib/api/client-side";
 import { TypeItemCategoryProduct } from "@/lib/type";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import NProgress from "nprogress";
+import CrossIcon from "../icon/cross-25";
 
 const SearchButton = ({
   lang,
@@ -41,11 +37,12 @@ const SearchButton = ({
   dimension?: { width: number; height: number };
 }) => {
   const pathname = usePathname();
+  const route = useRouter();
   const searchParams = useSearchParams();
   const [open, setOpen] = useState(false);
   const { t } = useTransClient(lang);
   const [showSearchBtn, setShowSearchBtn] = useState(false);
-  const [searchKey, setSearchKey] = useState("");
+  const [searchKey, setSearchKey] = useState(inputValue);
   const { data = [], isFetching } = QueryApiSearchByKey(searchKey, lang);
 
   React.useEffect(() => {
@@ -75,6 +72,15 @@ const SearchButton = ({
     };
   }, [inputValue]);
 
+  const onSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      NProgress.start();
+      route.push(
+        `/${lang === "en" ? "en/search" : "tim-kiem"}?s=${inputValue}`
+      );
+    }
+  };
+
   return (
     <Dialog open={open} onOpenChange={(isOpen) => setOpen(isOpen)}>
       <DialogTrigger
@@ -84,6 +90,7 @@ const SearchButton = ({
           : !showOnTop
           ? { hidden: !showSearchBtn }
           : {})}
+        aria-label="search-button"
       >
         <div
           className={`flex flex-row items-center justify-center ${
@@ -120,24 +127,48 @@ const SearchButton = ({
         iconClose={false}
       >
         <DialogTitle>
-          <div className="flex flex-row items-center px-2 w-full h-fit border-2 rounded-md border-primary/50 translate ">
-            <div className="w-5 h-5 shrink-0 ">
-              {isFetching ? (
-                <SymbolIcon className="w-full h-full animate-spin" />
-              ) : (
-                <MagnifyingGlassIcon className="w-7 h-7 left-[-3px] top-[-3px] relative" />
-              )}
-            </div>
+          <div className="flex flex-row items-center px-2 w-full h-fit border-2 rounded-md border-primary/50 translate">
             <Input
-              defaultValue={inputValue}
+              value={inputValue}
               placeholder={t("Search")}
               onChange={(value) => {
                 setInputValue(value.target.value);
               }}
               className="border-none shadow-none focus-visible:ring-0"
               autoFocus
-              type="search"
+              type="text"
+              autoComplete="off"
+              onKeyDown={onSubmit}
+              id="input-search"
             />
+            <div
+              className={`w-6 h-6 mr-1 ${
+                inputValue ? "opacity-100 hover:!cursor-pointer" : " opacity-0"
+              } transition-all duration-300 hover:cursor-text`}
+            >
+              <CrossIcon
+                className={`p-[2px] rounded-lg text-primary `}
+                onClick={() => {
+                  setInputValue("");
+                  document?.getElementById("input-search")?.focus();
+                }}
+              />
+            </div>
+            <Separator orientation="vertical" className="h-6 bg-primary" />
+            <div className="w-5 h-5 shrink-0 ml-2">
+              {isFetching ? (
+                <SymbolIcon className="w-full h-full animate-spin" />
+              ) : (
+                <MagnifyingGlassIcon
+                  className="w-7 h-7 left-[-3px] top-[-3px] relative hover:cursor-pointer"
+                  onClick={() =>
+                    onSubmit({
+                      key: "Enter",
+                    } as React.KeyboardEvent<HTMLInputElement>)
+                  }
+                />
+              )}
+            </div>
           </div>
         </DialogTitle>
         <Separator className="bg-primary/10 " />

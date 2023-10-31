@@ -55,5 +55,6 @@
   "TaxCompany": "0312913118",
   "MailCompany": "phuoclinh79@gmail.com",
   "Categories": "Danh mục",
-  "CannotFindWithThisKey":"Không tìm thấy kết quả với từ khóa "
+  "CannotFindWithThisKey":"Không tìm thấy kết quả với từ khóa ",
+  "FindProductWithKey":"Tìm sản phẩm với từ khóa "
 }

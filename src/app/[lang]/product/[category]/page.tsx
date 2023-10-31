@@ -1,5 +1,5 @@
-import ProductItem from "@/components/product/list-item";
-import LayoutProductCategory from "@/components/product/list-layout";
+import ProductItem from "@/components/pages/product/list-item";
+import LayoutProductCategory from "@/components/pages/product/list-layout";
 import { getAllProduct, getListCateProduct } from "@/lib/api/server-side";
 import { Locale } from "@/lib/i18n/setting";
 import { Metadata } from "next";

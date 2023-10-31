@@ -1,6 +1,6 @@
 "use client";
 import { getListCateProduct } from "@/lib/api/server-side";
-import { Breadcrumb } from "../ui/breadcrumb";
+import { Breadcrumb } from "../../ui/breadcrumb";
 import { useTransServer } from "@/lib/i18n/server";
 import { Locale } from "@/lib/i18n/setting";
 import { TypeItemCategoryProduct, TypeOfCategory } from "@/lib/type";
@@ -64,7 +64,9 @@ export const BreadcrumbProduct = ({
     if (document) {
       const script: HTMLElement =
         document.getElementById("breadcrumb-structured-data-script") !== null
-          ? (document.getElementById("breadcrumb-structured-data-script") as HTMLElement)
+          ? (document.getElementById(
+              "breadcrumb-structured-data-script"
+            ) as HTMLElement)
           : document.createElement("script");
       script.id = "breadcrumb-structured-data-script";
       script.setAttribute("type", "application/ld+json");
@@ -93,7 +95,7 @@ export const BreadcrumbProduct = ({
     return () => {
       document?.getElementById("breadcrumb-structured-data-script")?.remove();
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lang]);
   return (
     <div className={className}>

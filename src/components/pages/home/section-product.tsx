@@ -5,9 +5,9 @@ import {
 } from "@/lib/api/server-side";
 import { useTransServer } from "@/lib/i18n/server";
 import { Locale } from "@/lib/i18n/setting";
-import Link from "../link";
+import Link from "../../link";
 import Image from "next/image";
-import { Separator } from "../ui/separator";
+import { Separator } from "../../ui/separator";
 
 export const ProductByCate = async ({ lang }: { lang: Locale }) => {
   const fetchData = await Promise.all([

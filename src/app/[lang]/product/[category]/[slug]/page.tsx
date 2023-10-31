@@ -1,4 +1,4 @@
-import ItemProductDetail from "@/components/product/detail-item";
+import ItemProductDetail from "@/components/pages/product/detail-item";
 import {
   getAllProduct,
   getDetailProduct,
@@ -66,20 +66,24 @@ export async function generateMetadata({
   return {
     title: lang === "en" ? product.en.name : product.vn.name,
     description:
-      lang === "en" ? product.en.description.replace(/<[^>]+>/g, '') : product.vn.description.replace(/<[^>]+>/g, ''),
+      lang === "en"
+        ? product.en.description.replace(/<[^>]+>/g, "")
+        : product.vn.description.replace(/<[^>]+>/g, ""),
     keywords: [lang === "en" ? product.en.name : product.vn.name],
     robots: {
       index: true,
       follow: true,
       googleBot: {
         index: true,
-        follow: true 
-      }
+        follow: true,
+      },
     },
     openGraph: {
       title: lang === "en" ? product.en.name : product.vn.name,
       description:
-        lang === "en" ? product.en.description.replace(/<[^>]+>/g, '') : product.vn.description.replace(/<[^>]+>/g, ''),
+        lang === "en"
+          ? product.en.description.replace(/<[^>]+>/g, "")
+          : product.vn.description.replace(/<[^>]+>/g, ""),
       url: urlP,
       siteName: lang === "en" ? "Flame agricultural" : "Nông sản Flame",
       images: listImgResult,

@@ -21,7 +21,7 @@ const Basket = dynamic(() => import("../button/basket-nav"));
 const SwitchLanguage = dynamic(() => import("../button/switch-language"));
 const SideNav = dynamic(() => import("./side-nav"));
 import { useTransClient } from "@/lib/i18n/client";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import Link from "../link";
 import { TypeItemCategoryProduct } from "@/lib/type";
 import MapMarkedIcon from "@/assets/icon/map-marked.svg";
@@ -32,6 +32,7 @@ import { Separator } from "../ui/separator";
 import HotLine from "./hot-line";
 import LogoHeader from "./logo-large";
 import LoginModal from "../user/login-modal";
+import nProgress from "nprogress";
 
 export function MainNavBar({
   cateProduct,
@@ -42,18 +43,20 @@ export function MainNavBar({
 }) {
   const pathname = usePathname();
   const lang = getLangByPathname(pathname);
+  const searchParams = useSearchParams();
+  const keySearch = searchParams.get("s") || "";
   const { t } = useTransClient(lang);
   const dispatch = useAppDispatch();
   const dimension = useWindowSize();
-
   const [openLogin, setOpenLogin] = React.useState(false);
   const [offset, setOffset] = React.useState<number | null>();
   const listRef = React.useRef<HTMLDivElement>();
   const [value, setValue] = React.useState<string>();
   const [activeTrigger, setActiveTrigger] = React.useState<HTMLDivElement>();
   const [contentTrigger, setContentTrigger] = React.useState<HTMLDivElement>();
-  const [searchInputValue, setSearchInputValue] = React.useState("");
-
+  const [searchInputValue, setSearchInputValue] = React.useState(keySearch);
+  nProgress.done();
+  
   React.useEffect(() => {
     const list = listRef.current;
 
