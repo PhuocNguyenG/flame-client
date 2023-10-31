@@ -100,7 +100,7 @@ const SideNav = ({
         }}
       >
         <div className="flex flex-row gap-3">
-          <LogoHeader lang={lang} className="min-w-[70px] max-w-[70 px]" />
+          <LogoHeader lang={lang} className="min-w-[72px] max-w-[70 px]" />
           <div className="flex flex-col justify-center w-fit h-full font-bold text-green-600 leading-8">
             {lang === "en" ? (
               <>

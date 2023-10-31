@@ -101,7 +101,11 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                           </Link>
                           <div className="flex items-center text-base sm:text-base font-semibold h-fit w-full text-price [text-shadow:0px_0px_black] italic">
                             {item.price && item.price > 0 ? (
-                              <Link href={href} lang={lang}>
+                              <Link
+                                href={href}
+                                lang={lang}
+                                className="text-price [text-shadow:0px_0px_black]"
+                              >
                                 {price}
                               </Link>
                             ) : (
