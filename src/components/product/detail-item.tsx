@@ -52,7 +52,7 @@ export default async function ItemProductDetail({
   const storage = lang === "en" ? data.en.storage : data.vn.storage;
   const howToUse = lang === "en" ? data.en.howToUse : data.vn.howToUse;
   const description = lang === "en" ? data.en.description : data.vn.description;
-  const price = data.price
+  const price = data.price;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -213,7 +213,10 @@ export default async function ItemProductDetail({
         </div>
       </div>
       <div className="mx-auto w-full lg:w-4/5 mb-10">
-        <h2 className="text-xl font-medium mb-2">{t("Description")}:</h2>
+        <h2 className="flex flex-row items-center text-xl font-bold mb-2 relative">
+          <div className="absolute -left-4 h-5 w-2 bg-logo rounded-[2px]"></div>
+          {t("Description")}:
+        </h2>
         <div
           className="inline-block"
           dangerouslySetInnerHTML={{ __html: description }}

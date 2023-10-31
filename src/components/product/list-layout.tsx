@@ -37,7 +37,7 @@ export default async function LayoutProductCategory({
               />
             </div>
             <section className="w-full">
-              <h2 className="mb-5 text-2xl font-bold leading-none tracking-tight text-gray-900 ">
+              <h2 className="mb-5 text-xl font-bold leading-none tracking-tight text-gray-900 ">
                 {t("ProductList")}
               </h2>
               <div className="w-full">{children}</div>

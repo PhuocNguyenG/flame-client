@@ -53,7 +53,7 @@ export const Breadcrumb = ({
                       />
                     </svg>
                     {data.length - 1 === idx ? (
-                      <p className="text-sm font-medium text-gray-700 ml-2 hover:cursor-default whitespace-nowrap">
+                      <p className="text-sm font-semibold text-gray-700 ml-2 hover:cursor-default whitespace-nowrap">
                         {item.name}
                       </p>
                     ) : (
