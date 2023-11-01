@@ -42,6 +42,24 @@ const ScriptConfig = () => {
         }}
         data-nscript="beforeInteractive"
       />
+      <script
+        async
+        id="logo-organization-script"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              url: "https://flameagricultural.com",
+              logo: "flameagricultural.com/static/flame-logo.png",
+            },
+            null,
+            "\t"
+          ),
+        }}
+        data-nscript="beforeInteractive"
+      />
       <Script
         id="gtm-script"
         dangerouslySetInnerHTML={{

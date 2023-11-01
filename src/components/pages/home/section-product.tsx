@@ -54,7 +54,7 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                 </div>
                 <div className="hover:underline hover:underline-offset-2 ">
                   <Link href={cateHref} lang={lang}>
-                    Xem tất cả {"->"}
+                    {t("More")} {"->"}
                   </Link>
                 </div>
               </div>
@@ -163,7 +163,7 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                 lang={lang}
                 className="hover:underline hover:underline-offset-2"
               >
-                Xem tất cả {"->"}
+                {t("More")} {"->"}
               </Link>
             </div>
           </div>

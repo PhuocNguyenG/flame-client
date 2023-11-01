@@ -4,6 +4,8 @@ import { useTransServer } from "@/lib/i18n/server";
 import { Locale } from "@/lib/i18n/setting";
 import React from "react";
 
+export const dynamic = "force-dynamic";
+
 export default async function Page({
   params: { lang },
 }: {

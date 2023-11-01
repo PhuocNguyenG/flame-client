@@ -56,7 +56,7 @@ export function MainNavBar({
   const [contentTrigger, setContentTrigger] = React.useState<HTMLDivElement>();
   const [searchInputValue, setSearchInputValue] = React.useState(keySearch);
   nProgress.done();
-  
+
   React.useEffect(() => {
     const list = listRef.current;
 
@@ -170,7 +170,7 @@ export function MainNavBar({
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem value={"Introduce"}>
-                <Link lang={lang} legacyBehavior href="/introduce" passHref>
+                <Link lang={lang} href="/introduce" passHref legacyBehavior>
                   <NavigationMenuLink
                     active={
                       !!["introduce", "gioi-thieu"].find((x) =>
@@ -185,8 +185,8 @@ export function MainNavBar({
               </NavigationMenuItem>
               <NavigationMenuItem value={"Product"}>
                 <NavigationMenuTrigger
-                  {...(!!["product", "san-pham"].find((x) =>
-                    pathname.split("/").includes(x)
+                  {...(!!["product", "san-pham", "search", "tim-kiem"].find(
+                    (x) => pathname.split("/").includes(x)
                   ) && { "data-active": true })}
                   ref={(node: any) => {
                     if ("Product" === value && activeTrigger !== node) {
