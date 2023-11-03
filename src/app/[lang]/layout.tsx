@@ -3,7 +3,7 @@ import NavBar from "@/components/header/nav";
 import "../../styles/globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import RootProvider, { NextAuthProvider } from "@/provider";
+import RootProvider from "@/provider";
 const Footer = dynamic(() => import("@/components/footer"));
 import NextTopLoader from "nextjs-toploader";
 const Toaster = dynamic(() => import("@/components/ui/toaster"));
@@ -87,19 +87,17 @@ export default async function RootLayout({
             }}
           />
           <RootProvider>
-            <NextAuthProvider>
-              <NextTopLoader
-                color="#F89B06"
-                initialPosition={0.3}
-                showSpinner={false}
-              />
-              <NavBar lang={lang}>
-                <main>{children}</main>
-                <Toaster />
-                <FloatButton />
-                <Footer lang={lang} />
-              </NavBar>
-            </NextAuthProvider>
+            <NextTopLoader
+              color="#F89B06"
+              initialPosition={0.3}
+              showSpinner={false}
+            />
+            <NavBar lang={lang}>
+              <main>{children}</main>
+              <Toaster />
+              <FloatButton />
+              <Footer lang={lang} />
+            </NavBar>
           </RootProvider>
         </body>
       </html>
