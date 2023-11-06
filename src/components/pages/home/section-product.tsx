@@ -207,7 +207,7 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                         {detail.name}
                       </Link>
                       <div className="flex items-center text-base sm:text-base font-semibold h-fit w-full text-price [text-shadow:0px_0px_black] italic">
-                        <>{t("ContactForPrice")}</>
+                        {t("ContactForPrice")}
                       </div>
                     </div>
                   </div>

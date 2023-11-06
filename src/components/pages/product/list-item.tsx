@@ -73,7 +73,7 @@ export default async function ProductItem({
                   height={200}
                 />
               </Link>
-              <div className="flex flex-col justify-between px-3 py-1 text-black">
+              <div className="flex flex-col justify-between px-3 py-1 text-black gap-1">
                 <div className="flex flex-row flex-wrap text-sm leading-tight font-normal my-1">
                   <Badge
                     variant={"outline"}
@@ -85,7 +85,7 @@ export default async function ProductItem({
                 <Link
                   href={href}
                   lang={lang}
-                  className="line-clamp-2 w-full text-base !leading-5 sm:text-lg font-semibold tracking-wide m-0 min-h-[48px] max-h-[48px]"
+                  className="line-clamp-2 w-full text-base sm:text-lg font-semibold tracking-wide capitalize m-0 min-h-[30px] max-h-[50px]"
                 >
                   {detail.name}
                 </Link>
