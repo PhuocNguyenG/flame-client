@@ -101,22 +101,24 @@ export default function SearchItem({
                         height={200}
                       />
                     </Link>
-                    <div className="flex flex-col justify-between px-3 py-1 text-black">
-                      <div className="flex flex-row flex-wrap text-sm leading-tight font-normal my-1">
-                        <Badge
-                          variant={"outline"}
-                          className="bg-secondary/70 text-secondary-foreground text-[0.8125rem]"
+                    <div className="flex flex-col justify-between px-3 py-1 text-black gap-1 min-h-[105px]">
+                      <div className="w-full h-fit">
+                        <div className="flex flex-row flex-wrap text-sm leading-tight font-normal h-[20px]">
+                          <Badge
+                            variant={"outline"}
+                            className="bg-secondary/70 text-secondary-foreground text-[0.8125rem]"
+                          >
+                            {categoryName}
+                          </Badge>
+                        </div>
+                        <Link
+                          href={href}
+                          lang={lang}
+                          className="line-clamp-2 w-full text-base sm:text-lg font-semibold tracking-wide capitalize m-0 min-h-[30px] h-fit max-h-[50px]"
                         >
-                          {categoryName}
-                        </Badge>
+                          {detail.name}
+                        </Link>
                       </div>
-                      <Link
-                        href={href}
-                        lang={lang}
-                        className="line-clamp-2 w-full text-base !leading-5 sm:text-lg font-semibold tracking-wide m-0 min-h-[48px] max-h-[48px]"
-                      >
-                        {detail.name}
-                      </Link>
                       <div className="flex items-center text-base  sm:text-base font-semibold h-fit w-full italic">
                         {item.price && item.price > 0 ? (
                           <Link
@@ -127,7 +129,7 @@ export default function SearchItem({
                             {item.price
                               .toString()
                               .replace(/\B(?=(\d{3})+(?!\d))/gm, ".")}{" "}
-                            đ
+                            {lang === "en" ? "VND" : "đ"}
                           </Link>
                         ) : (
                           <div className="text-price [text-shadow:0px_0px_black]">

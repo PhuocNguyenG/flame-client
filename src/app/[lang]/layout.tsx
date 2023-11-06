@@ -25,10 +25,7 @@ export async function generateMetadata({
   params: { lang?: Locale };
 }): Promise<Metadata> {
   return {
-    title:
-      lang === "en"
-        ? "Flame Agricultural"
-        : "Nông sản Flame",
+    title: lang === "en" ? "Flame Agricultural" : "Nông sản Flame",
     description:
       lang === "en"
         ? "Flame agricultural | Specializing in providing domestic and international agricultural products. Flame brand is created by PHUOC LINH Import Export Company"
@@ -47,10 +44,7 @@ export async function generateMetadata({
       index: true,
     },
     openGraph: {
-      title:
-        lang === "en"
-          ? "Flame Agricultural"
-          : "Nông sản Flame",
+      title: lang === "en" ? "Flame Agricultural" : "Nông sản Flame",
       images: "https://cdn.flameagricultural.com/flame-simple.png",
       url:
         lang === "en"
