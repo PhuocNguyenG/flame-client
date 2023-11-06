@@ -74,6 +74,14 @@ export async function generateMetadata({
         ? product.en.description.replace(/<[^>]+>/g, "")
         : product.vn.description.replace(/<[^>]+>/g, ""),
     keywords: [lang === "en" ? product.en.name : product.vn.name],
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+      },
+    },
     openGraph: {
       title: lang === "en" ? product.en.name : product.vn.name,
       description:

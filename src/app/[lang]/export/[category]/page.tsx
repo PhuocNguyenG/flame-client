@@ -38,6 +38,14 @@ export async function generateMetadata({
       lang === "en"
         ? `export of ${cates.en} products`
         : `sản phẩm ${cates.vn} xuất khẩu`,
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+      },
+    },
   };
 }
 

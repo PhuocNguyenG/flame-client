@@ -17,6 +17,14 @@ export async function generateMetadata({
         ? `Agricultural products are provided by the Flame Agricultural brand`
         : `Sản phẩm nông sản được cung cấp bởi thương hiệu Nông sản Flame`,
     keywords: ["Agricultural products", "Sản phẩm nông sản"],
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+      },
+    },
     openGraph: {
       modifiedTime: new Date().toISOString(),
       type: "article",
