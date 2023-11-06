@@ -25,7 +25,7 @@ const ScriptConfig = () => {
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "Nông sản Flame",
-              url: "https://flameagricultural.com",
+              url: "https://flameagricultural.com/",
               potentialAction: {
                 "@type": "SearchAction",
                 target: {
