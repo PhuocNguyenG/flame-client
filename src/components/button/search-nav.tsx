@@ -123,11 +123,11 @@ const SearchButton = ({
       </DialogTrigger>
       <DialogOverlay className="!bg-gradient-to-b from-black/30 backdrop-blur-none" />
       <DialogContent
-        className="!top-[50px] max-w-2xl bg-white text-primary gap-3 !translate-y-0"
-        iconClose={false}
+        className="!top-[30px] sm:!top-[50px] max-w-2xl bg-white text-primary gap-3 !translate-y-0 "
+        iconClose={true}
       >
         <DialogTitle>
-          <div className="flex flex-row items-center px-2 w-full h-fit border-2 rounded-md border-primary/50 translate">
+          <div className="flex flex-row items-center pr-2 w-full h-fit border-2 rounded-md border-primary/50 translate">
             <Input
               value={inputValue}
               placeholder={t("Search")}
