@@ -21,7 +21,7 @@ const Basket = dynamic(() => import("../button/basket-nav"));
 const SwitchLanguage = dynamic(() => import("../button/switch-language"));
 const SideNav = dynamic(() => import("./side-nav"));
 import { useTransClient } from "@/lib/i18n/client";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import Link from "../link";
 import { TypeItemCategoryProduct } from "@/lib/type";
 import MapMarkedIcon from "@/assets/icon/map-marked.svg";
@@ -32,6 +32,7 @@ import { Separator } from "../ui/separator";
 import HotLine from "./hot-line";
 import LogoHeader from "./logo-large";
 import LoginModal from "../user/login-modal";
+import nProgress from "nprogress";
 
 export function MainNavBar({
   cateProduct,
@@ -42,17 +43,19 @@ export function MainNavBar({
 }) {
   const pathname = usePathname();
   const lang = getLangByPathname(pathname);
+  const searchParams = useSearchParams();
+  const keySearch = searchParams.get("s") || "";
   const { t } = useTransClient(lang);
   const dispatch = useAppDispatch();
   const dimension = useWindowSize();
-
   const [openLogin, setOpenLogin] = React.useState(false);
   const [offset, setOffset] = React.useState<number | null>();
   const listRef = React.useRef<HTMLDivElement>();
   const [value, setValue] = React.useState<string>();
   const [activeTrigger, setActiveTrigger] = React.useState<HTMLDivElement>();
   const [contentTrigger, setContentTrigger] = React.useState<HTMLDivElement>();
-  const [searchInputValue, setSearchInputValue] = React.useState("");
+  const [searchInputValue, setSearchInputValue] = React.useState(keySearch);
+  nProgress.done();
 
   React.useEffect(() => {
     const list = listRef.current;
@@ -102,6 +105,7 @@ export function MainNavBar({
           <div className=""></div>
           <div className="flex flex-row flex-wrap h-full items-center justify-center gap-2 ">
             <Image
+              loading="lazy"
               src={MapMarkedIcon}
               alt="Map marker"
               width={18}
@@ -166,7 +170,7 @@ export function MainNavBar({
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem value={"Introduce"}>
-                <Link lang={lang} legacyBehavior href="/introduce" passHref>
+                <Link lang={lang} href="/introduce" passHref legacyBehavior>
                   <NavigationMenuLink
                     active={
                       !!["introduce", "gioi-thieu"].find((x) =>
@@ -181,8 +185,8 @@ export function MainNavBar({
               </NavigationMenuItem>
               <NavigationMenuItem value={"Product"}>
                 <NavigationMenuTrigger
-                  {...(!!["product", "san-pham"].find((x) =>
-                    pathname.split("/").includes(x)
+                  {...(!!["product", "san-pham", "search", "tim-kiem"].find(
+                    (x) => pathname.split("/").includes(x)
                   ) && { "data-active": true })}
                   ref={(node: any) => {
                     if ("Product" === value && activeTrigger !== node) {
@@ -417,11 +421,11 @@ export function MainNavBar({
               />
             </div>
             <Basket />
-            <div className="hidden min481:flex w-fit h-fit">
+            {/* <div className="hidden min481:flex w-fit h-fit">
               <AccountDropdown
                 callbackOpenLogin={(value) => setOpenLogin(value)}
               />
-            </div>
+            </div> */}
           </div>
         </div>
         <LoginModal

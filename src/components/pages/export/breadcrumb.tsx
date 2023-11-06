@@ -1,5 +1,5 @@
 import { getListCateProduct } from "@/lib/api/server-side";
-import { Breadcrumb } from "../ui/breadcrumb";
+import { Breadcrumb } from "../../ui/breadcrumb";
 import { useTransServer } from "@/lib/i18n/server";
 import { Locale } from "@/lib/i18n/setting";
 import { TypeItemCategoryProduct } from "@/lib/type";
@@ -9,12 +9,12 @@ export const BreadcrumbExport = async ({
   lang,
   category,
   detailData,
-  className
+  className,
 }: {
   lang: Locale;
   category?: string;
   detailData?: TypeItemCategoryProduct;
-  className?:React.HTMLProps<HTMLElement>["className"]
+  className?: React.HTMLProps<HTMLElement>["className"];
 }) => {
   const { t } = await useTransServer(lang);
   const listCate = (await getListCateProduct()).Export;

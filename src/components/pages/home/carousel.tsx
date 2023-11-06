@@ -30,7 +30,6 @@ const Carousel = () => {
             width={1200}
             height={550}
             sizes="100vw"
-            loading="eager"
             className="min-w-full w-0 max-w-full max-h-auto object-cover"
           />
         </SwiperSlide> */}

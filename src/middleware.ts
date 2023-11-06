@@ -7,60 +7,55 @@ import { listRoute } from "./map-route";
 export async function middleware(request: NextRequest) {
   // Check if there is any supported locale in the pathname
   const pathname = request.nextUrl.pathname;
+
+  // Check if the default locale is in the pathname
   if (
-    pathname.split("/").includes("sitemap.xml") ||
-    pathname.split("/").includes("static")
+    pathname.startsWith(`/${fallbackLng}/`) ||
+    pathname === `/${fallbackLng}`
   ) {
-    return;
-  } else {
-    // Check if the default locale is in the pathname
-    if (
-      pathname.startsWith(`/${fallbackLng}/`) ||
-      pathname === `/${fallbackLng}`
-    ) {
-      // e.g. incoming request is /vi/product
-      // The new URL is now /product
-      return NextResponse.redirect(
-        new URL(
-          pathname.replace(
-            `/${fallbackLng}`,
-            pathname === `/${fallbackLng}` ? "/" : ""
-          ),
-          request.url
-        )
-      );
-    }
-
-    const pathnameIsMissingLocale = locales.every(
-      (locale) =>
-        !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+    // e.g. incoming request is /vi/product
+    // The new URL is now /product
+    return NextResponse.redirect(
+      new URL(
+        pathname.replace(
+          `/${fallbackLng}`,
+          pathname === `/${fallbackLng}` ? "/" : ""
+        ),
+        request.url
+      )
     );
+  }
 
-    if (pathnameIsMissingLocale) {
-      // We are on the default locale
-      // Rewrite so Next.js understands
+  const pathnameIsMissingLocale = locales.every(
+    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+  );
 
-      // e.g. incoming request is /san-pham
-      // Tell Next.js it should pretend it's /vi/product
-      const newPathname = pathname
-        .split("/")
-        .map((item) => {
-          const routeTrans = listRoute.find((rou) => {
-            return rou.vnSlug === item;
-          })?.enSlug;
+  if (pathnameIsMissingLocale) {
+    // We are on the default locale
+    // Rewrite so Next.js understands
 
-          return routeTrans ? routeTrans : item;
-        })
-        .join("/");
+    // e.g. incoming request is /san-pham
+    // Tell Next.js it should pretend it's /vi/product
+    const newPathname = pathname
+      .split("/")
+      .map((item) => {
+        const routeTrans = listRoute.find((rou) => {
+          return rou.vnSlug === item;
+        })?.enSlug;
 
-      return NextResponse.rewrite(
-        new URL(`/${fallbackLng}${newPathname}`, request.url)
-      );
-    }
+        return routeTrans ? routeTrans : item;
+      })
+      .join("/");
+
+    return NextResponse.rewrite(
+      new URL(`/${fallbackLng}${newPathname}`, request.url)
+    );
   }
 }
 
 export const config = {
   // Matcher ignoring `/_next/` and `/api/`
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: [
+    "/((?!api|_next/static|_next/image|favicon.ico|static|sitemap.xml|robots.txt).*)",
+  ],
 };

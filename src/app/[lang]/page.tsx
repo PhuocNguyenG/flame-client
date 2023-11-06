@@ -1,6 +1,6 @@
-import Carousel from "@/components/home/carousel";
-import { FeaturedSection } from "@/components/home/section-featured";
-import { ProductByCate } from "@/components/home/section-product";
+import Carousel from "@/components/pages/home/carousel";
+import { FeaturedSection } from "@/components/pages/home/section-featured";
+import { ProductByCate } from "@/components/pages/home/section-product";
 import { Locale } from "@/lib/i18n/setting";
 
 export default async function Home({
@@ -10,7 +10,7 @@ export default async function Home({
 }) {
   return (
     <div className="min-h-[1000px] mx-auto">
-        {/* <Carousel /> */}
+      {/* <Carousel /> */}
       <div className="container mt-5">
         {/* <FeaturedSection lang={lang}/> */}
         <ProductByCate lang={lang} />

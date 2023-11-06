@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import Image from "next/image";
 import { Swiper as typeSwiper } from "swiper/types";
+
 export const CarouselDetailItem = ({
   data,
   alt,
@@ -38,7 +39,6 @@ export const CarouselDetailItem = ({
           return (
             <SwiperSlide className="w-fit h-full rounded-sm" key={idx}>
               <Image
-                loading="eager"
                 src={item}
                 alt={alt}
                 className="m-auto object-contain h-auto rounded-sm"
@@ -66,7 +66,6 @@ export const CarouselDetailItem = ({
               key={idx}
             >
               <Image
-                loading="eager"
                 src={item}
                 className="m-auto rounded-sm w-[80px] h-auto min-h-[80px] max-h-[80px] object-cover"
                 alt={alt}

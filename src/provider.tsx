@@ -7,23 +7,20 @@ import React, { ReactNode } from "react";
 import { Provider as Redux } from "react-redux";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-type Props = {
-  children?: React.ReactNode;
-  session?: Session;
-};
-
-export const NextAuthProvider = ({ children, session }: Props) => {
-  return <SessionProvider session={session}> {children} </SessionProvider>;
-};
-
-type RootProviderType = {
-  children: ReactNode;
-};
 const queryClient = new QueryClient();
-function RootProvider({ children }: RootProviderType) {
+
+function RootProvider({
+  children,
+  session,
+}: {
+  children: ReactNode;
+  session?: Session;
+}) {
   return (
     <QueryClientProvider client={queryClient}>
-      <Redux store={store}>{children}</Redux>
+      <Redux store={store}>
+        <SessionProvider session={session}>{children}</SessionProvider>
+      </Redux>
     </QueryClientProvider>
   );
 }

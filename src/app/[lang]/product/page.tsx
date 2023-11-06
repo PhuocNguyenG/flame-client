@@ -1,5 +1,5 @@
-import ProductItem from "@/components/product/list-item";
-import LayoutProductCategory from "@/components/product/list-layout";
+import ProductItem from "@/components/pages/product/list-item";
+import LayoutProductCategory from "@/components/pages/product/list-layout";
 import Loading from "@/components/loading/loading-item-list";
 import { Locale } from "@/lib/i18n/setting";
 import React, { Suspense } from "react";
@@ -17,6 +17,14 @@ export async function generateMetadata({
         ? `Agricultural products are provided by the Flame Agricultural brand`
         : `Sản phẩm nông sản được cung cấp bởi thương hiệu Nông sản Flame`,
     keywords: ["Agricultural products", "Sản phẩm nông sản"],
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+      },
+    },
     openGraph: {
       modifiedTime: new Date().toISOString(),
       type: "article",

@@ -11,6 +11,7 @@ export const ScrollToTop = () => {
   };
   return (
     <Button
+      aria-label="Back-to-top"
       variant={"outline"}
       onClick={ScrollToTop}
       className={`bg-primary text-primary-foreground border-primary-foreground`}

@@ -9,11 +9,11 @@ import { BreadcrumbExport } from "./breadcrumb";
 import { useTransServer } from "@/lib/i18n/server";
 import { notFound } from "next/navigation";
 import { CarouselDetailItem } from "./carousel-item-detail";
-import { SetStateToClient } from "../set-state-client";
+import { SetStateToClient } from "../../set-state-client";
 import Script from "next/script";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { WhatsAppButton } from "../button/whatsapp";
-import { ZaloButton } from "../button/zalo";
+import { Popover, PopoverContent, PopoverTrigger } from "../../ui/popover";
+import { WhatsAppButton } from "../../button/whatsapp";
+import { ZaloButton } from "../../button/zalo";
 
 export default async function ItemDetailExport({
   lang,
@@ -135,7 +135,10 @@ export default async function ItemDetailExport({
         </div>
       </div>
       <div className="mx-auto w-full lg:w-4/5 mb-10">
-        <h2 className="text-xl">{t("Description")}:</h2>
+        <h2 className="flex flex-row items-center text-xl font-bold mb-2 relative">
+          <div className="absolute -left-4 h-5 w-2 bg-logo rounded-[2px]"></div>
+          {t("Description")}:
+        </h2>
         <div
           className="inline-block"
           dangerouslySetInnerHTML={{ __html: description }}

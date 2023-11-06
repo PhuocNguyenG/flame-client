@@ -5,9 +5,9 @@ import {
 } from "@/lib/api/server-side";
 import { useTransServer } from "@/lib/i18n/server";
 import { Locale } from "@/lib/i18n/setting";
-import Link from "../link";
+import Link from "../../link";
 import Image from "next/image";
-import { Separator } from "../ui/separator";
+import { Separator } from "../../ui/separator";
 
 export const ProductByCate = async ({ lang }: { lang: Locale }) => {
   const fetchData = await Promise.all([
@@ -25,7 +25,7 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
   return (
     <>
       <div className="relative flex flex-col w-full justify-center items-center overflow-hidden mb-5">
-        <div className="relative w-fit h-full rounded-md bg-primary text-primary-foreground px-6 py-1 z-[1] font-bold text-lg before:absolute before:top-0 before:-right-[1rem] before:bg-primary before:rounded-md before:h-[35px] before:w-[35px] before:-z-[1] before:rotate-45 after:absolute after:top-0 after:-left-[1rem] after:bg-primary after:rounded-md after:h-[35px] after:w-[35px] after:-z-[1] after:rotate-45">
+        <div className="relative w-fit h-full rounded-md bg-primary text-primary-foreground px-6 py-1.5 z-[1] font-bold text-lg before:absolute before:top-0 before:-right-[1rem] before:bg-primary before:rounded-md before:h-[37px] before:w-[37px] before:-z-[1] before:rotate-45 after:absolute after:top-0 after:-left-[1rem] after:bg-primary after:rounded-md after:h-[37px] after:w-[37px] after:-z-[1] after:rotate-45">
           {t("Product")}
         </div>
         <div className="absolute top-[calc(48%-1px)] w-full sm:w-2/3 h-1 bg-primary rounded-md transition-all duration-500  "></div>
@@ -43,7 +43,7 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
           listProduct?.length >= 1 && (
             <section className="flex flex-col w-full h-fit mb-14 " key={idx}>
               <div className="flex flex-row justify-between items-center w-full border-b-4 border-primary">
-                <div className="relative w-fit text-primary-foreground bg-primary px-4 py-1.5 text-lg font-bold rounded-t-md !before:content-none before:absolute before:top-0 before:-right-[1.2rem] before:bg-primary before:rounded-tr-sm before:h-[calc(100%)] before:w-3/4 before:skew-x-[40deg] before:z-[1] ">
+                <div className="relative w-fit text-primary-foreground bg-primary px-4 py-1.5 md:py-2.5 text-lg font-bold rounded-t-md !before:content-none before:absolute before:top-0 before:-right-[1.2rem] before:bg-primary before:rounded-tr-sm before:h-[calc(100%)] before:w-3/4 before:skew-x-[40deg] before:z-[1] ">
                   <Link
                     href={cateHref}
                     lang={lang}
@@ -54,7 +54,7 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                 </div>
                 <div className="hover:underline hover:underline-offset-2 ">
                   <Link href={cateHref} lang={lang}>
-                    Xem tất cả {"->"}
+                    {t("More")} {"->"}
                   </Link>
                 </div>
               </div>
@@ -82,29 +82,34 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                           className="flex items-center h-full w-full p-3 rounded-md"
                         >
                           <Image
-                            loading="eager"
+                            priority
                             src={item.banner}
                             alt={detail.name}
                             className="w-full min-h-[160px] h-fit max-h-[220px] object-contain rounded-md duration-500"
+                            sizes="(max-width: 800px) 50vw, (max-width: 1060px) 33vw, 25vw"
                             width={200}
-                            height={150}
+                            height={200}
                           />
                         </Link>
-                        <div className="flex flex-col justify-end px-3 py-1 text-black">
+                        <div className="flex flex-col justify-between min-h-[85px] px-3 py-1 text-black">
                           <Link
                             href={href}
                             lang={lang}
-                            className="flex w-full text-base sm:text-lg font-bold tracking-wide capitalize m-0 min-h-[30px] max-h-[50px] line-clamp-2"
+                            className="line-clamp-2 w-full text-base sm:text-lg font-semibold tracking-wide capitalize m-0 min-h-[30px] max-h-[50px]"
                           >
                             {detail.name}
                           </Link>
                           <div className="flex items-center text-base sm:text-base font-semibold h-fit w-full text-price [text-shadow:0px_0px_black] italic">
                             {item.price && item.price > 0 ? (
-                              <Link href={href} lang={lang} className="">
+                              <Link
+                                href={href}
+                                lang={lang}
+                                className="text-price [text-shadow:0px_0px_black]"
+                              >
                                 {price}
                               </Link>
                             ) : (
-                              <div className="">{t("ContactForPrice")}</div>
+                              <>{t("ContactForPrice")}</>
                             )}
                           </div>
                         </div>
@@ -120,7 +125,7 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
       {exportItems?.length >= 1 && (
         <section className="flex flex-col w-full h-fit mb-14 ">
           <div className="flex flex-row items-center w-full h-full border-b-4 border-primary">
-            <div className="relative w-fit text-primary-foreground bg-primary px-4 py-2.5 text-lg font-bold rounded-t-md !before:content-none before:absolute before:top-0 before:-right-[1.2rem] before:bg-primary before:rounded-tr-sm before:h-[calc(100%)] before:w-3/4 before:skew-x-[40deg] before:z-[1] h-full">
+            <div className="relative w-fit text-primary-foreground bg-primary px-4 py-1.5 md:py-2.5 text-lg font-bold rounded-t-md !before:content-none before:absolute before:top-0 before:-right-[1.2rem] before:bg-primary before:rounded-tr-sm before:h-[calc(100%)] before:w-3/4 before:skew-x-[40deg] before:z-[1] h-full">
               <Link
                 href={`/export`}
                 lang={lang}
@@ -158,7 +163,7 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                 lang={lang}
                 className="hover:underline hover:underline-offset-2"
               >
-                Xem tất cả {"->"}
+                {t("More")} {"->"}
               </Link>
             </div>
           </div>
@@ -182,27 +187,27 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                     <Link
                       href={href}
                       lang={lang}
-                      className="flex items-center w-full p-3 rounded-md"
+                      className="flex items-center h-full w-full rounded-md relative p-3"
                     >
                       <Image
-                        loading="lazy"
                         src={item.banner}
                         alt={detail.name}
-                        className="w-full min-h-[160px] h-fit max-h-[240px] object-contain rounded-md duration-500"
+                        sizes="(max-width: 800px) 50vw, (max-width: 1060px) 33vw, 25vw"
+                        className="w-full min-h-[160px] h-auto max-h-[240px]  object-contain rounded-md duration-500"
                         width={200}
-                        height={150}
+                        height={200}
                       />
                     </Link>
-                    <div className="flex flex-col justify-end px-3 py-1 text-black">
+                    <div className="flex flex-col justify-between min-h-[85px] px-3 py-1 text-black">
                       <Link
                         href={href}
                         lang={lang}
-                        className="flex w-full text-base sm:text-lg font-semibold tracking-wide capitalize m-0 min-h-[30px] max-h-[50px] line-clamp-2"
+                        className="line-clamp-2 w-full text-base sm:text-lg font-semibold tracking-wide capitalize m-0 min-h-[30px] max-h-[50px]"
                       >
                         {detail.name}
                       </Link>
                       <div className="flex items-center text-base sm:text-base font-semibold h-fit w-full text-price [text-shadow:0px_0px_black] italic">
-                        <div>{t("ContactForPrice")}</div>
+                        {t("ContactForPrice")}
                       </div>
                     </div>
                   </div>

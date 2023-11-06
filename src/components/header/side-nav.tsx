@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Cross2Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { Separator } from "../ui/separator";
 import FlameLogoSimple from "@/assets/logo/flame-logo-simple.png";
@@ -76,6 +76,7 @@ const SideNav = ({
         />
         <Link lang={lang} href={"/"} className="h-fit w-fit">
           <Image
+            loading="lazy"
             src={FlameLogoSimple}
             alt="Flame logo"
             sizes="45px"
@@ -99,7 +100,7 @@ const SideNav = ({
         }}
       >
         <div className="flex flex-row gap-3">
-          <LogoHeader lang={lang} className="min-w-[70px] max-w-[70 px]" />
+          <LogoHeader lang={lang} className="min-w-[72px] max-w-[70 px]" />
           <div className="flex flex-col justify-center w-fit h-full font-bold text-green-600 leading-8">
             {lang === "en" ? (
               <>
@@ -175,14 +176,14 @@ const SideNav = ({
             </Link>
           </div>
         </Accordion>
-        <UserSideBarSection
+        {/* <UserSideBarSection
           lang={lang}
           callbackOpenLogin={(isOpen) => callbackOpenLogin(isOpen)}
-        />
+        /> */}
         <SwitchLanguage className="flex flex-row w-full" />
       </div>
     </>
   );
 };
 
-export default SideNav
+export default SideNav;

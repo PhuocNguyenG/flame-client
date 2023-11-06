@@ -1,8 +1,8 @@
 import { Locale } from "@/lib/i18n/setting";
-import Link from "../link";
+import Link from "../../link";
 import { getAllProduct, getListCateProduct } from "@/lib/api/server-side";
 import Image from "next/image";
-import { Badge } from "../ui/badge";
+import { Badge } from "../../ui/badge";
 import { useTransServer } from "@/lib/i18n/server";
 
 export default async function ProductItem({
@@ -38,7 +38,7 @@ export default async function ProductItem({
 
   return (
     <>
-      <ul className="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-5 list-none p-0 m-0 ">
+      <ul className="grid grid-cols-[repeat(auto-fill,minmax(158px,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-3 sm:gap-5 list-none p-0 m-0">
         {result?.map((item, idx) => {
           const cateObject = dataCategory.find(
             (cate) => cate.enSlug === item.productType
@@ -55,28 +55,29 @@ export default async function ProductItem({
 
           return (
             <li
-              className="bg-white rounded-md hover:shadow-md flex flex-col overflow-hidden w-full h-[340px] [&_a:hover]:cursor-pointer border border-transparent hover:border-primary transition-all duration-500 group "
+              className="bg-white rounded-md hover:shadow-md flex flex-col overflow-hidden w-full h-full [&_a:hover]:cursor-pointer border border-transparent hover:border-primary transition-all duration-500 group "
               key={idx}
             >
               <Link
                 href={href}
                 lang={lang}
-                className="w-full min-h-[240px] max-h-[240px] p-3 rounded-md"
+                className="flex items-center h-full w-full p-3 rounded-md"
               >
                 <Image
                   loading="lazy"
                   src={item.banner}
                   alt={detail.name}
-                  className="w-full h-full object-contain rounded-md duration-500"
+                  className="w-full min-h-[160px] h-fit max-h-[220px] object-contain rounded-md duration-500"
+                  sizes="(max-width: 800px) 50vw, (max-width: 1060px) 33vw, 25vw"
                   width={200}
-                  height={150}
+                  height={200}
                 />
               </Link>
-              <div className="flex-1 px-3 py-1 text-secondary">
+              <div className="flex flex-col justify-between px-3 py-1 text-black gap-1">
                 <div className="flex flex-row flex-wrap text-sm leading-tight font-normal my-1">
                   <Badge
                     variant={"outline"}
-                    className="bg-secondary/80 text-secondary-foreground text-[0.8125rem]"
+                    className="bg-secondary/70 text-secondary-foreground text-[0.8125rem]"
                   >
                     {categoryName}
                   </Badge>
@@ -84,20 +85,26 @@ export default async function ProductItem({
                 <Link
                   href={href}
                   lang={lang}
-                  className="flex w-full text-lg font-bold tracking-wide capitalize m-0 line-clamp-2"
+                  className="line-clamp-2 w-full text-base sm:text-lg font-semibold tracking-wide capitalize m-0 min-h-[30px] max-h-[50px]"
                 >
                   {detail.name}
                 </Link>
-                <div className="flex items-center text-lg font-semibold h-8 w-full text-red-500">
+                <div className="flex items-center text-base  sm:text-base font-semibold h-fit w-full italic">
                   {item.price && item.price > 0 ? (
-                    <Link href={href} lang={lang} className="">
+                    <Link
+                      href={href}
+                      lang={lang}
+                      className="text-price [text-shadow:0px_0px_black]"
+                    >
                       {item.price
                         .toString()
                         .replace(/\B(?=(\d{3})+(?!\d))/gm, ".")}{" "}
                       đ
                     </Link>
                   ) : (
-                    <div className="text-sm">{t("ContactForPrice")}</div>
+                    <div className="text-price [text-shadow:0px_0px_black]">
+                      {t("ContactForPrice")}
+                    </div>
                   )}
                 </div>
               </div>

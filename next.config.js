@@ -16,8 +16,13 @@ const nextConfig = {
       },
     ],
     minimumCacheTTL: 60,
-    deviceSizes: [500, 640, 750, 828, 1080, 1200, 1920],
+    deviceSizes: [450, 800, 1150, 1400, 1920],
   },
 };
-
+// const withBundleAnalyzer = require('@next/bundle-analyzer')({
+//   enabled: process.env.ANALYZE === 'true',
+// })
+// module.exports = withBundleAnalyzer({
+//   nextConfig
+// })
 module.exports = nextConfig;
