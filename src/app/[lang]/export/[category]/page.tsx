@@ -50,13 +50,13 @@ export async function generateMetadata({
       title:
         lang === "en"
           ? `${cates.en.replace(
-            /[&\/\\#,+-$~%.'":*?<>{}]/g,
-            ""
-          )} export - Flame agricultural`
+              /[!@#$%^&*_+\-=\[\]{};':"\\|,.<>\/?]/g,
+              ""
+            )} export - Flame agricultural`
           : `${cates.vn.replace(
-            /[&\/\\#,+-$~%.'":*?<>{}]/g,
-            ""
-          )} xuất khẩu - Nông sản Flame`,
+              /[!@#$%^&*_+\-=\[\]{};':"\\|,.<>\/?]/g,
+              ""
+            )} xuất khẩu - Nông sản Flame`,
       description:
         lang === "en"
           ? `Export of ${cates.en.toLowerCase()} products | Products exported to countries around the world. Selected and distributed by Flame Agricultural.`

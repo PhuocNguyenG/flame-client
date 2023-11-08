@@ -70,8 +70,8 @@ export async function generateMetadata({
   return {
     title:
       lang === "en"
-        ? product.en.name.replace(/[&\/\\#,+-$~%.'":*?<>{}]/g, "")
-        : product.vn.name.replace(/[&\/\\#,+-$~%.'":*?<>{}]/g, ""),
+        ? product.en.name.replace(/[!@#$%^&*_+\-=\[\]{};':"\\|,.<>\/?]/g, "")
+        : product.vn.name.replace(/[!@#$%^&*_+\-=\[\]{};':"\\|,.<>\/?]/g, ""),
     description:
       lang === "en"
         ? product.en.description.replace(/<[^>]+>/g, "")
@@ -89,13 +89,13 @@ export async function generateMetadata({
       title:
         lang === "en"
           ? `${product.en.name.replace(
-            /[&\/\\#,+-$~%.'":*?<>{}]/g,
-            ""
-          )} - Flame agricultural`
+              /[!@#$%^&*_+\-=\[\]{};':"\\|,.<>\/?]/g,
+              ""
+            )} - Flame agricultural`
           : `${product.vn.name.replace(
-            /[&\/\\#,+-$~%.'":*?<>{}]/g,
-            ""
-          )} - Nông sản Flame`,
+              /[!@#$%^&*_+\-=\[\]{};':"\\|,.<>\/?]/g,
+              ""
+            )} - Nông sản Flame`,
       description:
         lang === "en"
           ? product.en.description.replace(/<[^>]+>/g, "")

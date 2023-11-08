@@ -82,11 +82,11 @@ export async function generateMetadata({
       title:
         lang === "en"
           ? `${product.en.name.replace(
-              /[&\/\\#,+-$~%.'":*?<>{}]/g,
+              /[!@#$%^&*_+\-=\[\]{};':"\\|,.<>\/?]/g,
               ""
             )} - Flame agricultural`
           : `${product.vn.name.replace(
-              /[&\/\\#,+-$~%.'":*?<>{}]/g,
+              /[!@#$%^&*_+\-=\[\]{};':"\\|,.<>\/?]/g,
               ""
             )} - Nông sản Flame`,
       description:
