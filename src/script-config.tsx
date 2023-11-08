@@ -52,7 +52,7 @@ const ScriptConfig = () => {
               "@context": "https://schema.org",
               "@type": "Organization",
               url: "https://flameagricultural.com",
-              logo: "flameagricultural.com/static/flame-logo.png",
+              logo: "flameagricultural.com/static/flame-logo-simple.png",
             },
             null,
             "\t"

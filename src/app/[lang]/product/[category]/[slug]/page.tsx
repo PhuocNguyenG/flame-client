@@ -79,7 +79,16 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      title: lang === "en" ? product.en.name : product.vn.name,
+      title:
+        lang === "en"
+          ? `${product.en.name.replace(
+              /[&\/\\#,+-$~%.'":*?<>{}]/g,
+              ""
+            )} - Flame agricultural`
+          : `${product.vn.name.replace(
+              /[&\/\\#,+-$~%.'":*?<>{}]/g,
+              ""
+            )} - Nông sản Flame`,
       description:
         lang === "en"
           ? product.en.description.replace(/<[^>]+>/g, "")
