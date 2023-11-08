@@ -29,7 +29,6 @@ const LoginModal = ({
 
   return (
     <Dialog open={open} onOpenChange={(isOpen) => callBackOpen(isOpen)}>
-      <DialogTrigger>{children}</DialogTrigger>
       <DialogContent>
         <div className="flex flex-col justify-center items-center gap-3 w-full">
           <div className="text-xl font-semibold">{t("SignIn")}</div>

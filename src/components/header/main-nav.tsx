@@ -428,11 +428,11 @@ export function MainNavBar({
             </div> */}
           </div>
         </div>
-        <LoginModal
+        {/* <LoginModal
           lang={lang}
           open={openLogin}
           callBackOpen={(isOpen) => setOpenLogin(isOpen)}
-        />
+        /> */}
       </nav>
     </>
   );
