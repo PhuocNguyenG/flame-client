@@ -49,7 +49,7 @@ const SwitchLanguage = ({
         >
           <Image
             src={
-              "https://res.cloudinary.com/flame-media/image/upload/v1696660624/dev/gif/g38opy7jqwm9ojrm1tlr.gif"
+              "https://cdn.flameagricultural.com/vi-flag.gif"
             }
             width={40}
             height={30}
@@ -74,7 +74,7 @@ const SwitchLanguage = ({
         >
           <Image
             src={
-              "https://res.cloudinary.com/flame-media/image/upload/v1696660625/dev/gif/ek7affoa6zu5korzc9tj.gif"
+              "https://cdn.flameagricultural.com/en-flag.gif"
             }
             width={40}
             height={30}

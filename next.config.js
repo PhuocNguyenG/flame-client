@@ -4,19 +4,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "**.amazonaws.com",
-      },
-      {
-        protocol: "https",
-        hostname: "**.cloudinary.com",
-      },
-      {
-        protocol: "https",
         hostname: "**.flameagricultural.com",
       },
     ],
     minimumCacheTTL: 60,
-    deviceSizes: [450, 800, 1150, 1400, 1920],
+    deviceSizes: [450, 800, 1024 ,1280, 1400, 1600 ,1920],
   },
 };
 // const withBundleAnalyzer = require('@next/bundle-analyzer')({
