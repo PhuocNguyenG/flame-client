@@ -26,7 +26,7 @@ function LogoHeader({
       >
         <Image
           loading="lazy"
-          alt="Flame | Agricultural by PhuocLinh"
+          alt={lang === "en" ? "Flame Agricultural" : "Nông sản Flame"}
           src={FlameLogo}
           height={90}
           width={90}

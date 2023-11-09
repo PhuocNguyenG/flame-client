@@ -48,13 +48,11 @@ const SwitchLanguage = ({
           className="flex flex-row justify-center items-center"
         >
           <Image
-            src={
-              "https://cdn.flameagricultural.com/vi-flag.gif"
-            }
+            src={"https://cdn.flameagricultural.com/vi-flag.gif"}
             width={40}
             height={30}
             className="min-w-[40px] h-auto pl-[1px]"
-            alt="vi"
+            alt="Nông sản Flame | Nông sản Việt"
             unoptimized
           />
         </Link>
@@ -73,13 +71,11 @@ const SwitchLanguage = ({
           className="flex flex-row justify-center items-center"
         >
           <Image
-            src={
-              "https://cdn.flameagricultural.com/en-flag.gif"
-            }
+            src={"https://cdn.flameagricultural.com/en-flag.gif"}
             width={40}
             height={30}
             className="min-w-[40px] h-auto pl-[1px]"
-            alt="en"
+            alt="Flame Agricultural"
             unoptimized
           />
         </Link>

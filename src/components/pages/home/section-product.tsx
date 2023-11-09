@@ -52,11 +52,13 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                     {cateName}
                   </Link>
                 </div>
-                <div className="hover:underline hover:underline-offset-2 ">
-                  <Link href={cateHref} lang={lang}>
-                    {t("More")} {"->"}
-                  </Link>
-                </div>
+                {listProduct?.length > 4 && (
+                  <div className="hover:underline hover:underline-offset-2 ">
+                    <Link href={cateHref} lang={lang}>
+                      {t("More")} {"->"}
+                    </Link>
+                  </div>
+                )}
               </div>
               <div className="h-fit py-4 sm:p-5">
                 <div className="grid grid-cols-[repeat(auto-fill,minmax(158px,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-3 sm:gap-5 list-none p-0 m-0">
@@ -154,17 +156,22 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                 })}
                 {exportCates.length > 2 ? <div>...</div> : ""}
               </div>
-              <Separator
-                orientation={"vertical"}
-                className="bg-primary h-[unset] w-[2px] max480:hidden"
-              />
-              <Link
-                href={`/export`}
-                lang={lang}
-                className="hover:underline hover:underline-offset-2"
-              >
-                {t("More")} {"->"}
-              </Link>
+              {exportItems?.length > 4 && (
+                <>
+                  <Separator
+                    orientation={"vertical"}
+                    className="bg-primary h-[unset] w-[2px] max480:hidden"
+                  />
+
+                  <Link
+                    href={`/export`}
+                    lang={lang}
+                    className="hover:underline hover:underline-offset-2"
+                  >
+                    {t("More")} {"->"}
+                  </Link>
+                </>
+              )}
             </div>
           </div>
           <div className="h-fit py-4 sm:p-5">
