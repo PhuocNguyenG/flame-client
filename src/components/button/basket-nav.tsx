@@ -25,7 +25,7 @@ const Basket = () => {
           <Link
             href={"/cart"}
             lang={lang}
-            className="w-[25px] h-[25px] relative"
+            className="w-[25px] h-[25px] relative block"
           >
             <Badge
               className={`absolute right-[-5px] bottom-[-10px] border border-primary-foreground`}

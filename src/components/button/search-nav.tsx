@@ -212,8 +212,9 @@ const SearchButton = ({
                           />
                         </picture>
                       </div>
-                      <div className="flex flex-col flex-auto pl-3">
+                      <div className="flex flex-col flex-auto pl-3 text-lg">
                         <span
+                        className="line-clamp-2 w-full text-base sm:text-lg tracking-wide capitalize m-0"
                           dangerouslySetInnerHTML={{
                             __html: title.replaceAll(
                               new RegExp(addAccentVietNamese(inputValue), "gi"),
@@ -223,7 +224,20 @@ const SearchButton = ({
                             ),
                           }}
                         ></span>
-                        {/* <span>30000k</span> */}
+                        <span className="flex items-center text-base  sm:text-base font-semibold h-fit w-full italic text-price [text-shadow:0px_0px_black]">
+                          {item.price && item.price > 0 ? (
+                            <>
+                              {item.price
+                                .toString()
+                                .replace(/\B(?=(\d{3})+(?!\d))/gm, ".")}{" "}
+                              {lang === "en" ? "VND" : "đ"}
+                            </>
+                          ) : (
+                            <>
+                              {t("ContactForPrice")}
+                            </>
+                          )}
+                        </span>
                       </div>
                     </div>
                   </Link>
