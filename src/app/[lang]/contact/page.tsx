@@ -1,13 +1,31 @@
 import { WhatsAppButton } from "@/components/button/whatsapp";
 import { ZaloButton } from "@/components/button/zalo";
-import ComingSoon from "@/components/coming-soon";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
-import { Separator } from "@/components/ui/separator";
 import { useTransServer } from "@/lib/i18n/server";
 import { Locale } from "@/lib/i18n/setting";
+import { Metadata } from "next";
 import React from "react";
 
-export const dynamic = "force-dynamic";
+export async function generateMetadata({
+  params: { lang },
+}: {
+  params: { lang?: Locale };
+}): Promise<Metadata> {
+  return {
+    title: lang === "en" ? "Contact" : "Liên hệ",
+    robots: {
+      follow: true,
+      index: true,
+    },
+    openGraph: {
+      url:
+        lang === "en"
+          ? "https://flameagricultural.com/en/contact"
+          : "https://flameagricultural.com/lien-he",
+      type: "article",
+    },
+  };
+}
 
 export default async function Page({
   params: { lang },
@@ -21,7 +39,7 @@ export default async function Page({
       <div className="flex flex-row flex-wrap gap-6 w-full h-fit font-medium">
         <div className="flex flex-col gap-3 w-fit min-w-[300px]  border-l p-2">
           <div className="flex flex-col gap-1 [&_p]:text-primary/80 [&_a]:w-fit">
-            <h2 className="text-lg font-semibold">{t("NameCompany")}</h2>
+            <span className="text-lg font-semibold">{t("NameCompany")}</span>
             <p>
               {t("Tax_Code")}
               {t("TaxCompany")}

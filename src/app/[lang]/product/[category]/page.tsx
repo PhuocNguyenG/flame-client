@@ -49,8 +49,8 @@ export async function generateMetadata({
     },
     keywords:
       lang === "en"
-        ? `${cates.en} products - Flame agricultural`
-        : `Sản phẩm ${cates.vn} - Nông sản Flame`,
+        ? `${cates.en} products flame agricultural`
+        : `Sản phẩm ${cates.vn}  nông sản flame`,
     openGraph: {
       title:
         lang === "en"
@@ -61,8 +61,6 @@ export async function generateMetadata({
           ? `${cates.en} products | Provided by Flame Agricultural`
           : `Sản phẩm ${cates.vn.toLowerCase()} | Sản phẩm được chọn lọc và phân phối bởi Nông sản Flame`,
       url: urlP,
-      siteName: lang === "en" ? "Flame agricultural" : "Nông sản Flame",
-      locale: lang === "en" ? "en_US" : "vi_VN",
       type: "article",
     },
   };

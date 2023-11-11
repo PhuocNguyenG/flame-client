@@ -21,7 +21,7 @@ const Basket = () => {
   return (
     <TooltipProvider delayDuration={300}>
       <Tooltip>
-        <TooltipTrigger className="transition-all duration-300 min-w-[23px] min-h-[23px] none-select-text" aria-label="Open Basket">
+        <TooltipTrigger className="transition-all duration-300 min-w-[23px] min-h-[23px] none-select-text" aria-label="Basket, 0 item">
           <Link
             href={"/cart"}
             lang={lang}

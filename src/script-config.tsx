@@ -3,7 +3,7 @@ import Script from "next/script";
 const ScriptConfig = () => {
   return (
     <>
-      {/* Google tag (gtag.js) */}
+      {/* Google tag  */}
       <Script src="https://www.googletagmanager.com/gtag/js?id=G-QG7650LCV9" />
       <Script id="google-analytics">
         {`
@@ -14,6 +14,19 @@ const ScriptConfig = () => {
           gtag('config', 'G-QG7650LCV9');
         `}
       </Script>
+      <Script
+        id="gtm-script"
+        dangerouslySetInnerHTML={{
+          __html: `setTimeout(() => {
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                "https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-MT9NB5T9');
+          }, 2000);`,
+        }}
+      />
+      {/* End Google tag */}
 
       <script
         async
@@ -24,7 +37,7 @@ const ScriptConfig = () => {
             {
               "@context": "https://schema.org",
               "@type": "WebSite",
-              "@id": "#website",
+              "@id": "#nongsanflame",
               name: "Nông sản Flame",
               alternateName: "Nông sản Flame",
               url: "https://flameagricultural.com",
@@ -63,8 +76,7 @@ const ScriptConfig = () => {
                 height: 500,
                 width: 500,
               },
-              datePublished: "2023-11-10T04:35:16+07:00",
-              dateModified: "2020-02-05T09:20:00+08:00",
+              dateModified: new Date(),
               author: {
                 "@type": "Person",
                 name: "Công Ty TNHH Thương Mại Dịch Vụ Xuất Nhập Khẩu Phước Linh",
@@ -105,18 +117,6 @@ const ScriptConfig = () => {
           ),
         }}
         data-nscript="beforeInteractive"
-      />
-      <Script
-        id="gtm-script"
-        dangerouslySetInnerHTML={{
-          __html: `setTimeout(() => {
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                "https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','GTM-MT9NB5T9');
-          }, 2000);`,
-        }}
       />
     </>
   );

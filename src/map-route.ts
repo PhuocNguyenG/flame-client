@@ -24,6 +24,10 @@ export const listRoute = [
     vnSlug: "lien-he",
   },
   {
+    enSlug: "privacy-policy",
+    vnSlug: "chinh-sanh-bao-mat",
+  },
+  {
     enSlug: "cart",
     vnSlug: "gio-hang",
   },

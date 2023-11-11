@@ -93,6 +93,11 @@ export default async function ItemProductDetail({
 
   return (
     <>
+      <Script
+        id="product-detail-structured-data-script"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd, null, "\t") }}
+      />
       <BreadcrumbProduct
         lang={lang}
         listCate={fetchData[2].Product}
@@ -225,11 +230,6 @@ export default async function ItemProductDetail({
       {/* Config */}
       <SetStateToClient
         dispatch={setSlugProductDetailTrans([slugExportTrans])}
-      />
-      <Script
-        id="product-detail-structured-data-script"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
     </>
   );

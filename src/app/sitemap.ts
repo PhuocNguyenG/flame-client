@@ -8,7 +8,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const mapCate = cateProduct.map((item) => ({
     url: `https://flameagricultural.com/san-pham/${item.vnSlug}`,
     lastModified: new Date(),
-    changeFrequency: "weekly" as
+    changeFrequency: "daily" as
       | "daily"
       | "yearly"
       | "always"
@@ -25,7 +25,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       cateProduct.find((x) => x.enSlug === item.productType)?.vnSlug
     }/${item.vnSlug}`,
     lastModified: new Date(),
-    changeFrequency: "weekly" as
+    changeFrequency: "daily" as
       | "daily"
       | "yearly"
       | "always"
@@ -48,7 +48,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: "https://flameagricultural.com/san-pham",
       lastModified: new Date(),
       changeFrequency: "weekly",
-      priority: 0.8,
+      priority: 0.9,
     },
     {
       url: "https://flameagricultural.com/xuat-khau",

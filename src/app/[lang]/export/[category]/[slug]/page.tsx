@@ -91,11 +91,11 @@ export async function generateMetadata({
           ? `${product.en.name.replace(
               /[!@#$%^&*_+\-=\[\]{};':"\\|,.<>\/?]/g,
               ""
-            )} - Flame agricultural`
+            )} export - Flame agricultural`
           : `${product.vn.name.replace(
               /[!@#$%^&*_+\-=\[\]{};':"\\|,.<>\/?]/g,
               ""
-            )} - Nông sản Flame`,
+            )} xuất khẩu - Nông sản Flame`,
       description:
         lang === "en"
           ? product.en.description.replace(/<[^>]+>/g, "")

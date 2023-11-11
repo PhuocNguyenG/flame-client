@@ -41,9 +41,7 @@ export async function generateMetadata({
         lang === "en"
           ? `All agricultural products are selected and distributed by Flame Agricultural. | ${cates} |`
           : `Tất cả các sản phẩm về nông sản | ${cates} |. Được chọn lọc và phân phối bởi Nông sản Flame.`,
-      siteName: lang === "en" ? "Flame agricultural" : "Nông sản Flame",
       url: urlP,
-      locale: lang === "en" ? "en_US" : "vi_VN",
       modifiedTime: new Date().toISOString(),
       type: "article",
     },

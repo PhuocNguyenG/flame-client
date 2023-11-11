@@ -25,11 +25,6 @@ export async function generateMetadata({
   params: { lang?: Locale };
 }): Promise<Metadata> {
   return {
-    title: lang === "en" ? "Flame Agricultural" : "Nông sản Flame",
-    description:
-      lang === "en"
-        ? "Flame agricultural | Specializing in providing domestic and international agricultural products."
-        : "Nông sản Flame | Chuyên cung cấp các sản phẩm về nông sản, xuất nhập khẩu thế giới.",
     keywords: [
       "Nông sản flame",
       "nong san",
@@ -42,18 +37,13 @@ export async function generateMetadata({
     robots: {
       follow: true,
       index: true,
+      googleBot: {
+        index: true,
+        follow: true,
+      },
     },
     openGraph: {
-      title: lang === "en" ? "Flame Agricultural" : "Nông sản Flame",
-      description:
-      lang === "en"
-        ? "Flame agricultural | Specializing in providing domestic and international agricultural products."
-        : "Nông sản Flame | Chuyên cung cấp các sản phẩm về nông sản, xuất nhập khẩu thế giới.",
       images: "https://flameagricultural.com/static/flame-logo-simple.png",
-      url:
-        lang === "en"
-          ? "https://flameagricultural.com/en"
-          : "https://flameagricultural.com",
       siteName: lang === "en" ? "Flame agricultural" : "Nông sản Flame",
       locale: lang === "en" ? "en_US" : "vi_VN",
       type: "website",
@@ -66,7 +56,6 @@ export default async function RootLayout({
   params: { lang },
 }: {
   children: React.ReactNode;
-
   params: { lang: Locale };
 }) {
   return (
