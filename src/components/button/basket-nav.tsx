@@ -27,12 +27,12 @@ const Basket = () => {
             lang={lang}
             className="w-[25px] h-[25px] relative block"
           >
-{/*             
+            
             <Badge
               className={`absolute right-[-5px] bottom-[-10px] border border-primary-foreground`}
             >
               0
-            </Badge> */}
+            </Badge>
             <Image src={basket} alt="Basket" className="max-w-[25px] w-[25px] h-[25px]" width={25} height={25} unoptimized />
           </Link>
         </TooltipTrigger>
