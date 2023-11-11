@@ -4,7 +4,10 @@ const ScriptConfig = () => {
   return (
     <>
       {/* Google tag  */}
-      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-QG7650LCV9" />
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-QG7650LCV9"
+      />
       <Script id="google-analytics">
         {`
           window.dataLayer = window.dataLayer || [];
@@ -15,6 +18,7 @@ const ScriptConfig = () => {
         `}
       </Script>
       <Script
+        async
         id="gtm-script"
         dangerouslySetInnerHTML={{
           __html: `setTimeout(() => {

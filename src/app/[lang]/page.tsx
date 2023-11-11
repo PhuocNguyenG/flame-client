@@ -4,6 +4,10 @@ import { ProductByCate } from "@/components/pages/home/section-product";
 import { Locale } from "@/lib/i18n/setting";
 import { Metadata } from "next";
 
+export const runtime = 'edge';
+
+export const revalidate = 43200; 
+
 export async function generateMetadata({
   params: { lang },
 }: {
