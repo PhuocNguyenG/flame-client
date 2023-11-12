@@ -47,7 +47,8 @@ export default async function Home({
       {/* <Carousel /> */}
       <div className="container mt-5">
         {/* <FeaturedSection lang={lang}/> */}
-        <ProductByCate lang={lang} />
+        {/* <ProductByCate lang={lang} /> */}
+        Hi
       </div>
     </div>
   );
