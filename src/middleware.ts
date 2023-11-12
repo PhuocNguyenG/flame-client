@@ -51,6 +51,7 @@ export async function middleware(request: NextRequest) {
       new URL(`/${fallbackLng}${newPathname}`, request.url)
     );
   }
+  return NextResponse.next()
 }
 
 export const config = {
