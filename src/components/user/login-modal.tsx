@@ -15,17 +15,17 @@ import { useTransClient } from "@/lib/i18n/client";
 import { Input } from "../ui/input";
 
 const LoginModal = ({
-  lang,
+  lng,
   open = false,
   callBackOpen,
   children,
 }: {
-  lang: Locale;
+  lng: Locale;
   open: boolean;
   callBackOpen: (isOpen: boolean) => void;
   children?: React.ReactNode;
 }) => {
-  const { t } = useTransClient(lang);
+  const { t } = useTransClient(lng);
 
   return (
     <Dialog open={open} onOpenChange={(isOpen) => callBackOpen(isOpen)}>

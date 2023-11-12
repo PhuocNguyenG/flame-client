@@ -9,15 +9,15 @@ import { PersonIcon } from "@radix-ui/react-icons";
 import LoginModal from "./login-modal";
 
 const UserSideBarSection = ({
-  lang,
+  lng,
   openLogin,
   callbackOpenLogin,
 }: {
-  lang: Locale;
+  lng: Locale;
   openLogin?: boolean;
   callbackOpenLogin: (isOpen: boolean) => void;
 }) => {
-  const { t } = useTransClient(lang);
+  const { t } = useTransClient(lng);
   const { data: session, status } = useSession();
 
   return (

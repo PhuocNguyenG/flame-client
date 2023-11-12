@@ -9,7 +9,7 @@ export const Breadcrumb = ({
   data: { name: string; href: string }[];
 }) => {
   const pathname = usePathname();
-  const lang = getLangByPathname(pathname);
+  const lng = getLangByPathname(pathname);
 
   return (
     <>
@@ -18,7 +18,7 @@ export const Breadcrumb = ({
           <ol className="flex flex-row flex-wrap items-center space-x-1 md:space-x-3">
             <li className="inline-flex items-center">
               <Link
-                lang={lang}
+                lng={lng}
                 href={"/"}
                 className="inline-flex items-center text-sm font-medium text-gray-500 "
                 aria-label=""
@@ -59,7 +59,7 @@ export const Breadcrumb = ({
                       </p>
                     ) : (
                       <Link
-                        lang={lang}
+                        lng={lng}
                         href={item.href}
                         className="ml-1 text-sm font-medium text-gray-500 whitespace-nowrap"
                       >

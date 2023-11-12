@@ -6,18 +6,18 @@ import { Metadata } from "next";
 import React, { Suspense } from "react";
 
 export async function generateMetadata({
-  params: { lang },
+  params: { lng },
 }: {
-  params: { lang: Locale };
+  params: { lng: Locale };
 }): Promise<Metadata> {
   return {
-    title: lang === "en" ? `Agricultural exports` : `Nông sản xuất khẩu`,
+    title: lng === "en" ? `Agricultural exports` : `Nông sản xuất khẩu`,
     description:
-      lang === "en"
+      lng === "en"
         ? `Products exported to countries around the world. Selected and distributed by Flame Agricultural Products.`
         : `Các sản phẩm xuất khẩu đi các nước trên thế giới. Được chọn lọc và phân phối bởi Nông sản Flame.`,
     keywords:
-      lang === "en"
+      lng === "en"
         ? `export products, agricultural exports`
         : `sản phẩm xuất khẩu, nông sản xuất khẩu`,
     robots: {
@@ -30,28 +30,28 @@ export async function generateMetadata({
     },
     openGraph: {
       title:
-        lang === "en"
+        lng === "en"
           ? `Agricultural exports - Flame agricultural`
           : `Nông sản xuất khẩu - Nông sản Flame`,
       description:
-        lang === "en"
+        lng === "en"
           ? `Products exported to countries around the world. Selected and distributed by Flame Agricultural.`
           : `Các sản phẩm xuất khẩu đi các nước trên thế giới. Được chọn lọc và phân phối bởi Nông sản Flame.`,
-      siteName: lang === "en" ? "Flame agricultural" : "Nông sản Flame",
-      locale: lang === "en" ? "en_US" : "vi_VN",
+      siteName: lng === "en" ? "Flame agricultural" : "Nông sản Flame",
+      locale: lng === "en" ? "en_US" : "vi_VN",
       type: "article",
     },
   };
 }
 
 export default async function Page({
-  params: { lang },
+  params: { lng },
 }: {
-  params: { lang: Locale };
+  params: { lng: Locale };
 }) {
   return (
-    <LayoutCategory lang={lang}>
-      <ExportItem lang={lang} />
+    <LayoutCategory lng={lng}>
+      <ExportItem lng={lng} />
     </LayoutCategory>
   );
 }

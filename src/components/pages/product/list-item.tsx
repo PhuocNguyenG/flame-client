@@ -6,13 +6,13 @@ import { Badge } from "../../ui/badge";
 import { useTransServer } from "@/lib/i18n/server";
 
 export default async function ProductItem({
-  lang,
+  lng,
   category,
 }: {
-  lang: Locale;
+  lng: Locale;
   category: string;
 }) {
-  const transText = useTransServer(lang);
+  const transText = useTransServer(lng);
   const fetchCategory = getListCateProduct();
   const fetchAllProduct = getAllProduct();
   const fetchData = await Promise.all([
@@ -44,11 +44,11 @@ export default async function ProductItem({
             (cate) => cate.enSlug === item.productType
           );
 
-          const detail = lang === "en" ? item.en : item.vn;
-          const categoryName = lang === "en" ? cateObject?.en : cateObject?.vn;
+          const detail = lng === "en" ? item.en : item.vn;
+          const categoryName = lng === "en" ? cateObject?.en : cateObject?.vn;
 
           const href = `/product/${
-            lang === "en"
+            lng === "en"
               ? `${cateObject?.enSlug}/${item.enSlug}`
               : `${cateObject?.vnSlug}/${item.vnSlug}`
           }`;
@@ -60,7 +60,7 @@ export default async function ProductItem({
             >
               <Link
                 href={href}
-                lang={lang}
+                lng={lng}
                 className="flex items-center h-full w-full p-3 rounded-md"
               >
                 <Image
@@ -85,7 +85,7 @@ export default async function ProductItem({
                   </div>
                   <Link
                     href={href}
-                    lang={lang}
+                    lng={lng}
                     className="line-clamp-2 w-full text-base sm:text-lg font-semibold tracking-wide capitalize m-0 min-h-[30px] h-fit max-h-[50px]"
                   >
                     {detail.name}
@@ -95,13 +95,13 @@ export default async function ProductItem({
                   {item.price && item.price > 0 ? (
                     <Link
                       href={href}
-                      lang={lang}
+                      lng={lng}
                       className="text-price [text-shadow:0px_0px_black]"
                     >
                       {item.price
                         .toString()
                         .replace(/\B(?=(\d{3})+(?!\d))/gm, ".")}{" "}
-                      {lang === "en" ? "VND" : "đ"}
+                      {lng === "en" ? "VND" : "đ"}
                     </Link>
                   ) : (
                     <div className="text-price [text-shadow:0px_0px_black]">

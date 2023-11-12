@@ -4,11 +4,11 @@ import { Locale } from "@/lib/i18n/setting";
 import React from "react";
 
 export default async function Page({
-  params: { lang },
+  params: { lng },
 }: {
-  params: { lang: Locale };
+  params: { lng: Locale };
 }) {
-  const { t } = await useTransServer(lang);
+  const { t } = await useTransServer(lng);
 
   return (
     <div className="container mt-2">
@@ -18,7 +18,7 @@ export default async function Page({
 
       <div className="container flex flex-wrap gap-7 w-full m-[30px_0px_30px_0px]">
         <div className="flex items-center">
-          {lang == "en" ? (
+          {lng == "en" ? (
             // <div dangerouslySetInnerHTML={{ __html: data.en }} />
             <div>Updating</div>
           ) : (

@@ -20,18 +20,18 @@ import UserSideBarSection from "../user/side-bar-section";
 import { usePathname, useSearchParams } from "next/navigation";
 
 const SideNav = ({
-  lang,
+  lng,
   cateProduct = [],
   cateExport = [],
   callbackOpenLogin,
 }: {
-  lang: Locale;
+  lng: Locale;
   cateProduct: TypeItemCategoryProduct[];
   cateExport: TypeItemCategoryProduct[];
   callbackOpenLogin: (isOpen: boolean) => void;
 }) => {
   const [open, setOpen] = useState(false);
-  const { t } = useTransClient(lang);
+  const { t } = useTransClient(lng);
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -74,11 +74,11 @@ const SideNav = ({
           className="text-primary-foreground min-w-[33px] h-full"
           onClick={() => setOpen(true)}
         />
-        <Link lang={lang} href={"/"} className="h-fit w-fit">
+        <Link lng={lng} href={"/"} className="h-fit w-fit">
           <Image
             loading="lazy"
             src={FlameLogoSimple}
-            alt={lang === "en" ? "Flame Agricultural" : "Nông sản Flame"}
+            alt={lng === "en" ? "Flame Agricultural" : "Nông sản Flame"}
             sizes="45px"
             width={45}
             height={30}
@@ -100,9 +100,9 @@ const SideNav = ({
         }}
       >
         <div className="flex flex-row gap-3">
-          <LogoHeader lang={lang} className="min-w-[72px] max-w-[70 px]" />
+          <LogoHeader lng={lng} className="min-w-[72px] max-w-[70 px]" />
           <div className="flex flex-col justify-center w-fit h-full font-bold text-green-600 leading-8">
-            {lang === "en" ? (
+            {lng === "en" ? (
               <>
                 <p className="text-[2.125rem] text-logo">Flame</p>
                 <p className="text-sm text-primary">Agricultural</p>
@@ -125,27 +125,27 @@ const SideNav = ({
           className="w-full h-full [&_button]:font-semibold [&>div]:border-primary [&_[role=region]]:bg-logo/10 [&_[role=region]]:px-0 [&_[role=region]]:rounded-sm [&_[role=region]]:pt-0 [&>[data-state=open]]:border-b-primary/0 [&>[data-state=open]]:transition-all [&>[data-state=open]]:duration-500 [&_[role=region]>div]:flex [&_[role=region]>div]:flex-col [&_[role=region]>div]:gap-0 [&_[role=region]>div]:pb-0 [&_[role=region]>div>a]:text-sm [&_[role=region]>div>a]:py-2 [&_[role=region]>div>a]:px-3 [&_[role=region]>div>a]:border-b last:[&_[role=region]>div>a]:border-none [&_[role=region]>div>a:hover]:bg-primary/10 [&_[role=region]>div>a:hover]:rounded-sm [&_[id=simple]]:flex [&_[id=simple]_a]:w-full [&_[id=simple]]:py-3 [&_[id=simple]]:border-primary/10 [&_[id=simple]]:border-b [&_[id=simple]]:font-semibold text-base font-medium"
         >
           <div id="simple">
-            <Link href={"/"} lang={lang}>
+            <Link href={"/"} lng={lng}>
               {t("Home")}
             </Link>
           </div>
           <div id="simple">
-            <Link href={"/introduce"} lang={lang}>
+            <Link href={"/introduce"} lng={lng}>
               {t("Introduce")}
             </Link>
           </div>
           <AccordionItem value="Product">
             <AccordionTrigger>{t("Product")}</AccordionTrigger>
             <AccordionContent>
-              <Link href={"/product"} lang={lang}>
+              <Link href={"/product"} lng={lng}>
                 {t("All")}
               </Link>
               {cateProduct?.map((item, idx) => {
-                const title = lang === "en" ? item.en : item.vn;
-                const cate = lang === "en" ? item.enSlug : item.vnSlug;
+                const title = lng === "en" ? item.en : item.vn;
+                const cate = lng === "en" ? item.enSlug : item.vnSlug;
                 const href = `/product/${cate}`;
                 return (
-                  <Link href={href} lang={lang} key={idx}>
+                  <Link href={href} lng={lng} key={idx}>
                     {title}
                   </Link>
                 );
@@ -155,15 +155,15 @@ const SideNav = ({
           <AccordionItem value="Export">
             <AccordionTrigger>{t("Export")}</AccordionTrigger>
             <AccordionContent>
-              <Link href={"/export"} lang={lang}>
+              <Link href={"/export"} lng={lng}>
                 {t("All")}
               </Link>
               {cateExport?.map((item, idx) => {
-                const title = lang === "en" ? item.en : item.vn;
-                const cate = lang === "en" ? item.enSlug : item.vnSlug;
+                const title = lng === "en" ? item.en : item.vn;
+                const cate = lng === "en" ? item.enSlug : item.vnSlug;
                 const href = `/export/${cate}`;
                 return (
-                  <Link href={href} lang={lang} key={idx}>
+                  <Link href={href} lng={lng} key={idx}>
                     {title}
                   </Link>
                 );
@@ -171,13 +171,13 @@ const SideNav = ({
             </AccordionContent>
           </AccordionItem>
           <div id="simple">
-            <Link href={"/contact"} lang={lang}>
+            <Link href={"/contact"} lng={lng}>
               {t("Contact")}
             </Link>
           </div>
         </Accordion>
         {/* <UserSideBarSection
-          lang={lang}
+          lng={lng}
           callbackOpenLogin={(isOpen) => callbackOpenLogin(isOpen)}
         /> */}
         <SwitchLanguage className="flex flex-row w-full" />

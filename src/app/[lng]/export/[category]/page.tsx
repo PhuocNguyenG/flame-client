@@ -5,37 +5,37 @@ import { Locale } from "@/lib/i18n/setting";
 import { Metadata } from "next";
 import { Suspense } from "react";
 export async function generateStaticParams({
-  params: { lang },
+  params: { lng },
 }: {
-  params: { lang: Locale };
+  params: { lng: Locale };
 }) {
   const cates = (await getListCateProduct()).Export;
 
   const result = cates.map((cate) => ({
-    category: lang === "en" ? cate.enSlug : cate.vnSlug,
+    category: lng === "en" ? cate.enSlug : cate.vnSlug,
   }));
   return result;
 }
 
 export async function generateMetadata({
-  params: { lang, category },
+  params: { lng, category },
 }: {
-  params: { lang: Locale; category: string };
+  params: { lng: Locale; category: string };
 }): Promise<Metadata> {
   const cates = (await getListCateProduct()).Export.find(
-    (cate) => (lang === "en" ? cate.enSlug : cate.vnSlug) === category
+    (cate) => (lng === "en" ? cate.enSlug : cate.vnSlug) === category
   );
   if (!cates) {
-    return { title: lang === "en" ? `Export products` : `Sản phẩm xuất khẩu` };
+    return { title: lng === "en" ? `Export products` : `Sản phẩm xuất khẩu` };
   }
   return {
-    title: lang === "en" ? `${cates.en} export` : `${cates.vn} xuất khẩu`,
+    title: lng === "en" ? `${cates.en} export` : `${cates.vn} xuất khẩu`,
     description:
-      lang === "en"
+      lng === "en"
         ? `Export of ${cates.en.toLowerCase()} products | Products exported to countries around the world. Selected and distributed by Flame Agricultural.`
         : `Sản phẩm ${cates.vn.toLowerCase()} xuất khẩu | Sản phẩm xuất khẩu đi các nước trên thế giới. Được chọn lọc và phân phối bởi Nông sản Flame.`,
     keywords:
-      lang === "en"
+      lng === "en"
         ? `export of ${cates.en} products`
         : `sản phẩm ${cates.vn} xuất khẩu`,
     robots: {
@@ -48,7 +48,7 @@ export async function generateMetadata({
     },
     openGraph: {
       title:
-        lang === "en"
+        lng === "en"
           ? `${cates.en.replace(
               /[!@#$%^&*_+\-=\[\]{};':"\\|,.<>\/?]/g,
               ""
@@ -58,24 +58,24 @@ export async function generateMetadata({
               ""
             )} xuất khẩu - Nông sản Flame`,
       description:
-        lang === "en"
+        lng === "en"
           ? `Export of ${cates.en.toLowerCase()} products | Products exported to countries around the world. Selected and distributed by Flame Agricultural.`
           : `Sản phẩm ${cates.vn.toLowerCase()} xuất khẩu | Sản phẩm xuất khẩu đi các nước trên thế giới. Được chọn lọc và phân phối bởi Nông sản Flame.`,
-      siteName: lang === "en" ? "Flame agricultural" : "Nông sản Flame",
-      locale: lang === "en" ? "en_US" : "vi_VN",
+      siteName: lng === "en" ? "Flame agricultural" : "Nông sản Flame",
+      locale: lng === "en" ? "en_US" : "vi_VN",
       type: "article",
     },
   };
 }
 
 export default function Page({
-  params: { lang, category },
+  params: { lng, category },
 }: {
-  params: { lang: Locale; category: string };
+  params: { lng: Locale; category: string };
 }) {
   return (
-    <LayoutCategory lang={lang} category={category}>
-      <ExportItem lang={lang} category={category} />
+    <LayoutCategory lng={lng} category={category}>
+      <ExportItem lng={lng} category={category} />
     </LayoutCategory>
   );
 }

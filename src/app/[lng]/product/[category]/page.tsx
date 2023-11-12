@@ -6,37 +6,37 @@ import { Metadata } from "next";
 import React from "react";
 
 export async function generateStaticParams({
-  params: { lang },
+  params: { lng },
 }: {
-  params: { lang: Locale };
+  params: { lng: Locale };
 }) {
   const cates = (await getListCateProduct()).Product;
 
   return cates.map((cate) => ({
-    category: lang === "en" ? cate.enSlug : cate.vnSlug,
+    category: lng === "en" ? cate.enSlug : cate.vnSlug,
   }));
 }
 
 export async function generateMetadata({
-  params: { lang, category },
+  params: { lng, category },
 }: {
-  params: { lang: Locale; category: string };
+  params: { lng: Locale; category: string };
 }): Promise<Metadata> {
   const cates = (await getListCateProduct()).Product.find(
-    (cate) => (lang === "en" ? cate.enSlug : cate.vnSlug) === category
+    (cate) => (lng === "en" ? cate.enSlug : cate.vnSlug) === category
   );
   if (!cates) {
-    return { title: lang === "en" ? `Products` : `Sản phẩm` };
+    return { title: lng === "en" ? `Products` : `Sản phẩm` };
   }
 
   const urlP = `https://flameagricultural.com${
-    lang === "en" ? `/en/product/${cates.enSlug}` : `/san-pham/${cates.vnSlug}`
+    lng === "en" ? `/en/product/${cates.enSlug}` : `/san-pham/${cates.vnSlug}`
   }`;
 
   return {
-    title: lang === "en" ? `${cates.en} products` : `Sản phẩm ${cates.vn}`,
+    title: lng === "en" ? `${cates.en} products` : `Sản phẩm ${cates.vn}`,
     description:
-      lang === "en"
+      lng === "en"
         ? `${cates.en} products | Provided by Flame Agricultural`
         : `Sản phẩm ${cates.vn.toLowerCase()} | Sản phẩm được chọn lọc và phân phối bởi Nông sản Flame`,
     robots: {
@@ -48,16 +48,16 @@ export async function generateMetadata({
       },
     },
     keywords:
-      lang === "en"
+      lng === "en"
         ? `${cates.en} products flame agricultural`
         : `Sản phẩm ${cates.vn}  nông sản flame`,
     openGraph: {
       title:
-        lang === "en"
+        lng === "en"
           ? `${cates.en} products - Flame agricultural`
           : `Sản phẩm ${cates.vn.toLowerCase()} - Nông sản Flame`,
       description:
-        lang === "en"
+        lng === "en"
           ? `${cates.en} products | Provided by Flame Agricultural`
           : `Sản phẩm ${cates.vn.toLowerCase()} | Sản phẩm được chọn lọc và phân phối bởi Nông sản Flame`,
       url: urlP,
@@ -67,13 +67,13 @@ export async function generateMetadata({
 }
 
 export default function ProductByCate({
-  params: { lang, category },
+  params: { lng, category },
 }: {
-  params: { lang: Locale; category: string };
+  params: { lng: Locale; category: string };
 }) {
   return (
-    <LayoutProductCategory lang={lang} category={category}>
-      <ProductItem lang={lang} category={category} />
+    <LayoutProductCategory lng={lng} category={category}>
+      <ProductItem lng={lng} category={category} />
     </LayoutProductCategory>
   );
 }

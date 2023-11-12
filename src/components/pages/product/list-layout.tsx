@@ -6,19 +6,16 @@ import { getListCateProduct } from "@/lib/api/server-side";
 
 export default async function LayoutProductCategory({
   children,
-  lang,
+  lng,
   category,
 }: {
   children: React.ReactNode;
-  lang: Locale;
+  lng: Locale;
   category: string;
 }) {
   const fetchCategory = getListCateProduct();
-  const transText = useTransServer(lang);
-  const fetchData = await Promise.all([
-    fetchCategory,
-    transText,
-  ]);
+  const transText = useTransServer(lng);
+  const fetchData = await Promise.all([fetchCategory, transText]);
 
   const dataCategory = fetchData[0].Product;
   const { t } = fetchData[1];
@@ -27,14 +24,15 @@ export default async function LayoutProductCategory({
     <>
       <div className="flex flex-col w-full h-full bg-background-body pb-5">
         <div className="container flex flex-col w-full h-fit ">
-          <BreadcrumbProduct lang={lang} listCate={dataCategory} category={category} />
+          <BreadcrumbProduct
+            lng={lng}
+            listCate={dataCategory}
+            category={category}
+          />
 
           <div className="flex flex-row w-full flex-wrap min801:flex-nowrap h-full gap-5">
             <div className="!sticky top-[60px] min-w-[200px] h-fit hidden min801:block ">
-              <LeftFilterProduct
-                category={category}
-                lang={lang}
-              />
+              <LeftFilterProduct category={category} lng={lng} />
             </div>
             <section className="w-full">
               <span className="mb-5 text-xl font-bold leading-none tracking-tight text-gray-900 ">

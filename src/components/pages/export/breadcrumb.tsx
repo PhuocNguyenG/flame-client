@@ -6,17 +6,17 @@ import { TypeItemCategoryProduct } from "@/lib/type";
 import { notFound } from "next/navigation";
 
 export const BreadcrumbExport = async ({
-  lang,
+  lng,
   category,
   detailData,
   className,
 }: {
-  lang: Locale;
+  lng: Locale;
   category?: string;
   detailData?: TypeItemCategoryProduct;
   className?: React.HTMLProps<HTMLElement>["className"];
 }) => {
-  const { t } = await useTransServer(lang);
+  const { t } = await useTransServer(lng);
   const listCate = (await getListCateProduct()).Export;
   const categoryData = listCate.find((item) => {
     if (item.vnSlug === category || item.enSlug === category) {
@@ -31,23 +31,23 @@ export const BreadcrumbExport = async ({
   const defaultData = [
     {
       name: t("Export"),
-      href: lang === "en" ? "/export" : "/xuat-khau",
+      href: lng === "en" ? "/export" : "/xuat-khau",
     },
   ];
   categoryData
     ? defaultData.push({
-        name: lang === "en" ? categoryData.en : categoryData.vn,
+        name: lng === "en" ? categoryData.en : categoryData.vn,
         href:
-          lang === "en"
+          lng === "en"
             ? "/export/" + categoryData.enSlug
             : "/xuat-khau/" + categoryData.vnSlug,
       })
     : defaultData;
   categoryData && detailData
     ? defaultData.push({
-        name: lang === "en" ? detailData.en : detailData.vn,
+        name: lng === "en" ? detailData.en : detailData.vn,
         href:
-          lang === "en"
+          lng === "en"
             ? "/export/" + categoryData.enSlug + "/" + detailData.enSlug
             : "/xuat-khau/" + categoryData.vnSlug + "/" + detailData.vnSlug,
       })

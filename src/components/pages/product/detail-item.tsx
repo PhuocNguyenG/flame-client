@@ -12,17 +12,17 @@ import { ZaloButton } from "../../button/zalo";
 import Script from "next/script";
 
 export default async function ItemProductDetail({
-  lang,
+  lng,
   category,
   slug,
 }: {
-  lang: Locale;
+  lng: Locale;
   category: string;
   slug: string;
 }) {
-  const transText = useTransServer(lang);
+  const transText = useTransServer(lng);
   const fetchCategory = getListCateProduct();
-  const fetchProductDetail = getDetailProduct(slug, lang);
+  const fetchProductDetail = getDetailProduct(slug, lng);
   const fetchData = await Promise.all([
     transText,
     fetchProductDetail,
@@ -44,14 +44,14 @@ export default async function ItemProductDetail({
     vnSlug: data.vnSlug,
     vn: data.vn.name,
   };
-  const name = lang === "en" ? data.en.name : data.vn.name;
-  const categoryName = lang === "en" ? categoryObject?.en : categoryObject?.vn;
-  const origin = lang === "en" ? data.en.origin : data.vn.origin;
-  const ingredients = lang === "en" ? data.en.ingredients : data.vn.ingredients;
-  const weight = lang === "en" ? data.weight : data.weight;
-  const storage = lang === "en" ? data.en.storage : data.vn.storage;
-  const howToUse = lang === "en" ? data.en.howToUse : data.vn.howToUse;
-  const description = lang === "en" ? data.en.description : data.vn.description;
+  const name = lng === "en" ? data.en.name : data.vn.name;
+  const categoryName = lng === "en" ? categoryObject?.en : categoryObject?.vn;
+  const origin = lng === "en" ? data.en.origin : data.vn.origin;
+  const ingredients = lng === "en" ? data.en.ingredients : data.vn.ingredients;
+  const weight = lng === "en" ? data.weight : data.weight;
+  const storage = lng === "en" ? data.en.storage : data.vn.storage;
+  const howToUse = lng === "en" ? data.en.howToUse : data.vn.howToUse;
+  const description = lng === "en" ? data.en.description : data.vn.description;
   const price = data.price;
 
   const jsonLd = {
@@ -80,7 +80,7 @@ export default async function ItemProductDetail({
     offers: {
       "@type": "Offer",
       url: `https://flameagricultural.com${
-        lang === "en"
+        lng === "en"
           ? `/en/product/${categoryObject?.enSlug}/${data.enSlug}`
           : `/san-pham/${categoryObject?.vnSlug}/${data.vnSlug}`
       }`,
@@ -99,7 +99,7 @@ export default async function ItemProductDetail({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd, null, "\t") }}
       />
       <BreadcrumbProduct
-        lang={lang}
+        lng={lng}
         listCate={fetchData[2].Product}
         category={category}
         detailData={slugExportTrans}

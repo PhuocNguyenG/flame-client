@@ -4,10 +4,6 @@ import React from "react";
 
 export const dynamic = "force-dynamic";
 
-export default function Page({
-  params: { lang },
-}: {
-  params: { lang: Locale };
-}) {
-  return <SearchPage lang={lang} />;
+export default function Page({ params: { lng } }: { params: { lng: Locale } }) {
+  return <SearchPage lng={lng} />;
 }

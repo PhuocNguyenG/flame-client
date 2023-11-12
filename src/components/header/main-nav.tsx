@@ -42,10 +42,10 @@ export function MainNavBar({
   cateExport: TypeItemCategoryProduct[];
 }) {
   const pathname = usePathname();
-  const lang = getLangByPathname(pathname);
+  const lng = getLangByPathname(pathname);
   const searchParams = useSearchParams();
   const keySearch = searchParams.get("s") || "";
-  const { t } = useTransClient(lang);
+  const { t } = useTransClient(lng);
   const dispatch = useAppDispatch();
   const dimension = useWindowSize();
   const [openLogin, setOpenLogin] = React.useState(false);
@@ -123,11 +123,11 @@ export function MainNavBar({
         </div>
       </div>
       <div className="flex flex-row gap-5 max800:hidden h-[112px] items-center justify-around w-full container">
-        <LogoHeader lang={lang} />
+        <LogoHeader lng={lng} />
 
         <div className="max-w-[500px] lg:w-[inherit] w-[28%]">
           <SearchButton
-            lang={lang}
+            lng={lng}
             listCateProduct={cateProduct}
             showOnTop
             inputValue={searchInputValue}
@@ -135,7 +135,7 @@ export function MainNavBar({
           />
         </div>
 
-        <HotLine lang={lang} />
+        <HotLine lng={lng} />
 
         <div>
           <SwitchLanguage />
@@ -146,7 +146,7 @@ export function MainNavBar({
           {/* Side bar */}
           <div className="hidden max800:flex w-fit h-fit my-auto">
             <SideNav
-              lang={lang}
+              lng={lng}
               cateProduct={cateProduct}
               cateExport={cateExport}
               callbackOpenLogin={(isOpen) => setOpenLogin(isOpen)}
@@ -160,7 +160,7 @@ export function MainNavBar({
           >
             <NavigationMenuList ref={listRef as any}>
               <NavigationMenuItem value={"Home"}>
-                <Link lang={lang} legacyBehavior href="/" passHref>
+                <Link lng={lng} legacyBehavior href="/" passHref>
                   <NavigationMenuLink
                     active={!!["/", "/en"].find((x) => x === pathname)}
                     className={navigationMenuTriggerStyle()}
@@ -170,7 +170,7 @@ export function MainNavBar({
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem value={"Introduce"}>
-                <Link lang={lang} href="/introduce" passHref legacyBehavior>
+                <Link lng={lng} href="/introduce" passHref legacyBehavior>
                   <NavigationMenuLink
                     active={
                       !!["introduce", "gioi-thieu"].find((x) =>
@@ -207,7 +207,7 @@ export function MainNavBar({
                   }}
                 >
                   <ul className="grid w-[300px] gap-3 p-4 md:w-[300px] md:grid-cols-2 lg:w-[300px] ">
-                    <Link href={`/product`} lang={lang} passHref legacyBehavior>
+                    <Link href={`/product`} lng={lng} passHref legacyBehavior>
                       <ListItem
                         {...(!!["product", "san-pham"].find((x) =>
                           pathname.split("/").includes(x)
@@ -220,14 +220,14 @@ export function MainNavBar({
                       ></ListItem>
                     </Link>
                     {cateProduct.map((item, idx) => {
-                      const title = lang === "en" ? item.en : item.vn;
-                      const cate = lang === "en" ? item.enSlug : item.vnSlug;
+                      const title = lng === "en" ? item.en : item.vn;
+                      const cate = lng === "en" ? item.enSlug : item.vnSlug;
                       const href = `/product/${cate}`;
 
                       return (
                         <Link
                           href={href}
-                          lang={lang}
+                          lng={lng}
                           key={idx}
                           passHref
                           legacyBehavior
@@ -274,8 +274,8 @@ export function MainNavBar({
                    <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                   <li className="row-span-3">
                   <Link
-                      href={lang === "en" ? "gift" : "qua-tang-qua-bieu"}
-                      lang={lang}
+                      href={lng === "en" ? "gift" : "qua-tang-qua-bieu"}
+                      lng={lng}
                       legacyBehavior
                       passHref
                     >
@@ -291,7 +291,7 @@ export function MainNavBar({
                             </NavigationMenuLink>
                             </Link>
                             </li>
-                            <Link href={"/san-pham-say/combo-3"} lang={lang}>
+                            <Link href={"/san-pham-say/combo-3"} lng={lng}>
                             <ListItem title="Combo 3 loại trái cây">
                             Mít sấy, chuối sấy, hạt điều.
                             </ListItem>
@@ -335,7 +335,7 @@ export function MainNavBar({
                   }}
                 >
                   <ul className="grid w-[300px] gap-3 p-3 md:w-[300px] md:grid-cols-2 lg:w-[300px]">
-                    <Link href={`/export`} lang={lang} passHref legacyBehavior>
+                    <Link href={`/export`} lng={lng} passHref legacyBehavior>
                       <ListItem
                         {...(!!["export", "xuat-khau"].find((x) =>
                           pathname.split("/").includes(x)
@@ -348,14 +348,14 @@ export function MainNavBar({
                       ></ListItem>
                     </Link>
                     {cateExport.map((item, idx) => {
-                      const title = lang === "en" ? item.en : item.vn;
-                      const cate = lang === "en" ? item.enSlug : item.vnSlug;
+                      const title = lng === "en" ? item.en : item.vn;
+                      const cate = lng === "en" ? item.enSlug : item.vnSlug;
                       const href = `/export/${cate}`;
 
                       return (
                         <Link
                           href={href}
-                          lang={lang}
+                          lng={lng}
                           key={idx}
                           passHref
                           legacyBehavior
@@ -377,7 +377,7 @@ export function MainNavBar({
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem value={"Contact"} className="hidden lg:block">
-                <Link lang={lang} legacyBehavior href="/contact" passHref>
+                <Link lng={lng} legacyBehavior href="/contact" passHref>
                   <NavigationMenuLink
                     active={
                       !!["/lien-he", "/en/contact"].find((x) => x === pathname)
@@ -413,7 +413,7 @@ export function MainNavBar({
           <div className="flex flex-row gap-4 lg:gap-5 items-center ml-auto my-auto ">
             <div className="flex justify-center max-w-[200px] min801:max-w-[150px] ">
               <SearchButton
-                lang={lang}
+                lng={lng}
                 listCateProduct={cateProduct}
                 inputValue={searchInputValue}
                 setInputValue={setSearchInputValue}
@@ -429,7 +429,7 @@ export function MainNavBar({
           </div>
         </div>
         {/* <LoginModal
-          lang={lang}
+          lng={lng}
           open={openLogin}
           callBackOpen={(isOpen) => setOpenLogin(isOpen)}
         /> */}

@@ -13,9 +13,9 @@ import { ZaloButton } from "../button/zalo";
 import { getListCateProduct } from "@/lib/api/server-side";
 import { Separator } from "../ui/separator";
 
-export default async function Footer({ lang }: { lang: Locale }) {
+export default async function Footer({ lng }: { lng: Locale }) {
   const fetchData = await Promise.all([
-    useTransServer(lang),
+    useTransServer(lng),
     getListCateProduct(),
   ]);
   const { t } = fetchData[0];
@@ -38,16 +38,16 @@ export default async function Footer({ lang }: { lang: Locale }) {
         <div className="flex flex-col gap-1 max-w-[400px] w-1/3 [&_a]:text-secondary-foreground/80 [&>a:hover]:text-secondary-foreground [&_a]:transition-all [&_a]:duration-300 [&_a]:w-fit">
           <h2>{t("Products")}</h2>
           {products?.map((item, idx) => {
-            const href = lang === "en" ? item.enSlug : item.vnSlug;
-            const name = lang === "en" ? item.en : item.vn;
+            const href = lng === "en" ? item.enSlug : item.vnSlug;
+            const name = lng === "en" ? item.en : item.vn;
 
             return (
-              <Link href={`/product/${href}`} lang={lang} key={idx}>
+              <Link href={`/product/${href}`} lng={lng} key={idx}>
                 {name}
               </Link>
             );
           })}
-          <Link href={"/export"} lang={lang}>
+          <Link href={"/export"} lng={lng}>
             {t("Export")}
           </Link>
         </div>
@@ -55,7 +55,7 @@ export default async function Footer({ lang }: { lang: Locale }) {
           <h2>{t("Information")}</h2>
           {informationList.map((item) => {
             return (
-              <Link href={item.href} lang={lang} key={item.href}>
+              <Link href={item.href} lng={lng} key={item.href}>
                 {t(item.nameTrans)}
               </Link>
             );
@@ -84,7 +84,7 @@ export default async function Footer({ lang }: { lang: Locale }) {
                 return (
                   <Link
                     href={item.href}
-                    lang={lang}
+                    lng={lng}
                     key={item.href}
                     className="w-fit"
                   >
@@ -102,13 +102,13 @@ export default async function Footer({ lang }: { lang: Locale }) {
           <AccordionContent>
             <div className="flex flex-col gap-1 text-base text-secondary-foreground/80 w-fit">
               {products?.map((item, idx) => {
-                const href = lang === "en" ? item.enSlug : item.vnSlug;
-                const name = lang === "en" ? item.en : item.vn;
+                const href = lng === "en" ? item.enSlug : item.vnSlug;
+                const name = lng === "en" ? item.en : item.vn;
 
                 return (
                   <Link
                     href={`/product/${href}`}
-                    lang={lang}
+                    lng={lng}
                     key={idx}
                     className="w-fit"
                   >
@@ -116,7 +116,7 @@ export default async function Footer({ lang }: { lang: Locale }) {
                   </Link>
                 );
               })}
-              <Link href={"/export"} lang={lang} className="w-fit">
+              <Link href={"/export"} lng={lng} className="w-fit">
                 {t("Export")}
               </Link>
             </div>

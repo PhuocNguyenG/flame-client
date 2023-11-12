@@ -5,31 +5,31 @@ import { Locale } from "@/lib/i18n/setting";
 import { Metadata } from "next";
 
 export async function generateMetadata({
-  params: { lang },
+  params: { lng },
 }: {
-  params: { lang?: Locale };
+  params: { lng?: Locale };
 }): Promise<Metadata> {
   return {
     title:
-      lang === "en"
+      lng === "en"
         ? "Flame Agricultural - Agricultural product distribution, import and export."
         : "Nông sản Flame - Phân phối sản phẩm nông sản và xuất nhập khẩu.",
     description:
-      lang === "en"
+      lng === "en"
         ? "Flame agricultural is a supplier of agricultural products, imported and exported around the world."
         : "Nông sản Flame là đơn vị cung cấp các sản phẩm về nông sản, xuất nhập khẩu đi thế giới.",
     openGraph: {
       title:
-        lang === "en"
+        lng === "en"
           ? "Flame Agricultural - Agricultural product distribution, import and export."
           : "Nông sản Flame - Phân phối sản phẩm nông sản và xuất nhập khẩu.",
       description:
-        lang === "en"
+        lng === "en"
           ? "Flame agricultural is a supplier of agricultural products, imported and exported around the world."
           : "Nông sản Flame là đơn vị cung cấp các sản phẩm về nông sản, xuất nhập khẩu đi thế giới.",
       images: "https://flameagricultural.com/static/flame-logo-simple.png",
       url:
-        lang === "en"
+        lng === "en"
           ? "https://flameagricultural.com/en"
           : "https://flameagricultural.com",
       type: "website",
@@ -38,16 +38,16 @@ export async function generateMetadata({
 }
 
 export default async function Home({
-  params: { lang },
+  params: { lng },
 }: {
-  params: { lang: Locale };
+  params: { lng: Locale };
 }) {
   return (
     <div className="min-h-[1000px] mx-auto">
       {/* <Carousel /> */}
       <div className="container mt-5">
-        {/* <FeaturedSection lang={lang}/> */}
-        {/* <ProductByCate lang={lang} /> */}
+        {/* <FeaturedSection lng={lng}/> */}
+        <ProductByCate lng={lng} />
         Hi
       </div>
     </div>

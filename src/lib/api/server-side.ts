@@ -9,10 +9,13 @@ import * as Type from "../type";
 export const getAllProduct = async (): Promise<
   Type.ItemListProductResult[]
 > => {
-  const api = (await fetch(process.env.NEXT_PUBLIC_API + "/product/get-all-products", {
-    method: "GET",
-    next: { tags: [TAGS.products] },
-  }).then((res) => {
+  const api = (await fetch(
+    process.env.NEXT_PUBLIC_API + "/product/get-all-products",
+    {
+      method: "GET",
+      next: { tags: [TAGS.products] },
+    }
+  ).then((res) => {
     if (res.ok) {
       return res.json();
     }
@@ -52,14 +55,17 @@ export const getAllExportProduct = async (): Promise<
  */
 export const getDetailProduct = async (
   slug: string,
-  lang: Locale
+  lng: Locale
 ): Promise<Type.ProductDetailResult> => {
-  const api = (await fetch(process.env.NEXT_PUBLIC_API + `/product/${slug}-${lang}`, {
-    method: "GET",
-    next: {
-      tags: [TAGS.products],
-    },
-  }).then((res) => {
+  const api = (await fetch(
+    process.env.NEXT_PUBLIC_API + `/product/${slug}-${lng}`,
+    {
+      method: "GET",
+      next: {
+        tags: [TAGS.products],
+      },
+    }
+  ).then((res) => {
     if (res.ok) {
       return res.json();
     }
@@ -79,12 +85,15 @@ export const getDetailProduct = async (
  */
 export const getDetailExportProduct = async (
   slug: string,
-  lang: Locale
+  lng: Locale
 ): Promise<Type.ExportDetailResult> => {
-  const api = (await fetch(process.env.NEXT_PUBLIC_API + `/export/${slug}-${lang}`, {
-    method: "GET",
-    next: { tags: [TAGS.exports] },
-  }).then((res) => {
+  const api = (await fetch(
+    process.env.NEXT_PUBLIC_API + `/export/${slug}-${lng}`,
+    {
+      method: "GET",
+      next: { tags: [TAGS.exports] },
+    }
+  ).then((res) => {
     if (res.ok) {
       return res.json();
     }
@@ -103,10 +112,13 @@ export const getDetailExportProduct = async (
  * @returns <TypeOfCategory>
  */
 export const getListCateProduct = async (): Promise<Type.TypeOfCategory> => {
-  const api = (await fetch(process.env.NEXT_PUBLIC_API + "/type/get-product-type", {
-    method: "GET",
-    next: { tags: [TAGS.categories] },
-  }).then((res) => {
+  const api = (await fetch(
+    process.env.NEXT_PUBLIC_API + "/type/get-product-type",
+    {
+      method: "GET",
+      next: { tags: [TAGS.categories] },
+    }
+  ).then((res) => {
     if (res.ok) {
       return res.json();
     }
@@ -128,10 +140,13 @@ export const getListCateProduct = async (): Promise<Type.TypeOfCategory> => {
  * @returns <IntroduceDetailResult>
  */
 export const getIntroduce = async (): Promise<Type.IntroduceDetailResult> => {
-  const api = (await fetch(process.env.NEXT_PUBLIC_API + "/common/get-introduce", {
-    method: "GET",
-    next: { tags: [TAGS.introduce] },
-  }).then((res) => {
+  const api = (await fetch(
+    process.env.NEXT_PUBLIC_API + "/common/get-introduce",
+    {
+      method: "GET",
+      next: { tags: [TAGS.introduce] },
+    }
+  ).then((res) => {
     if (res.ok) {
       return res.json();
     }

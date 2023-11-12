@@ -7,7 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 /**
- * Get string lang by string path name
+ * Get string lng by string path name
  * @param url Path name
  */
 export const getLangByPathname = (pathname: string) => {

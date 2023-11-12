@@ -12,18 +12,18 @@ import LeftFilterProduct from "./left-filter";
 import nProgress from "nprogress";
 
 export default function SearchItem({
-  lang,
+  lng,
   categories,
 }: {
-  lang: Locale;
+  lng: Locale;
   categories: TypeItemCategoryProduct[];
 }) {
   const searchParams = useSearchParams();
   const keyParams = searchParams.get("s") || "";
   const cateParams = searchParams.get("c");
 
-  const { t } = useTransClient(lang);
-  const { data = [], isFetching } = QueryApiSearchByKey(keyParams, lang);
+  const { t } = useTransClient(lng);
+  const { data = [], isFetching } = QueryApiSearchByKey(keyParams, lng);
 
   const cateSearch = categories?.find((item) => {
     if (item.vnSlug === cateParams || item.enSlug === cateParams) {
@@ -57,7 +57,7 @@ export default function SearchItem({
           <LeftFilterProduct
             categories={cateFilter}
             category={cateSearch || ""}
-            lang={lang}
+            lng={lng}
           />
         </div>
         <section className="w-full">
@@ -71,12 +71,12 @@ export default function SearchItem({
                   (cate) => cate.enSlug === item.productType
                 );
 
-                const detail = lang === "en" ? item.en : item.vn;
+                const detail = lng === "en" ? item.en : item.vn;
                 const categoryName =
-                  lang === "en" ? cateObject?.en : cateObject?.vn;
+                  lng === "en" ? cateObject?.en : cateObject?.vn;
 
                 const href = `/product/${
-                  lang === "en"
+                  lng === "en"
                     ? `${cateObject?.enSlug}/${item.enSlug}`
                     : `${cateObject?.vnSlug}/${item.vnSlug}`
                 }`;
@@ -88,7 +88,7 @@ export default function SearchItem({
                   >
                     <Link
                       href={href}
-                      lang={lang}
+                      lng={lng}
                       className="flex items-center h-full w-full p-3 rounded-md"
                     >
                       <Image
@@ -113,7 +113,7 @@ export default function SearchItem({
                         </div>
                         <Link
                           href={href}
-                          lang={lang}
+                          lng={lng}
                           className="line-clamp-2 w-full text-base sm:text-lg font-semibold tracking-wide capitalize m-0 min-h-[30px] h-fit max-h-[50px]"
                         >
                           {detail.name}
@@ -123,13 +123,13 @@ export default function SearchItem({
                         {item.price && item.price > 0 ? (
                           <Link
                             href={href}
-                            lang={lang}
+                            lng={lng}
                             className="text-price [text-shadow:0px_0px_black]"
                           >
                             {item.price
                               .toString()
                               .replace(/\B(?=(\d{3})+(?!\d))/gm, ".")}{" "}
-                            {lang === "en" ? "VND" : "đ"}
+                            {lng === "en" ? "VND" : "đ"}
                           </Link>
                         ) : (
                           <div className="text-price [text-shadow:0px_0px_black]">

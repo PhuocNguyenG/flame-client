@@ -4,7 +4,7 @@ import NextLink, { LinkProps } from "next/link";
 import { HTMLProps, FC } from "react";
 import { listRoute } from "@/map-route";
 type MyLink = {
-  lang: string;
+  lng: string;
 } & LinkProps &
   React.RefAttributes<HTMLAnchorElement> &
   HTMLProps<HTMLAnchorElement>;
@@ -17,14 +17,14 @@ const Link = ({
   scroll,
   shallow,
   passHref,
-  lang,
+  lng,
   legacyBehavior,
   ...rest
 }: MyLink) => {
   const oldHref = href[0] === "/" ? href : `/${href}`;
 
   const newHref =
-    lang === "en"
+    lng === "en"
       ? `/en${oldHref
           .split("/")
           .map((item) => {

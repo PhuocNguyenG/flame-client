@@ -16,17 +16,17 @@ import { WhatsAppButton } from "../../button/whatsapp";
 import { ZaloButton } from "../../button/zalo";
 
 export default async function ItemDetailExport({
-  lang,
+  lng,
   category,
   slug,
 }: {
-  lang: Locale;
+  lng: Locale;
   category: string;
   slug: string;
 }) {
-  const transText = useTransServer(lang);
+  const transText = useTransServer(lng);
   const fetchCategory = getListCateProduct();
-  const fetchExportDetail = getDetailExportProduct(slug, lang);
+  const fetchExportDetail = getDetailExportProduct(slug, lng);
   const fetchData = await Promise.all([
     transText,
     fetchExportDetail,
@@ -48,13 +48,13 @@ export default async function ItemDetailExport({
   const categoryObject = fetchData[2].Export.find(
     (cate) => cate.enSlug === data.productType
   );
-  const name = lang === "en" ? data.en.name : data.vn.name;
-  const categoryName = lang === "en" ? categoryObject?.en : categoryObject?.vn;
-  const origin = lang === "en" ? data.en.origin : data.vn.origin;
-  const ingredients = lang === "en" ? data.en.ingredients : data.vn.ingredients;
-  const storage = lang === "en" ? data.en.storage : data.vn.storage;
-  const howToUse = lang === "en" ? data.en.howToUse : data.vn.howToUse;
-  const description = lang === "en" ? data.en.description : data.vn.description;
+  const name = lng === "en" ? data.en.name : data.vn.name;
+  const categoryName = lng === "en" ? categoryObject?.en : categoryObject?.vn;
+  const origin = lng === "en" ? data.en.origin : data.vn.origin;
+  const ingredients = lng === "en" ? data.en.ingredients : data.vn.ingredients;
+  const storage = lng === "en" ? data.en.storage : data.vn.storage;
+  const howToUse = lng === "en" ? data.en.howToUse : data.vn.howToUse;
+  const description = lng === "en" ? data.en.description : data.vn.description;
 
   return (
     <>
@@ -62,7 +62,7 @@ export default async function ItemDetailExport({
         dispatch={setSlugProductDetailTrans([slugExportTrans])}
       />
       <BreadcrumbExport
-        lang={lang}
+        lng={lng}
         category={category}
         detailData={slugExportTrans}
       />

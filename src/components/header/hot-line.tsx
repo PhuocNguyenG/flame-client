@@ -7,13 +7,13 @@ import { useTransClient } from "@/lib/i18n/client";
 import { cn } from "@/lib/utils";
 
 function HotLine({
-  lang,
+  lng,
   className,
 }: {
-  lang: Locale;
+  lng: Locale;
   className?: React.HTMLProps<HTMLElement>["className"];
 }) {
-  const { t } = useTransClient(lang);
+  const { t } = useTransClient(lng);
 
   return (
     <div

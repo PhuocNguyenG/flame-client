@@ -9,15 +9,15 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import nProgress from "nprogress";
 
 export default function LeftFilterProduct({
-  lang,
+  lng,
   category,
   categories,
 }: {
-  lang: Locale;
+  lng: Locale;
   category: string;
   categories: TypeItemCategoryProduct[];
 }) {
-  const { t } = useTransClient(lang);
+  const { t } = useTransClient(lng);
   const pathname = usePathname();
   const route = useRouter();
   const searchParams = useSearchParams();
@@ -58,17 +58,17 @@ export default function LeftFilterProduct({
           </div>
 
           {categories?.map((item, idx) => {
-            const title = lang === "en" ? item.en : item.vn;
+            const title = lng === "en" ? item.en : item.vn;
             return (
               <div className="flex items-center " key={idx}>
                 <div className="space-x-2 hover:opacity-100 flex flex-row items-center">
                   <RadioGroupItem
-                    value={lang === "en" ? item.enSlug : item.vnSlug}
-                    id={lang === "en" ? item.enSlug : item.vnSlug}
+                    value={lng === "en" ? item.enSlug : item.vnSlug}
+                    id={lng === "en" ? item.enSlug : item.vnSlug}
                     onClick={(e) => changeCate(e.currentTarget.value)}
                   />
                   <Label
-                    htmlFor={lang === "en" ? item.enSlug : item.vnSlug}
+                    htmlFor={lng === "en" ? item.enSlug : item.vnSlug}
                     className="hover:cursor-pointer"
                   >
                     {title}
