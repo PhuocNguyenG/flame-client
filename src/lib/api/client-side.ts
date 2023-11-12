@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import * as Type from "../type";
@@ -11,10 +11,10 @@ const axiosDefault = axios.create({
   },
 });
 
-export const apiSearchByKey = async (key: string, lng: string) => {
+export const apiSearchByKey = async (key: string, lang: string) => {
   return new Promise<Type.ApiResult>((resolve) => {
     axiosDefault
-      .get(`/common/search/${lng}/${key}`)
+      .get(`/common/search/${lang}/${key}`)
       .then((response) => {
         resolve(response.data);
       })
@@ -26,15 +26,15 @@ export const apiSearchByKey = async (key: string, lng: string) => {
 /**
  * Query search by key
  * @param key Search string
- * @param lng Language code
+ * @param lang Language code
  * @returns Array[]
  */
-export const QueryApiSearchByKey = (key: string, lng: string) => {
+export const QueryApiSearchByKey = (key: string, lang: string) => {
   return useQuery({
-    queryKey: ["search", `${key}-${lng}`],
+    queryKey: ["search", `${key}-${lang}`],
     queryFn: () => {
       if (!key) return [];
-      return apiSearchByKey(key, lng).then((res) => {
+      return apiSearchByKey(key, lang).then((res) => {
         return res.result as Type.SearchByKeyResponse[];
       });
     },

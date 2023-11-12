@@ -22,14 +22,14 @@ import NProgress from "nprogress";
 import CrossIcon from "../icon/cross-25";
 
 const SearchButton = ({
-  lng,
+  lang,
   listCateProduct,
   showOnTop = false,
   inputValue,
   setInputValue,
   dimension,
 }: {
-  lng: Locale;
+  lang: Locale;
   listCateProduct: TypeItemCategoryProduct[];
   showOnTop?: boolean;
   inputValue: string;
@@ -40,10 +40,10 @@ const SearchButton = ({
   const route = useRouter();
   const searchParams = useSearchParams();
   const [open, setOpen] = useState(false);
-  const { t } = useTransClient(lng);
+  const { t } = useTransClient(lang);
   const [showSearchBtn, setShowSearchBtn] = useState(false);
   const [searchKey, setSearchKey] = useState(inputValue);
-  const { data = [], isFetching } = QueryApiSearchByKey(searchKey, lng);
+  const { data = [], isFetching } = QueryApiSearchByKey(searchKey, lang);
 
   React.useEffect(() => {
     setOpen(false);
@@ -75,7 +75,9 @@ const SearchButton = ({
   const onSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       NProgress.start();
-      route.push(`/${lng === "en" ? "en/search" : "tim-kiem"}?s=${inputValue}`);
+      route.push(
+        `/${lang === "en" ? "en/search" : "tim-kiem"}?s=${inputValue}`
+      );
     }
   };
 
@@ -174,18 +176,18 @@ const SearchButton = ({
           <div className="flex flex-col w-full h-fit">
             {data.length ? (
               data.map((item, idx) => {
-                const title = lng === "en" ? item.en.name : item.vn.name;
+                const title = lang === "en" ? item.en.name : item.vn.name;
 
                 const cateObject = listCateProduct?.find(
                   (cate) => cate.enSlug === item.productType
                 );
                 const href = `/product/${
-                  lng === "en"
+                  lang === "en"
                     ? `${cateObject?.enSlug}/${item.enSlug}`
                     : `${cateObject?.vnSlug}/${item.vnSlug}`
                 }`;
                 return (
-                  <Link href={href} lng={lng} key={idx}>
+                  <Link href={href} lang={lang} key={idx}>
                     <div className="flex flex-row w-full h-fit px-3 py-2 md:py-3 hover:bg-gray-200 rounded-md cursor-pointer border-b">
                       <div className=" w-[95px] h-[95px] md:h-[100px] md:w-[100px] shrink-0 overflow-hidden rounded-md">
                         <picture className="h-[95px] w-[95px] md:h-[100px] md:w-[100px] ">
@@ -212,7 +214,7 @@ const SearchButton = ({
                       </div>
                       <div className="flex flex-col flex-auto pl-3 text-lg">
                         <span
-                          className="line-clamp-2 w-full text-base sm:text-lg tracking-wide capitalize m-0"
+                        className="line-clamp-2 w-full text-base sm:text-lg tracking-wide capitalize m-0"
                           dangerouslySetInnerHTML={{
                             __html: title.replaceAll(
                               new RegExp(addAccentVietNamese(inputValue), "gi"),
@@ -228,10 +230,12 @@ const SearchButton = ({
                               {item.price
                                 .toString()
                                 .replace(/\B(?=(\d{3})+(?!\d))/gm, ".")}{" "}
-                              {lng === "en" ? "VND" : "đ"}
+                              {lang === "en" ? "VND" : "đ"}
                             </>
                           ) : (
-                            <>{t("ContactForPrice")}</>
+                            <>
+                              {t("ContactForPrice")}
+                            </>
                           )}
                         </span>
                       </div>

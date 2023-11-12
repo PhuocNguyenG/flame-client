@@ -9,9 +9,9 @@ import Link from "../../link";
 import Image from "next/image";
 import { Separator } from "../../ui/separator";
 
-export const ProductByCate = async ({ lng }: { lng: Locale }) => {
+export const ProductByCate = async ({ lang }: { lang: Locale }) => {
   const fetchData = await Promise.all([
-    useTransServer(lng),
+    useTransServer(lang),
     getListCateProduct(),
     getAllProduct(),
     getAllExportProduct(),
@@ -31,8 +31,10 @@ export const ProductByCate = async ({ lng }: { lng: Locale }) => {
         <div className="absolute top-[calc(48%-1px)] w-full sm:w-2/3 h-1 bg-primary rounded-md transition-all duration-500  "></div>
       </div>
       {productCates?.map((cate, idx) => {
-        const cateName = lng === "en" ? cate.en : cate.vn;
-        const cateHref = `/product/${lng === "en" ? cate.enSlug : cate.vnSlug}`;
+        const cateName = lang === "en" ? cate.en : cate.vn;
+        const cateHref = `/product/${
+          lang === "en" ? cate.enSlug : cate.vnSlug
+        }`;
         const listProduct = productItems?.filter(
           (item) => item.productType === cate.enSlug
         );
@@ -44,7 +46,7 @@ export const ProductByCate = async ({ lng }: { lng: Locale }) => {
                 <div className="relative w-fit text-primary-foreground bg-primary px-4 py-1.5 md:py-2.5 text-lg font-bold rounded-t-md !before:content-none before:absolute before:top-0 before:-right-[1.2rem] before:bg-primary before:rounded-tr-sm before:h-[calc(100%)] before:w-3/4 before:skew-x-[40deg] before:z-[1] ">
                   <Link
                     href={cateHref}
-                    lng={lng}
+                    lang={lang}
                     className="z-[2] relative inline-block"
                   >
                     {cateName}
@@ -52,7 +54,7 @@ export const ProductByCate = async ({ lng }: { lng: Locale }) => {
                 </div>
                 {listProduct?.length > 4 && (
                   <div className="hover:underline hover:underline-offset-2 ">
-                    <Link href={cateHref} lng={lng}>
+                    <Link href={cateHref} lang={lang}>
                       {t("More")} {"->"}
                     </Link>
                   </div>
@@ -61,13 +63,13 @@ export const ProductByCate = async ({ lng }: { lng: Locale }) => {
               <div className="h-fit py-4 sm:p-5">
                 <div className="grid grid-cols-[repeat(auto-fill,minmax(158px,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-3 sm:gap-5 list-none p-0 m-0">
                   {listProduct?.map((item, idx) => {
-                    const detail = lng === "en" ? item.en : item.vn;
+                    const detail = lang === "en" ? item.en : item.vn;
                     const price = `${item.price
                       ?.toString()
                       .replace(/\B(?=(\d{3})+(?!\d))/gm, ".")} đ`;
 
                     const href = `/product/${
-                      lng === "en"
+                      lang === "en"
                         ? `${cate?.enSlug}/${item.enSlug}`
                         : `${cate?.vnSlug}/${item.vnSlug}`
                     }`;
@@ -78,7 +80,7 @@ export const ProductByCate = async ({ lng }: { lng: Locale }) => {
                       >
                         <Link
                           href={href}
-                          lng={lng}
+                          lang={lang}
                           className="flex items-center h-full w-full p-3 rounded-md"
                         >
                           <Image
@@ -94,7 +96,7 @@ export const ProductByCate = async ({ lng }: { lng: Locale }) => {
                         <div className="flex flex-col justify-between min-h-[85px] px-3 py-1 text-black">
                           <Link
                             href={href}
-                            lng={lng}
+                            lang={lang}
                             className="line-clamp-2 w-full text-base sm:text-lg font-semibold tracking-wide capitalize m-0 min-h-[30px] max-h-[50px]"
                           >
                             {detail.name}
@@ -103,7 +105,7 @@ export const ProductByCate = async ({ lng }: { lng: Locale }) => {
                             {item.price && item.price > 0 ? (
                               <Link
                                 href={href}
-                                lng={lng}
+                                lang={lang}
                                 className="text-price [text-shadow:0px_0px_black]"
                               >
                                 {price}
@@ -128,7 +130,7 @@ export const ProductByCate = async ({ lng }: { lng: Locale }) => {
             <div className="relative w-fit text-primary-foreground bg-primary px-4 py-1.5 md:py-2.5 text-lg font-bold rounded-t-md !before:content-none before:absolute before:top-0 before:-right-[1.2rem] before:bg-primary before:rounded-tr-sm before:h-[calc(100%)] before:w-3/4 before:skew-x-[40deg] before:z-[1] h-full">
               <Link
                 href={`/export`}
-                lng={lng}
+                lang={lang}
                 className="z-[2] relative inline-block"
               >
                 {t("Export")}
@@ -137,14 +139,14 @@ export const ProductByCate = async ({ lng }: { lng: Locale }) => {
             <div className="flex flex-row flex-wrap ml-auto h-full gap-2 w-fit">
               <div className="flex flex-row flex-wrap gap-2 w-fit max480:hidden">
                 {exportCates?.slice(0, 2).map((cate, idx) => {
-                  const cateName = lng === "en" ? cate.en : cate.vn;
+                  const cateName = lang === "en" ? cate.en : cate.vn;
                   const cateHref = `/export/${
-                    lng === "en" ? cate.enSlug : cate.vnSlug
+                    lang === "en" ? cate.enSlug : cate.vnSlug
                   }`;
                   return (
                     <Link
                       href={cateHref}
-                      lng={lng}
+                      lang={lang}
                       key={idx}
                       className="hover:underline hover:underline-offset-2 bg-slate-200 px-1 rounded-md transition-all"
                     >
@@ -163,7 +165,7 @@ export const ProductByCate = async ({ lng }: { lng: Locale }) => {
 
                   <Link
                     href={`/export`}
-                    lng={lng}
+                    lang={lang}
                     className="hover:underline hover:underline-offset-2"
                   >
                     {t("More")} {"->"}
@@ -175,12 +177,12 @@ export const ProductByCate = async ({ lng }: { lng: Locale }) => {
           <div className="h-fit py-4 sm:p-5">
             <div className="grid grid-cols-[repeat(auto-fill,minmax(158px,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-3 sm:gap-5 list-none p-0 m-0">
               {exportItems?.map((item, idx) => {
-                const detail = lng === "en" ? item.en : item.vn;
+                const detail = lang === "en" ? item.en : item.vn;
                 const cate = exportCates?.find(
                   (x) => x.enSlug === item.productType
                 );
                 const href = `/export/${
-                  lng === "en"
+                  lang === "en"
                     ? cate?.enSlug + "/" + item.enSlug
                     : cate?.vnSlug + "/" + item.vnSlug
                 }`;
@@ -191,7 +193,7 @@ export const ProductByCate = async ({ lng }: { lng: Locale }) => {
                   >
                     <Link
                       href={href}
-                      lng={lng}
+                      lang={lang}
                       className="flex items-center h-full w-full rounded-md relative p-3"
                     >
                       <Image
@@ -206,7 +208,7 @@ export const ProductByCate = async ({ lng }: { lng: Locale }) => {
                     <div className="flex flex-col justify-between min-h-[85px] px-3 py-1 text-black">
                       <Link
                         href={href}
-                        lng={lng}
+                        lang={lang}
                         className="line-clamp-2 w-full text-base sm:text-lg font-semibold tracking-wide capitalize m-0 min-h-[30px] max-h-[50px]"
                       >
                         {detail.name}

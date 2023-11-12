@@ -8,9 +8,9 @@ import { Locale } from "@/lib/i18n/setting";
 import { Metadata } from "next";
 
 export async function generateStaticParams({
-  params: { lng },
+  params: { lang },
 }: {
-  params: { lng: Locale };
+  params: { lang: Locale };
 }) {
   const fetchData = await Promise.all([getListCateProduct(), getAllProduct()]);
   const cates = fetchData[0].Product;
@@ -18,22 +18,22 @@ export async function generateStaticParams({
 
   const result = products.map((item) => ({
     category:
-      lng === "en"
+      lang === "en"
         ? cates.find((x) => x.enSlug === item.productType)?.enSlug
         : cates.find((x) => x.enSlug === item.productType)?.vnSlug,
-    slug: lng === "en" ? item.enSlug : item.vnSlug,
+    slug: lang === "en" ? item.enSlug : item.vnSlug,
   }));
 
   return result;
 }
 
 export async function generateMetadata({
-  params: { lng, category, slug },
+  params: { lang, category, slug },
 }: {
-  params: { lng: Locale; category: string; slug: string };
+  params: { lang: Locale; category: string; slug: string };
 }): Promise<Metadata> {
   const fetchData = await Promise.all([
-    getDetailProduct(slug, lng),
+    getDetailProduct(slug, lang),
     getListCateProduct(),
   ]);
   const product = fetchData[0];
@@ -44,7 +44,7 @@ export async function generateMetadata({
   }
 
   const urlP = `https://flameagricultural.com${
-    lng === "en"
+    lang === "en"
       ? `/en/product/${
           cates.find((x) => x.enSlug === product.productType)?.enSlug
         }/${product.enSlug}`
@@ -64,12 +64,12 @@ export async function generateMetadata({
   });
 
   return {
-    title: lng === "en" ? product.en.name : product.vn.name,
+    title: lang === "en" ? product.en.name : product.vn.name,
     description:
-      lng === "en"
+      lang === "en"
         ? product.en.description.replace(/<[^>]+>/g, "")
         : product.vn.description.replace(/<[^>]+>/g, ""),
-    keywords: [lng === "en" ? product.en.name : product.vn.name],
+    keywords: [lang === "en" ? product.en.name : product.vn.name],
     robots: {
       index: true,
       follow: true,
@@ -80,7 +80,7 @@ export async function generateMetadata({
     },
     openGraph: {
       title:
-        lng === "en"
+        lang === "en"
           ? `${product.en.name.replace(
               /[!@#$%^&*_+\-=\[\]{};':"\\|,.<>\/?]/g,
               ""
@@ -90,7 +90,7 @@ export async function generateMetadata({
               ""
             )} - Nông sản Flame`,
       description:
-        lng === "en"
+        lang === "en"
           ? product.en.description.replace(/<[^>]+>/g, "")
           : product.vn.description.replace(/<[^>]+>/g, ""),
       url: urlP,
@@ -101,15 +101,15 @@ export async function generateMetadata({
 }
 
 export default function Page({
-  params: { lng, category, slug },
+  params: { lang, category, slug },
 }: {
-  params: { lng: Locale; category: string; slug: string };
+  params: { lang: Locale; category: string; slug: string };
 }) {
   return (
     <>
       <div className="container flex flex-col w-full h-full">
         <div className=" flex flex-col w-full h-fit">
-          <ItemProductDetail lng={lng} category={category} slug={slug} />
+          <ItemProductDetail lang={lang} category={category} slug={slug} />
         </div>
       </div>
     </>

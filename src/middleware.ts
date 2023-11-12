@@ -4,13 +4,7 @@ import { getCookies, getCookie, setCookie, deleteCookie } from "cookies-next";
 import { fallbackLng, locales } from "./lib/i18n/setting";
 import { listRoute } from "./map-route";
 
-export const config = {
-  // Matcher ignoring `/_next/` and `/api/`
-  matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|static|sitemap.xml|robots.txt).*)",
-  ],
-};
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   // Check if there is any supported locale in the pathname
   const pathname = request.nextUrl.pathname;
 
@@ -57,6 +51,11 @@ export function middleware(request: NextRequest) {
       new URL(`/${fallbackLng}${newPathname}`, request.url)
     );
   }
-  return NextResponse.next()
 }
 
+export const config = {
+  // Matcher ignoring `/_next/` and `/api/`
+  matcher: [
+    "/((?!api|_next/static|_next/image|favicon.ico|static|sitemap.xml|robots.txt).*)",
+  ],
+};

@@ -9,9 +9,9 @@ import {
 import { Metadata } from "next";
 
 export async function generateStaticParams({
-  params: { lng },
+  params: { lang },
 }: {
-  params: { lng: Locale };
+  params: { lang: Locale };
 }) {
   const fetchData = await Promise.all([
     getListCateProduct(),
@@ -22,22 +22,22 @@ export async function generateStaticParams({
 
   const result = exports.map((item) => ({
     category:
-      lng === "en"
+      lang === "en"
         ? cates.find((x) => x.enSlug === item.productType)?.enSlug
         : cates.find((x) => x.enSlug === item.productType)?.vnSlug,
-    slug: lng === "en" ? item.enSlug : item.vnSlug,
+    slug: lang === "en" ? item.enSlug : item.vnSlug,
   }));
 
   return result;
 }
 
 export async function generateMetadata({
-  params: { lng, category, slug },
+  params: { lang, category, slug },
 }: {
-  params: { lng: Locale; category: string; slug: string };
+  params: { lang: Locale; category: string; slug: string };
 }): Promise<Metadata> {
   const fetchData = await Promise.all([
-    getDetailExportProduct(slug, lng),
+    getDetailExportProduct(slug, lang),
     getListCateProduct(),
   ]);
   const product = fetchData[0];
@@ -48,7 +48,7 @@ export async function generateMetadata({
   }
 
   const urlP = `https://flameagricultural.com${
-    lng === "en"
+    lang === "en"
       ? `/en/export/${
           cates.find((x) => x.enSlug === product.productType)?.enSlug
         }/${product.enSlug}`
@@ -69,14 +69,14 @@ export async function generateMetadata({
 
   return {
     title:
-      lng === "en"
+      lang === "en"
         ? product.en.name.replace(/[!@#$%^&*_+\-=\[\]{};':"\\|,.<>\/?]/g, "")
         : product.vn.name.replace(/[!@#$%^&*_+\-=\[\]{};':"\\|,.<>\/?]/g, ""),
     description:
-      lng === "en"
+      lang === "en"
         ? product.en.description.replace(/<[^>]+>/g, "")
         : product.vn.description.replace(/<[^>]+>/g, ""),
-    keywords: [lng === "en" ? product.en.name : product.vn.name],
+    keywords: [lang === "en" ? product.en.name : product.vn.name],
     robots: {
       index: true,
       follow: true,
@@ -87,7 +87,7 @@ export async function generateMetadata({
     },
     openGraph: {
       title:
-        lng === "en"
+        lang === "en"
           ? `${product.en.name.replace(
               /[!@#$%^&*_+\-=\[\]{};':"\\|,.<>\/?]/g,
               ""
@@ -97,28 +97,28 @@ export async function generateMetadata({
               ""
             )} xuất khẩu - Nông sản Flame`,
       description:
-        lng === "en"
+        lang === "en"
           ? product.en.description.replace(/<[^>]+>/g, "")
           : product.vn.description.replace(/<[^>]+>/g, ""),
       url: urlP,
-      siteName: lng === "en" ? "Flame agricultural" : "Nông sản Flame",
+      siteName: lang === "en" ? "Flame agricultural" : "Nông sản Flame",
       images: listImgResult,
-      locale: lng === "en" ? "en_US" : "vi_VN",
+      locale: lang === "en" ? "en_US" : "vi_VN",
       type: "article",
     },
   };
 }
 
 export default function Page({
-  params: { lng, category, slug },
+  params: { lang, category, slug },
 }: {
-  params: { lng: Locale; category: string; slug: string };
+  params: { lang: Locale; category: string; slug: string };
 }) {
   return (
     <>
       <div className="container flex flex-col w-full h-full">
         <div className="flex flex-col w-full h-fit  ">
-          <ItemDetailExport lng={lng} category={category} slug={slug} />
+          <ItemDetailExport lang={lang} category={category} slug={slug} />
         </div>
       </div>
     </>

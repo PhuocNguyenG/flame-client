@@ -7,20 +7,20 @@ import { Metadata } from "next";
 import { getListCateProduct } from "@/lib/api/server-side";
 
 export async function generateMetadata({
-  params: { lng },
+  params: { lang },
 }: {
-  params: { lng: Locale };
+  params: { lang: Locale };
 }): Promise<Metadata> {
   const cates = (await getListCateProduct()).Product.map((cate) =>
-    lng === "en" ? cate.en : cate.vn
+    lang === "en" ? cate.en : cate.vn
   ).join(", ");
   const urlP = `https://flameagricultural.com${
-    lng === "en" ? `/en/product` : `/san-pham`
+    lang === "en" ? `/en/product` : `/san-pham`
   }`;
   return {
-    title: lng === "en" ? `Products` : `Sản phẩm`,
+    title: lang === "en" ? `Products` : `Sản phẩm`,
     description:
-      lng === "en"
+      lang === "en"
         ? `Agricultural products are provided by the Flame Agricultural brand`
         : `Sản phẩm nông sản được cung cấp bởi thương hiệu Nông sản Flame`,
     keywords: ["Agricultural products", "Sản phẩm nông sản"],
@@ -34,11 +34,11 @@ export async function generateMetadata({
     },
     openGraph: {
       title:
-        lng === "en"
+        lang === "en"
           ? `Products - Flame agricultural`
           : `Sản phẩm - Nông sản Flame`,
       description:
-        lng === "en"
+        lang === "en"
           ? `All agricultural products are selected and distributed by Flame Agricultural. | ${cates} |`
           : `Tất cả các sản phẩm về nông sản | ${cates} |. Được chọn lọc và phân phối bởi Nông sản Flame.`,
       url: urlP,
@@ -49,13 +49,13 @@ export async function generateMetadata({
 }
 
 export default function ProductByCate({
-  params: { lng },
+  params: { lang },
 }: {
-  params: { lng: Locale };
+  params: { lang: Locale };
 }) {
   return (
-    <LayoutProductCategory lng={lng} category={"all"}>
-      <ProductItem lng={lng} category={"all"} />
+    <LayoutProductCategory lang={lang} category={"all"}>
+      <ProductItem lang={lang} category={"all"} />
     </LayoutProductCategory>
   );
 }

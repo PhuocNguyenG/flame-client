@@ -2,7 +2,7 @@ import { Locale } from "@/lib/i18n/setting";
 import { getListCateProduct } from "@/lib/api/server-side";
 import SearchItem from "./list-item";
 
-export default async function SearchPage({ lng }: { lng: Locale }) {
+export default async function SearchPage({ lang }: { lang: Locale }) {
   const fetchData = await Promise.all([getListCateProduct()]);
   const dataCategory = fetchData[0].Product;
 
@@ -10,7 +10,7 @@ export default async function SearchPage({ lng }: { lng: Locale }) {
     <>
       <div className="flex flex-col w-full h-full bg-background-body py-5">
         <div className="container flex flex-col w-full h-fit ">
-          <SearchItem categories={dataCategory} lng={lng} />
+          <SearchItem categories={dataCategory} lang={lang} />
         </div>
       </div>
     </>

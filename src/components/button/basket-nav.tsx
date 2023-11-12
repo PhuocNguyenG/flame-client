@@ -16,33 +16,24 @@ import Link from "../link";
 
 const Basket = () => {
   const pathname = usePathname();
-  const lng = getLangByPathname(pathname);
-  const { t } = useTransClient(lng);
+  const lang = getLangByPathname(pathname);
+  const { t } = useTransClient(lang);
   return (
     <TooltipProvider delayDuration={300}>
       <Tooltip>
-        <TooltipTrigger
-          className="transition-all duration-300 min-w-[23px] min-h-[23px] none-select-text"
-          aria-label="0, basket-button"
-        >
+        <TooltipTrigger className="transition-all duration-300 min-w-[23px] min-h-[23px] none-select-text" aria-label="0, basket-button" >
           <Link
             href={"/cart"}
-            lng={lng}
+            lang={lang}
             className="w-[25px] h-[25px] relative block"
           >
+            
             <Badge
               className={`absolute right-[-5px] bottom-[-10px] border border-primary-foreground`}
             >
               0
             </Badge>
-            <Image
-              src={basket}
-              alt="Basket"
-              className="max-w-[25px] w-[25px] h-[25px]"
-              width={25}
-              height={25}
-              unoptimized
-            />
+            <Image src={basket} alt="Basket" className="max-w-[25px] w-[25px] h-[25px]" width={25} height={25} unoptimized />
           </Link>
         </TooltipTrigger>
         <TooltipContent side="bottom">

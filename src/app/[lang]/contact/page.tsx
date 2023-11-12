@@ -7,19 +7,19 @@ import { Metadata } from "next";
 import React from "react";
 
 export async function generateMetadata({
-  params: { lng },
+  params: { lang },
 }: {
-  params: { lng?: Locale };
+  params: { lang?: Locale };
 }): Promise<Metadata> {
   return {
-    title: lng === "en" ? "Contact" : "Liên hệ",
+    title: lang === "en" ? "Contact" : "Liên hệ",
     robots: {
       follow: true,
       index: true,
     },
     openGraph: {
       url:
-        lng === "en"
+        lang === "en"
           ? "https://flameagricultural.com/en/contact"
           : "https://flameagricultural.com/lien-he",
       type: "article",
@@ -28,11 +28,11 @@ export async function generateMetadata({
 }
 
 export default async function Page({
-  params: { lng },
+  params: { lang },
 }: {
-  params: { lng: Locale };
+  params: { lang: Locale };
 }) {
-  const { t } = await useTransServer(lng);
+  const { t } = await useTransServer(lang);
   return (
     <div className="container flex flex-col flex-wrap my-2 h-auto min-h-[45vh]">
       <Breadcrumb data={[{ name: t("Contact"), href: "/contact" }]} />

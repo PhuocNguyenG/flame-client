@@ -8,14 +8,14 @@ import { RadioGroup, RadioGroupItem } from "../../ui/radio-group";
 import { Label } from "../../ui/label";
 
 export const LeftFilterExport = async ({
-  lng,
+  lang,
   category,
 }: {
-  lng: Locale;
+  lang: Locale;
   category: string;
 }) => {
   const categoryData = (await getListCateProduct()).Export;
-  const { t } = await useTransServer(lng);
+  const { t } = await useTransServer(lang);
 
   return (
     <>
@@ -30,7 +30,7 @@ export const LeftFilterExport = async ({
           <div className="flex items-center">
             <Link
               href={"/export"}
-              lng={lng}
+              lang={lang}
               className="space-x-2 hover:opacity-100 flex flex-row items-center"
             >
               <RadioGroupItem value="all" id="all" />
@@ -41,20 +41,20 @@ export const LeftFilterExport = async ({
           </div>
 
           {categoryData?.map((item, idx) => {
-            const title = lng === "en" ? item.en : item.vn;
-            const href = `/export/${lng === "en" ? item.enSlug : item.vnSlug}`;
+            const title = lang === "en" ? item.en : item.vn;
+            const href = `/export/${lang === "en" ? item.enSlug : item.vnSlug}`;
             return (
               <div className="flex items-center " key={idx}>
                 <Link
                   href={href}
-                  lng={lng}
+                  lang={lang}
                   className="space-x-2 hover:opacity-100 flex flex-row items-center"
                 >
                   <RadioGroupItem
-                    value={lng === "en" ? item.enSlug : item.vnSlug}
+                    value={lang === "en" ? item.enSlug : item.vnSlug}
                   />
                   <Label
-                    htmlFor={lng === "en" ? item.enSlug : item.vnSlug}
+                    htmlFor={lang === "en" ? item.enSlug : item.vnSlug}
                     className="hover:cursor-pointer"
                   >
                     {title}

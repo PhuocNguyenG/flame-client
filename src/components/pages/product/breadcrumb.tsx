@@ -9,19 +9,19 @@ import { useTransClient } from "@/lib/i18n/client";
 import { useEffect } from "react";
 
 export const BreadcrumbProduct = ({
-  lng,
+  lang,
   listCate,
   category,
   detailData,
   className,
 }: {
-  lng: Locale;
+  lang: Locale;
   listCate: TypeOfCategory["Product"];
   category?: string;
   detailData?: TypeItemCategoryProduct;
   className?: React.HTMLProps<HTMLElement>["className"];
 }) => {
-  const { t } = useTransClient(lng);
+  const { t } = useTransClient(lang);
   const categoryData = listCate?.find((item) => {
     if (item.vnSlug === category || item.enSlug === category) {
       return item;
@@ -35,23 +35,23 @@ export const BreadcrumbProduct = ({
   const defaultData = [
     {
       name: t("Product"),
-      href: lng === "en" ? "/product" : "/san-pham",
+      href: lang === "en" ? "/product" : "/san-pham",
     },
   ];
   categoryData
     ? defaultData.push({
-        name: lng === "en" ? categoryData.en : categoryData.vn,
+        name: lang === "en" ? categoryData.en : categoryData.vn,
         href:
-          lng === "en"
+          lang === "en"
             ? "/product/" + categoryData.enSlug
             : "/san-pham/" + categoryData.vnSlug,
       })
     : defaultData;
   categoryData && detailData
     ? defaultData.push({
-        name: lng === "en" ? detailData.en : detailData.vn,
+        name: lang === "en" ? detailData.en : detailData.vn,
         href:
-          lng === "en"
+          lang === "en"
             ? "/product/" + categoryData.enSlug + "/" + detailData.enSlug
             : "/san-pham/" + categoryData.vnSlug + "/" + detailData.vnSlug,
       })
@@ -82,7 +82,7 @@ export const BreadcrumbProduct = ({
               ? {}
               : {
                   item: ` ${
-                    lng == "en"
+                    lang == "en"
                       ? "https://flameagricultural.com/en"
                       : "https://flameagricultural.com"
                   }${item.href}`,
@@ -96,7 +96,7 @@ export const BreadcrumbProduct = ({
       document?.getElementById("breadcrumb-structured-data-script")?.remove();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lng]);
+  }, [lang]);
   return (
     <div className={className}>
       <Breadcrumb data={defaultData} />

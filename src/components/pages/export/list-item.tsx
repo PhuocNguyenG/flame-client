@@ -8,13 +8,13 @@ import { useTransServer } from "@/lib/i18n/server";
 import { Badge } from "../../ui/badge";
 
 export default async function ExportItem({
-  lng,
+  lang,
   category = "all",
 }: {
-  lng: Locale;
+  lang: Locale;
   category?: string;
 }) {
-  const transText = useTransServer(lng);
+  const transText = useTransServer(lang);
   const fetchCategory = getListCateProduct();
   const fetchAllProduct = getAllExportProduct();
   const fetchData = await Promise.all([
@@ -42,14 +42,14 @@ export default async function ExportItem({
     <>
       <ul className="grid grid-cols-[repeat(auto-fill,minmax(158px,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-3 sm:gap-5 list-none p-0 m-0">
         {result?.map((item, idx) => {
-          const detail = lng === "en" ? item.en : item.vn;
+          const detail = lang === "en" ? item.en : item.vn;
           const cateObject = dataCategory.find(
             (cate) => cate.enSlug === item.productType
           );
-          const categoryName = lng === "en" ? cateObject?.en : cateObject?.vn;
+          const categoryName = lang === "en" ? cateObject?.en : cateObject?.vn;
 
           const href = `/export/${
-            lng === "en"
+            lang === "en"
               ? `${cateObject?.enSlug}/${item.enSlug}`
               : `${cateObject?.vnSlug}/${item.vnSlug}`
           }`;
@@ -60,7 +60,7 @@ export default async function ExportItem({
             >
               <Link
                 href={href}
-                lng={lng}
+                lang={lang}
                 className="flex items-center h-full w-full p-3 rounded-md"
               >
                 <Image
@@ -86,7 +86,7 @@ export default async function ExportItem({
                   </div>
                   <Link
                     href={href}
-                    lng={lng}
+                    lang={lang}
                     className="line-clamp-2 w-full text-base sm:text-lg font-semibold tracking-wide capitalize m-0 min-h-[30px] max-h-[50px]"
                   >
                     {detail.name}

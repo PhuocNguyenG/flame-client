@@ -10,19 +10,19 @@ const Toaster = dynamic(() => import("@/components/ui/toaster"));
 const FloatButton = dynamic(
   () => import("@/components/button/group-float-button")
 );
-import { Locale, locales } from "@/lib/i18n/setting";
+import { Locale } from "@/lib/i18n/setting";
 import ScriptConfig from "@/script-config";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export async function generateStaticParams() {
-  return locales.map((lng) => ({ lng }));
+  return [{ lang: "vi" }, { lang: "en" }];
 }
 
 export async function generateMetadata({
-  params: { lng },
+  params: { lang },
 }: {
-  params: { lng?: Locale };
+  params: { lang?: Locale };
 }): Promise<Metadata> {
   return {
     keywords: [
@@ -44,26 +44,26 @@ export async function generateMetadata({
     },
     openGraph: {
       images: "https://flameagricultural.com/static/flame-logo-simple.png",
-      siteName: lng === "en" ? "Flame agricultural" : "Nông sản Flame",
-      locale: lng === "en" ? "en_US" : "vi_VN",
+      siteName: lang === "en" ? "Flame agricultural" : "Nông sản Flame",
+      locale: lang === "en" ? "en_US" : "vi_VN",
       type: "website",
     },
   };
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-  params: { lng },
+  params: { lang },
 }: {
   children: React.ReactNode;
-  params: { lng: Locale };
+  params: { lang: Locale };
 }) {
   return (
     <>
       <head>
         <ScriptConfig />
       </head>
-      <html lang={lng}>
+      <html lang={lang}>
         <body className={inter.className}>
           <noscript
             dangerouslySetInnerHTML={{
@@ -79,11 +79,11 @@ export default function RootLayout({
               initialPosition={0.3}
               showSpinner={false}
             />
-            <NavBar lng={lng}>
+            <NavBar lang={lang}>
               <main>{children}</main>
               <Toaster />
               <FloatButton />
-              <Footer lng={lng} />
+              <Footer lang={lang} />
             </NavBar>
           </RootProvider>
         </body>

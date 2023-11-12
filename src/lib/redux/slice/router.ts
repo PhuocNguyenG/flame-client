@@ -29,7 +29,7 @@ export const routerSlice = createSlice({
   name: "router",
   initialState,
   reducers: {
-    // (main): use for trans slug when switching lng
+    // (main): use for trans slug when switching lang
     setSlugCategoriesTrans: (
       state,
       action: PayloadAction<RouterState["slugCategoriesTrans"]>

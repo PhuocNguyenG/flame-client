@@ -6,10 +6,10 @@ import FlameLogo from "@/assets/logo/flame-logo.svg";
 import { cn } from "@/lib/utils";
 
 function LogoHeader({
-  lng,
+  lang,
   className,
 }: {
-  lng: Locale;
+  lang: Locale;
   className?: React.HTMLProps<HTMLElement>["className"];
 }) {
   return (
@@ -20,13 +20,13 @@ function LogoHeader({
       )}
     >
       <Link
-        lng={lng}
+        lang={lang}
         href={"/"}
         className="min-w-full block relative top-[2px] rounded-full group overflow-hidden"
       >
         <Image
           loading="lazy"
-          alt={lng === "en" ? "Flame Agricultural" : "Nông sản Flame"}
+          alt={lang === "en" ? "Flame Agricultural" : "Nông sản Flame"}
           src={FlameLogo}
           height={90}
           width={90}

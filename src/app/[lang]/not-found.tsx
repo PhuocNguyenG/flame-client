@@ -8,8 +8,8 @@ export default async function NotFound() {
   const headersList = headers();
   const pathname = headersList.get("x-invoke-path") || "";
 
-  const lng = getLangByPathname(pathname);
-  const { t } = await useTransServer(lng);
+  const lang = getLangByPathname(pathname);
+  const { t } = await useTransServer(lang);
   return (
     <div className="h-[500px] flex flex-col justify-center items-center gap-4">
       <h2 className="font-medium text-lg">{t("404")}</h2>

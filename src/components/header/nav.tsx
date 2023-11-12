@@ -5,10 +5,10 @@ import { Locale } from "@/lib/i18n/setting";
 
 const NavBar = async ({
   children,
-  lng,
+  lang,
 }: {
   children: React.ReactNode;
-  lng: Locale;
+  lang: Locale;
 }) => {
   const itemCate = getListCateProduct();
   const data = await Promise.all([itemCate]);
