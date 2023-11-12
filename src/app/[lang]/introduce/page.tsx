@@ -4,8 +4,6 @@ import { useTransServer } from "@/lib/i18n/server";
 import { Locale } from "@/lib/i18n/setting";
 import { Metadata } from "next";
 
-export const runtime = 'edge';
-
 export async function generateMetadata({
   params: { lang },
 }: {
