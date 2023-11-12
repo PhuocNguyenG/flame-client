@@ -48,7 +48,6 @@ export default async function Home({
       <div className="container mt-5">
         {/* <FeaturedSection lng={lng}/> */}
         <ProductByCate lng={lng} />
-        Hi
       </div>
     </div>
   );
