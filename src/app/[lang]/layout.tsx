@@ -12,7 +12,6 @@ const FloatButton = dynamic(
 );
 import { Locale } from "@/lib/i18n/setting";
 import ScriptConfig from "@/script-config";
-import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -81,9 +80,7 @@ export default async function RootLayout({
               showSpinner={false}
             />
             <NavBar lang={lang} />
-            <Suspense>
-              <main>{children}</main>
-            </Suspense>
+            <main>{children}</main>
             <Toaster />
             <FloatButton />
             <Footer lang={lang} />
