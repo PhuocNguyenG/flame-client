@@ -17,8 +17,8 @@ import {
 import dynamic from "next/dynamic";
 const AccountDropdown = dynamic(() => import("../user/top-nav-dropdown"));
 import SearchButton from "../button/search-nav";
-const Basket = dynamic(() => import("../button/basket-nav"));
-const SwitchLanguage = dynamic(() => import("../button/switch-language"));
+import Basket from "../button/basket-nav";
+import SwitchLanguage from "../button/switch-language";
 const SideNav = dynamic(() => import("./side-nav"));
 import { useTransClient } from "@/lib/i18n/client";
 import { usePathname, useSearchParams } from "next/navigation";
