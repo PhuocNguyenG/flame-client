@@ -4,12 +4,19 @@ import Loading from "@/components/loading/loading-item-list";
 import { Locale } from "@/lib/i18n/setting";
 import React, { Suspense } from "react";
 import { Metadata } from "next";
+import { getListCateProduct } from "@/lib/api/server-side";
 
 export async function generateMetadata({
   params: { lang },
 }: {
   params: { lang: Locale };
 }): Promise<Metadata> {
+  const cates = (await getListCateProduct()).Product.map((cate) =>
+    lang === "en" ? cate.en : cate.vn
+  ).join(", ");
+  const urlP = `https://flameagricultural.com${
+    lang === "en" ? `/en/product` : `/san-pham`
+  }`;
   return {
     title: lang === "en" ? `Products` : `Sản phẩm`,
     description:
@@ -26,6 +33,15 @@ export async function generateMetadata({
       },
     },
     openGraph: {
+      title:
+        lang === "en"
+          ? `Products - Flame agricultural`
+          : `Sản phẩm - Nông sản Flame`,
+      description:
+        lang === "en"
+          ? `All agricultural products are selected and distributed by Flame Agricultural. | ${cates} |`
+          : `Tất cả các sản phẩm về nông sản | ${cates} |. Được chọn lọc và phân phối bởi Nông sản Flame.`,
+      url: urlP,
       modifiedTime: new Date().toISOString(),
       type: "article",
     },

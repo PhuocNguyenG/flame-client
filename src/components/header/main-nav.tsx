@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import dynamic from "next/dynamic";
 const AccountDropdown = dynamic(() => import("../user/top-nav-dropdown"));
-const SearchButton = dynamic(() => import("../button/search-nav"));
+import SearchButton from "../button/search-nav";
 const Basket = dynamic(() => import("../button/basket-nav"));
 const SwitchLanguage = dynamic(() => import("../button/switch-language"));
 const SideNav = dynamic(() => import("./side-nav"));
@@ -24,11 +24,8 @@ import { useTransClient } from "@/lib/i18n/client";
 import { usePathname, useSearchParams } from "next/navigation";
 import Link from "../link";
 import { TypeItemCategoryProduct } from "@/lib/type";
-import MapMarkedIcon from "@/assets/icon/map-marked.svg";
-import Image from "next/image";
 import { setSlugCategoriesTrans } from "@/lib/redux/slice/router";
 import { RootState, useAppDispatch } from "@/lib/redux/store";
-import { Separator } from "../ui/separator";
 import HotLine from "./hot-line";
 import LogoHeader from "./logo-large";
 import LoginModal from "../user/login-modal";
@@ -43,8 +40,6 @@ export function MainNavBar({
 }) {
   const pathname = usePathname();
   const lang = getLangByPathname(pathname);
-  const searchParams = useSearchParams();
-  const keySearch = searchParams.get("s") || "";
   const { t } = useTransClient(lang);
   const dispatch = useAppDispatch();
   const dimension = useWindowSize();
@@ -54,7 +49,7 @@ export function MainNavBar({
   const [value, setValue] = React.useState<string>();
   const [activeTrigger, setActiveTrigger] = React.useState<HTMLDivElement>();
   const [contentTrigger, setContentTrigger] = React.useState<HTMLDivElement>();
-  const [searchInputValue, setSearchInputValue] = React.useState(keySearch);
+  const [searchInputValue, setSearchInputValue] = React.useState("");
   nProgress.done();
 
   React.useEffect(() => {
@@ -100,28 +95,6 @@ export function MainNavBar({
 
   return (
     <>
-      <div className="h-[28px] w-full bg-primary max800:hidden">
-        <div className="container h-full flex flex-row flex-wrap justify-between items-center text-secondary-foreground text-sm font-medium">
-          <div className=""></div>
-          <div className="flex flex-row flex-wrap h-full items-center justify-center gap-2 ">
-            <Image
-              loading="lazy"
-              src={MapMarkedIcon}
-              alt="Map marker"
-              width={18}
-              height={18}
-              sizes="30"
-              className="h-auto opacity-80"
-              unoptimized
-            />
-            <p>{t("AddressDetail")}</p>
-            <Separator
-              orientation="vertical"
-              className="bg-secondary-foreground h-4/6"
-            />
-          </div>
-        </div>
-      </div>
       <div className="flex flex-row gap-5 max800:hidden h-[112px] items-center justify-around w-full container">
         <LogoHeader lang={lang} />
 
@@ -428,11 +401,11 @@ export function MainNavBar({
             </div> */}
           </div>
         </div>
-        <LoginModal
+        {/* <LoginModal
           lang={lang}
           open={openLogin}
           callBackOpen={(isOpen) => setOpenLogin(isOpen)}
-        />
+        /> */}
       </nav>
     </>
   );
@@ -467,32 +440,23 @@ const ListItem = React.forwardRef<
 ListItem.displayName = "ListItem";
 
 const useWindowSize = () => {
-  // Initialize state with undefined width/height so server and client renders match
-  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
   const [windowSize, setWindowSize] = React.useState({
     width: 0,
     height: 0,
   });
 
   React.useEffect(() => {
-    // only execute all the code below in client side
-    // Handler to call on window resize
     function handleResize() {
-      // Set window width/height to state
       setWindowSize({
         width: window.innerWidth,
         height: window.innerHeight,
       });
     }
 
-    // Add event listener
     window.addEventListener("resize", handleResize);
 
-    // Call handler right away so state gets updated with initial window size
     handleResize();
-
-    // Remove event listener on cleanup
     return () => window.removeEventListener("resize", handleResize);
-  }, []); // Empty array ensures that effect is only run on mount
+  }, []);
   return windowSize;
 };

@@ -1,9 +1,9 @@
 import ProductItem from "@/components/pages/product/list-item";
 import LayoutProductCategory from "@/components/pages/product/list-layout";
-import { getAllProduct, getListCateProduct } from "@/lib/api/server-side";
+import { getListCateProduct } from "@/lib/api/server-side";
 import { Locale } from "@/lib/i18n/setting";
 import { Metadata } from "next";
-import React, { Suspense } from "react";
+import React from "react";
 
 export async function generateStaticParams({
   params: { lang },
@@ -12,10 +12,9 @@ export async function generateStaticParams({
 }) {
   const cates = (await getListCateProduct()).Product;
 
-  const result = cates.map((cate) => ({
+  return cates.map((cate) => ({
     category: lang === "en" ? cate.enSlug : cate.vnSlug,
   }));
-  return result;
 }
 
 export async function generateMetadata({
@@ -48,16 +47,20 @@ export async function generateMetadata({
         follow: true,
       },
     },
-    keywords: lang === "en" ? `${cates.en} products` : `Sản phẩm ${cates.vn}`,
+    keywords:
+      lang === "en"
+        ? `${cates.en} products flame agricultural`
+        : `Sản phẩm ${cates.vn}  nông sản flame`,
     openGraph: {
-      title: lang === "en" ? `${cates.en} products` : `Sản phẩm ${cates.vn}`,
+      title:
+        lang === "en"
+          ? `${cates.en} products - Flame agricultural`
+          : `Sản phẩm ${cates.vn.toLowerCase()} - Nông sản Flame`,
       description:
         lang === "en"
           ? `${cates.en} products | Provided by Flame Agricultural`
           : `Sản phẩm ${cates.vn.toLowerCase()} | Sản phẩm được chọn lọc và phân phối bởi Nông sản Flame`,
       url: urlP,
-      siteName: lang === "en" ? "Flame agricultural" : "Nông sản Flame",
-      locale: lang === "en" ? "en_US" : "vi_VN",
       type: "article",
     },
   };

@@ -10,13 +10,13 @@ const Toaster = dynamic(() => import("@/components/ui/toaster"));
 const FloatButton = dynamic(
   () => import("@/components/button/group-float-button")
 );
-import { Locale } from "@/lib/i18n/setting";
+import { Locale, locales } from "@/lib/i18n/setting";
 import ScriptConfig from "@/script-config";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export async function generateStaticParams() {
-  return [{ lang: "vi" }, { lang: "en" }];
+  return locales.map((lang) => ({ lang }));
 }
 
 export async function generateMetadata({
@@ -25,14 +25,6 @@ export async function generateMetadata({
   params: { lang?: Locale };
 }): Promise<Metadata> {
   return {
-    title:
-      lang === "en"
-        ? "Flame Agricultural | Vietnamese agricultural products"
-        : "Nông sản Flame",
-    description:
-      lang === "en"
-        ? "Flame agricultural is a brand created by PHUOC LINH Import Export Co., Ltd., specializing in providing agricultural products domestically and internationally."
-        : "Nông sản Flame là thương hiệu được tạo bởi Công ty TNHH Xuất Nhập Khẩu PHƯỚC LINH, chuyên cung cấp các sản phẩm về nông sản, xuất nhập khẩu trong và ngoài nước.",
     keywords: [
       "Nông sản flame",
       "nong san",
@@ -45,17 +37,13 @@ export async function generateMetadata({
     robots: {
       follow: true,
       index: true,
+      googleBot: {
+        index: true,
+        follow: true,
+      },
     },
     openGraph: {
-      title:
-        lang === "en"
-          ? "Flame Agricultural | Agricultural products"
-          : "Nông sản Flame | Sản phẩm nông sản xuất nhập khẩu",
-      images: "https://cdn.flameagricultural.com/flame-simple.png",
-      url:
-        lang === "en"
-          ? "https://flameagricultural.com/en"
-          : "https://flameagricultural.com",
+      images: "https://flameagricultural.com/static/flame-logo-simple.png",
       siteName: lang === "en" ? "Flame agricultural" : "Nông sản Flame",
       locale: lang === "en" ? "en_US" : "vi_VN",
       type: "website",
@@ -68,7 +56,6 @@ export default async function RootLayout({
   params: { lang },
 }: {
   children: React.ReactNode;
-
   params: { lang: Locale };
 }) {
   return (
@@ -92,12 +79,11 @@ export default async function RootLayout({
               initialPosition={0.3}
               showSpinner={false}
             />
-            <NavBar lang={lang}>
-              <main>{children}</main>
-              <Toaster />
-              <FloatButton />
-              <Footer lang={lang} />
-            </NavBar>
+            <NavBar lang={lang} />
+            <main>{children}</main>
+            <Toaster />
+            <FloatButton />
+            <Footer lang={lang} />
           </RootProvider>
         </body>
       </html>

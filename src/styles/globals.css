@@ -20,8 +20,8 @@
 
     /* rgb(35, 2, 2)*/
     --primary: 35 2 2;
-    /* rgb(247, 219, 9) */
-    --primary-foreground: 247 219 9;
+    /* rgb(110, 230, 0) */
+    --primary-foreground: 110 230 0;
 
     /* rgb(7, 74, 55) */
     --secondary: 7 74 55;
@@ -33,8 +33,8 @@
     /* rgb(5, 55, 41) */
     --logo-foreground: 5 55 41;
 
-    /* rgb(220 136 0) rgb(137 142 0)*/
-    --price: 137 142 0;
+    /* rgb(137 142 0) rgb(41 102 0)*/
+    --price: 41 102 0;
 
     /* rgb(241, 245, 249) */
     --muted: 241 245 249;

@@ -68,7 +68,10 @@ export async function generateMetadata({
   });
 
   return {
-    title: lang === "en" ? product.en.name : product.vn.name,
+    title:
+      lang === "en"
+        ? product.en.name.replace(/[!@#$%^&*_+\-=\[\]{};':"\\|,.<>\/?]/g, "")
+        : product.vn.name.replace(/[!@#$%^&*_+\-=\[\]{};':"\\|,.<>\/?]/g, ""),
     description:
       lang === "en"
         ? product.en.description.replace(/<[^>]+>/g, "")
@@ -83,7 +86,16 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      title: lang === "en" ? product.en.name : product.vn.name,
+      title:
+        lang === "en"
+          ? `${product.en.name.replace(
+              /[!@#$%^&*_+\-=\[\]{};':"\\|,.<>\/?]/g,
+              ""
+            )} export - Flame agricultural`
+          : `${product.vn.name.replace(
+              /[!@#$%^&*_+\-=\[\]{};':"\\|,.<>\/?]/g,
+              ""
+            )} xuất khẩu - Nông sản Flame`,
       description:
         lang === "en"
           ? product.en.description.replace(/<[^>]+>/g, "")
@@ -105,7 +117,7 @@ export default function Page({
   return (
     <>
       <div className="container flex flex-col w-full h-full">
-        <div className="flex flex-col w-full h-fit  ">
+        <div className="flex flex-col w-full h-fit ">
           <ItemDetailExport lang={lang} category={category} slug={slug} />
         </div>
       </div>

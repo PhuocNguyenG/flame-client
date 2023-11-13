@@ -32,8 +32,8 @@ export async function generateMetadata({
     title: lang === "en" ? `${cates.en} export` : `${cates.vn} xuất khẩu`,
     description:
       lang === "en"
-        ? `Export of ${cates.en.toLowerCase()} products`
-        : `Sản phẩm ${cates.vn.toLowerCase()} xuất khẩu | Sản phẩm được chọn lọc và phân phối bởi Nông sản Flame`,
+        ? `Export of ${cates.en.toLowerCase()} products | Products exported to countries around the world. Selected and distributed by Flame Agricultural.`
+        : `Sản phẩm ${cates.vn.toLowerCase()} xuất khẩu | Sản phẩm xuất khẩu đi các nước trên thế giới. Được chọn lọc và phân phối bởi Nông sản Flame.`,
     keywords:
       lang === "en"
         ? `export of ${cates.en} products`
@@ -45,6 +45,25 @@ export async function generateMetadata({
         index: true,
         follow: true,
       },
+    },
+    openGraph: {
+      title:
+        lang === "en"
+          ? `${cates.en.replace(
+              /[!@#$%^&*_+\-=\[\]{};':"\\|,.<>\/?]/g,
+              ""
+            )} export - Flame agricultural`
+          : `${cates.vn.replace(
+              /[!@#$%^&*_+\-=\[\]{};':"\\|,.<>\/?]/g,
+              ""
+            )} xuất khẩu - Nông sản Flame`,
+      description:
+        lang === "en"
+          ? `Export of ${cates.en.toLowerCase()} products | Products exported to countries around the world. Selected and distributed by Flame Agricultural.`
+          : `Sản phẩm ${cates.vn.toLowerCase()} xuất khẩu | Sản phẩm xuất khẩu đi các nước trên thế giới. Được chọn lọc và phân phối bởi Nông sản Flame.`,
+      siteName: lang === "en" ? "Flame agricultural" : "Nông sản Flame",
+      locale: lang === "en" ? "en_US" : "vi_VN",
+      type: "article",
     },
   };
 }

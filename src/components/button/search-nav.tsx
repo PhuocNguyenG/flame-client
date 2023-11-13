@@ -39,6 +39,7 @@ const SearchButton = ({
   const pathname = usePathname();
   const route = useRouter();
   const searchParams = useSearchParams();
+  const keySearch = searchParams.get("s") || "";
   const [open, setOpen] = useState(false);
   const { t } = useTransClient(lang);
   const [showSearchBtn, setShowSearchBtn] = useState(false);
@@ -57,6 +58,9 @@ const SearchButton = ({
         setShowSearchBtn(false);
       }
     });
+    if(keySearch){
+      setInputValue(keySearch)
+    }
   }, []);
 
   React.useEffect(() => {
@@ -123,11 +127,11 @@ const SearchButton = ({
       </DialogTrigger>
       <DialogOverlay className="!bg-gradient-to-b from-black/30 backdrop-blur-none" />
       <DialogContent
-        className="!top-[50px] max-w-2xl bg-white text-primary gap-3 !translate-y-0"
-        iconClose={false}
+        className="!top-[30px] sm:!top-[50px] max-w-2xl bg-white text-primary gap-3 !translate-y-0 "
+        iconClose={true}
       >
         <DialogTitle>
-          <div className="flex flex-row items-center px-2 w-full h-fit border-2 rounded-md border-primary/50 translate">
+          <div className="flex flex-row items-center pr-2 w-full h-fit border-2 rounded-md border-primary/50 translate">
             <Input
               value={inputValue}
               placeholder={t("Search")}
@@ -212,8 +216,9 @@ const SearchButton = ({
                           />
                         </picture>
                       </div>
-                      <div className="flex flex-col flex-auto pl-3">
+                      <div className="flex flex-col flex-auto pl-3 text-lg">
                         <span
+                        className="line-clamp-2 w-full text-base sm:text-lg tracking-wide capitalize m-0"
                           dangerouslySetInnerHTML={{
                             __html: title.replaceAll(
                               new RegExp(addAccentVietNamese(inputValue), "gi"),
@@ -223,7 +228,20 @@ const SearchButton = ({
                             ),
                           }}
                         ></span>
-                        {/* <span>30000k</span> */}
+                        <span className="flex items-center text-base  sm:text-base font-semibold h-fit w-full italic text-price [text-shadow:0px_0px_black]">
+                          {item.price && item.price > 0 ? (
+                            <>
+                              {item.price
+                                .toString()
+                                .replace(/\B(?=(\d{3})+(?!\d))/gm, ".")}{" "}
+                              {lang === "en" ? "VND" : "đ"}
+                            </>
+                          ) : (
+                            <>
+                              {t("ContactForPrice")}
+                            </>
+                          )}
+                        </span>
                       </div>
                     </div>
                   </Link>

@@ -1,18 +1,18 @@
 "use client";
-import { getCookies, getCookie, setCookie, deleteCookie } from "cookies-next";
 import Link from "next/link";
 import { listRoute } from "@/map-route";
-import { useParams, useSelectedLayoutSegments } from "next/navigation";
+import { useSelectedLayoutSegments } from "next/navigation";
 import { RootState, store, useAppSelector } from "@/lib/redux/store";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import ViFlag from "@/assets/gif/vi-flag.gif";
+import EnFlag from "@/assets/gif/en-flag.gif";
 
 const SwitchLanguage = ({
   className,
 }: {
   className?: React.HTMLProps<HTMLElement>["className"];
 }) => {
-  const params = useParams();
   const urlSegments = useSelectedLayoutSegments();
   const slugCategoryTransDynamic = useAppSelector(
     (state: RootState) => state.router.slugCategoriesTrans
@@ -33,53 +33,45 @@ const SwitchLanguage = ({
         )}
       >
         <Link
-          href={
-            "/" +
-            urlSegments
-              .map((item) => {
-                const routeTrans = listRouteTrans.find((rou) => {
-                  return rou.enSlug == item;
-                })?.vnSlug;
+          href={`/${urlSegments
+            .map((item) => {
+              const routeTrans = listRouteTrans.find((rou) => {
+                return rou.enSlug == item;
+              })?.vnSlug;
 
-                return routeTrans ? routeTrans : item;
-              })
-              .join("/")
-          }
+              return routeTrans ? routeTrans : item;
+            })
+            .join("/")}`}
           className="flex flex-row justify-center items-center"
         >
           <Image
-            src={
-              "https://res.cloudinary.com/flame-media/image/upload/v1696660624/dev/gif/g38opy7jqwm9ojrm1tlr.gif"
-            }
+            loading="eager"
+            src={ViFlag}
             width={40}
             height={30}
             className="min-w-[40px] h-auto pl-[1px]"
-            alt="vi"
+            alt="Nông sản Flame | Nông sản Việt"
             unoptimized
           />
         </Link>
         <Link
-          href={
-            "/en/" +
-            urlSegments
-              .map((item) => {
-                const routeTrans = listRouteTrans.find((rou) => {
-                  return rou.vnSlug == item;
-                })?.enSlug;
-                return routeTrans ? routeTrans : item;
-              })
-              .join("/")
-          }
+          href={`/en/${urlSegments
+            .map((item) => {
+              const routeTrans = listRouteTrans.find((rou) => {
+                return rou.vnSlug == item;
+              })?.enSlug;
+              return routeTrans ? routeTrans : item;
+            })
+            .join("/")}`}
           className="flex flex-row justify-center items-center"
         >
           <Image
-            src={
-              "https://res.cloudinary.com/flame-media/image/upload/v1696660625/dev/gif/ek7affoa6zu5korzc9tj.gif"
-            }
+            loading="eager"
+            src={EnFlag}
             width={40}
             height={30}
             className="min-w-[40px] h-auto pl-[1px]"
-            alt="en"
+            alt="Flame Agricultural"
             unoptimized
           />
         </Link>

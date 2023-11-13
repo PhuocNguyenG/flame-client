@@ -1,10 +1,8 @@
-import ComingSoon from "@/components/coming-soon";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { getIntroduce } from "@/lib/api/server-side";
 import { useTransServer } from "@/lib/i18n/server";
 import { Locale } from "@/lib/i18n/setting";
 import { Metadata } from "next";
-import Image from "next/image";
 
 export async function generateMetadata({
   params: { lang },

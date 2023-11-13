@@ -52,11 +52,13 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                     {cateName}
                   </Link>
                 </div>
-                <div className="hover:underline hover:underline-offset-2 ">
-                  <Link href={cateHref} lang={lang}>
-                    {t("More")} {"->"}
-                  </Link>
-                </div>
+                {listProduct?.length > 4 && (
+                  <div className="hover:underline hover:underline-offset-2 ">
+                    <Link href={cateHref} lang={lang}>
+                      {t("More")} {"->"}
+                    </Link>
+                  </div>
+                )}
               </div>
               <div className="h-fit py-4 sm:p-5">
                 <div className="grid grid-cols-[repeat(auto-fill,minmax(158px,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-3 sm:gap-5 list-none p-0 m-0">
@@ -85,8 +87,9 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                             priority
                             src={item.banner}
                             alt={detail.name}
+                            loading="eager"
                             className="w-full min-h-[160px] h-fit max-h-[220px] object-contain rounded-md duration-500"
-                            sizes="(max-width: 800px) 50vw, (max-width: 1060px) 33vw, 25vw"
+                            sizes="(min-width: 800px) 20vw, (min-width: 1060px) 30vw, 45vw"
                             width={200}
                             height={200}
                           />
@@ -154,17 +157,22 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                 })}
                 {exportCates.length > 2 ? <div>...</div> : ""}
               </div>
-              <Separator
-                orientation={"vertical"}
-                className="bg-primary h-[unset] w-[2px] max480:hidden"
-              />
-              <Link
-                href={`/export`}
-                lang={lang}
-                className="hover:underline hover:underline-offset-2"
-              >
-                {t("More")} {"->"}
-              </Link>
+              {exportItems?.length > 4 && (
+                <>
+                  <Separator
+                    orientation={"vertical"}
+                    className="bg-primary h-[unset] w-[2px] max480:hidden"
+                  />
+
+                  <Link
+                    href={`/export`}
+                    lang={lang}
+                    className="hover:underline hover:underline-offset-2"
+                  >
+                    {t("More")} {"->"}
+                  </Link>
+                </>
+              )}
             </div>
           </div>
           <div className="h-fit py-4 sm:p-5">
@@ -190,10 +198,12 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                       className="flex items-center h-full w-full rounded-md relative p-3"
                     >
                       <Image
+                        priority
+                        loading="eager"
                         src={item.banner}
                         alt={detail.name}
-                        sizes="(max-width: 800px) 50vw, (max-width: 1060px) 33vw, 25vw"
-                        className="w-full min-h-[160px] h-auto max-h-[240px]  object-contain rounded-md duration-500"
+                        sizes="(max-width: 800px) 45vw, (max-width: 1060px) 30vw, 20vw"
+                        className="w-full min-h-[160px] h-auto max-h-[240px] object-contain rounded-md duration-500"
                         width={200}
                         height={200}
                       />

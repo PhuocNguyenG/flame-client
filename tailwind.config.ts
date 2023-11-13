@@ -18,12 +18,12 @@ module.exports = {
     },
     screens: {
       max375: { max: "375px" },
-
       min376: "376px",
+      // => @media (min-width: 376px) { ... }
 
       max480: { max: "480px" },
-
       min481: "481px",
+      // => @media (min-width: 481px) { ... }
 
       maxSm: { max: "639px" },
       sm: "640px",
@@ -33,8 +33,6 @@ module.exports = {
       // => @media (min-width: 768px) { ... }
 
       max800: { max: "800px" },
-      // => @media (max-width: 8001px) { ... }
-
       min801: "801px",
       // => @media (min-width: 801px) { ... }
 
@@ -71,8 +69,8 @@ module.exports = {
           DEFAULT: "rgb(var(--logo-text))",
           foreground: "rgb(var(--logo-foreground))",
         },
-        price:{
-          DEFAULT:"rgb(var(--price))"
+        price: {
+          DEFAULT: "rgb(var(--price))",
         },
         destructive: {
           DEFAULT: "rgb(var(--destructive))",
@@ -125,16 +123,15 @@ module.exports = {
       },
     },
     fontSize: {
-      xs: ['0.75rem', '1rem'],
-      sm: ['0.875rem', '1.25rem'],
-      base: ['1rem', '1.5rem'],
-      lg: ['1.125rem', '1.5rem'],
-      xl: ['1.25rem', '1.75rem'],
-      "2xl": ['1.5rem', '2rem'],
-      "3xl": ['1.875rem', '2.25rem'],
-      "4xl": ['2.25rem', '2.5rem'],
-      
-    }
+      xs: ["0.75rem", "1rem"],
+      sm: ["0.875rem", "1.25rem"],
+      base: ["1rem", "1.5rem"],
+      lg: ["1.125rem", "1.5rem"],
+      xl: ["1.25rem", "1.75rem"],
+      "2xl": ["1.5rem", "2rem"],
+      "3xl": ["1.875rem", "2.25rem"],
+      "4xl": ["2.25rem", "2.5rem"],
+    },
   },
   plugins: [
     plugin(({ addUtilities }: any) => {

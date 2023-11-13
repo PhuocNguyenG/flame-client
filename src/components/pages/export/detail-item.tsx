@@ -4,13 +4,11 @@ import {
 } from "@/lib/api/server-side";
 import { Locale } from "@/lib/i18n/setting";
 import { setSlugProductDetailTrans } from "@/lib/redux/slice/router";
-import { store } from "@/lib/redux/store";
 import { BreadcrumbExport } from "./breadcrumb";
 import { useTransServer } from "@/lib/i18n/server";
 import { notFound } from "next/navigation";
 import { CarouselDetailItem } from "./carousel-item-detail";
 import { SetStateToClient } from "../../set-state-client";
-import Script from "next/script";
 import { Popover, PopoverContent, PopoverTrigger } from "../../ui/popover";
 import { WhatsAppButton } from "../../button/whatsapp";
 import { ZaloButton } from "../../button/zalo";

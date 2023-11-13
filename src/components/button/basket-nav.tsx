@@ -21,12 +21,13 @@ const Basket = () => {
   return (
     <TooltipProvider delayDuration={300}>
       <Tooltip>
-        <TooltipTrigger className="transition-all duration-300 min-w-[23px] min-h-[23px] none-select-text" aria-label="basket">
+        <TooltipTrigger className="transition-all duration-300 min-w-[23px] min-h-[23px] none-select-text" aria-label="0, basket-button" >
           <Link
             href={"/cart"}
             lang={lang}
-            className="w-[25px] h-[25px] relative"
+            className="w-[25px] h-[25px] relative block"
           >
+            
             <Badge
               className={`absolute right-[-5px] bottom-[-10px] border border-primary-foreground`}
             >

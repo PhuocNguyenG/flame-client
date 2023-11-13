@@ -3,8 +3,7 @@ import { getListCateProduct } from "@/lib/api/server-side";
 import SearchItem from "./list-item";
 
 export default async function SearchPage({ lang }: { lang: Locale }) {
-  const fetchCategory = getListCateProduct();
-  const fetchData = await Promise.all([fetchCategory]);
+  const fetchData = await Promise.all([getListCateProduct()]);
   const dataCategory = fetchData[0].Product;
 
   return (

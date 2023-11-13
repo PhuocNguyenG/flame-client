@@ -79,15 +79,22 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      title: lang === "en" ? product.en.name : product.vn.name,
+      title:
+        lang === "en"
+          ? `${product.en.name.replace(
+              /[!@#$%^&*_+\-=\[\]{};':"\\|,.<>\/?]/g,
+              ""
+            )} - Flame agricultural`
+          : `${product.vn.name.replace(
+              /[!@#$%^&*_+\-=\[\]{};':"\\|,.<>\/?]/g,
+              ""
+            )} - Nông sản Flame`,
       description:
         lang === "en"
           ? product.en.description.replace(/<[^>]+>/g, "")
           : product.vn.description.replace(/<[^>]+>/g, ""),
       url: urlP,
-      siteName: lang === "en" ? "Flame agricultural" : "Nông sản Flame",
       images: listImgResult,
-      locale: lang === "en" ? "en_US" : "vi_VN",
       type: "article",
     },
   };

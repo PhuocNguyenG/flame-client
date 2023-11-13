@@ -21,6 +21,17 @@ export default async function Footer({ lang }: { lang: Locale }) {
   const { t } = fetchData[0];
   const products = fetchData[1].Product;
 
+  const informationList = [
+    {
+      href: "/introduce",
+      nameTrans: "Introduce",
+    },
+    {
+      href: "/privacy-policy",
+      nameTrans: "PrivacyPolicy",
+    },
+  ];
+
   return (
     <footer className="flex flex-col w-full h-fit bg-[#140101f2] text-secondary-foreground !pt-5">
       <div className="w-full flex-row hidden md:!flex container [&_h2]:text-primary-foreground [&_h2]:text-lg [&_h2]:font-semibold [&_h2]:mb-2 mb-4">
@@ -40,11 +51,15 @@ export default async function Footer({ lang }: { lang: Locale }) {
             {t("Export")}
           </Link>
         </div>
-        <div className="max-w-[400px] w-1/3  [&_a]:text-secondary-foreground/70 [&>a:hover]:text-secondary-foreground [&_a]:transition-all [&_a]:duration-300 [&_a]:w-fit">
+        <div className="flex flex-col gap-1 max-w-[400px] w-1/3 [&_a]:text-secondary-foreground/70 [&>a:hover]:text-secondary-foreground [&_a]:transition-all [&_a]:duration-300 [&_a]:w-fit">
           <h2>{t("Information")}</h2>
-          <Link href={"/introduce"} lang={lang}>
-            {t("Introduce")}
-          </Link>
+          {informationList.map((item) => {
+            return (
+              <Link href={item.href} lang={lang} key={item.href}>
+                {t(item.nameTrans)}
+              </Link>
+            );
+          })}
         </div>
         <div className="text-right ml-auto w-1/3 [&_a]:text-gray-400 [&>a:hover]:text-secondary-foreground [&_a]:transition-all [&_a]:w-fit">
           <h2>{t("Contact")}</h2>
@@ -65,9 +80,18 @@ export default async function Footer({ lang }: { lang: Locale }) {
           </AccordionTrigger>
           <AccordionContent>
             <div className="flex flex-col gap-1 text-base text-secondary-foreground/80">
-              <Link href={"/introduce"} lang={lang} className="w-fit">
-                {t("Introduce")}
-              </Link>
+              {informationList.map((item) => {
+                return (
+                  <Link
+                    href={item.href}
+                    lang={lang}
+                    key={item.href}
+                    className="w-fit"
+                  >
+                    {t(item.nameTrans)}
+                  </Link>
+                );
+              })}
             </div>
           </AccordionContent>
         </AccordionItem>
@@ -123,7 +147,7 @@ export default async function Footer({ lang }: { lang: Locale }) {
           </p>
         </div>
       </div>
-      <Separator className="w-full bg-primary-foreground/10"/>
+      <Separator className="w-full bg-primary-foreground/10" />
       <div className="w-full flex-row hidden sm:flex container text-secondary-foreground/80 py-3 justify-center">
         ©{new Date().getFullYear()} - {t("NameCompany")}
       </div>
