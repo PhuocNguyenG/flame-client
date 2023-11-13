@@ -5,23 +5,16 @@ import { Locale } from "@/lib/i18n/setting";
 import dynamic from "next/dynamic";
 const TopNav = dynamic(() => import("./top-nav"));
 
-const NavBar = async ({
-  children,
-  lang,
-}: {
-  children: React.ReactNode;
-  lang: Locale;
-}) => {
+const NavBar = async ({ lang }: { lang: Locale }) => {
   const itemCate = getListCateProduct();
   const data = await Promise.all([itemCate]);
 
   return (
     <>
-      <TopNav lang={lang} />
-      <Suspense>
+      <div className="max800:min-h-[50px] min-h-[112px]">
+        <TopNav lang={lang} />
         <MainNavBar cateProduct={data[0].Product} cateExport={data[0].Export} />
-      </Suspense>
-      {children}
+      </div>
     </>
   );
 };
