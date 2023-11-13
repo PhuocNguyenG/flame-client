@@ -76,13 +76,13 @@ const SideNav = ({
         />
         <Link lang={lang} href={"/"} className="h-fit w-fit">
           <Image
-            priority
+          priority
             src={FlameLogoSimple}
             alt={lang === "en" ? "Flame Agricultural" : "Nông sản Flame"}
             sizes="45px"
             width={45}
-            height={30}
-            className="min-w-[45px]"
+            height={45}
+            className="min-w-[45px] max-w-[45px]"
           />
         </Link>
       </div>
