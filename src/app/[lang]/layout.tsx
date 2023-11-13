@@ -10,13 +10,15 @@ const Toaster = dynamic(() => import("@/components/ui/toaster"));
 const FloatButton = dynamic(
   () => import("@/components/button/group-float-button")
 );
-import { Locale } from "@/lib/i18n/setting";
+import { Locale, locales } from "@/lib/i18n/setting";
 import ScriptConfig from "@/script-config";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export async function generateStaticParams() {
-  return [{ lang: "vi" }, { lang: "en" }];
+  return locales.map((lang) => {
+    lang;
+  });
 }
 
 export async function generateMetadata({

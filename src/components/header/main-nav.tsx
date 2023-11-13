@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import dynamic from "next/dynamic";
 const AccountDropdown = dynamic(() => import("../user/top-nav-dropdown"));
-const SearchButton = dynamic(() => import("../button/search-nav"));
+import SearchButton from "../button/search-nav";
 const Basket = dynamic(() => import("../button/basket-nav"));
 const SwitchLanguage = dynamic(() => import("../button/switch-language"));
 const SideNav = dynamic(() => import("./side-nav"));
@@ -24,11 +24,8 @@ import { useTransClient } from "@/lib/i18n/client";
 import { usePathname, useSearchParams } from "next/navigation";
 import Link from "../link";
 import { TypeItemCategoryProduct } from "@/lib/type";
-import MapMarkedIcon from "@/assets/icon/map-marked.svg";
-import Image from "next/image";
 import { setSlugCategoriesTrans } from "@/lib/redux/slice/router";
 import { RootState, useAppDispatch } from "@/lib/redux/store";
-import { Separator } from "../ui/separator";
 import HotLine from "./hot-line";
 import LogoHeader from "./logo-large";
 import LoginModal from "../user/login-modal";
@@ -445,32 +442,23 @@ const ListItem = React.forwardRef<
 ListItem.displayName = "ListItem";
 
 const useWindowSize = () => {
-  // Initialize state with undefined width/height so server and client renders match
-  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
   const [windowSize, setWindowSize] = React.useState({
     width: 0,
     height: 0,
   });
 
   React.useEffect(() => {
-    // only execute all the code below in client side
-    // Handler to call on window resize
     function handleResize() {
-      // Set window width/height to state
       setWindowSize({
         width: window.innerWidth,
         height: window.innerHeight,
       });
     }
 
-    // Add event listener
     window.addEventListener("resize", handleResize);
 
-    // Call handler right away so state gets updated with initial window size
     handleResize();
-
-    // Remove event listener on cleanup
     return () => window.removeEventListener("resize", handleResize);
-  }, []); // Empty array ensures that effect is only run on mount
+  }, []);
   return windowSize;
 };
