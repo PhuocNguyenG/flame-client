@@ -89,7 +89,7 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                             alt={detail.name}
                             loading="eager"
                             className="w-full min-h-[160px] h-fit max-h-[220px] object-contain rounded-md duration-500"
-                            sizes="(min-width: 800px) 20vw, (min-width: 1060px) 30vw, 45vw"
+                            sizes="(max-width: 800px) 40vw, (max-width: 1060px) 30vw, 20vw"
                             width={200}
                             height={200}
                           />
@@ -202,7 +202,7 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                         loading="eager"
                         src={item.banner}
                         alt={detail.name}
-                        sizes="(max-width: 800px) 45vw, (max-width: 1060px) 30vw, 20vw"
+                        sizes="(max-width: 800px) 40vw, (max-width: 1060px) 30vw, 20vw"
                         className="w-full min-h-[160px] h-auto max-h-[240px] object-contain rounded-md duration-500"
                         width={200}
                         height={200}

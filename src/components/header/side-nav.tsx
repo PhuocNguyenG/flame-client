@@ -76,7 +76,8 @@ const SideNav = ({
         />
         <Link lang={lang} href={"/"} className="h-fit w-fit">
           <Image
-            loading="lazy"
+            priority
+            loading="eager"
             src={FlameLogoSimple}
             alt={lang === "en" ? "Flame Agricultural" : "Nông sản Flame"}
             sizes="45px"

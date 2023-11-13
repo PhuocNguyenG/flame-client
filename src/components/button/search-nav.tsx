@@ -58,14 +58,13 @@ const SearchButton = ({
         setShowSearchBtn(false);
       }
     });
-    
   }, []);
   React.useEffect(() => {
-    if(keySearch){
-      setInputValue(keySearch)
+    if (keySearch) {
+      setInputValue(keySearch);
     }
-// eslint-disable-next-line react-hooks/exhaustive-deps
-}, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   React.useEffect(() => {
     let searchTimeout: string | number | NodeJS.Timeout | undefined;
@@ -222,7 +221,7 @@ const SearchButton = ({
                       </div>
                       <div className="flex flex-col flex-auto pl-3 text-lg">
                         <span
-                        className="line-clamp-2 w-full text-base sm:text-lg tracking-wide capitalize m-0"
+                          className="line-clamp-2 w-full text-base sm:text-lg tracking-wide capitalize m-0"
                           dangerouslySetInnerHTML={{
                             __html: title.replaceAll(
                               new RegExp(addAccentVietNamese(inputValue), "gi"),
@@ -241,9 +240,7 @@ const SearchButton = ({
                               {lang === "en" ? "VND" : "đ"}
                             </>
                           ) : (
-                            <>
-                              {t("ContactForPrice")}
-                            </>
+                            <>{t("ContactForPrice")}</>
                           )}
                         </span>
                       </div>
