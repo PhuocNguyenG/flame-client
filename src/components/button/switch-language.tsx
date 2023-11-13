@@ -51,7 +51,7 @@ const SwitchLanguage = ({
             width={40}
             height={30}
             className="min-w-[40px] h-auto pl-[1px]"
-            alt="Nông sản Flame | Nông sản Việt"
+            alt="Nông sản Flame"
             unoptimized
           />
         </Link>

@@ -26,7 +26,7 @@ function LogoHeader({
       >
         <Image
           loading="eager"
-          alt={lang === "en" ? "Flame Agricultural" : "Nông sản Flame"}
+          alt={"Flame logo"}
           src={FlameLogo}
           height={90}
           width={90}

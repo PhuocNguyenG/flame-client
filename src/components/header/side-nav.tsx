@@ -79,7 +79,7 @@ const SideNav = ({
             priority
             loading="eager"
             src={FlameLogoSimple}
-            alt={lang === "en" ? "Flame Agricultural" : "Nông sản Flame"}
+            alt={"Flame logo"}
             sizes="45px"
             width={45}
             height={45}
