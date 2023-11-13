@@ -16,9 +16,7 @@ import ScriptConfig from "@/script-config";
 const inter = Inter({ subsets: ["latin"] });
 
 export async function generateStaticParams() {
-  return locales.map((lang) => {
-    lang;
-  });
+  return locales.map((lang) => ({ lang }));
 }
 
 export async function generateMetadata({
