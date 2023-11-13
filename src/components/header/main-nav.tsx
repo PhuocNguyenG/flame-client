@@ -40,8 +40,6 @@ export function MainNavBar({
 }) {
   const pathname = usePathname();
   const lang = getLangByPathname(pathname);
-  const searchParams = useSearchParams();
-  const keySearch = searchParams.get("s") || "";
   const { t } = useTransClient(lang);
   const dispatch = useAppDispatch();
   const dimension = useWindowSize();
@@ -51,7 +49,7 @@ export function MainNavBar({
   const [value, setValue] = React.useState<string>();
   const [activeTrigger, setActiveTrigger] = React.useState<HTMLDivElement>();
   const [contentTrigger, setContentTrigger] = React.useState<HTMLDivElement>();
-  const [searchInputValue, setSearchInputValue] = React.useState(keySearch);
+  const [searchInputValue, setSearchInputValue] = React.useState("");
   nProgress.done();
 
   React.useEffect(() => {

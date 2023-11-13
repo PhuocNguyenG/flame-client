@@ -39,6 +39,7 @@ const SearchButton = ({
   const pathname = usePathname();
   const route = useRouter();
   const searchParams = useSearchParams();
+  const keySearch = searchParams.get("s") || "";
   const [open, setOpen] = useState(false);
   const { t } = useTransClient(lang);
   const [showSearchBtn, setShowSearchBtn] = useState(false);
@@ -57,6 +58,9 @@ const SearchButton = ({
         setShowSearchBtn(false);
       }
     });
+    if(keySearch){
+      setInputValue(keySearch)
+    }
   }, []);
 
   React.useEffect(() => {
