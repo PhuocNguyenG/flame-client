@@ -117,7 +117,7 @@ export default function Page({
   return (
     <>
       <div className="container flex flex-col w-full h-full">
-        <div className="flex flex-col w-full h-fit  ">
+        <div className="flex flex-col w-full h-fit ">
           <ItemDetailExport lang={lang} category={category} slug={slug} />
         </div>
       </div>

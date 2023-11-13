@@ -80,7 +80,7 @@ export default async function RootLayout({
               showSpinner={false}
             />
             <NavBar lang={lang}>
-              <main>{children}</main>
+              <main className="min-h-40vh">{children}</main>
               <Toaster />
               <FloatButton />
               <Footer lang={lang} />

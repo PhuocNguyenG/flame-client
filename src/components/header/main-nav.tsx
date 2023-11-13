@@ -100,28 +100,6 @@ export function MainNavBar({
 
   return (
     <>
-      <div className="h-[28px] w-full bg-primary max800:hidden">
-        <div className="container h-full flex flex-row flex-wrap justify-between items-center text-secondary-foreground text-sm font-medium">
-          <div className=""></div>
-          <div className="flex flex-row flex-wrap h-full items-center justify-center gap-2 ">
-            <Image
-              loading="lazy"
-              src={MapMarkedIcon}
-              alt="Map marker"
-              width={18}
-              height={18}
-              sizes="30"
-              className="h-auto opacity-80"
-              unoptimized
-            />
-            <p>{t("AddressDetail")}</p>
-            <Separator
-              orientation="vertical"
-              className="bg-secondary-foreground h-4/6"
-            />
-          </div>
-        </div>
-      </div>
       <div className="flex flex-row gap-5 max800:hidden h-[112px] items-center justify-around w-full container">
         <LogoHeader lang={lang} />
 

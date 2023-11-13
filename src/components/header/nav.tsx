@@ -2,6 +2,8 @@ import React, { Suspense } from "react";
 import { MainNavBar } from "./main-nav";
 import { getListCateProduct } from "@/lib/api/server-side";
 import { Locale } from "@/lib/i18n/setting";
+import dynamic from "next/dynamic";
+const TopNav = dynamic(() => import("./top-nav"));
 
 const NavBar = async ({
   children,
@@ -15,6 +17,7 @@ const NavBar = async ({
 
   return (
     <>
+      <TopNav lang={lang} />
       <Suspense>
         <MainNavBar cateProduct={data[0].Product} cateExport={data[0].Export} />
       </Suspense>
