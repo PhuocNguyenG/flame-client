@@ -58,10 +58,14 @@ const SearchButton = ({
         setShowSearchBtn(false);
       }
     });
+    
+  }, []);
+  React.useEffect(() => {
     if(keySearch){
       setInputValue(keySearch)
     }
-  }, []);
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, [])
 
   React.useEffect(() => {
     let searchTimeout: string | number | NodeJS.Timeout | undefined;

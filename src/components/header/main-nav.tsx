@@ -21,7 +21,7 @@ import Basket from "../button/basket-nav";
 import SwitchLanguage from "../button/switch-language";
 const SideNav = dynamic(() => import("./side-nav"));
 import { useTransClient } from "@/lib/i18n/client";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Link from "../link";
 import { TypeItemCategoryProduct } from "@/lib/type";
 import { setSlugCategoriesTrans } from "@/lib/redux/slice/router";
@@ -99,13 +99,15 @@ export function MainNavBar({
         <LogoHeader lang={lang} />
 
         <div className="max-w-[500px] lg:w-[inherit] w-[28%]">
-          <SearchButton
-            lang={lang}
-            listCateProduct={cateProduct}
-            showOnTop
-            inputValue={searchInputValue}
-            setInputValue={setSearchInputValue}
-          />
+          <React.Suspense>
+            <SearchButton
+              lang={lang}
+              listCateProduct={cateProduct}
+              showOnTop
+              inputValue={searchInputValue}
+              setInputValue={setSearchInputValue}
+            />
+          </React.Suspense>
         </div>
 
         <HotLine lang={lang} />
@@ -385,13 +387,15 @@ export function MainNavBar({
 
           <div className="flex flex-row gap-4 lg:gap-5 items-center ml-auto my-auto ">
             <div className="flex justify-center max-w-[200px] min801:max-w-[150px] ">
-              <SearchButton
-                lang={lang}
-                listCateProduct={cateProduct}
-                inputValue={searchInputValue}
-                setInputValue={setSearchInputValue}
-                dimension={dimension}
-              />
+              <React.Suspense>
+                <SearchButton
+                  lang={lang}
+                  listCateProduct={cateProduct}
+                  inputValue={searchInputValue}
+                  setInputValue={setSearchInputValue}
+                  dimension={dimension}
+                />
+              </React.Suspense>
             </div>
             <Basket />
             {/* <div className="hidden min481:flex w-fit h-fit">
