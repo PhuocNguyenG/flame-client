@@ -11,7 +11,7 @@ const NavBar = async ({ lang }: { lang: Locale }) => {
 
   return (
     <>
-      <div className="max800:min-h-[50px] min-h-[112px]">
+      <div className="max800:min-h-[50px] max800:bg-primary bg-white min-h-[112px]">
         <TopNav lang={lang} />
         <MainNavBar cateProduct={data[0].Product} cateExport={data[0].Export} />
       </div>
