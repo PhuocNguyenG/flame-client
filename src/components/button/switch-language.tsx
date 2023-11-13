@@ -45,6 +45,7 @@ const SwitchLanguage = ({
           className="flex flex-row justify-center items-center"
         >
           <Image
+            loading="eager"
             src={ViFlag}
             width={40}
             height={30}
@@ -65,6 +66,7 @@ const SwitchLanguage = ({
           className="flex flex-row justify-center items-center"
         >
           <Image
+            loading="eager"
             src={EnFlag}
             width={40}
             height={30}
