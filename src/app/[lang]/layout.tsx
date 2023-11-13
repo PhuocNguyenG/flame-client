@@ -27,9 +27,7 @@ export async function generateMetadata({
   return {
     keywords: [
       "Nông sản flame",
-      "nong san",
       "nong san flame",
-      "flame",
       "nong san phuoc linh",
       "flame agricultural",
     ],

@@ -3,7 +3,7 @@ import { Breadcrumb } from "../../ui/breadcrumb";
 import { useTransServer } from "@/lib/i18n/server";
 import { Locale } from "@/lib/i18n/setting";
 import { TypeItemCategoryProduct } from "@/lib/type";
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 
 export const BreadcrumbExport = async ({
   lang,
@@ -24,16 +24,16 @@ export const BreadcrumbExport = async ({
     }
   }) as TypeItemCategoryProduct;
 
-  if (detailData && !categoryData) {
-    notFound();
-  }
-
   const defaultData = [
     {
       name: t("Export"),
       href: lang === "en" ? "/export" : "/xuat-khau",
     },
   ];
+  if (detailData && !categoryData) {
+    redirect(`/${lang}`);
+  }
+
   categoryData
     ? defaultData.push({
         name: lang === "en" ? categoryData.en : categoryData.vn,

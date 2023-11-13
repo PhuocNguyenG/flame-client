@@ -6,12 +6,12 @@ import { Locale } from "@/lib/i18n/setting";
 import { setSlugProductDetailTrans } from "@/lib/redux/slice/router";
 import { BreadcrumbExport } from "./breadcrumb";
 import { useTransServer } from "@/lib/i18n/server";
-import { notFound } from "next/navigation";
 import { CarouselDetailItem } from "./carousel-item-detail";
 import { SetStateToClient } from "../../set-state-client";
 import { Popover, PopoverContent, PopoverTrigger } from "../../ui/popover";
 import { WhatsAppButton } from "../../button/whatsapp";
 import { ZaloButton } from "../../button/zalo";
+import NotFoundPage from "../404";
 
 export default async function ItemDetailExport({
   lang,
@@ -34,7 +34,7 @@ export default async function ItemDetailExport({
   const { t } = fetchData[0];
   const data = fetchData[1];
   if (!data) {
-    notFound();
+    return <NotFoundPage />;
   }
   const slugExportTrans = {
     en: data.en.name,

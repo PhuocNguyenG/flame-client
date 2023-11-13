@@ -3,13 +3,13 @@ import { Locale } from "@/lib/i18n/setting";
 import { setSlugProductDetailTrans } from "@/lib/redux/slice/router";
 import { BreadcrumbProduct } from "./breadcrumb";
 import { useTransServer } from "@/lib/i18n/server";
-import { notFound } from "next/navigation";
 import { CarouselDetailItem } from "./carousel-item-detail";
 import { SetStateToClient } from "../../set-state-client";
 import { Popover, PopoverContent, PopoverTrigger } from "../../ui/popover";
 import { WhatsAppButton } from "../../button/whatsapp";
 import { ZaloButton } from "../../button/zalo";
 import Script from "next/script";
+import NotFoundPage from "../404";
 
 export default async function ItemProductDetail({
   lang,
@@ -33,7 +33,7 @@ export default async function ItemProductDetail({
   const data = fetchData[1];
 
   if (!data) {
-    notFound();
+    return <NotFoundPage />
   }
   const categoryObject = fetchData[2].Product.find(
     (cate) => cate.enSlug === data.productType

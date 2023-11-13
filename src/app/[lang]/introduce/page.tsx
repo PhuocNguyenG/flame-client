@@ -22,13 +22,11 @@ export async function generateMetadata({
     openGraph: {
       title: lang === "en" ? "Introduce" : "Giới thiệu",
       description: lang === "en" ? data.en : data.vn,
-      images: "https://cdn.flameagricultural.com/flame-simple.png",
+      images: "https://flameagricultural.com/static/flame-logo-simple.png",
       url:
         lang === "en"
           ? "https://flameagricultural.com/en/introduce"
           : "https://flameagricultural.com/gioi-thieu",
-      siteName: lang === "en" ? "Flame agricultural" : "Nông sản Flame",
-      locale: lang === "en" ? "en_US" : "vi_VN",
       type: "article",
     },
   };

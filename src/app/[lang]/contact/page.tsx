@@ -18,6 +18,7 @@ export async function generateMetadata({
       index: true,
     },
     openGraph: {
+      title: lang === "en" ? "Contact" : "Liên hệ - Nông sản Flame",
       url:
         lang === "en"
           ? "https://flameagricultural.com/en/contact"
