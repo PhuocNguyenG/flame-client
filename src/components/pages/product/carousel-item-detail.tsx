@@ -32,7 +32,7 @@ export const CarouselDetailItem = ({
         thumbs={{
           swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
         }}
-        modules={[FreeMode, Navigation, Thumbs]}
+        modules={[Navigation, Thumbs]}
         className="h-[500px] [&_.swiper-button-prev:after]:bg-white/80 [&_.swiper-button-prev:after]:p-1 [&_.swiper-button-prev:after]:rounded-md [&_.swiper-button-next:after]:bg-white/80 [&_.swiper-button-next:after]:p-1 [&_.swiper-button-next:after]:rounded-md  "
       >
         {data?.map((item, idx) => {
@@ -54,9 +54,8 @@ export const CarouselDetailItem = ({
         onSwiper={(value) => setThumbsSwiper(value)}
         spaceBetween={10}
         slidesPerView={4}
-        freeMode={true}
         watchSlidesProgress={true}
-        modules={[FreeMode, Navigation, Thumbs]}
+        modules={[ Navigation, Thumbs]}
         className="max-w-[500px] mt-[10px] [&_.swiper-slide-thumb-active]:opacity-100 [&_.swiper-slide-thumb-active]:border [&_.swiper-slide-thumb-active]:transition-opacity "
       >
         {data.map((item, idx) => {

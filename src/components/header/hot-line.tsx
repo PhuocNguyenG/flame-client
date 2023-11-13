@@ -24,6 +24,8 @@ function HotLine({
     >
       <div>
         <Image
+          priority
+          loading="eager"
           src={PhoneIcon}
           alt="Hỗ trợ khách hàng"
           sizes="30px"

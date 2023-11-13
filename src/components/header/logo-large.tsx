@@ -25,7 +25,7 @@ function LogoHeader({
         className="min-w-full block relative top-[2px] rounded-full group overflow-hidden"
       >
         <Image
-          loading="lazy"
+          loading="eager"
           alt={lang === "en" ? "Flame Agricultural" : "Nông sản Flame"}
           src={FlameLogo}
           height={90}
