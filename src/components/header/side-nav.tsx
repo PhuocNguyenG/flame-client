@@ -1,6 +1,5 @@
 "use client";
 import { Cross2Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
-import { Separator } from "../ui/separator";
 import FlameLogoSimple from "@/assets/logo/flame-logo-simple.png";
 import Image from "next/image";
 import { Locale } from "@/lib/i18n/setting";
@@ -14,12 +13,12 @@ import {
 import { useTransClient } from "@/lib/i18n/client";
 import LogoHeader from "./logo-large";
 import SwitchLanguage from "../button/switch-language";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TypeItemCategoryProduct } from "@/lib/type";
 import UserSideBarSection from "../user/side-bar-section";
 import { usePathname, useSearchParams } from "next/navigation";
 
-const SideNav = ({
+const SideNav = React.memo(function SideNav({
   lang,
   cateProduct = [],
   cateExport = [],
@@ -29,7 +28,7 @@ const SideNav = ({
   cateProduct: TypeItemCategoryProduct[];
   cateExport: TypeItemCategoryProduct[];
   callbackOpenLogin: (isOpen: boolean) => void;
-}) => {
+}) {
   const [open, setOpen] = useState(false);
   const { t } = useTransClient(lang);
   const pathname = usePathname();
@@ -184,6 +183,6 @@ const SideNav = ({
       </div>
     </>
   );
-};
+});
 
 export default SideNav;

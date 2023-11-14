@@ -13,10 +13,6 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   return {
     title: lang === "en" ? "Contact" : "Liên hệ",
-    robots: {
-      follow: true,
-      index: true,
-    },
     openGraph: {
       title: lang === "en" ? "Contact" : "Liên hệ - Nông sản Flame",
       url:

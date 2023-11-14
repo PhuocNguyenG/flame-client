@@ -12,6 +12,7 @@ function LogoHeader({
   lang: Locale;
   className?: React.HTMLProps<HTMLElement>["className"];
 }) {
+
   return (
     <div
       className={cn(

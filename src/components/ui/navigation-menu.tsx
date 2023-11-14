@@ -40,11 +40,11 @@ NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName;
 const NavigationMenuItem = NavigationMenuPrimitive.Item;
 
 const navigationMenuTriggerStyle = cva(
-  "group inline-flex h-[calc(2.25rem+8px)] w-max items-center justify-center rounded-b-md text-secondary-foreground px-4 py-0 pt-[4px] text-sm uppercase font-semibold transition-colors hover:text-secondary-foreground focus:text-secondary-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:!bg-primary-foreground data-[active]:text-primary data-[state=open]:bg-primary-foreground/10 [&>a]:h-full [&>a]:flex [&>a]:items-center none-select-text"
+  "group inline-flex h-[calc(2.25rem+8px)] w-max items-center justify-center rounded-b-md text-secondary-foreground px-4 py-0 pt-[4px] text-sm uppercase font-semibold hover:text-secondary-foreground  disabled:pointer-events-none disabled:opacity-50 data-[active]:!bg-primary-foreground data-[active]:text-primary data-[state=open]:bg-primary-foreground/10 [&>a]:h-full [&>a]:flex [&>a]:items-center none-select-text transition-all duration-300"
 );
 
 const navigationMenuActiveStyle = cva(
-  "group flex flex-col min-h-9 w-max items-center justify-center rounded-b-md text-secondary-foreground px-4 py-2 text-sm uppercase font-normal transition-colors hover:text-secondary-foreground focus:text-secondary-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:!bg-primary-foreground data-[active]:text-primary data-[active]:font-semibold data-[state=open]:bg-primary-foreground/10 none-select-text"
+  "group flex flex-col min-h-9 w-max items-center justify-center rounded-b-md text-secondary-foreground px-4 py-2 text-sm uppercase font-normal hover:text-secondary-foreground disabled:pointer-events-none disabled:opacity-50 data-[active]:!bg-primary-foreground data-[active]:text-primary data-[active]:font-semibold data-[state=open]:bg-primary-foreground/10 none-select-text transition-all duration-300"
 );
 
 const NavigationMenuTrigger = React.forwardRef<

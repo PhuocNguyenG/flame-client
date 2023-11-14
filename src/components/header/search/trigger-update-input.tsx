@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useSearchParams } from "next/navigation";
 import React from "react";
 
@@ -15,7 +15,7 @@ const UpdateSearchInput = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  return null;
+  return <></>;
 };
 
 export default UpdateSearchInput;

@@ -160,6 +160,10 @@ export interface IntroduceDetailResult {
   en: string;
   vn: string;
 }
+export interface PrivacyPolicyDetailResult {
+  en: string;
+  vn: string;
+}
 
 export interface SearchByKeyResponse {
   en: { name: string };

@@ -1,6 +1,7 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { ReadonlyURLSearchParams } from "next/navigation";
+import React from "react";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -107,3 +108,38 @@ export const ensureStartsWith = (stringToCheck: string, startsWith: string) =>
   stringToCheck.startsWith(startsWith)
     ? stringToCheck
     : `${startsWith}${stringToCheck}`;
+
+/**
+ * Remove all occurrences in the array
+ */
+export const removeAllAString = (arr: string[], val: string) => {
+  var j = 0;
+  for (var i = 0, l = arr.length; i < l; i++) {
+    if (arr[i] !== val) {
+      arr[j++] = arr[i];
+    }
+  }
+  arr.length = j;
+};
+
+export default function useWindowSize() {
+  const [dimension, setWindowSize] = React.useState({
+    width: 0,
+    height: 0,
+  });
+
+  React.useEffect(() => {
+    function handleResize() {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  return dimension;
+}

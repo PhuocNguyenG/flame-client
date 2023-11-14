@@ -35,10 +35,6 @@ export async function generateMetadata({
     robots: {
       follow: true,
       index: true,
-      googleBot: {
-        index: true,
-        follow: true,
-      },
     },
     openGraph: {
       images: "https://flameagricultural.com/static/flame-logo-simple.png",

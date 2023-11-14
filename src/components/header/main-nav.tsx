@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn, getLangByPathname, getPositionElement } from "@/lib/utils";
+import useWindowSize, { cn, getLangByPathname, getPositionElement } from "@/lib/utils";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import dynamic from "next/dynamic";
 const AccountDropdown = dynamic(() => import("../user/top-nav-dropdown"));
-import SearchDialog from "./search/dialog-input";
+import SearchDialog from "./search/input-dialog";
 import Basket from "../button/basket-nav";
 import SwitchLanguage from "../button/switch-language";
 const SideNav = dynamic(() => import("./side-nav"));
@@ -115,14 +115,16 @@ export function MainNavBar({
       <nav className="sticky flex flex-row w-full h-[60px] min801:h-[50px] bg-primary top-0 z-10 transition-all duration-500">
         <div className="flex flex-row w-full h-[60px] min801:h-[50px] justify-center items-start gap-2 container transition-all duration-500">
           {/* Side bar */}
-          <div className="hidden max800:flex w-fit h-fit my-auto">
-            <SideNav
-              lang={lang}
-              cateProduct={cateProduct}
-              cateExport={cateExport}
-              callbackOpenLogin={(isOpen) => setOpenLogin(isOpen)}
-            />
-          </div>
+          {useWindowSize().width <= 800 && (
+            <div className="hidden max800:flex w-fit h-fit my-auto">
+              <SideNav
+                lang={lang}
+                cateProduct={cateProduct}
+                cateExport={cateExport}
+                callbackOpenLogin={(isOpen) => setOpenLogin(isOpen)}
+              />
+            </div>
+          )}
           <NavigationMenu
             value={value}
             onValueChange={(value) => setValue(value)}
@@ -347,7 +349,7 @@ export function MainNavBar({
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
-              <NavigationMenuItem value={"Contact"} className="hidden lg:block">
+              <NavigationMenuItem value={"Contact"} className="hidden min801:block">
                 <Link lang={lang} legacyBehavior href="/contact" passHref>
                   <NavigationMenuLink
                     active={
@@ -439,25 +441,3 @@ const ListItem = React.forwardRef<
   );
 });
 ListItem.displayName = "ListItem";
-
-const useWindowSize = () => {
-  const [windowSize, setWindowSize] = React.useState({
-    width: 0,
-    height: 0,
-  });
-
-  React.useEffect(() => {
-    function handleResize() {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    }
-
-    window.addEventListener("resize", handleResize);
-
-    handleResize();
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-  return windowSize;
-};

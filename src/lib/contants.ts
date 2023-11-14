@@ -3,4 +3,5 @@ export const TAGS = {
   categories: "categories",
   products: "products",
   exports: "exports",
+  privacy: "privacy",
 };

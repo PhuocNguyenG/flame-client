@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "../../ui/input";
 import { Separator } from "../../ui/separator";
-import { useTranslation } from "react-i18next";
 import { useTransClient } from "@/lib/i18n/client";
 import { Locale } from "@/lib/i18n/setting";
 import { MagnifyingGlassIcon, SymbolIcon } from "@radix-ui/react-icons";
@@ -22,7 +21,7 @@ import NProgress from "nprogress";
 import CrossIcon from "../../icon/cross-25";
 import UpdateSearchInput from "./trigger-update-input";
 
-const SearchDialog = ({
+const SearchDialog = React.memo(function SearchDialog({
   lang,
   listCateProduct,
   showOnTop = false,
@@ -36,12 +35,12 @@ const SearchDialog = ({
   inputValue: string;
   setInputValue: React.Dispatch<React.SetStateAction<string>>;
   dimension?: { width: number; height: number };
-}) => {
+}) {
   const pathname = usePathname();
   const route = useRouter();
   const [open, setOpen] = useState(false);
   const { t } = useTransClient(lang);
-  const [showSearchBtn, setShowSearchBtn] = useState(false);
+  const [showSearchBtn, setShowSearchBtn] = useState(window.scrollY > 90);
   const [searchKey, setSearchKey] = useState(inputValue);
   const { data = [], isFetching } = QueryApiSearchByKey(searchKey, lang);
 
@@ -72,14 +71,20 @@ const SearchDialog = ({
     };
   }, [inputValue]);
 
-  const onSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      NProgress.start();
-      route.push(
-        `/${lang === "en" ? "en/search" : "tim-kiem"}?s=${inputValue}`
-      );
-    }
-  };
+  const onSubmit = React.useCallback(
+    (
+      e: React.KeyboardEvent<HTMLInputElement> &
+        React.ChangeEvent<HTMLInputElement>
+    ) => {
+      if (e.key === "Enter") {
+        NProgress.start();
+        route.push(
+          `/${lang === "en" ? "en/search" : "tim-kiem"}?s=${e.target.value}`
+        );
+      }
+    },
+    []
+  );
 
   return (
     <>
@@ -88,7 +93,7 @@ const SearchDialog = ({
       </Suspense>
       <Dialog open={open} onOpenChange={(isOpen) => setOpen(isOpen)}>
         <DialogTrigger
-          className={`w-full `}
+          className={`w-full none-select-text `}
           {...(dimension && dimension.width <= 800
             ? {}
             : !showOnTop
@@ -120,7 +125,7 @@ const SearchDialog = ({
               focusable={"false"}
               className={`min-w-[30px] h-8 opacity-70 ${
                 showOnTop ? "text-primary" : "text-white"
-              } focus:outline-none `}
+              } focus:outline-none !none-select-text`}
               tabIndex={-1}
             />
           </div>
@@ -166,11 +171,12 @@ const SearchDialog = ({
                   <SymbolIcon className="w-full h-full animate-spin" />
                 ) : (
                   <MagnifyingGlassIcon
-                    className="w-7 h-7 left-[-3px] top-[-3px] relative hover:cursor-pointer"
+                    className="w-7 h-7 left-[-3px] top-[-3px] relative hover:cursor-pointer block none-select-text"
                     onClick={() =>
                       onSubmit({
                         key: "Enter",
-                      } as React.KeyboardEvent<HTMLInputElement>)
+                        target: { value: inputValue },
+                      } as React.KeyboardEvent<HTMLInputElement> & React.ChangeEvent<HTMLInputElement>)
                     }
                   />
                 )}
@@ -264,6 +270,6 @@ const SearchDialog = ({
       </Dialog>
     </>
   );
-};
+});
 
 export default SearchDialog;

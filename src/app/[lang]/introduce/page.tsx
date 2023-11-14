@@ -13,15 +13,17 @@ export async function generateMetadata({
 
   return {
     title: lang === "en" ? "Introduce" : "Giới thiệu",
-    description: lang === "en" ? data.en : data.vn,
+    description:
+      lang === "en"
+        ? data.en.replace(/<[^>]+>/g, "")
+        : data.vn.replace(/<[^>]+>/g, ""),
     keywords: ["gioi thieu flame", "introduce"],
-    robots: {
-      follow: true,
-      index: true,
-    },
     openGraph: {
       title: lang === "en" ? "Introduce" : "Giới thiệu",
-      description: lang === "en" ? data.en : data.vn,
+      description:
+        lang === "en"
+          ? data.en.replace(/<[^>]+>/g, "")
+          : data.vn.replace(/<[^>]+>/g, ""),
       images: "https://flameagricultural.com/static/flame-logo-simple.png",
       url:
         lang === "en"
