@@ -4,10 +4,7 @@ const ScriptConfig = () => {
   return (
     <>
       {/* Google tag  */}
-      <Script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-QG7650LCV9"
-      />
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-QG7650LCV9" />
       <Script id="google-analytics">
         {`
           window.dataLayer = window.dataLayer || [];
@@ -18,7 +15,6 @@ const ScriptConfig = () => {
         `}
       </Script>
       <Script
-        async
         id="gtm-script"
         dangerouslySetInnerHTML={{
           __html: `setTimeout(() => {
@@ -27,7 +23,7 @@ const ScriptConfig = () => {
                 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 "https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);
               })(window,document,'script','dataLayer','GTM-MT9NB5T9');
-          }, 2000);`,
+          }, 3000);`,
         }}
       />
       {/* End Google tag */}
@@ -77,8 +73,8 @@ const ScriptConfig = () => {
               image: {
                 "@type": "ImageObject",
                 url: "https://flameagricultural.com/static/flame-logo.svg",
-                height: 500,
-                width: 500,
+                height: 100,
+                width: 100,
               },
               dateModified: new Date(),
               author: {
