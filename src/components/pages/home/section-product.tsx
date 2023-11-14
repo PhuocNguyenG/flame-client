@@ -43,7 +43,7 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
           listProduct?.length >= 1 && (
             <section className="flex flex-col w-full h-fit mb-14 " key={idx}>
               <div className="flex flex-row justify-between items-center w-full border-b-4 border-primary">
-                <div className="relative w-fit text-primary-foreground bg-primary px-4 py-1.5 md:py-2.5 text-lg font-bold rounded-t-md !before:content-none before:absolute before:top-0 before:-right-[1.2rem] before:bg-primary before:rounded-tr-sm before:h-[calc(100%)] before:w-3/4 before:skew-x-[40deg] before:z-[1] ">
+                <div className="relative w-fit text-primary-foreground bg-primary px-4 py-1.5 md:py-2.5 text-lg font-bold rounded-t-md before:absolute before:top-0 before:-right-[1.2rem] before:bg-primary before:rounded-tr-sm before:h-[calc(100%)] before:w-3/4 before:skew-x-[40deg] before:z-[1] ">
                   <Link
                     href={cateHref}
                     lang={lang}
@@ -128,7 +128,7 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
       {exportItems?.length >= 1 && (
         <section className="flex flex-col w-full h-fit mb-14 ">
           <div className="flex flex-row items-center w-full h-full border-b-4 border-primary">
-            <div className="relative w-fit text-primary-foreground bg-primary px-4 py-1.5 md:py-2.5 text-lg font-bold rounded-t-md !before:content-none before:absolute before:top-0 before:-right-[1.2rem] before:bg-primary before:rounded-tr-sm before:h-[calc(100%)] before:w-3/4 before:skew-x-[40deg] before:z-[1] h-full">
+            <div className="relative w-fit text-primary-foreground bg-primary px-4 py-1.5 md:py-2.5 text-lg font-bold rounded-t-md before:absolute before:top-0 before:-right-[1.2rem] before:bg-primary before:rounded-tr-sm before:h-[calc(100%)] before:w-3/4 before:skew-x-[40deg] before:z-[1] h-full">
               <Link
                 href={`/export`}
                 lang={lang}
