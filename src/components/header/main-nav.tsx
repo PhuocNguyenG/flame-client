@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import dynamic from "next/dynamic";
 const AccountDropdown = dynamic(() => import("../user/top-nav-dropdown"));
-import SearchButton from "../button/search-nav";
+import SearchDialog from "./search/dialog-input";
 import Basket from "../button/basket-nav";
 import SwitchLanguage from "../button/switch-language";
 const SideNav = dynamic(() => import("./side-nav"));
@@ -29,7 +29,6 @@ import { RootState, useAppDispatch } from "@/lib/redux/store";
 import HotLine from "./hot-line";
 import LogoHeader from "./logo-large";
 import LoginModal from "../user/login-modal";
-import nProgress from "nprogress";
 
 export function MainNavBar({
   cateProduct,
@@ -50,7 +49,6 @@ export function MainNavBar({
   const [activeTrigger, setActiveTrigger] = React.useState<HTMLDivElement>();
   const [contentTrigger, setContentTrigger] = React.useState<HTMLDivElement>();
   const [searchInputValue, setSearchInputValue] = React.useState("");
-  nProgress.done();
 
   React.useEffect(() => {
     const list = listRef.current;
@@ -99,15 +97,13 @@ export function MainNavBar({
         <LogoHeader lang={lang} />
 
         <div className="max-w-[500px] lg:w-[inherit] w-[28%]">
-          <React.Suspense>
-            <SearchButton
-              lang={lang}
-              listCateProduct={cateProduct}
-              showOnTop
-              inputValue={searchInputValue}
-              setInputValue={setSearchInputValue}
-            />
-          </React.Suspense>
+          <SearchDialog
+            lang={lang}
+            listCateProduct={cateProduct}
+            showOnTop
+            inputValue={searchInputValue}
+            setInputValue={setSearchInputValue}
+          />
         </div>
 
         <HotLine lang={lang} />
@@ -137,7 +133,7 @@ export function MainNavBar({
               <NavigationMenuItem value={"Home"}>
                 <Link lang={lang} legacyBehavior href="/" passHref>
                   <NavigationMenuLink
-                    active={!!["/","/vi", "/en"].find((x) => x === pathname)}
+                    active={!!["/", "/vi", "/en"].find((x) => x === pathname)}
                     className={navigationMenuTriggerStyle()}
                   >
                     {t("Home")}
@@ -389,15 +385,13 @@ export function MainNavBar({
 
           <div className="flex flex-row gap-4 lg:gap-5 items-center ml-auto my-auto ">
             <div className="flex justify-center max-w-[200px] min801:max-w-[150px] ">
-              <React.Suspense>
-                <SearchButton
-                  lang={lang}
-                  listCateProduct={cateProduct}
-                  inputValue={searchInputValue}
-                  setInputValue={setSearchInputValue}
-                  dimension={dimension}
-                />
-              </React.Suspense>
+              <SearchDialog
+                lang={lang}
+                listCateProduct={cateProduct}
+                inputValue={searchInputValue}
+                setInputValue={setSearchInputValue}
+                dimension={dimension}
+              />
             </div>
             <Basket />
             {/* <div className="hidden min481:flex w-fit h-fit">
