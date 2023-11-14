@@ -88,6 +88,7 @@ const SearchDialog = React.memo(function SearchDialog({
         );
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
 
