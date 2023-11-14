@@ -1,6 +1,6 @@
 "use client";
 import { PinTopIcon } from "@radix-ui/react-icons";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import React from "react";
 
 export const ScrollToTop = () => {

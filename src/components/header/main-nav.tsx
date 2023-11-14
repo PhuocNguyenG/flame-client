@@ -388,6 +388,7 @@ export function MainNavBar({
               <SearchDialog
                 lang={lang}
                 listCateProduct={cateProduct}
+                showOnTop={false}
                 inputValue={searchInputValue}
                 setInputValue={setSearchInputValue}
                 dimension={dimension}

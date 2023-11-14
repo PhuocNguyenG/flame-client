@@ -8,7 +8,7 @@ const Footer = dynamic(() => import("@/components/footer"));
 import NextTopLoader from "nextjs-toploader";
 const Toaster = dynamic(() => import("@/components/ui/toaster"));
 const FloatButton = dynamic(
-  () => import("@/components/button/group-float-button")
+  () => import("@/components/button/float")
 );
 import { Locale, locales } from "@/lib/i18n/setting";
 import ScriptConfig from "@/script-config";
