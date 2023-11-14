@@ -137,7 +137,9 @@ export function MainNavBar({
               <NavigationMenuItem value={"Home"}>
                 <Link lang={lang} legacyBehavior href="/" passHref>
                   <NavigationMenuLink
-                    active={!!["/", "/en"].find((x) => x == pathname)}
+                    active={
+                      !!["", "en"].find((x) => pathname.split("/").includes(x))
+                    }
                     className={navigationMenuTriggerStyle()}
                   >
                     {t("Home")}
@@ -355,7 +357,7 @@ export function MainNavBar({
                 <Link lang={lang} legacyBehavior href="/contact" passHref>
                   <NavigationMenuLink
                     active={
-                      !!["/lien-he", "/en/contact"].find((x) => x === pathname)
+                      !!["lien-he", "contact"].find((x) => pathname.split("/").includes(x))
                     }
                     className={navigationMenuTriggerStyle()}
                   >
