@@ -7,7 +7,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const product = fetchData[1];
   const mapCate = cateProduct.map((item) => ({
     url: `https://flameagricultural.com/san-pham/${item.vnSlug}`,
-    lastModified: new Date(),
+    lastModified: "2023-11-13T18:29:51.896Z",
     changeFrequency: "daily" as
       | "daily"
       | "yearly"
@@ -24,7 +24,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `https://flameagricultural.com/san-pham/${
       cateProduct.find((x) => x.enSlug === item.productType)?.vnSlug
     }/${item.vnSlug}`,
-    lastModified: new Date(),
+    lastModified: "2023-11-13T18:29:51.896Z",
     changeFrequency: "daily" as
       | "daily"
       | "yearly"
@@ -40,28 +40,30 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     {
       url: "https://flameagricultural.com",
-      lastModified: new Date(),
+      lastModified: "2023-11-13T18:29:51.896Z",
       changeFrequency: "weekly",
       priority: 1,
     },
     {
-      url: "https://flameagricultural.com/san-pham",
-      lastModified: new Date(),
+      url: "https://flameagricultural.com/gioi-thieu",
+      lastModified: "2023-11-13T18:29:51.896Z",
       changeFrequency: "weekly",
-      priority: 0.9,
+      priority: 0.8,
     },
+    {
+      url: "https://flameagricultural.com/san-pham",
+      lastModified: "2023-11-13T18:29:51.896Z",
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+
     {
       url: "https://flameagricultural.com/xuat-khau",
-      lastModified: new Date(),
+      lastModified: "2023-11-13T18:29:51.896Z",
       changeFrequency: "weekly",
       priority: 0.8,
     },
-    {
-      url: "https://flameagricultural.com/gioi-thieu",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
+
     ...mapCate,
     ...mapProduct,
   ];
