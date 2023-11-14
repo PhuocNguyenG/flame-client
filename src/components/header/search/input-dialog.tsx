@@ -40,7 +40,7 @@ const SearchDialog = React.memo(function SearchDialog({
   const route = useRouter();
   const [open, setOpen] = useState(false);
   const { t } = useTransClient(lang);
-  const [showSearchBtn, setShowSearchBtn] = useState(window.scrollY > 90);
+  const [showSearchBtn, setShowSearchBtn] = useState(false);
   const [searchKey, setSearchKey] = useState(inputValue);
   const { data = [], isFetching } = QueryApiSearchByKey(searchKey, lang);
 
@@ -56,6 +56,11 @@ const SearchDialog = React.memo(function SearchDialog({
         setShowSearchBtn(false);
       }
     });
+    if (window.scrollY > 90) {
+      setShowSearchBtn(true);
+    } else {
+      setShowSearchBtn(false);
+    }
   }, []);
 
   React.useEffect(() => {
@@ -94,7 +99,7 @@ const SearchDialog = React.memo(function SearchDialog({
       <Dialog open={open} onOpenChange={(isOpen) => setOpen(isOpen)}>
         <DialogTrigger
           className={`w-full none-select-text `}
-          {...(dimension && dimension.width <= 800
+          {...(dimension && dimension.width <= 800 && dimension.width > 100
             ? {}
             : !showOnTop
             ? { hidden: !showSearchBtn }
