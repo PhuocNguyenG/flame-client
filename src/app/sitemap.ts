@@ -7,7 +7,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const product = fetchData[1];
   const mapCate = cateProduct.map((item) => ({
     url: `https://flameagricultural.com/san-pham/${item.vnSlug}`,
-    lastModified: "2023-11-13T18:29:51.896Z",
+    lastModified: new Date().toISOString(),
     changeFrequency: "daily" as
       | "daily"
       | "yearly"
@@ -24,7 +24,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `https://flameagricultural.com/san-pham/${
       cateProduct.find((x) => x.enSlug === item.productType)?.vnSlug
     }/${item.vnSlug}`,
-    lastModified: "2023-11-13T18:29:51.896Z",
+    lastModified: new Date().toISOString(),
     changeFrequency: "daily" as
       | "daily"
       | "yearly"
@@ -40,30 +40,34 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     {
       url: "https://flameagricultural.com",
-      lastModified: "2023-11-13T18:29:51.896Z",
-      changeFrequency: "weekly",
+      lastModified: new Date().toISOString(),
+      changeFrequency: "daily",
       priority: 1,
     },
     {
       url: "https://flameagricultural.com/gioi-thieu",
-      lastModified: "2023-11-13T18:29:51.896Z",
-      changeFrequency: "weekly",
+      lastModified: new Date().toISOString(),
+      changeFrequency: "daily",
       priority: 0.8,
     },
     {
       url: "https://flameagricultural.com/san-pham",
-      lastModified: "2023-11-13T18:29:51.896Z",
-      changeFrequency: "weekly",
+      lastModified: new Date().toISOString(),
+      changeFrequency: "daily",
       priority: 0.8,
     },
-
     {
       url: "https://flameagricultural.com/xuat-khau",
-      lastModified: "2023-11-13T18:29:51.896Z",
-      changeFrequency: "weekly",
+      lastModified: new Date().toISOString(),
+      changeFrequency: "daily",
       priority: 0.8,
     },
-
+    {
+      url: "https://flameagricultural.com/chinh-sach-bao-mat",
+      lastModified: new Date().toISOString(),
+      changeFrequency: "daily",
+      priority: 0.6,
+    },
     ...mapCate,
     ...mapProduct,
   ];
