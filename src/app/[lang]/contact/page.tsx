@@ -13,8 +13,16 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   return {
     title: lang === "en" ? "Contact" : "Liên hệ",
+    description:
+      lang === "en"
+        ? "Contact Flame for discussions, clarification of inquiries, as well as to contribute user opinions aimed at improving the quality of service and products."
+        : "Liên hệ với Nông sản Flame để trao đổi, giải đáp thắc mắc cũng như đóng góp ý kiến của người dùng nhằm nâng cao chất lượng dịch vụ, sản phẩm.",
     openGraph: {
       title: lang === "en" ? "Contact" : "Liên hệ - Nông sản Flame",
+      description:
+        lang === "en"
+          ? "Contact Flame for discussions, clarification of inquiries, as well as to contribute user opinions aimed at improving the quality of service and products."
+          : "Liên hệ với Nông sản Flame để trao đổi, giải đáp thắc mắc cũng như đóng góp ý kiến của người dùng nhằm nâng cao chất lượng dịch vụ, sản phẩm.",
       url:
         lang === "en"
           ? "https://flameagricultural.com/en/contact"

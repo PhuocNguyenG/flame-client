@@ -46,7 +46,7 @@ export async function generateMetadata({
     keywords:
       lang === "en"
         ? `${cates.en} products flame agricultural`
-        : `Sản phẩm ${cates.vn}  nông sản flame`,
+        : `Sản phẩm ${cates.vn} nông sản flame`,
     openGraph: {
       title:
         lang === "en"

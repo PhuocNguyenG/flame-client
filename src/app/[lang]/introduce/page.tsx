@@ -24,7 +24,6 @@ export async function generateMetadata({
         lang === "en"
           ? data.en.replace(/<[^>]+>/g, "")
           : data.vn.replace(/<[^>]+>/g, ""),
-      images: "https://flameagricultural.com/static/flame-logo-simple.png",
       url:
         lang === "en"
           ? "https://flameagricultural.com/en/introduce"

@@ -21,9 +21,9 @@ export async function generateMetadata({
     title: lang === "en" ? `Products` : `Sản phẩm`,
     description:
       lang === "en"
-        ? `Agricultural products are provided by the Flame Agricultural brand`
-        : `Sản phẩm nông sản được cung cấp bởi thương hiệu Nông sản Flame`,
-    keywords: ["Agricultural products", "Sản phẩm nông sản"],
+        ? `Flame agricultural products provide agricultural products such as ${cates}.`
+        : `Nông sản Flame chuyên cung cấp sản phẩm về nông sản như ${cates}.`,
+    keywords: ["Agricultural products", "San pham nong san"],
     robots: {
       index: true,
       follow: true,
@@ -35,8 +35,8 @@ export async function generateMetadata({
           : `Sản phẩm - Nông sản Flame`,
       description:
         lang === "en"
-          ? `All agricultural products are selected and distributed by Flame Agricultural. | ${cates} |`
-          : `Tất cả các sản phẩm về nông sản | ${cates} |. Được chọn lọc và phân phối bởi Nông sản Flame.`,
+          ? `Flame agricultural products provide agricultural products such as ${cates}.`
+          : `Nông sản Flame chuyên cung cấp sản phẩm về nông sản như ${cates}.`,
       url: urlP,
       modifiedTime: new Date().toISOString(),
       type: "article",

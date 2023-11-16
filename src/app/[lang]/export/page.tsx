@@ -28,7 +28,7 @@ export async function generateMetadata({
       title:
         lang === "en"
           ? `Agricultural exports - Flame agricultural`
-          : `Nông sản xuất khẩu - Nông sản Flame`,
+          : `Sản phẩm nông sản xuất khẩu - Nông sản Flame`,
       description:
         lang === "en"
           ? `Products exported to countries around the world. Selected and distributed by Flame Agricultural.`
