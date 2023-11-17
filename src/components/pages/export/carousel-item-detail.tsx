@@ -29,7 +29,9 @@ export const CarouselDetailItem = ({
         loop={true}
         spaceBetween={10}
         navigation={data.length > 1 ? true : false}
-        thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
+        thumbs={{
+          swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
+        }}
         modules={[FreeMode, Navigation, Thumbs]}
         className=" h-[500px] [&_.swiper-button-prev:after]:bg-white/80 [&_.swiper-button-prev:after]:p-1 [&_.swiper-button-prev:after]:rounded-md [&_.swiper-button-next:after]:bg-white/80 [&_.swiper-button-next:after]:p-1 [&_.swiper-button-next:after]:rounded-md"
       >
@@ -41,8 +43,8 @@ export const CarouselDetailItem = ({
                 alt={alt}
                 className="m-auto object-contain w-fit h-full rounded-sm"
                 priority
-                height={500}
-                width={500}
+                fill
+                sizes="500px"
               />
             </SwiperSlide>
           );

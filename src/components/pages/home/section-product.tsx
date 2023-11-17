@@ -81,14 +81,14 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                         <Link
                           href={href}
                           lang={lang}
-                          className="flex justify-center items-center h-full w-full p-3 rounded-md"
+                          className="flex items-center h-full w-full p-3 rounded-md"
                         >
                           <Image
                             priority
                             src={item.banner}
                             alt={detail.name}
                             loading="eager"
-                            className="w-fit min-h-[160px] h-fit max-h-[220px] object-contain rounded-md duration-500"
+                            className="w-full min-h-[160px] h-fit max-h-[220px] object-contain rounded-md duration-500"
                             sizes="(max-width: 800px) 40vw, (max-width: 1060px) 30vw, 20vw"
                             width={200}
                             height={200}
