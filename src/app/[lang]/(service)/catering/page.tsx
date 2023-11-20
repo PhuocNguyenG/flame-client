@@ -5,9 +5,9 @@ import { Metadata } from "next";
 import Script from "next/script";
 
 export async function generateMetadata({
-  lang,
+  params: { lang },
 }: {
-  lang: Locale;
+  params: { lang?: Locale };
 }): Promise<Metadata> {
   return {
     title:
