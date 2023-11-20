@@ -134,7 +134,7 @@ export default async function ItemDetailExport({
       </div>
       <div className="mx-auto w-full lg:w-4/5 mb-10">
         <h2 className="flex flex-row items-center text-xl font-bold mb-2 relative">
-          <div className="absolute -left-4 h-5 w-2 bg-logo rounded-[2px]"></div>
+          <span className="absolute -left-3 h-5 w-2 bg-logo rounded-[2px]"></span>
           {t("Description")}:
         </h2>
         <div

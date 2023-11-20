@@ -91,6 +91,7 @@ export async function generateMetadata({
           : product.vn.description.replace(/<[^>]+>/g, ""),
       url: urlP,
       images: listImgResult,
+      siteName: lang === "en" ? "Flame Agricultural" : "Nông Sản Flame",
       type: "article",
     },
   };

@@ -203,7 +203,7 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                         src={item.banner}
                         alt={detail.name}
                         sizes="(max-width: 800px) 40vw, (max-width: 1060px) 30vw, 20vw"
-                        className="w-fit min-h-[160px] h-auto max-h-[240px] object-contain rounded-md duration-500"
+                        className="w-full h-full object-contain rounded-md duration-500"
                         width={200}
                         height={200}
                       />

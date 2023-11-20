@@ -30,6 +30,7 @@ export async function generateMetadata({
         lang === "en"
           ? "https://flameagricultural.com/en/privacy-policy"
           : "https://flameagricultural.com/chinh-sach-bao-mat",
+      siteName: lang === "en" ? "Flame Agricultural" : "Nông Sản Flame",
       type: "article",
     },
   };

@@ -1,7 +1,11 @@
 "use client";
 
 import * as React from "react";
-import useWindowSize, { cn, getLangByPathname, getPositionElement } from "@/lib/utils";
+import useWindowSize, {
+  cn,
+  getLangByPathname,
+  getPositionElement,
+} from "@/lib/utils";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -222,23 +226,23 @@ export function MainNavBar({
                 </NavigationMenuContent>
               </NavigationMenuItem>
 
-              {/* <NavigationMenuItem value={"Gift"}>
+              {/* <NavigationMenuItem value={"Present"}>
                 <NavigationMenuTrigger
-                  {...(!!["gift", "qua-tang-qua-bieu"].find((x) =>
+                  {...(!!["present", "qua-tang-qua-bieu"].find((x) =>
                     pathname.split("/").includes(x)
                   ) && { "data-active": true })}
                   ref={(node: any) => {
-                    if ("Gift" === value && activeTrigger !== node) {
+                    if ("Present" === value && activeTrigger !== node) {
                       setActiveTrigger(node);
                     }
                     return node;
                   }}
                 >
-                  {t("Gift_Product")}
+                  {t("Present_Product")}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent
                   ref={(node: any) => {
-                    if ("Gift" === value) {
+                    if ("Present" === value) {
                       setContentTrigger(node);
                     }
                     return node;
@@ -247,7 +251,7 @@ export function MainNavBar({
                    <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                   <li className="row-span-3">
                   <Link
-                      href={lang === "en" ? "gift" : "qua-tang-qua-bieu"}
+                      href={lang === "en" ? "Present" : "qua-tang-qua-bieu"}
                       lang={lang}
                       legacyBehavior
                       passHref
@@ -349,7 +353,10 @@ export function MainNavBar({
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
-              <NavigationMenuItem value={"Contact"} className="hidden min801:block">
+              <NavigationMenuItem
+                value={"Contact"}
+                className="hidden min801:block"
+              >
                 <Link lang={lang} legacyBehavior href="/contact" passHref>
                   <NavigationMenuLink
                     active={

@@ -39,6 +39,8 @@ export async function generateMetadata({
           : `Nông sản Flame chuyên cung cấp sản phẩm về nông sản như ${cates}.`,
       url: urlP,
       modifiedTime: new Date().toISOString(),
+      siteName: lang === "en" ? "Flame Agricultural" : "Nông Sản Flame",
+      locale: lang === "en" ? "en_US" : "vi_VN",
       type: "article",
     },
   };

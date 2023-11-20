@@ -33,7 +33,7 @@ export async function generateMetadata({
         lang === "en"
           ? `Products exported to countries around the world. Selected and distributed by Flame Agricultural.`
           : `Các sản phẩm xuất khẩu đi các nước trên thế giới. Được chọn lọc và phân phối bởi Nông sản Flame.`,
-      siteName: lang === "en" ? "Flame agricultural" : "Nông sản Flame",
+          siteName: lang === "en" ? "Flame Agricultural" : "Nông Sản Flame",
       locale: lang === "en" ? "en_US" : "vi_VN",
       type: "article",
     },

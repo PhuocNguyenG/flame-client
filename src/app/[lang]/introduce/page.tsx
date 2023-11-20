@@ -28,6 +28,7 @@ export async function generateMetadata({
         lang === "en"
           ? "https://flameagricultural.com/en/introduce"
           : "https://flameagricultural.com/gioi-thieu",
+      siteName: lang === "en" ? "Flame Agricultural" : "Nông Sản Flame",
       type: "article",
     },
   };

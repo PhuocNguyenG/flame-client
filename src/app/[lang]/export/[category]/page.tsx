@@ -57,7 +57,7 @@ export async function generateMetadata({
         lang === "en"
           ? `Export of ${cates.en.toLowerCase()} products | Products exported to countries around the world. Selected and distributed by Flame Agricultural.`
           : `Sản phẩm ${cates.vn.toLowerCase()} xuất khẩu | Sản phẩm xuất khẩu đi các nước trên thế giới. Được chọn lọc và phân phối bởi Nông sản Flame.`,
-      siteName: lang === "en" ? "Flame agricultural" : "Nông sản Flame",
+          siteName: lang === "en" ? "Flame Agricultural" : "Nông Sản Flame",
       locale: lang === "en" ? "en_US" : "vi_VN",
       type: "article",
     },

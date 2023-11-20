@@ -7,9 +7,7 @@ import RootProvider from "@/provider";
 const Footer = dynamic(() => import("@/components/footer"));
 import NextTopLoader from "nextjs-toploader";
 const Toaster = dynamic(() => import("@/components/ui/toaster"));
-const FloatButton = dynamic(
-  () => import("@/components/button/float")
-);
+const FloatButton = dynamic(() => import("@/components/button/float"));
 import { Locale, locales } from "@/lib/i18n/setting";
 import ScriptConfig from "@/script-config";
 
@@ -25,6 +23,7 @@ export async function generateMetadata({
   params: { lang?: Locale };
 }): Promise<Metadata> {
   return {
+    title: lang === "en" ? "Flame Agricultural" : "Nông sản Flame",
     keywords: [
       "Nông sản flame",
       "nong san flame",
@@ -35,12 +34,6 @@ export async function generateMetadata({
     robots: {
       follow: true,
       index: true,
-    },
-    openGraph: {
-      images: "https://flameagricultural.com/static/flame-logo-simple.png",
-      siteName: lang === "en" ? "Flame agricultural" : "Nông sản Flame",
-      locale: lang === "en" ? "en_US" : "vi_VN",
-      type: "website",
     },
   };
 }

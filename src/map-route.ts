@@ -4,28 +4,32 @@ export const listRoute = [
     vnSlug: "gioi-thieu",
   },
   {
-    enSlug: "product",
-    vnSlug: "san-pham",
-  },
-  {
-    enSlug: "gift",
-    vnSlug: "qua-tang-qua-bieu",
-  },
-  {
-    enSlug: "export",
-    vnSlug: "xuat-khau",
-  },
-  {
-    enSlug: "search",
-    vnSlug: "tim-kiem",
-  },
-  {
     enSlug: "contact",
     vnSlug: "lien-he",
   },
   {
     enSlug: "privacy-policy",
     vnSlug: "chinh-sanh-bao-mat",
+  },
+  {
+    enSlug: "product",
+    vnSlug: "san-pham",
+  },
+  {
+    enSlug: "export",
+    vnSlug: "xuat-khau",
+  },
+  {
+    enSlug: "catering",
+    vnSlug: "dich-vu-nau-tiec",
+  },
+  {
+    enSlug: "present",
+    vnSlug: "qua-tang-qua-bieu",
+  },
+  {
+    enSlug: "search",
+    vnSlug: "tim-kiem",
   },
   {
     enSlug: "cart",

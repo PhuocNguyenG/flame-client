@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Nông sản Flame",
     short_name: "Nông sản Flame",
-    description: "Nông sản Flame - Nông sản từ người Việt",
+    description: "Nông sản Flame - Cung cấp sản phẩm về nông sản",
     start_url: "/",
     display: "standalone",
     background_color: "#053729",

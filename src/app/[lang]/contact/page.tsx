@@ -27,6 +27,7 @@ export async function generateMetadata({
         lang === "en"
           ? "https://flameagricultural.com/en/contact"
           : "https://flameagricultural.com/lien-he",
+      siteName: lang === "en" ? "Flame Agricultural" : "Nông Sản Flame",
       type: "article",
     },
   };

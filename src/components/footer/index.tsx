@@ -12,6 +12,7 @@ import { WhatsAppButton } from "../button/whatsapp";
 import { ZaloButton } from "../button/zalo";
 import { getListCateProduct } from "@/lib/api/server-side";
 import { Separator } from "../ui/separator";
+import clsx from "clsx";
 
 export default async function Footer({ lang }: { lang: Locale }) {
   const fetchData = await Promise.all([
@@ -31,11 +32,34 @@ export default async function Footer({ lang }: { lang: Locale }) {
       nameTrans: "PrivacyPolicy",
     },
   ];
+  const serviceList = [
+    {
+      href: "/catering",
+      nameTrans: "HomeCatering",
+      noteTrans: "OnlyInVietnam",
+    },
+    // {
+    //   href: "/present",
+    //   nameTrans: "Present_Footer",
+    //   noteTrans: "ComingSoon",
+    // },
+  ];
 
   return (
     <footer className="flex flex-col w-full h-fit bg-[#140101f2] text-secondary-foreground !pt-5">
       <div className="w-full flex-row hidden md:!flex container [&_h2]:text-primary-foreground [&_h2]:text-lg [&_h2]:font-semibold [&_h2]:mb-2 mb-4">
-        <div className="flex flex-col gap-1 max-w-[400px] w-1/3 [&_a]:text-secondary-foreground/80 [&>a:hover]:text-secondary-foreground [&_a]:transition-all [&_a]:duration-300 [&_a]:w-fit">
+        <div className="flex flex-col gap-1 max-w-[400px] w-1/4 [&_a]:text-secondary-foreground/70 [&>a:hover]:text-secondary-foreground [&_a]:transition-all [&_a]:duration-300 [&_a]:w-fit">
+          <h2>{t("Information")}</h2>
+          {informationList.map((item) => {
+            return (
+              <Link href={item.href} lang={lang} key={item.href}>
+                {t(item.nameTrans)}
+              </Link>
+            );
+          })}
+        </div>
+
+        <div className="flex flex-col gap-1 max-w-[400px] w-1/4 [&_a]:text-secondary-foreground/80 [&>a:hover]:text-secondary-foreground [&_a]:transition-all [&_a]:duration-300 [&_a]:w-fit">
           <h2>{t("Products")}</h2>
           {products?.map((item, idx) => {
             const href = lang === "en" ? item.enSlug : item.vnSlug;
@@ -47,23 +71,36 @@ export default async function Footer({ lang }: { lang: Locale }) {
               </Link>
             );
           })}
-          <Link href={"/export"} lang={lang}>
+          <Link href={lang === "en" ? "/en/export" : "/xuat-khau"} lang={lang}>
             {t("Export")}
           </Link>
         </div>
-        <div className="flex flex-col gap-1 max-w-[400px] w-1/3 [&_a]:text-secondary-foreground/70 [&>a:hover]:text-secondary-foreground [&_a]:transition-all [&_a]:duration-300 [&_a]:w-fit">
-          <h2>{t("Information")}</h2>
-          {informationList.map((item) => {
+
+        <div className="flex flex-col gap-1 max-w-[400px] w-1/4 [&_a]:text-secondary-foreground/70 [&>a:hover]:text-secondary-foreground [&_a]:transition-all [&_a]:duration-300 [&_a]:w-fit [&_span]:text-secondary-foreground/70 [&_span]:text-[0.825rem] [&_span]:h-fit [&_span]:flex">
+          <h2>{t("Services_Footer")}</h2>
+          {serviceList.map((item) => {
             return (
-              <Link href={item.href} lang={lang} key={item.href}>
-                {t(item.nameTrans)}
-              </Link>
+              <div
+                className={clsx(
+                  "flex flex-row flex-wrap items-center gap-x-2 ",
+                  {
+                    ["[&_span]:opacity-80 [&_span]:leading-3"]: item.noteTrans,
+                  }
+                )}
+                key={item.href}
+              >
+                <Link href={item.href} lang={lang}>
+                  {t(item.nameTrans)}
+                </Link>
+                {t(item.noteTrans) != "" && <span>({t(item.noteTrans)})</span>}
+              </div>
             );
           })}
         </div>
-        <div className="text-right ml-auto w-1/3 [&_a]:text-gray-400 [&>a:hover]:text-secondary-foreground [&_a]:transition-all [&_a]:w-fit">
+
+        <div className="text-right ml-auto w-fit [&_a]:text-gray-400 [&>a:hover]:text-secondary-foreground [&_a]:transition-all [&_a]:w-fit">
           <h2>{t("Contact")}</h2>
-          <div className="flex flex-row flex-wrap w-full justify-end gap-3">
+          <div className="flex flex-row flex-nowrap w-full justify-end gap-3">
             <WhatsAppButton />
             <ZaloButton />
           </div>
@@ -116,9 +153,43 @@ export default async function Footer({ lang }: { lang: Locale }) {
                   </Link>
                 );
               })}
-              <Link href={"/export"} lang={lang} className="w-fit">
+              <Link
+                href={lang === "en" ? "/en/export" : "/xuat-khau"}
+                lang={lang}
+                className="w-fit"
+              >
                 {t("Export")}
               </Link>
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="Services">
+          <AccordionTrigger className="text-primary-foreground text-base uppercase">
+            {t("Services_Footer")}
+          </AccordionTrigger>
+          <AccordionContent>
+            <div className="flex flex-col gap-1 text-base text-secondary-foreground/80 [&_span]:text-[0.825rem] [&_span]:h-fit [&_span]:flex">
+              {serviceList.map((item) => {
+                return (
+                  <div
+                    className={clsx(
+                      "flex flex-row flex-wrap items-center gap-x-2 ",
+                      {
+                        ["[&_span]:opacity-80 [&_span]:leading-3"]:
+                          item.noteTrans,
+                      }
+                    )}
+                    key={item.href}
+                  >
+                    <Link href={item.href} lang={lang}>
+                      {t(item.nameTrans)}
+                    </Link>
+                    {t(item.noteTrans) != "" && (
+                      <span>({t(item.noteTrans)})</span>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </AccordionContent>
         </AccordionItem>
