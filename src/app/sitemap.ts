@@ -63,6 +63,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
+      url: "https://flameagricultural.com/dich-vu-nau-tiec",
+      lastModified: new Date().toISOString(),
+      changeFrequency: "daily",
+      priority: 0.8,
+    },
+    {
       url: "https://flameagricultural.com/chinh-sach-bao-mat",
       lastModified: new Date().toISOString(),
       changeFrequency: "daily",
