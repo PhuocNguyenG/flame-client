@@ -33,6 +33,7 @@ import { RootState, useAppDispatch } from "@/lib/redux/store";
 import HotLine from "./hot-line";
 import LogoHeader from "./logo-large";
 import LoginModal from "../user/login-modal";
+import nProgress from "nprogress";
 
 export function MainNavBar({
   cateProduct,
@@ -94,6 +95,7 @@ export function MainNavBar({
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cateExport, cateProduct]);
+  nProgress.done();
 
   return (
     <>
