@@ -106,10 +106,9 @@ export default async function Footer({ lang }: { lang: Locale }) {
           </div>
         </div>
       </div>
-
       <Accordion
         type="multiple"
-        className="container w-full block md:hidden mb-3 [&_svg]:text-primary-foreground"
+        className="container w-full block md:hidden mb-3 [&_svg]:text-primary-foreground underline-offset-4"
       >
         <AccordionItem value="AboutUs">
           <AccordionTrigger className="text-primary-foreground text-base uppercase">

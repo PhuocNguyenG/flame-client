@@ -13,7 +13,7 @@ export async function generateMetadata({
     title:
       lang === "en"
         ? "Flame Agricultural - Agricultural product distribution, import and export."
-        : "Nông sản Flame - Phân phối sản phẩm nông sản và xuất nhập khẩu.",
+        : "Nông sản Flame - Sản phẩm nông sản và xuất nhập khẩu.",
     description:
       lang === "en"
         ? "Flame agricultural is a supplier of agricultural products, imported and exported around the world."
@@ -22,7 +22,7 @@ export async function generateMetadata({
       title:
         lang === "en"
           ? "Flame Agricultural - Agricultural product distribution, import and export."
-          : "Nông sản Flame - Phân phối sản phẩm nông sản và xuất nhập khẩu.",
+          : "Nông sản Flame - Sản phẩm nông sản và xuất nhập khẩu.",
       description:
         lang === "en"
           ? "Flame agricultural is a supplier of agricultural products, imported and exported around the world."
