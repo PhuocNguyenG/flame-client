@@ -52,7 +52,7 @@ export async function generateMetadata({
           height: 500,
         },
       ],
-      phoneNumbers: ["097 3912839"],
+      phoneNumbers: ["0973912839"],
       authors: "Công ty TNHH TM-DV-XNK Phước Linh",
       siteName: lang === "en" ? "Flame Agricultural" : "Nông Sản Flame",
       type: "article",
@@ -152,20 +152,20 @@ export default async function Page({
                         {menu.dishes?.map((item, idx) => {
                           return (
                             <div
-                            className="flex flex-row justify-between items-center w-full border-b"
-                            key={idx}
-                          >
-                            <div className="flex flex-row flex-nowrap w-full">
-                              <div>
-                                <span className="px-1 bg-[#e4e9a8b3] rounded-sm h-fit">
-                                  {idx + 1}
-                                </span>
-                              </div>
-                              <div className="whitespace-normal">
-                                /&nbsp;{item}
+                              className="flex flex-row justify-between items-center w-full border-b"
+                              key={idx}
+                            >
+                              <div className="flex flex-row flex-nowrap w-full">
+                                <div>
+                                  <span className="px-1 bg-[#e4e9a8b3] rounded-sm h-fit">
+                                    {idx + 1}
+                                  </span>
+                                </div>
+                                <div className="whitespace-normal">
+                                  /&nbsp;{item}
+                                </div>
                               </div>
                             </div>
-                          </div>
                           );
                         })}
                       </div>
@@ -194,10 +194,11 @@ export default async function Page({
               Khai vị
             </div>
           </span>
-          <p>
+          <p className="relative block">
             🥗Món khai vị là các món dùng để mở màn bữa tiệc, là món không thể
             thiếu và thường là các món nhẹ như soup, gỏi, salad, hoặc combo khai
-            vị 2 đến 5 loại trên 1 đĩa, ….
+            vị 2 đến 5 loại trên 1 đĩa, ….{" "}
+            <span className="absolute -left-4 top-0 h-full w-2 bg-logo rounded-[2px]"></span>
           </p>
           <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-3 my-3">
             {cateringAppetizerData?.map((menu, index) => {
@@ -319,9 +320,10 @@ export default async function Page({
               Món chính
             </div>
           </span>
-          <p>
+          <p className="relative block">
             🍗Món ăn chính Khách hàng thường chọn các món ăn khô, nhiều đạm(nai,
-            gà, bò, …), món rau củ quả, món nước(lẩu cá, lẩu cua, …).
+            gà, bò, …), món rau củ quả, món nước(lẩu cá, lẩu cua, …).{" "}
+            <span className="absolute -left-4 top-0 h-full w-2 bg-logo rounded-[2px]"></span>
           </p>
           <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-3 my-3">
             {cateringMainDishesData?.map((menu, idx) => {
@@ -381,9 +383,10 @@ export default async function Page({
               Tráng miệng
             </div>
           </span>
-          <p>
+          <p className="relative block">
             🍑Để kết thúc bữa tiệc mọi người thường sẽ chọn món tráng miệng là
             trái cây, bánh plan hoặc thạch rau câu.
+            <span className="absolute -left-4 top-0 h-full w-2 bg-logo rounded-[2px]"></span>
           </p>
           <div className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-3 my-3">
             {cateringDessertData?.map((menu, idx) => {
@@ -481,7 +484,7 @@ export default async function Page({
             <p>
               - Bước 4: Đúng ngày tổ chức tiệc, dịch vụ sẽ đến nơi mà quý khách
               muốn tổ chức tiệc để chuẩn bị, setup, trang trí không gian tiệc và
-              đến giờ nhân viên sẽ lên món phục vụ quý khách
+              đến giờ nhân viên sẽ lên món phục vụ quý khách.
             </p>
             <p>
               - Bước 5: Khi xong tiệc, nhân viên của Thu Sương sẽ dọn dẹp và bàn
@@ -506,7 +509,7 @@ export default async function Page({
               🏣 <span className="font-semibold">Địa chỉ</span> : 108/14, đường
               Thạnh Xuân 21 (TX21), Phường Thạnh Xuân, Quận 12, TP.HCM{" "}
             </p>
-            <p className="font-semibold"> 🏆 UY TÍN - CHẤT LƯỢNG - TIẾT KIỆM</p>
+            <p className="font-semibold"> 🏆 CHẤT LƯỢNG - UY TÍN - TIẾT KIỆM</p>
           </div>
         </div>
       </div>

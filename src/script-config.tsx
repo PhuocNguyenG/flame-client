@@ -29,7 +29,6 @@ const ScriptConfig = () => {
       {/* End Google tag */}
 
       <script
-        async
         id="sitelinks-search-box-script"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -37,9 +36,7 @@ const ScriptConfig = () => {
             {
               "@context": "https://schema.org",
               "@type": "WebSite",
-              "@id": "#nongsanflame",
-              name: "Nông sản Flame",
-              alternateName: "Nông sản Flame",
+              name: "Nông Sản Flame",
               url: "https://flameagricultural.com",
               potentialAction: {
                 "@type": "SearchAction",
@@ -58,50 +55,6 @@ const ScriptConfig = () => {
         data-nscript="beforeInteractive"
       />
       <script
-        async
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(
-            {
-              "@context": "http://schema.org",
-              "@type": "NewsArticle",
-              mainEntityOfPage: {
-                "@type": "WebPage",
-                "@id": "https://google.com/article",
-              },
-              headline: "Nông sản Flame",
-              image: {
-                "@type": "ImageObject",
-                url: "https://flameagricultural.com/static/flame-logo.svg",
-                height: 100,
-                width: 100,
-              },
-              dateModified: new Date(),
-              author: {
-                "@type": "Person",
-                name: "Công Ty TNHH Thương Mại Dịch Vụ Xuất Nhập Khẩu Phước Linh",
-              },
-              publisher: {
-                "@type": "Organization",
-                name: "Nông sản Flame",
-                logo: {
-                  "@type": "ImageObject",
-                  url: "flameagricultural.com/static/flame-logo-simple.png",
-                  width: 100,
-                  height: 100,
-                },
-              },
-              description:
-                "Nông sản Flame | Chuyên cung cấp các sản phẩm về nông sản, xuất nhập khẩu thế giới.",
-            },
-            null,
-            "\t"
-          ),
-        }}
-        data-nscript="beforeInteractive"
-      />
-      <script
-        async
         id="logo-organization-script"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
