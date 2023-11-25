@@ -5,7 +5,7 @@ import { listRoute } from "@/map-route";
 import { usePathname } from "next/navigation";
 import { RootState, store, useAppSelector } from "@/lib/redux/store";
 import Image from "next/image";
-import { cn, removeAllAString } from "@/lib/utils";
+import { cn, removeAllSameString } from "@/lib/utils";
 import ViFlag from "@/assets/gif/vi-flag.gif";
 import EnFlag from "@/assets/gif/en-flag.gif";
 import React from "react";
@@ -26,13 +26,13 @@ const SwitchLanguage = React.memo(function SwitchLanguage({
     .concat(slugCategoryTransDynamic)
     .concat(slugDetailTransDynamic);
 
-  removeAllAString(urlSegments, "en");
+  removeAllSameString(urlSegments, "en");
 
   return (
     <>
       <div
         className={cn(
-          "flex flex-col md:flex-row flex-wrap gap-3 h-fit w-fit justify-center",
+          "flex flex-col md:flex-row flex-wrap gap-3 h-fit w-fit justify-center ",
           className
         )}
       >

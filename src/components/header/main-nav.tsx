@@ -99,7 +99,7 @@ export function MainNavBar({
 
   return (
     <>
-      <div className="flex flex-row gap-5 max800:hidden h-[112px] items-center justify-around w-full container">
+      <div className="flex flex-row gap-5 max800:hidden h-[113px] items-center justify-around w-full container">
         <LogoHeader lang={lang} />
 
         <div className="max-w-[500px] lg:w-[inherit] w-[28%]">

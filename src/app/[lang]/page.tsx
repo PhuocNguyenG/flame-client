@@ -45,9 +45,9 @@ export default async function Home({
   params: { lang: Locale };
 }) {
   return (
-    <div className="min-h-[1000px] mx-auto">
-      {/* <Carousel /> */}
-      <div className="container mt-5">
+    <div className="min-h-[1000px] mx-auto bg-[#fdf7f0]">
+      <Carousel />
+      <div className="container pt-5">
         {/* <FeaturedSection lang={lang}/> */}
         <ProductByCate lang={lang} />
       </div>

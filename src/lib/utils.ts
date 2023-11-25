@@ -112,7 +112,7 @@ export const ensureStartsWith = (stringToCheck: string, startsWith: string) =>
 /**
  * Remove all occurrences in the array
  */
-export const removeAllAString = (arr: string[], val: string) => {
+export const removeAllSameString = (arr: string[], val: string) => {
   var j = 0;
   for (var i = 0, l = arr.length; i < l; i++) {
     if (arr[i] !== val) {

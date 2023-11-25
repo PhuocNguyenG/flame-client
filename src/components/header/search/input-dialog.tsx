@@ -69,7 +69,7 @@ const SearchDialog = React.memo(function SearchDialog({
 
     searchTimeout = setTimeout(async () => {
       setSearchKey(inputValue);
-    }, 1000);
+    }, 500);
 
     return () => {
       clearTimeout(searchTimeout);
@@ -143,6 +143,22 @@ const SearchDialog = React.memo(function SearchDialog({
         >
           <DialogTitle>
             <div className="flex flex-row items-center pr-2 w-full h-fit border-2 rounded-md border-primary/50 translate">
+              <div className="w-5 h-5 shrink-0 mx-2">
+                {isFetching ? (
+                  <SymbolIcon className="w-full h-full animate-spin" />
+                ) : (
+                  <MagnifyingGlassIcon
+                    className="w-7 h-7 left-[-3px] top-[-3px] relative hover:cursor-pointer block none-select-text"
+                    onClick={() =>
+                      onSubmit({
+                        key: "Enter",
+                        target: { value: inputValue },
+                      } as React.KeyboardEvent<HTMLInputElement> & React.ChangeEvent<HTMLInputElement>)
+                    }
+                  />
+                )}
+              </div>
+              <Separator orientation="vertical" className="h-6 bg-primary" />
               <Input
                 value={inputValue}
                 placeholder={t("Search")}
@@ -170,22 +186,6 @@ const SearchDialog = React.memo(function SearchDialog({
                     document?.getElementById("input-search")?.focus();
                   }}
                 />
-              </div>
-              <Separator orientation="vertical" className="h-6 bg-primary" />
-              <div className="w-5 h-5 shrink-0 ml-2">
-                {isFetching ? (
-                  <SymbolIcon className="w-full h-full animate-spin" />
-                ) : (
-                  <MagnifyingGlassIcon
-                    className="w-7 h-7 left-[-3px] top-[-3px] relative hover:cursor-pointer block none-select-text"
-                    onClick={() =>
-                      onSubmit({
-                        key: "Enter",
-                        target: { value: inputValue },
-                      } as React.KeyboardEvent<HTMLInputElement> & React.ChangeEvent<HTMLInputElement>)
-                    }
-                  />
-                )}
               </div>
             </div>
           </DialogTitle>
