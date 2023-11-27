@@ -146,8 +146,8 @@ export const useWindowSize = () => {
 
 export const useHasFocus = () => {
   // get the initial state
-  const [focus, setFocus] = React.useState(document.hasFocus());
-
+  const [focus, setFocus] = React.useState(false);
+  
   React.useEffect(() => {
     // helper functions to update the status
     const onFocus = () => setFocus(true);
