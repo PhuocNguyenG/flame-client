@@ -10,6 +10,7 @@ import { WhatsAppButton } from "../../button/whatsapp";
 import { ZaloButton } from "../../button/zalo";
 import Script from "next/script";
 import NotFoundPage from "../404";
+import ButtonAddToBasket from "@/components/button/add-to-basket";
 
 export default async function ItemProductDetail({
   lang,
@@ -33,7 +34,7 @@ export default async function ItemProductDetail({
   const data = fetchData[1];
 
   if (!data) {
-    return <NotFoundPage />
+    return <NotFoundPage />;
   }
   const categoryObject = fetchData[2].Product.find(
     (cate) => cate.enSlug === data.productType
@@ -197,6 +198,21 @@ export default async function ItemProductDetail({
                       </div>
                     </PopoverContent>
                   </Popover>
+                  {/* <ButtonAddToBasket
+                    data={{
+                      _id: data._id,
+                      banner: data.banner,
+                      enSlug: data.enSlug,
+                      vnSlug: data.vnSlug,
+                      en: data.en,
+                      vn: data.vn,
+                      price: data.price,
+                      quantity: 1,
+                    }}
+                  >
+                    Thêm vào giỏ
+                  </ButtonAddToBasket> */}
+                 
                 </div>
               ) : (
                 <div className="flex flex-wrap items-center">

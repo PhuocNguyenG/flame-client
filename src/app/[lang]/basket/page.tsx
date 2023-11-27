@@ -9,7 +9,7 @@ export async function generateMetadata({
   params: { lang?: Locale };
 }): Promise<Metadata> {
   return {
-    title: lang === "en" ? "Cart" : "Giỏ hàng",
+    title: lang === "en" ? "Basket" : "Giỏ hàng",
     robots: {
       index: false,
       follow: false,

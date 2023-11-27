@@ -6,7 +6,7 @@ import { Inter } from "next/font/google";
 import RootProvider from "@/provider";
 const Footer = dynamic(() => import("@/components/footer"));
 import NextTopLoader from "nextjs-toploader";
-const Toaster = dynamic(() => import("@/components/ui/toaster"));
+import Toaster from "@/components/ui/toaster";
 const FloatButton = dynamic(() => import("@/components/button/float"));
 import { Locale, locales } from "@/lib/i18n/setting";
 import ScriptConfig from "@/script-config";
@@ -68,10 +68,10 @@ export default async function RootLayout({
             />
             <NavBar lang={lang} />
             <main>{children}</main>
-            <Toaster />
             <FloatButton />
             <Footer lang={lang} />
           </RootProvider>
+          <Toaster />
         </body>
       </html>
     </>

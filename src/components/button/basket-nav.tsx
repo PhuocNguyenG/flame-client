@@ -13,11 +13,14 @@ import {
   TooltipTrigger,
 } from "../ui/tooltip";
 import Link from "../link";
+import { selectBasket } from "@/lib/redux/slice/basket";
+import { useAppSelector } from "@/lib/redux/store";
 
 const Basket = () => {
   const pathname = usePathname();
   const lang = getLangByPathname(pathname);
   const { t } = useTransClient(lang);
+  const counterBasket = useAppSelector(selectBasket).length;
   return (
     <TooltipProvider delayDuration={300}>
       <Tooltip>
@@ -26,14 +29,14 @@ const Basket = () => {
           aria-label="0, basket-button"
         >
           <Link
-            href={"/cart"}
+            href={"/basket"}
             lang={lang}
             className="w-[25px] h-[25px] relative block"
           >
             <Badge
               className={`absolute right-[-5px] bottom-[-10px] border border-primary-foreground`}
             >
-              0
+              {counterBasket}
             </Badge>
             <Image
               priority

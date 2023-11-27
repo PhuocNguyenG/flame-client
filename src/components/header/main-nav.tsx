@@ -1,7 +1,8 @@
 "use client";
 
 import * as React from "react";
-import useWindowSize, {
+import {
+  useWindowSize,
   cn,
   getLangByPathname,
   getPositionElement,

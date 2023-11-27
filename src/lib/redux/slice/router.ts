@@ -3,7 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "@/lib/redux/store";
 
 // Define a type for the slice state
-interface RouterState {
+interface RouterType {
   slugCategoriesTrans: [
     { en: string; enSlug: string; vn: string; vnSlug: string }
   ];
@@ -13,7 +13,7 @@ interface RouterState {
 }
 
 // Define the initial state using that type
-const initialState: RouterState = {
+const initialState: RouterType = {
   slugCategoriesTrans: [{ en: "", enSlug: "", vn: "", vnSlug: "" }],
   slugProductDetailTrans: [
     {
@@ -32,13 +32,13 @@ export const routerSlice = createSlice({
     // (main): use for trans slug when switching lang
     setSlugCategoriesTrans: (
       state,
-      action: PayloadAction<RouterState["slugCategoriesTrans"]>
+      action: PayloadAction<RouterType["slugCategoriesTrans"]>
     ) => {
       state.slugCategoriesTrans = action.payload;
     },
     setSlugProductDetailTrans: (
       state,
-      action: PayloadAction<RouterState["slugProductDetailTrans"]>
+      action: PayloadAction<RouterType["slugProductDetailTrans"]>
     ) => {
       state.slugProductDetailTrans = action.payload;
     },
@@ -52,4 +52,4 @@ export const { setSlugCategoriesTrans, setSlugProductDetailTrans } =
 export const selectCategoryExportTrans = (state: RootState) =>
   state.router.slugCategoriesTrans;
 
-export default routerSlice.reducer;
+export const routerReducer = routerSlice.reducer;

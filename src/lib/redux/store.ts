@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
-import routerReducer from "./slice/router";
+import { routerReducer } from "./slice/router";
 import type { TypedUseSelectorHook } from "react-redux";
+import { basketReducer } from "./slice/basket";
 export const store = configureStore({
   reducer: {
     router: routerReducer,
+    basket: basketReducer,
   },
 });
 

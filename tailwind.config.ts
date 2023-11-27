@@ -114,6 +114,27 @@ module.exports = {
         shine: {
           "100%": { left: "125%" },
         },
+        circleAnimation: {
+          from: { transform: "scale(0) rotate(45deg)", opacity: 0 },
+          to: { transform: "scale(1) rotate(45deg)", opacity: 1 },
+        },
+        checkMarkAnimation: {
+          "0%": { height: 0, width: 0, opacity: 0 },
+          "50%": { height: 0, width: "6px", opacity: 1 },
+          "100%": { opacity: 1, height: " 13px" },
+        },
+        errorMarkLine1Animation: {
+          from: { transform: "scale(0) ", opacity: 0 },
+          to: { transform: "scale(1)", opacity: 1 },
+        },
+        errorMarkLine2Animation: {
+          from: { transform: "scale(0) rotate(90deg)", opacity: 0 },
+          to: { transform: "scale(1) rotate(90deg)", opacity: 1 },
+        },
+        progressToastAnimation: {
+          "0%": { width: "100%", opacity: 1 },
+          "100%": { width: "0%", opacity: 1 },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",

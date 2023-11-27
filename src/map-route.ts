@@ -32,7 +32,7 @@ export const listRoute = [
     vnSlug: "tim-kiem",
   },
   {
-    enSlug: "cart",
+    enSlug: "basket",
     vnSlug: "gio-hang",
   },
 ];

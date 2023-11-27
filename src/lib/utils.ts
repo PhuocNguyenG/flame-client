@@ -122,7 +122,7 @@ export const removeAllSameString = (arr: string[], val: string) => {
   arr.length = j;
 };
 
-export default function useWindowSize() {
+export const useWindowSize = () => {
   const [dimension, setWindowSize] = React.useState({
     width: 0,
     height: 0,
@@ -142,4 +142,29 @@ export default function useWindowSize() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
   return dimension;
-}
+};
+
+export const useHasFocus = () => {
+  // get the initial state
+  const [focus, setFocus] = React.useState(document.hasFocus());
+
+  React.useEffect(() => {
+    // helper functions to update the status
+    const onFocus = () => setFocus(true);
+    const onBlur = () => setFocus(false);
+
+    // assign the listener
+    // update the status on the event
+    window.addEventListener("focus", onFocus);
+    window.addEventListener("blur", onBlur);
+
+    // remove the listener
+    return () => {
+      window.removeEventListener("focus", onFocus);
+      window.removeEventListener("blur", onBlur);
+    };
+  }, []);
+
+  // return the status
+  return focus;
+};

@@ -5,6 +5,10 @@ import {
   cateringMainDishesData,
   cateringMenuData,
 } from "@/assets/catering-data";
+import dynamic from "next/dynamic";
+import Script from "next/script";
+import React from "react";
+import CateringPageTrigger from "@/components/pages/catering/trigger-toast";
 import {
   Accordion,
   AccordionContent,
@@ -15,13 +19,8 @@ import { Breadcrumb } from "@/components/ui/breadcrumb";
 import { useTransServer } from "@/lib/i18n/server";
 import { Locale } from "@/lib/i18n/setting";
 import { Metadata } from "next";
-import Script from "next/script";
 
-export async function generateMetadata({
-  params: { lang },
-}: {
-  params: { lang?: Locale };
-}): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   return {
     title:
       "Dịch vụ đặt, nấu tiệc tại nhà Thu Sương - Quận 12, Gò Vấp, Tân Bình - Tp.HCM",
@@ -54,7 +53,7 @@ export async function generateMetadata({
       ],
       phoneNumbers: ["0973912839"],
       authors: "Công ty TNHH TM-DV-XNK Phước Linh",
-      siteName: lang === "en" ? "Flame Agricultural" : "Nông Sản Flame",
+      siteName: "Nông Sản Flame",
       type: "article",
     },
   };
@@ -92,6 +91,7 @@ export default async function Page({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd, null, "\t") }}
       />
+      <CateringPageTrigger lang={lang} />
       <div className="container flex flex-col w-full h-full font-medium mb-2">
         <Breadcrumb data={[{ name: t("HomeCatering"), href: "/catering" }]} />
 
