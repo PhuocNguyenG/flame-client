@@ -2,7 +2,7 @@ import { getListCateProduct } from "@/lib/api/server-side";
 import { Breadcrumb } from "../../ui/breadcrumb";
 import { useTransServer } from "@/lib/i18n/server";
 import { Locale } from "@/lib/i18n/setting";
-import { TypeItemCategoryProduct } from "@/lib/type";
+import { ExportDetailResult, TypeItemCategoryProduct } from "@/lib/type";
 import { redirect } from "next/navigation";
 
 export const BreadcrumbExport = async ({
@@ -13,7 +13,7 @@ export const BreadcrumbExport = async ({
 }: {
   lang: Locale;
   category?: string;
-  detailData?: TypeItemCategoryProduct;
+  detailData?: ExportDetailResult;
   className?: React.HTMLProps<HTMLElement>["className"];
 }) => {
   const { t } = await useTransServer(lang);
@@ -45,11 +45,11 @@ export const BreadcrumbExport = async ({
     : defaultData;
   categoryData && detailData
     ? defaultData.push({
-        name: lang === "en" ? detailData.en : detailData.vn,
+        name: lang === "en" ? detailData.en.name : detailData.vn.name,
         href:
           lang === "en"
-            ? "/export/" + categoryData.enSlug + "/" + detailData.enSlug
-            : "/xuat-khau/" + categoryData.vnSlug + "/" + detailData.vnSlug,
+            ? detailData.en.slug
+            : detailData.vn.slug,
       })
     : defaultData;
 

@@ -1,4 +1,4 @@
-import ComingSoon from "@/components/coming-soon";
+import BasketPage from "@/components/pages/basket";
 import { Locale } from "@/lib/i18n/setting";
 import { Metadata } from "next";
 import React from "react";
@@ -23,8 +23,8 @@ export default async function Page({
   params: { lang: Locale };
 }) {
   return (
-    <>
-      <ComingSoon />
-    </>
+    <div className="container flex flex-col mb-5 h-full">
+      <BasketPage lang={lang} />
+    </div>
   );
 }

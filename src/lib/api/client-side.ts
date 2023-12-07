@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import * as Type from "../type";
@@ -37,6 +37,52 @@ export const QueryApiSearchByKey = (key: string, lang: string) => {
       return apiSearchByKey(key, lang).then((res) => {
         return res.result as Type.SearchByKeyResponse[];
       });
+    },
+  });
+};
+
+export const apiCity = async () => {
+  return new Promise<
+    {
+      Id: string;
+      Name: string;
+      Districts: {
+        Id: string;
+        Name: string;
+        Wards: { Id: string; Name: string; Level: string }[];
+      }[];
+    }[]
+  >((resolve) => {
+    axios
+      .get(
+        `https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json`,
+        {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json;charset=UTF-8",
+          },
+        }
+      )
+      .then((response) => {
+        resolve(response.data);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  });
+};
+/**
+ * Query search by key
+ * @param key Search string
+ * @param lang Language code
+ * @returns Array[]
+ */
+export const QueryApiCity = () => {
+  return useQuery({
+    queryKey: ["apiCity"],
+    queryFn: async () => {
+      const res = await apiCity();
+      return res || [];
     },
   });
 };

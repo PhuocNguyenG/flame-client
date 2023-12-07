@@ -2,6 +2,7 @@ import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { ReadonlyURLSearchParams } from "next/navigation";
 import React from "react";
+import { Locale } from "./i18n/setting";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -146,8 +147,8 @@ export const useWindowSize = () => {
 
 export const useHasFocus = () => {
   // get the initial state
-  const [focus, setFocus] = React.useState(false);
-  
+  const [focus, setFocus] = React.useState(true);
+
   React.useEffect(() => {
     // helper functions to update the status
     const onFocus = () => setFocus(true);
@@ -167,4 +168,28 @@ export const useHasFocus = () => {
 
   // return the status
   return focus;
+};
+
+export const convertToVND = (value: number | string) => {
+  return value?.toString().replace(/\B(?=(\d{3})+(?!\d))/gm, ".");
+};
+
+export const getFullSlugPathProduct = (
+  lang: Locale,
+  cate: string,
+  slug: string
+) => {
+  return lang === "en"
+    ? `product_${cate}_${slug}`
+    : `san-pham_${cate}_${slug}`;
+};
+
+export const getFullSlugPathExport = (
+  lang: Locale,
+  cate: string,
+  slug: string
+) => {
+  return lang === "en"
+    ? `export_${cate}_${slug}`
+    : `xuat-khau_${cate}_${slug}`;
 };

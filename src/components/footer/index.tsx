@@ -12,7 +12,7 @@ import { WhatsAppButton } from "../button/whatsapp";
 import { ZaloButton } from "../button/zalo";
 import { getListCateProduct } from "@/lib/api/server-side";
 import { Separator } from "../ui/separator";
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
 
 export default async function Footer({ lang }: { lang: Locale }) {
   const fetchData = await Promise.all([
@@ -26,6 +26,10 @@ export default async function Footer({ lang }: { lang: Locale }) {
     {
       href: "/introduce",
       nameTrans: "Introduce",
+    },
+    {
+      href: "/contact",
+      nameTrans: "Contact",
     },
     {
       href: "/privacy-policy",
@@ -81,7 +85,7 @@ export default async function Footer({ lang }: { lang: Locale }) {
           {serviceList.map((item) => {
             return (
               <div
-                className={clsx(
+                className={cn(
                   "flex flex-row flex-wrap items-center gap-x-2 ",
                   {
                     ["[&_span]:opacity-80 [&_span]:leading-3"]: item.noteTrans,
@@ -98,13 +102,13 @@ export default async function Footer({ lang }: { lang: Locale }) {
           })}
         </div>
 
-        <div className="text-right ml-auto w-fit [&_a]:text-gray-400 [&>a:hover]:text-secondary-foreground [&_a]:transition-all [&_a]:w-fit">
+        {/* <div className="text-right ml-auto w-fit [&_a]:text-gray-400 [&>a:hover]:text-secondary-foreground [&_a]:transition-all [&_a]:w-fit">
           <h2>{t("Contact")}</h2>
           <div className="flex flex-row flex-nowrap w-full justify-end gap-3">
             <WhatsAppButton />
             <ZaloButton />
           </div>
-        </div>
+        </div> */}
       </div>
       <Accordion
         type="multiple"
@@ -171,7 +175,7 @@ export default async function Footer({ lang }: { lang: Locale }) {
               {serviceList.map((item) => {
                 return (
                   <div
-                    className={clsx(
+                    className={cn(
                       "flex flex-row flex-wrap items-center gap-x-2 ",
                       {
                         ["[&_span]:opacity-80 [&_span]:leading-3"]:
@@ -200,19 +204,19 @@ export default async function Footer({ lang }: { lang: Locale }) {
         <div className="flex flex-col gap-1 [&_p]:text-secondary-foreground/80 [&_p]:text-sm [&_a]:w-fit">
           <h2>{t("NameCompany")}</h2>
           <p>
-            {t("Tax_Code")}
+            {t("Tax_Code")}:&nbsp;
             {t("TaxCompany")}
           </p>
           <p>
-            {t("Address")}
+            {t("Address")}:&nbsp;
             {t("AddressCompany")}
           </p>
           <p>
-            {t("Phone_Number")}
+            {t("Phone_Number")}:&nbsp;
             {t("PhoneCompany")}
           </p>
           <p>
-            {t("Email")}
+            {t("Email")}:&nbsp;
             {t("MailCompany")}
           </p>
         </div>

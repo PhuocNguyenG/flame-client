@@ -33,6 +33,7 @@ function LogoHeader({
           width={90}
           sizes="100px"
           className="w-full h-full"
+          priority
         />
         <div className="absolute top-0 -inset-full h-full w-1/2 z-0 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-30 group-hover:animate-shine" />
       </Link>

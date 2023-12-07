@@ -21,7 +21,8 @@ const Link = ({
   legacyBehavior,
   ...rest
 }: MyLink) => {
-  const oldHref = href[0] === "/" ? href : `/${href}`;
+  
+  const oldHref = href.startsWith("/") ? href : `/${href}`;
 
   const newHref =
     lang === "en"

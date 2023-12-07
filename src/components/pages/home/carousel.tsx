@@ -1,27 +1,27 @@
 "use client";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination,EffectFade  } from "swiper/modules";
+import { Autoplay, Pagination, EffectFade } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import 'swiper/css/effect-fade';
+import "swiper/css/effect-fade";
 
 /**
- * (ratio: height x 2.5 = width) Example: Image width 1375px, height 550px 
+ * (ratio: height x 2.5 = width) Example: Image width 1375px, height 550px
  */
 const Carousel = () => {
   return (
     <div className="bg-[#252525]">
       <Swiper
-        modules={[Pagination, Autoplay,EffectFade]}
+        modules={[Pagination, Autoplay, EffectFade]}
         pagination={{ clickable: true }}
         // onSlideChange={(swiper) => console.log(swiper)}
-        autoplay={{
-          delay: 4000,
-          disableOnInteraction: false,
-        }}
+        // autoplay={{
+        //   delay: 4000,
+        //   disableOnInteraction: false,
+        // }}
         effect="fade"
-        loop
+        // loop
         className="max-w-[1300px]"
       >
         <SwiperSlide className="!h-auto max-h-[550px] bg-white">

@@ -21,7 +21,7 @@ export async function generateStaticParams({
       lang === "en"
         ? cates.find((x) => x.enSlug === item.productType)?.enSlug
         : cates.find((x) => x.enSlug === item.productType)?.vnSlug,
-    slug: lang === "en" ? item.enSlug : item.vnSlug,
+    slug: lang === "en" ? item.en.slug.split('/').pop() : item.vn.slug.split('/').pop(),
   }));
 
   return result;
@@ -45,12 +45,8 @@ export async function generateMetadata({
 
   const urlP = `https://flameagricultural.com${
     lang === "en"
-      ? `/en/product/${
-          cates.find((x) => x.enSlug === product.productType)?.enSlug
-        }/${product.enSlug}`
-      : `/san-pham/${
-          cates.find((x) => x.enSlug === product.productType)?.vnSlug
-        }/${product.vnSlug}`
+      ? `/en${product.en.slug}`
+      : `${product.vn.slug}`
   }`;
 
   const listImg = product.listImages

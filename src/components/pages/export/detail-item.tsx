@@ -12,6 +12,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "../../ui/popover";
 import { WhatsAppButton } from "../../button/whatsapp";
 import { ZaloButton } from "../../button/zalo";
 import NotFoundPage from "../404";
+import { getFullSlugPathExport } from "@/lib/utils";
 
 export default async function ItemDetailExport({
   lang,
@@ -24,7 +25,7 @@ export default async function ItemDetailExport({
 }) {
   const transText = useTransServer(lang);
   const fetchCategory = getListCateProduct();
-  const fetchExportDetail = getDetailExportProduct(slug, lang);
+  const fetchExportDetail = getDetailExportProduct(getFullSlugPathExport(lang,category,slug), lang);
   const fetchData = await Promise.all([
     transText,
     fetchExportDetail,
@@ -38,8 +39,8 @@ export default async function ItemDetailExport({
   }
   const slugExportTrans = {
     en: data.en.name,
-    enSlug: data.enSlug,
-    vnSlug: data.vnSlug,
+    enSlug: data.en.slug,
+    vnSlug: data.vn.slug,
     vn: data.vn.name,
   };
 
@@ -62,7 +63,7 @@ export default async function ItemDetailExport({
       <BreadcrumbExport
         lang={lang}
         category={category}
-        detailData={slugExportTrans}
+        detailData={data}
       />
 
       <div className="flex flex-row flex-wrap w-full h-full gap-5 mt-10 mb-10">

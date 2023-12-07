@@ -47,12 +47,7 @@ export default async function ProductItem({
           const detail = lang === "en" ? item.en : item.vn;
           const categoryName = lang === "en" ? cateObject?.en : cateObject?.vn;
 
-          const href = `/product/${
-            lang === "en"
-              ? `${cateObject?.enSlug}/${item.enSlug}`
-              : `${cateObject?.vnSlug}/${item.vnSlug}`
-          }`;
-
+          const href = lang === "en" ? item.en.slug : item.en.slug;
           return (
             <li
               className="bg-white rounded-md hover:shadow-md flex flex-col overflow-hidden w-full h-full [&_a:hover]:cursor-pointer border border-transparent hover:border-primary transition-all duration-500 group "

@@ -11,6 +11,7 @@ import { ZaloButton } from "../../button/zalo";
 import Script from "next/script";
 import NotFoundPage from "../404";
 import ButtonAddToBasket from "@/components/button/add-to-basket";
+import { getFullSlugPathProduct } from "@/lib/utils";
 
 export default async function ItemProductDetail({
   lang,
@@ -23,7 +24,10 @@ export default async function ItemProductDetail({
 }) {
   const transText = useTransServer(lang);
   const fetchCategory = getListCateProduct();
-  const fetchProductDetail = getDetailProduct(slug, lang);
+  const fetchProductDetail = getDetailProduct(
+    getFullSlugPathProduct(lang, category, slug),
+    lang
+  );
   const fetchData = await Promise.all([
     transText,
     fetchProductDetail,
@@ -41,8 +45,8 @@ export default async function ItemProductDetail({
   );
   const slugExportTrans = {
     en: data.en.name,
-    enSlug: data.enSlug,
-    vnSlug: data.vnSlug,
+    enSlug: data.en.slug.split("/").pop() || "",
+    vnSlug: data.vn.slug.split("/").pop() || "",
     vn: data.vn.name,
   };
   const name = lang === "en" ? data.en.name : data.vn.name;
@@ -81,9 +85,7 @@ export default async function ItemProductDetail({
     offers: {
       "@type": "Offer",
       url: `https://flameagricultural.com${
-        lang === "en"
-          ? `/en/product/${categoryObject?.enSlug}/${data.enSlug}`
-          : `/san-pham/${categoryObject?.vnSlug}/${data.vnSlug}`
+        lang === "en" ? `/en${data.en.slug}` : `${data.vn.slug}`
       }`,
       price: price,
       priceCurrency: "VND",
@@ -103,7 +105,7 @@ export default async function ItemProductDetail({
         lang={lang}
         listCate={fetchData[2].Product}
         category={category}
-        detailData={slugExportTrans}
+        detailData={data}
       />
 
       <div className="flex flex-row flex-wrap w-full h-full gap-5 mt-10 mb-10">
@@ -173,8 +175,8 @@ export default async function ItemProductDetail({
               </tbody>
             </table>
             {data?.price > 0 && (
-              <div className="flex flex-row items-center">
-                {t("Price")}:&nbsp;
+              <div className="flex flex-row items-center text-price">
+                {t("UnitPrice")}:&nbsp;
                 <div className="font-semibold text-xl">
                   {data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/gm, ".")}{" "}
                   đ
@@ -183,36 +185,21 @@ export default async function ItemProductDetail({
             )}
             <div className="flex flex-row flex-wrap w-full mt-5">
               {data?.price > 0 ? (
-                // <Button variant={"default"}>
-                //   Thêm vào giỏ
-                // </Button>
                 <div className="flex flex-wrap items-center">
-                  <Popover>
-                    <PopoverTrigger className="bg-primary text-primary-foreground rounded-md px-2 py-1 font-medium">
-                      {t("Contact")}
-                    </PopoverTrigger>
-                    <PopoverContent className="bg-primary">
-                      <div className="flex flex-row flex-wrap w-fit gap-3 ">
-                        <WhatsAppButton />
-                        <ZaloButton />
-                      </div>
-                    </PopoverContent>
-                  </Popover>
-                  {/* <ButtonAddToBasket
+                  <ButtonAddToBasket
                     data={{
                       _id: data._id,
                       banner: data.banner,
-                      enSlug: data.enSlug,
-                      vnSlug: data.vnSlug,
                       en: data.en,
                       vn: data.vn,
                       price: data.price,
                       quantity: 1,
                     }}
+                    lang={lang}
+                    className="text-lg bg-[#a6a500] text-white"
                   >
-                    Thêm vào giỏ
-                  </ButtonAddToBasket> */}
-                 
+                    {t("AddToBasket")}
+                  </ButtonAddToBasket>
                 </div>
               ) : (
                 <div className="flex flex-wrap items-center">

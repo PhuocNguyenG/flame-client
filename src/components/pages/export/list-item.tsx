@@ -48,11 +48,7 @@ export default async function ExportItem({
           );
           const categoryName = lang === "en" ? cateObject?.en : cateObject?.vn;
 
-          const href = `/export/${
-            lang === "en"
-              ? `${cateObject?.enSlug}/${item.enSlug}`
-              : `${cateObject?.vnSlug}/${item.vnSlug}`
-          }`;
+          const href = lang === "en" ? item.en.slug : item.vn.slug;
           return (
             <li
               className="bg-white rounded-md hover:shadow-md flex flex-col overflow-hidden w-full h-full [&_a:hover]:cursor-pointer border border-transparent hover:border-primary transition-all duration-500 group"

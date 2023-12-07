@@ -3,7 +3,7 @@ import { getListCateProduct } from "@/lib/api/server-side";
 import { Breadcrumb } from "../../ui/breadcrumb";
 import { useTransServer } from "@/lib/i18n/server";
 import { Locale } from "@/lib/i18n/setting";
-import { TypeItemCategoryProduct, TypeOfCategory } from "@/lib/type";
+import { ProductDetailResult, TypeItemCategoryProduct, TypeOfCategory } from "@/lib/type";
 import { useTransClient } from "@/lib/i18n/client";
 import { useEffect } from "react";
 import { redirect } from "next/navigation";
@@ -18,7 +18,7 @@ export const BreadcrumbProduct = ({
   lang: Locale;
   listCate: TypeOfCategory["Product"];
   category?: string;
-  detailData?: TypeItemCategoryProduct;
+  detailData?: ProductDetailResult;
   className?: React.HTMLProps<HTMLElement>["className"];
 }) => {
   const { t } = useTransClient(lang);
@@ -50,11 +50,11 @@ export const BreadcrumbProduct = ({
     : defaultData;
   categoryData && detailData
     ? defaultData.push({
-        name: lang === "en" ? detailData.en : detailData.vn,
+        name: lang === "en" ? detailData.en.name : detailData.vn.name,
         href:
           lang === "en"
-            ? "/product/" + categoryData.enSlug + "/" + detailData.enSlug
-            : "/san-pham/" + categoryData.vnSlug + "/" + detailData.vnSlug,
+            ? detailData.en.slug
+            : detailData.vn.slug,
       })
     : defaultData;
 

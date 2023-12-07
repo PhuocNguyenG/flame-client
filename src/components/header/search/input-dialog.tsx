@@ -199,11 +199,11 @@ const SearchDialog = React.memo(function SearchDialog({
                   const cateObject = listCateProduct?.find(
                     (cate) => cate.enSlug === item.productType
                   );
-                  const href = `/product/${
+                  const href = 
                     lang === "en"
-                      ? `${cateObject?.enSlug}/${item.enSlug}`
-                      : `${cateObject?.vnSlug}/${item.vnSlug}`
-                  }`;
+                      ? item.en.slug
+                      : item.vn.slug
+                  ;
                   return (
                     <Link href={href} lang={lang} key={idx}>
                       <div className="flex flex-row w-full h-fit px-3 py-2 md:py-3 hover:bg-gray-200 rounded-md cursor-pointer border-b">

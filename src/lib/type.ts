@@ -58,15 +58,13 @@ export interface TypeOfCategory {
 //Export
 export interface ExportDetailResult {
   _id: string;
-  enSlug: string;
-  vnSlug: string;
   banner: string;
   listImages?: string[];
   weight?: string;
   productType: string;
-
   en: {
     name: string;
+    slug: string;
     ingredients: string;
     howToUse?: string;
     storage?: string;
@@ -75,6 +73,7 @@ export interface ExportDetailResult {
   };
   vn: {
     name: string;
+    slug: string;
     ingredients: string;
     howToUse?: string;
     storage?: string;
@@ -88,16 +87,16 @@ export interface ExportDetailResult {
 export interface ItemListExportsResult {
   _id: string;
   banner: string;
-  enSlug: string;
-  vnSlug: string;
   productType: string;
   en: {
     name: string;
+    slug: string;
     ingredients: string;
     origin: string;
   };
   vn: {
     name: string;
+    slug: string;
     ingredients: string;
     origin: string;
   };
@@ -108,17 +107,17 @@ export interface ItemListExportsResult {
 export interface ItemListProductResult {
   _id: string;
   banner: string;
-  enSlug: string;
-  vnSlug: string;
   productType: string;
   price?: number;
   en: {
     name: string;
+    slug: string;
     ingredients: string;
     origin: string;
   };
   vn: {
     name: string;
+    slug: string;
     ingredients: string;
     origin: string;
   };
@@ -127,8 +126,6 @@ export interface ItemListProductResult {
 
 export interface ProductDetailResult {
   _id: string;
-  enSlug: string;
-  vnSlug: string;
   banner: string;
   listImages?: string[];
   weight?: string;
@@ -138,6 +135,7 @@ export interface ProductDetailResult {
 
   en: {
     name: string;
+    slug: string;
     ingredients: string;
     howToUse?: string;
     storage?: string;
@@ -146,6 +144,7 @@ export interface ProductDetailResult {
   };
   vn: {
     name: string;
+    slug: string;
     ingredients: string;
     howToUse?: string;
     storage?: string;
@@ -166,11 +165,9 @@ export interface PrivacyPolicyDetailResult {
 }
 
 export interface SearchByKeyResponse {
-  en: { name: string };
-  vn: { name: string };
+  en: { name: string; slug: string };
+  vn: { name: string; slug: string };
   productType: string;
   banner: string;
-  enSlug: string;
-  vnSlug: string;
   price: number;
 }

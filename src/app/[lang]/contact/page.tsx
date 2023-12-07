@@ -52,19 +52,19 @@ export default async function Page({
             </span>
             <div className="flex flex-col gap-1 [&_p]:text-primary/80 [&_a]:w-fit border-l pl-2">
               <p>
-                <strong>{t("Tax_Code")}</strong>
+                <strong>{t("Tax_Code")}:&nbsp;</strong>
                 {t("TaxCompany")}
               </p>
               <p>
-                <strong>{t("Address")}</strong>
+                <strong>{t("Address")}:&nbsp;</strong>
                 {t("AddressCompany")}
               </p>
               <p>
-                <strong>{t("Phone_Number")}</strong>
+                <strong>{t("Phone_Number")}:&nbsp;</strong>
                 {t("PhoneCompany")}
               </p>
               <p>
-                <strong>{t("Email")}</strong>
+                <strong>{t("Email")}:&nbsp;</strong>
                 {t("MailCompany")}
               </p>
             </div>
@@ -80,12 +80,12 @@ export default async function Page({
             </span>
             <div className="flex flex-col gap-1 [&_p]:text-primary/80 [&_a]:w-fit border-l pl-2">
               <p>
-                <strong>{t("Phone_Number")}</strong>
-                {t("Dev_Phone")}
+                <strong>{t("Phone_Number")}:&nbsp;</strong>
+                {t("PhoneCompany")}&nbsp;-&nbsp;{t("Dev_Phone")}
               </p>
               <p>
-                <strong>{t("Email")}</strong>
-                {t("Dev_Email")}
+                <strong>{t("Email")}:&nbsp;</strong>
+                {t("MailCompany")}&nbsp;-&nbsp;{t("Dev_Email")}
               </p>
             </div>
           </div>

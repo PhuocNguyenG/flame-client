@@ -406,7 +406,9 @@ export function MainNavBar({
                 dimension={dimension}
               />
             </div>
-            <Basket />
+            
+              <Basket />
+            
             {/* <div className="hidden min481:flex w-fit h-fit">
               <AccountDropdown
                 callbackOpenLogin={(value) => setOpenLogin(value)}

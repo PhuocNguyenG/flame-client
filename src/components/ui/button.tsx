@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex flex-nowrap items-center justify-center rounded-md text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50 none-select-text transition-opacity ",
+  "inline-flex flex-nowrap items-center justify-center rounded-md text-sm font-medium disabled:pointer-events-none disabled:opacity-50 none-select-text transition-all ",
   {
     variants: {
       variant: {
@@ -16,6 +16,7 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground shadow-sm ",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        none: "",
       },
       size: {
         default: "h-9 px-4 py-2",
@@ -36,18 +37,28 @@ export interface ButtonProps
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
   loading?: boolean;
+  classNameLoading?: React.HTMLProps<HTMLElement>["className"];
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
-    { className, loading, children, variant, size, asChild = false, ...props },
+    {
+      className,
+      loading,
+      classNameLoading,
+      children,
+      variant,
+      size,
+      asChild = false,
+      ...props
+    },
     ref
   ) => {
     const Comp = asChild ? Slot : "button";
     return (
       <Comp
         className={
-          `active:opacity-90 !flex !whitespace-nowrap ${
+          `active:opacity-90 !flex !whitespace-nowrap flex-nowrap items-center justify-center ${
             loading ? "!px-2 opacity-70 pointer-events-none " : ""
           }` + cn(buttonVariants({ variant, size, className }))
         }
@@ -57,10 +68,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         <>
           {loading ? (
             <div
-              className={`w-fit items-center font-semibold text-lg rounded-full transition ease-in-out duration-150 h-full mr-[3px]`}
+              className={`w-fit items-center font-semibold text-lg rounded-full transition ease-in-out duration-150 h-full mr-[3px] `}
             >
               <svg
-                className="animate-spin h-full w-fit text-primary"
+                className={`animate-spin h-full w-fit text-primary ${classNameLoading}`}
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -81,7 +92,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               </svg>
             </div>
           ) : null}
-          <div className="w-fit whitespace-nowrap">{children}</div>
+          {children}
         </>
       </Comp>
     );

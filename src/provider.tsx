@@ -2,7 +2,7 @@
 
 import { SessionProvider } from "next-auth/react";
 import type { Session } from "next-auth";
-import { store } from "@/lib/redux/store";
+import { store, useAppDispatch } from "@/lib/redux/store";
 import React, { ReactNode } from "react";
 import { Provider as Redux } from "react-redux";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -16,6 +16,7 @@ function RootProvider({
   children: ReactNode;
   session?: Session;
 }) {
+
   return (
     <QueryClientProvider client={queryClient}>
       <Redux store={store}>

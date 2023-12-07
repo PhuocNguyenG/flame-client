@@ -8,6 +8,8 @@ import { Locale } from "@/lib/i18n/setting";
 import Link from "../../link";
 import Image from "next/image";
 import { Separator } from "../../ui/separator";
+import ButtonAddToBasket from "@/components/button/add-to-basket";
+import { BasketIcon } from "@/components/icon/basket";
 
 export const ProductByCate = async ({ lang }: { lang: Locale }) => {
   const fetchData = await Promise.all([
@@ -55,54 +57,69 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                 {listProduct?.length >= 4 && (
                   <div className="hover:underline hover:underline-offset-2 ">
                     <Link href={cateHref} lang={lang}>
-                      {t("More")} {"->"}
+                      {t("More")}&nbsp;{"->"}
                     </Link>
                   </div>
                 )}
               </div>
               <div className="h-fit py-4 sm:p-5">
-                <div className="grid grid-cols-[repeat(auto-fill,minmax(158px,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-3 sm:gap-5 list-none p-0 m-0">
+                <div className="grid grid-cols-[repeat(auto-fill,minmax(190px,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-3 sm:gap-5 list-none p-0 m-0">
                   {listProduct?.map((item, idx) => {
                     const detail = lang === "en" ? item.en : item.vn;
                     const price = `${item.price
                       ?.toString()
                       .replace(/\B(?=(\d{3})+(?!\d))/gm, ".")} đ`;
 
-                    const href = `/product/${
-                      lang === "en"
-                        ? `${cate?.enSlug}/${item.enSlug}`
-                        : `${cate?.vnSlug}/${item.vnSlug}`
-                    }`;
+                    const href = lang === "en" ? item.en.slug : item.vn.slug;
                     return (
                       <div
-                        className="bg-transparent rounded-md border border-primary/0 hover:border-green-900 flex flex-col justify-between overflow-hidden w-full h-full [&_a:hover]:cursor-pointer shadow-[0px_1px_4px_0px_#0000005d] sm:shadow-[0px_1px_5px_1px_#0000003d] transition-all min-h-[260px] duration-500 group"
+                        className="bg-transparent rounded-md border-primary/50 border-2 hover:border-primary flex flex-col justify-between overflow-hidden w-full h-full [&_a:hover]:cursor-pointer transition-all min-h-[260px] duration-500 group"
                         key={idx}
                       >
-                        <Link
-                          href={href}
-                          lang={lang}
-                          className="flex items-center h-full w-full p-3 rounded-md"
-                        >
-                          <Image
-                            priority
-                            src={item.banner}
-                            alt={detail.name}
-                            loading="eager"
-                            className="w-full min-h-[160px] h-fit max-h-[220px] object-contain rounded-md duration-500"
-                            sizes="(max-width: 800px) 40vw, (max-width: 1060px) 30vw, 20vw"
-                            width={200}
-                            height={200}
-                          />
-                        </Link>
-                        <div className="flex flex-col justify-between min-h-[85px] px-3 py-1 text-black relative">
+                        <div className="flex items-center h-fit w-full p-3 rounded-md relative overflow-hidden">
                           <Link
                             href={href}
                             lang={lang}
-                            className="line-clamp-2 w-full text-base sm:text-lg font-semibold tracking-wide capitalize m-0 min-h-[30px] max-h-[50px]"
+                            className="flex items-center h-fit w-full rounded-md"
+                          >
+                            <Image
+                              priority
+                              src={item.banner}
+                              alt={detail.name}
+                              loading="eager"
+                              className="w-full h-[220px] object-contain  rounded-md duration-500"
+                              sizes="(max-width: 800px) 40vw, (max-width: 1060px) 30vw, 20vw"
+                              width={200}
+                              height={200}
+                            />
+                          </Link>
+                          {item.price && item.price > 0 ? (
+                            <ButtonAddToBasket
+                              variant={"none"}
+                              className="absolute left-3 right-3 -bottom-8 h-8 flex flex-row items-center bg-primary font-medium px-2 rounded-sm text-primary-foreground  group-hover:bottom-0 transition-all duration-300 hover:bg-primary-foreground hover:text-primary hover:duration-150"
+                              data={{
+                                _id: item._id,
+                                banner: item.banner,
+                                en: item.en,
+                                vn: item.vn,
+                                price: item.price,
+                                quantity: 1,
+                              }}
+                              lang={lang}
+                            >
+                              <BasketIcon className="h-5" /> {t("AddToBasket")}
+                            </ButtonAddToBasket>
+                          ) : null}
+                        </div>
+                        <div className="flex flex-col flex-1 justify-between  px-3 py-1 text-black">
+                          <Link
+                            href={href}
+                            lang={lang}
+                            className="line-clamp-2 w-full text-base sm:text-lg font-semibold tracking-wide capitalize m-0 "
                           >
                             {detail.name}
                           </Link>
-                          <div className="flex items-center text-base sm:text-base font-semibold h-fit w-full text-price [text-shadow:0px_0px_black] italic">
+                          <div className="flex items-center text-base sm:text-base font-bold h-7 w-full text-price [text-shadow:0px_0px_black] italic ">
                             {item.price && item.price > 0 ? (
                               <Link
                                 href={href}
@@ -115,9 +132,6 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                               <>{t("ContactForPrice")}</>
                             )}
                           </div>
-                          <div
-                            className="absolute w-full rounded-md transition-all bottom-0 left-0 bg-price h-0 group-hover:h-1 duration-200"
-                          ></div>
                         </div>
                       </div>
                     );
@@ -172,7 +186,7 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                     lang={lang}
                     className="hover:underline hover:underline-offset-2"
                   >
-                    {t("More")} {"->"}
+                    {t("More")}&nbsp;{"->"}
                   </Link>
                 </>
               )}
@@ -185,11 +199,7 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                 const cate = exportCates?.find(
                   (x) => x.enSlug === item.productType
                 );
-                const href = `/export/${
-                  lang === "en"
-                    ? cate?.enSlug + "/" + item.enSlug
-                    : cate?.vnSlug + "/" + item.vnSlug
-                }`;
+                const href = lang === "en" ? item.en.slug : item.vn.slug;
                 return (
                   <div
                     className="bg-transparent rounded-md border border-primary/0 hover:border-primary/60 flex flex-col justify-between overflow-hidden w-full h-full [&_a:hover]:cursor-pointer shadow-[0px_1px_4px_0px_#0000005d] sm:shadow-[0px_1px_5px_1px_#0000003d] transition-all min-h-[260px] group"
@@ -222,9 +232,7 @@ export const ProductByCate = async ({ lang }: { lang: Locale }) => {
                       <div className="flex items-center text-base sm:text-base font-semibold h-fit w-full text-price [text-shadow:0px_0px_black] italic">
                         {t("ContactForPrice")}
                       </div>
-                      <div
-                            className="absolute w-full rounded-md transition-all bottom-0 left-0 bg-price h-0 group-hover:h-1 duration-200"
-                          ></div>
+                      <div className="absolute w-full rounded-md transition-all bottom-0 left-0 bg-price h-0 group-hover:h-1 duration-200"></div>
                     </div>
                   </div>
                 );

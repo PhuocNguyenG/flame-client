@@ -21,9 +21,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   const mapProduct = product.map((item) => ({
-    url: `https://flameagricultural.com/san-pham/${
-      cateProduct.find((x) => x.enSlug === item.productType)?.vnSlug
-    }/${item.vnSlug}`,
+    url: `https://flameagricultural.com${item.vn.slug}`,
     lastModified: new Date().toISOString(),
     changeFrequency: "daily" as
       | "daily"
