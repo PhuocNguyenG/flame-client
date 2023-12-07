@@ -76,7 +76,7 @@ export default async function Footer({ lang }: { lang: Locale }) {
           </Link>
         </div>
 
-        <div className="flex flex-col gap-1 max-w-[400px] w-1/4 [&_a]:text-secondary-foreground/70 [&>a:hover]:text-secondary-foreground [&_a]:transition-all [&_a]:duration-300 [&_a]:w-fit [&_span]:text-secondary-foreground/70 [&_span]:text-[0.825rem] [&_span]:h-fit [&_span]:flex">
+        {/* <div className="flex flex-col gap-1 max-w-[400px] w-1/4 [&_a]:text-secondary-foreground/70 [&>a:hover]:text-secondary-foreground [&_a]:transition-all [&_a]:duration-300 [&_a]:w-fit [&_span]:text-secondary-foreground/70 [&_span]:text-[0.825rem] [&_span]:h-fit [&_span]:flex">
           <h2>{t("Services_Footer")}</h2>
           {serviceList.map((item) => {
             return (
@@ -104,7 +104,7 @@ export default async function Footer({ lang }: { lang: Locale }) {
             <WhatsAppButton />
             <ZaloButton />
           </div>
-        </div>
+        </div> */}
       </div>
       <Accordion
         type="multiple"
@@ -162,7 +162,7 @@ export default async function Footer({ lang }: { lang: Locale }) {
             </div>
           </AccordionContent>
         </AccordionItem>
-        <AccordionItem value="Services">
+        {/* <AccordionItem value="Services">
           <AccordionTrigger className="text-primary-foreground text-base uppercase">
             {t("Services_Footer")}
           </AccordionTrigger>
@@ -191,7 +191,7 @@ export default async function Footer({ lang }: { lang: Locale }) {
               })}
             </div>
           </AccordionContent>
-        </AccordionItem>
+        </AccordionItem> */}
       </Accordion>
 
       <Separator className="container hidden md:block bg-primary-foreground/20 m-auto my-3 w-10/12" />
