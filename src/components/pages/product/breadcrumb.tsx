@@ -4,9 +4,9 @@ import { Breadcrumb } from "../../ui/breadcrumb";
 import { useTransServer } from "@/lib/i18n/server";
 import { Locale } from "@/lib/i18n/setting";
 import { TypeItemCategoryProduct, TypeOfCategory } from "@/lib/type";
-import { notFound } from "next/navigation";
 import { useTransClient } from "@/lib/i18n/client";
 import { useEffect } from "react";
+import { redirect } from "next/navigation";
 
 export const BreadcrumbProduct = ({
   lang,
@@ -28,16 +28,17 @@ export const BreadcrumbProduct = ({
     }
   }) as TypeItemCategoryProduct;
 
-  if (detailData && !categoryData) {
-    notFound();
-  }
-
   const defaultData = [
     {
       name: t("Product"),
       href: lang === "en" ? "/product" : "/san-pham",
     },
   ];
+
+  if (detailData && !categoryData) {
+    redirect(`/${lang}`);
+  }
+
   categoryData
     ? defaultData.push({
         name: lang === "en" ? categoryData.en : categoryData.vn,

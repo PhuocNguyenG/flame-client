@@ -3,13 +3,14 @@ import { Locale } from "@/lib/i18n/setting";
 import { setSlugProductDetailTrans } from "@/lib/redux/slice/router";
 import { BreadcrumbProduct } from "./breadcrumb";
 import { useTransServer } from "@/lib/i18n/server";
-import { notFound } from "next/navigation";
 import { CarouselDetailItem } from "./carousel-item-detail";
 import { SetStateToClient } from "../../set-state-client";
 import { Popover, PopoverContent, PopoverTrigger } from "../../ui/popover";
 import { WhatsAppButton } from "../../button/whatsapp";
 import { ZaloButton } from "../../button/zalo";
 import Script from "next/script";
+import NotFoundPage from "../404";
+import ButtonAddToBasket from "@/components/button/add-to-basket";
 
 export default async function ItemProductDetail({
   lang,
@@ -33,7 +34,7 @@ export default async function ItemProductDetail({
   const data = fetchData[1];
 
   if (!data) {
-    notFound();
+    return <NotFoundPage />;
   }
   const categoryObject = fetchData[2].Product.find(
     (cate) => cate.enSlug === data.productType
@@ -197,6 +198,21 @@ export default async function ItemProductDetail({
                       </div>
                     </PopoverContent>
                   </Popover>
+                  {/* <ButtonAddToBasket
+                    data={{
+                      _id: data._id,
+                      banner: data.banner,
+                      enSlug: data.enSlug,
+                      vnSlug: data.vnSlug,
+                      en: data.en,
+                      vn: data.vn,
+                      price: data.price,
+                      quantity: 1,
+                    }}
+                  >
+                    Thêm vào giỏ
+                  </ButtonAddToBasket> */}
+                 
                 </div>
               ) : (
                 <div className="flex flex-wrap items-center">
@@ -219,7 +235,7 @@ export default async function ItemProductDetail({
       </div>
       <div className="mx-auto w-full lg:w-4/5 mb-10">
         <h2 className="flex flex-row items-center text-xl font-bold mb-2 relative">
-          <div className="absolute -left-4 h-5 w-2 bg-logo rounded-[2px]"></div>
+          <span className="absolute -left-3 h-5 w-2 bg-logo rounded-[2px]"></span>
           {t("Description")}:
         </h2>
         <div

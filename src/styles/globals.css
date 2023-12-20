@@ -151,7 +151,7 @@ main {
 
 @media screen and (min-width: 801px) {
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 10px;
     background-color: #ffffff;
   }
 }

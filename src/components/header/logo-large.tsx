@@ -12,6 +12,7 @@ function LogoHeader({
   lang: Locale;
   className?: React.HTMLProps<HTMLElement>["className"];
 }) {
+
   return (
     <div
       className={cn(
@@ -25,8 +26,8 @@ function LogoHeader({
         className="min-w-full block relative top-[2px] rounded-full group overflow-hidden"
       >
         <Image
-          loading="lazy"
-          alt={lang === "en" ? "Flame Agricultural" : "Nông sản Flame"}
+          loading="eager"
+          alt={"Flame logo"}
           src={FlameLogo}
           height={90}
           width={90}

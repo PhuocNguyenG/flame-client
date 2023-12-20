@@ -7,7 +7,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const product = fetchData[1];
   const mapCate = cateProduct.map((item) => ({
     url: `https://flameagricultural.com/san-pham/${item.vnSlug}`,
-    lastModified: new Date(),
+    lastModified: new Date().toISOString(),
     changeFrequency: "daily" as
       | "daily"
       | "yearly"
@@ -24,7 +24,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `https://flameagricultural.com/san-pham/${
       cateProduct.find((x) => x.enSlug === item.productType)?.vnSlug
     }/${item.vnSlug}`,
-    lastModified: new Date(),
+    lastModified: new Date().toISOString(),
     changeFrequency: "daily" as
       | "daily"
       | "yearly"
@@ -40,27 +40,39 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     {
       url: "https://flameagricultural.com",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
+      lastModified: new Date().toISOString(),
+      changeFrequency: "daily",
       priority: 1,
     },
     {
+      url: "https://flameagricultural.com/gioi-thieu",
+      lastModified: new Date().toISOString(),
+      changeFrequency: "daily",
+      priority: 0.8,
+    },
+    {
       url: "https://flameagricultural.com/san-pham",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
+      lastModified: new Date().toISOString(),
+      changeFrequency: "daily",
+      priority: 0.8,
     },
     {
       url: "https://flameagricultural.com/xuat-khau",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
+      lastModified: new Date().toISOString(),
+      changeFrequency: "daily",
       priority: 0.8,
     },
     {
-      url: "https://flameagricultural.com/gioi-thieu",
-      lastModified: new Date(),
-      changeFrequency: "weekly",
+      url: "https://flameagricultural.com/dich-vu-nau-tiec",
+      lastModified: new Date().toISOString(),
+      changeFrequency: "daily",
       priority: 0.8,
+    },
+    {
+      url: "https://flameagricultural.com/chinh-sach-bao-mat",
+      lastModified: new Date().toISOString(),
+      changeFrequency: "daily",
+      priority: 0.6,
     },
     ...mapCate,
     ...mapProduct,

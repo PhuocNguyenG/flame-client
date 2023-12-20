@@ -13,7 +13,7 @@ export async function generateMetadata({
     title:
       lang === "en"
         ? "Flame Agricultural - Agricultural product distribution, import and export."
-        : "Nông sản Flame - Phân phối sản phẩm nông sản và xuất nhập khẩu.",
+        : "Nông sản Flame - Sản phẩm nông sản và xuất nhập khẩu.",
     description:
       lang === "en"
         ? "Flame agricultural is a supplier of agricultural products, imported and exported around the world."
@@ -22,7 +22,7 @@ export async function generateMetadata({
       title:
         lang === "en"
           ? "Flame Agricultural - Agricultural product distribution, import and export."
-          : "Nông sản Flame - Phân phối sản phẩm nông sản và xuất nhập khẩu.",
+          : "Nông sản Flame - Sản phẩm nông sản và xuất nhập khẩu.",
       description:
         lang === "en"
           ? "Flame agricultural is a supplier of agricultural products, imported and exported around the world."
@@ -32,6 +32,8 @@ export async function generateMetadata({
         lang === "en"
           ? "https://flameagricultural.com/en"
           : "https://flameagricultural.com",
+      siteName: lang === "en" ? "Flame Agricultural" : "Nông Sản Flame",
+      locale: lang === "en" ? "en_US" : "vi_VN",
       type: "website",
     },
   };
@@ -43,9 +45,9 @@ export default async function Home({
   params: { lang: Locale };
 }) {
   return (
-    <div className="min-h-[1000px] mx-auto">
-      {/* <Carousel /> */}
-      <div className="container mt-5">
+    <div className="min-h-[1000px] mx-auto bg-[#fdf7f0]">
+      <Carousel />
+      <div className="container pt-5">
         {/* <FeaturedSection lang={lang}/> */}
         <ProductByCate lang={lang} />
       </div>

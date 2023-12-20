@@ -10,7 +10,7 @@ import { useTransClient } from "@/lib/i18n/client";
 export default function TopNav({ lang }: { lang: Locale }) {
   const { t } =  useTransClient(lang);
   return (
-    <div className="h-[28px] w-full bg-primary max800:hidden">
+    <div className="h-[30px] w-full bg-primary max800:hidden">
       <div className="container h-full flex flex-row flex-wrap justify-between items-center text-secondary-foreground text-sm font-medium">
         <div className=""></div>
         <div className="flex flex-row flex-wrap h-full items-center justify-center gap-2 ">

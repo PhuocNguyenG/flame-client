@@ -42,15 +42,11 @@ export async function generateMetadata({
     robots: {
       index: true,
       follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-      },
     },
     keywords:
       lang === "en"
         ? `${cates.en} products flame agricultural`
-        : `Sản phẩm ${cates.vn}  nông sản flame`,
+        : `Sản phẩm ${cates.vn} nông sản flame`,
     openGraph: {
       title:
         lang === "en"
@@ -60,6 +56,8 @@ export async function generateMetadata({
         lang === "en"
           ? `${cates.en} products | Provided by Flame Agricultural`
           : `Sản phẩm ${cates.vn.toLowerCase()} | Sản phẩm được chọn lọc và phân phối bởi Nông sản Flame`,
+      siteName: lang === "en" ? "Flame Agricultural" : "Nông Sản Flame",
+      locale: lang === "en" ? "en_US" : "vi_VN",
       url: urlP,
       type: "article",
     },

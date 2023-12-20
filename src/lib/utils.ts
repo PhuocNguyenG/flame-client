@@ -1,6 +1,7 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { ReadonlyURLSearchParams } from "next/navigation";
+import React from "react";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -107,3 +108,63 @@ export const ensureStartsWith = (stringToCheck: string, startsWith: string) =>
   stringToCheck.startsWith(startsWith)
     ? stringToCheck
     : `${startsWith}${stringToCheck}`;
+
+/**
+ * Remove all occurrences in the array
+ */
+export const removeAllSameString = (arr: string[], val: string) => {
+  var j = 0;
+  for (var i = 0, l = arr.length; i < l; i++) {
+    if (arr[i] !== val) {
+      arr[j++] = arr[i];
+    }
+  }
+  arr.length = j;
+};
+
+export const useWindowSize = () => {
+  const [dimension, setWindowSize] = React.useState({
+    width: 0,
+    height: 0,
+  });
+
+  React.useEffect(() => {
+    function handleResize() {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  return dimension;
+};
+
+export const useHasFocus = () => {
+  // get the initial state
+  const [focus, setFocus] = React.useState(false);
+  
+  React.useEffect(() => {
+    // helper functions to update the status
+    const onFocus = () => setFocus(true);
+    const onBlur = () => setFocus(false);
+
+    // assign the listener
+    // update the status on the event
+    window.addEventListener("focus", onFocus);
+    window.addEventListener("blur", onBlur);
+
+    // remove the listener
+    return () => {
+      window.removeEventListener("focus", onFocus);
+      window.removeEventListener("blur", onBlur);
+    };
+  }, []);
+
+  // return the status
+  return focus;
+};

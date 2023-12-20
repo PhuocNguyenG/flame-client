@@ -2,6 +2,8 @@
 import { usePathname } from "next/navigation";
 import Link from "../link";
 import { getLangByPathname } from "@/lib/utils";
+import { useEffect } from "react";
+import { listRoute } from "@/map-route";
 
 export const Breadcrumb = ({
   data = [],
@@ -10,6 +12,62 @@ export const Breadcrumb = ({
 }) => {
   const pathname = usePathname();
   const lang = getLangByPathname(pathname);
+  const defaultData = data.map((item) => {
+    const oldHref = item.href.replace("/", "");
+    const hrefBreak =
+      lang === "en"
+        ? listRoute.find((rou) => {
+            return rou.vnSlug === oldHref;
+          })?.enSlug || oldHref
+        : listRoute.find((rou) => {
+            return rou.enSlug === oldHref;
+          })?.vnSlug || oldHref;
+    return {
+      name: item.name,
+      href: `/${hrefBreak}`,
+    };
+  });
+
+  /**
+   * jsonLD breadcrumb
+   */
+  useEffect(() => {
+    if (document) {
+      const script: HTMLElement =
+        document.getElementById("breadcrumb-structured-data-script") !== null
+          ? (document.getElementById(
+              "breadcrumb-structured-data-script"
+            ) as HTMLElement)
+          : document.createElement("script");
+      script.id = "breadcrumb-structured-data-script";
+      script.setAttribute("type", "application/ld+json");
+      script.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: defaultData.map((item, idx) => {
+          return {
+            "@type": "ListItem",
+            position: idx + 1,
+            name: item.name,
+            ...(defaultData.length - 1 === idx
+              ? {}
+              : {
+                  item: ` ${
+                    lang == "en"
+                      ? "https://flameagricultural.com/en"
+                      : "https://flameagricultural.com"
+                  }${item.href}`,
+                }),
+          };
+        }),
+      });
+      document.head.appendChild(script);
+    }
+    return () => {
+      document?.getElementById("breadcrumb-structured-data-script")?.remove();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lang]);
 
   return (
     <>

@@ -1,7 +1,12 @@
 "use client";
 
 import * as React from "react";
-import { cn, getLangByPathname, getPositionElement } from "@/lib/utils";
+import {
+  useWindowSize,
+  cn,
+  getLangByPathname,
+  getPositionElement,
+} from "@/lib/utils";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -16,12 +21,12 @@ import {
 } from "@/components/ui/navigation-menu";
 import dynamic from "next/dynamic";
 const AccountDropdown = dynamic(() => import("../user/top-nav-dropdown"));
-import SearchButton from "../button/search-nav";
-const Basket = dynamic(() => import("../button/basket-nav"));
-const SwitchLanguage = dynamic(() => import("../button/switch-language"));
+import SearchDialog from "./search/input-dialog";
+import Basket from "../button/basket-nav";
+import SwitchLanguage from "../button/switch-language";
 const SideNav = dynamic(() => import("./side-nav"));
 import { useTransClient } from "@/lib/i18n/client";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Link from "../link";
 import { TypeItemCategoryProduct } from "@/lib/type";
 import { setSlugCategoriesTrans } from "@/lib/redux/slice/router";
@@ -50,7 +55,6 @@ export function MainNavBar({
   const [activeTrigger, setActiveTrigger] = React.useState<HTMLDivElement>();
   const [contentTrigger, setContentTrigger] = React.useState<HTMLDivElement>();
   const [searchInputValue, setSearchInputValue] = React.useState("");
-  nProgress.done();
 
   React.useEffect(() => {
     const list = listRef.current;
@@ -92,14 +96,15 @@ export function MainNavBar({
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cateExport, cateProduct]);
+  nProgress.done();
 
   return (
     <>
-      <div className="flex flex-row gap-5 max800:hidden h-[112px] items-center justify-around w-full container">
+      <div className="flex flex-row gap-5 max800:hidden h-[113px] items-center justify-around w-full container">
         <LogoHeader lang={lang} />
 
         <div className="max-w-[500px] lg:w-[inherit] w-[28%]">
-          <SearchButton
+          <SearchDialog
             lang={lang}
             listCateProduct={cateProduct}
             showOnTop
@@ -117,14 +122,16 @@ export function MainNavBar({
       <nav className="sticky flex flex-row w-full h-[60px] min801:h-[50px] bg-primary top-0 z-10 transition-all duration-500">
         <div className="flex flex-row w-full h-[60px] min801:h-[50px] justify-center items-start gap-2 container transition-all duration-500">
           {/* Side bar */}
-          <div className="hidden max800:flex w-fit h-fit my-auto">
-            <SideNav
-              lang={lang}
-              cateProduct={cateProduct}
-              cateExport={cateExport}
-              callbackOpenLogin={(isOpen) => setOpenLogin(isOpen)}
-            />
-          </div>
+          {useWindowSize().width <= 800 && (
+            <div className="hidden max800:flex w-fit h-fit my-auto">
+              <SideNav
+                lang={lang}
+                cateProduct={cateProduct}
+                cateExport={cateExport}
+                callbackOpenLogin={(isOpen) => setOpenLogin(isOpen)}
+              />
+            </div>
+          )}
           <NavigationMenu
             value={value}
             onValueChange={(value) => setValue(value)}
@@ -135,7 +142,7 @@ export function MainNavBar({
               <NavigationMenuItem value={"Home"}>
                 <Link lang={lang} legacyBehavior href="/" passHref>
                   <NavigationMenuLink
-                    active={!!["/", "/en"].find((x) => x === pathname)}
+                    active={!!["/", "/vi", "/en"].find((x) => x === pathname)}
                     className={navigationMenuTriggerStyle()}
                   >
                     {t("Home")}
@@ -222,23 +229,23 @@ export function MainNavBar({
                 </NavigationMenuContent>
               </NavigationMenuItem>
 
-              {/* <NavigationMenuItem value={"Gift"}>
+              {/* <NavigationMenuItem value={"Present"}>
                 <NavigationMenuTrigger
-                  {...(!!["gift", "qua-tang-qua-bieu"].find((x) =>
+                  {...(!!["present", "qua-tang-qua-bieu"].find((x) =>
                     pathname.split("/").includes(x)
                   ) && { "data-active": true })}
                   ref={(node: any) => {
-                    if ("Gift" === value && activeTrigger !== node) {
+                    if ("Present" === value && activeTrigger !== node) {
                       setActiveTrigger(node);
                     }
                     return node;
                   }}
                 >
-                  {t("Gift_Product")}
+                  {t("Present_Product")}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent
                   ref={(node: any) => {
-                    if ("Gift" === value) {
+                    if ("Present" === value) {
                       setContentTrigger(node);
                     }
                     return node;
@@ -247,7 +254,7 @@ export function MainNavBar({
                    <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                   <li className="row-span-3">
                   <Link
-                      href={lang === "en" ? "gift" : "qua-tang-qua-bieu"}
+                      href={lang === "en" ? "Present" : "qua-tang-qua-bieu"}
                       lang={lang}
                       legacyBehavior
                       passHref
@@ -349,11 +356,16 @@ export function MainNavBar({
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
-              <NavigationMenuItem value={"Contact"} className="hidden lg:block">
+              <NavigationMenuItem
+                value={"Contact"}
+                className="hidden min801:block"
+              >
                 <Link lang={lang} legacyBehavior href="/contact" passHref>
                   <NavigationMenuLink
                     active={
-                      !!["/lien-he", "/en/contact"].find((x) => x === pathname)
+                      !!["lien-he", "contact"].find((x) =>
+                        pathname.split("/").includes(x)
+                      )
                     }
                     className={navigationMenuTriggerStyle()}
                   >
@@ -385,9 +397,10 @@ export function MainNavBar({
 
           <div className="flex flex-row gap-4 lg:gap-5 items-center ml-auto my-auto ">
             <div className="flex justify-center max-w-[200px] min801:max-w-[150px] ">
-              <SearchButton
+              <SearchDialog
                 lang={lang}
                 listCateProduct={cateProduct}
+                showOnTop={false}
                 inputValue={searchInputValue}
                 setInputValue={setSearchInputValue}
                 dimension={dimension}
@@ -438,25 +451,3 @@ const ListItem = React.forwardRef<
   );
 });
 ListItem.displayName = "ListItem";
-
-const useWindowSize = () => {
-  const [windowSize, setWindowSize] = React.useState({
-    width: 0,
-    height: 0,
-  });
-
-  React.useEffect(() => {
-    function handleResize() {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    }
-
-    window.addEventListener("resize", handleResize);
-
-    handleResize();
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-  return windowSize;
-};

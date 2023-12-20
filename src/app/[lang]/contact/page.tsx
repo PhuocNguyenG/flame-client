@@ -1,6 +1,7 @@
 import { WhatsAppButton } from "@/components/button/whatsapp";
 import { ZaloButton } from "@/components/button/zalo";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
+import { Separator } from "@/components/ui/separator";
 import { useTransServer } from "@/lib/i18n/server";
 import { Locale } from "@/lib/i18n/setting";
 import { Metadata } from "next";
@@ -13,15 +14,21 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   return {
     title: lang === "en" ? "Contact" : "Liên hệ",
-    robots: {
-      follow: true,
-      index: true,
-    },
+    description:
+      lang === "en"
+        ? "Contact Flame for discussions, clarification of inquiries, as well as to contribute user opinions aimed at improving the quality of service and products."
+        : "Liên hệ với Nông sản Flame để trao đổi, giải đáp thắc mắc cũng như đóng góp ý kiến của người dùng nhằm nâng cao chất lượng dịch vụ, sản phẩm.",
     openGraph: {
+      title: lang === "en" ? "Contact" : "Liên hệ - Nông sản Flame",
+      description:
+        lang === "en"
+          ? "Contact Flame for discussions, clarification of inquiries, as well as to contribute user opinions aimed at improving the quality of service and products."
+          : "Liên hệ với Nông sản Flame để trao đổi, giải đáp thắc mắc cũng như đóng góp ý kiến của người dùng nhằm nâng cao chất lượng dịch vụ, sản phẩm.",
       url:
         lang === "en"
           ? "https://flameagricultural.com/en/contact"
           : "https://flameagricultural.com/lien-he",
+      siteName: lang === "en" ? "Flame Agricultural" : "Nông Sản Flame",
       type: "article",
     },
   };
@@ -34,35 +41,53 @@ export default async function Page({
 }) {
   const { t } = await useTransServer(lang);
   return (
-    <div className="container flex flex-col flex-wrap my-2 h-auto min-h-[45vh]">
+    <div className="container flex flex-col flex-wrap mb-5 h-auto min-h-[45vh]">
       <Breadcrumb data={[{ name: t("Contact"), href: "/contact" }]} />
       <div className="flex flex-row flex-wrap gap-6 w-full h-fit font-medium">
-        <div className="flex flex-col gap-3 w-fit min-w-[300px]  border-l p-2">
-          <div className="flex flex-col gap-1 [&_p]:text-primary/80 [&_a]:w-fit">
-            <span className="text-lg font-semibold">{t("NameCompany")}</span>
-            <p>
-              {t("Tax_Code")}
-              {t("TaxCompany")}
-            </p>
-            <p>
-              {t("Address")}
-              {t("AddressCompany")}
-            </p>
-            <p>
-              {t("Phone_Number")}
-              {t("PhoneCompany")}
-            </p>
-            <p>
-              {t("Email")}
-              {t("MailCompany")}
-            </p>
+        <div className="flex flex-col gap-3 w-fit min-w-[300px]">
+          <div className="flex flex-col gap-2 ">
+            <span className="text-lg font-semibold text-[#ae6b00] relative block ml-2">
+              {t("NameCompany")}
+              <span className="absolute -left-4 top-0 h-full w-2 bg-logo rounded-[2px]"></span>
+            </span>
+            <div className="flex flex-col gap-1 [&_p]:text-primary/80 [&_a]:w-fit border-l pl-2">
+              <p>
+                <strong>{t("Tax_Code")}</strong>
+                {t("TaxCompany")}
+              </p>
+              <p>
+                <strong>{t("Address")}</strong>
+                {t("AddressCompany")}
+              </p>
+              <p>
+                <strong>{t("Phone_Number")}</strong>
+                {t("PhoneCompany")}
+              </p>
+              <p>
+                <strong>{t("Email")}</strong>
+                {t("MailCompany")}
+              </p>
+            </div>
+            <div className="flex flex-row flex-wrap w-full gap-3 pl-2">
+              <WhatsAppButton />
+              <ZaloButton />
+            </div>
           </div>
-        </div>
-        <div className="flex flex-col gap-3 w-fit min-w-[300px] border-l p-2">
-          <span className="text-lg font-semibold ">{t("SocietyNetwork")}</span>
-          <div className="flex flex-row flex-wrap w-full gap-3">
-            <WhatsAppButton />
-            <ZaloButton />
+          <div className="flex flex-col gap-2 mt-2">
+            <span className="text-lg font-semibold text-[#ae6b00] relative block ml-2">
+              {t("ExperienceIssue")}{" "}
+              <span className="absolute -left-4 top-0 h-full w-2 bg-logo rounded-[2px]"></span>
+            </span>
+            <div className="flex flex-col gap-1 [&_p]:text-primary/80 [&_a]:w-fit border-l pl-2">
+              <p>
+                <strong>{t("Phone_Number")}</strong>
+                {t("Dev_Phone")}
+              </p>
+              <p>
+                <strong>{t("Email")}</strong>
+                {t("Dev_Email")}
+              </p>
+            </div>
           </div>
         </div>
       </div>

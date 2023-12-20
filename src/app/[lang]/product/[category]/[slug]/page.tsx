@@ -73,10 +73,6 @@ export async function generateMetadata({
     robots: {
       index: true,
       follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-      },
     },
     openGraph: {
       title:
@@ -95,6 +91,7 @@ export async function generateMetadata({
           : product.vn.description.replace(/<[^>]+>/g, ""),
       url: urlP,
       images: listImgResult,
+      siteName: lang === "en" ? "Flame Agricultural" : "Nông Sản Flame",
       type: "article",
     },
   };

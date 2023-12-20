@@ -6,10 +6,8 @@ import { Inter } from "next/font/google";
 import RootProvider from "@/provider";
 const Footer = dynamic(() => import("@/components/footer"));
 import NextTopLoader from "nextjs-toploader";
-const Toaster = dynamic(() => import("@/components/ui/toaster"));
-const FloatButton = dynamic(
-  () => import("@/components/button/group-float-button")
-);
+import Toaster from "@/components/ui/toaster";
+const FloatButton = dynamic(() => import("@/components/button/float"));
 import { Locale, locales } from "@/lib/i18n/setting";
 import ScriptConfig from "@/script-config";
 
@@ -25,11 +23,10 @@ export async function generateMetadata({
   params: { lang?: Locale };
 }): Promise<Metadata> {
   return {
+    title: lang === "en" ? "Flame Agricultural" : "Nông sản Flame",
     keywords: [
       "Nông sản flame",
-      "nong san",
       "nong san flame",
-      "flame",
       "nong san phuoc linh",
       "flame agricultural",
     ],
@@ -37,16 +34,6 @@ export async function generateMetadata({
     robots: {
       follow: true,
       index: true,
-      googleBot: {
-        index: true,
-        follow: true,
-      },
-    },
-    openGraph: {
-      images: "https://flameagricultural.com/static/flame-logo-simple.png",
-      siteName: lang === "en" ? "Flame agricultural" : "Nông sản Flame",
-      locale: lang === "en" ? "en_US" : "vi_VN",
-      type: "website",
     },
   };
 }
@@ -81,10 +68,10 @@ export default async function RootLayout({
             />
             <NavBar lang={lang} />
             <main>{children}</main>
-            <Toaster />
             <FloatButton />
             <Footer lang={lang} />
           </RootProvider>
+          <Toaster />
         </body>
       </html>
     </>

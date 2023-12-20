@@ -13,22 +13,22 @@ export async function generateMetadata({
 
   return {
     title: lang === "en" ? "Introduce" : "Giới thiệu",
-    description: lang === "en" ? data.en : data.vn,
+    description:
+      lang === "en"
+        ? data.en.replace(/<[^>]+>/g, "")
+        : data.vn.replace(/<[^>]+>/g, ""),
     keywords: ["gioi thieu flame", "introduce"],
-    robots: {
-      follow: true,
-      index: true,
-    },
     openGraph: {
       title: lang === "en" ? "Introduce" : "Giới thiệu",
-      description: lang === "en" ? data.en : data.vn,
-      images: "https://cdn.flameagricultural.com/flame-simple.png",
+      description:
+        lang === "en"
+          ? data.en.replace(/<[^>]+>/g, "")
+          : data.vn.replace(/<[^>]+>/g, ""),
       url:
         lang === "en"
           ? "https://flameagricultural.com/en/introduce"
           : "https://flameagricultural.com/gioi-thieu",
-      siteName: lang === "en" ? "Flame agricultural" : "Nông sản Flame",
-      locale: lang === "en" ? "en_US" : "vi_VN",
+      siteName: lang === "en" ? "Flame Agricultural" : "Nông Sản Flame",
       type: "article",
     },
   };

@@ -12,7 +12,7 @@ export default function ComingSoon() {
 
   return (
     <div className="h-[500px] flex flex-col justify-center items-center gap-4">
-      <h2 className="font-medium text-lg">{t("ComingSoon")}</h2>
+      <div className="font-medium text-lg">{t("ComingSoon")}</div>
       <Button variant={"outline"}>
         <Link href="/" lang={lang} >
           {t("BackToHome")}
