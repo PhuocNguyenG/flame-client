@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import { ScrollToTop } from "./scroll-to-top";
+import { ZaloButton } from "../zalo";
+import { WhatsAppButton } from "../whatsapp";
 
 export default function FloatButton() {
   const [showTopBtn, setShowTopBtn] = React.useState(false);
@@ -20,6 +22,8 @@ export default function FloatButton() {
         showTopBtn && "!opacity-100"
       } transition-all duration-500 flex flex-col gap-4`}
     >
+      <WhatsAppButton />
+      <ZaloButton />
       <ScrollToTop />
     </div>
   );

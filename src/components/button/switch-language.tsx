@@ -15,7 +15,7 @@ const SwitchLanguage = React.memo(function SwitchLanguage({
 }: {
   className?: React.HTMLProps<HTMLElement>["className"];
 }) {
-  const urlSegments = usePathname().split("/");
+  const urlSegments = usePathname()?.split("/");
   const slugCategoryTransDynamic = useAppSelector(
     (state: RootState) => state.router.slugCategoriesTrans
   );

@@ -37,7 +37,7 @@ export async function middleware(request: NextRequest) {
     // e.g. incoming request is /san-pham
     // Tell Next.js it should pretend it's /vi/product
     const newPathname = pathname
-      .split("/")
+      ?.split("/")
       .map((item) => {
         const routeTrans = listRoute.find((rou) => {
           return rou.vnSlug === item;
