@@ -26,7 +26,7 @@ const Link = ({
   const newHref =
     lang === "en"
       ? `/en${oldHref
-          .split("/")
+          ?.split("/")
           .map((item) => {
             const routeTrans = listRoute.find((rou) => {
               return rou.vnSlug === item;
@@ -36,7 +36,7 @@ const Link = ({
           })
           .join("/")}`
       : oldHref
-          .split("/")
+          ?.split("/")
           .map((item) => {
             const routeTrans = listRoute.find((rou) => {
               return rou.enSlug === item;

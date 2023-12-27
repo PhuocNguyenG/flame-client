@@ -9,6 +9,7 @@ export const ScrollToTop = () => {
     if (!isBrowser()) return;
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+  
   return (
     <Button
       aria-label="Back-to-top"

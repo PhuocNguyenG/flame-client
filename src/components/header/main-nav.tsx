@@ -154,7 +154,7 @@ export function MainNavBar({
                   <NavigationMenuLink
                     active={
                       !!["introduce", "gioi-thieu"].find((x) =>
-                        pathname.split("/").includes(x)
+                        pathname?.split("/").includes(x)
                       )
                     }
                     className={navigationMenuTriggerStyle()}
@@ -166,7 +166,7 @@ export function MainNavBar({
               <NavigationMenuItem value={"Product"}>
                 <NavigationMenuTrigger
                   {...(!!["product", "san-pham", "search", "tim-kiem"].find(
-                    (x) => pathname.split("/").includes(x)
+                    (x) => pathname?.split("/").includes(x)
                   ) && { "data-active": true })}
                   ref={(node: any) => {
                     if ("Product" === value && activeTrigger !== node) {
@@ -190,9 +190,9 @@ export function MainNavBar({
                     <Link href={`/product`} lang={lang} passHref legacyBehavior>
                       <ListItem
                         {...(!!["product", "san-pham"].find((x) =>
-                          pathname.split("/").includes(x)
+                          pathname?.split("/").includes(x)
                         ) &&
-                          !pathname.split("/")[2] && {
+                          !pathname?.split("/")[2] && {
                             "data-active": true,
                           })}
                         className={navigationMenuActiveStyle()}
@@ -214,9 +214,9 @@ export function MainNavBar({
                         >
                           <ListItem
                             {...(!!["product", "san-pham"].find((x) =>
-                              pathname.split("/").includes(x)
+                              pathname?.split("/").includes(x)
                             ) &&
-                              pathname.split("/").includes(`${cate}`) && {
+                              pathname?.split("/").includes(`${cate}`) && {
                                 "data-active": true,
                               })}
                             className={navigationMenuActiveStyle()}
@@ -232,7 +232,7 @@ export function MainNavBar({
               {/* <NavigationMenuItem value={"Present"}>
                 <NavigationMenuTrigger
                   {...(!!["present", "qua-tang-qua-bieu"].find((x) =>
-                    pathname.split("/").includes(x)
+                    pathname?.split("/").includes(x)
                   ) && { "data-active": true })}
                   ref={(node: any) => {
                     if ("Present" === value && activeTrigger !== node) {
@@ -294,7 +294,7 @@ export function MainNavBar({
               <NavigationMenuItem value="Export">
                 <NavigationMenuTrigger
                   {...(!!["export", "xuat-khau"].find((x) =>
-                    pathname.split("/").includes(x)
+                    pathname?.split("/").includes(x)
                   ) && { "data-active": true })}
                   ref={(node: any) => {
                     if ("Export" === value && activeTrigger !== node) {
@@ -318,9 +318,9 @@ export function MainNavBar({
                     <Link href={`/export`} lang={lang} passHref legacyBehavior>
                       <ListItem
                         {...(!!["export", "xuat-khau"].find((x) =>
-                          pathname.split("/").includes(x)
+                          pathname?.split("/").includes(x)
                         ) &&
-                          !pathname.split("/")[2] && {
+                          !pathname?.split("/")[2] && {
                             "data-active": true,
                           })}
                         className={navigationMenuActiveStyle()}
@@ -342,9 +342,9 @@ export function MainNavBar({
                         >
                           <ListItem
                             {...(!!["export", "xuat-khau"].find((x) =>
-                              pathname.split("/").includes(x)
+                              pathname?.split("/").includes(x)
                             ) &&
-                              pathname.split("/").includes(`${cate}`) && {
+                              pathname?.split("/").includes(`${cate}`) && {
                                 "data-active": true,
                               })}
                             className={navigationMenuActiveStyle()}
@@ -364,7 +364,7 @@ export function MainNavBar({
                   <NavigationMenuLink
                     active={
                       !!["lien-he", "contact"].find((x) =>
-                        pathname.split("/").includes(x)
+                        pathname?.split("/").includes(x)
                       )
                     }
                     className={navigationMenuTriggerStyle()}
