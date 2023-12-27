@@ -14,7 +14,7 @@ import { useTransClient } from "@/lib/i18n/client";
 import LogoHeader from "./logo-large";
 import SwitchLanguage from "../button/switch-language";
 import React, { useEffect, useState } from "react";
-import { TypeItemCategoryProduct } from "@/lib/type";
+import { TypeItemCategoryProduct } from "@/lib/type/type";
 import UserSideBarSection from "../user/side-bar-section";
 import { usePathname, useSearchParams } from "next/navigation";
 

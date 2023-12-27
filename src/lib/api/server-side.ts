@@ -1,6 +1,6 @@
 import { TAGS } from "../contants";
 import { Locale } from "../i18n/setting";
-import * as Type from "../type";
+import * as Type from "../type/type";
 
 /**
  * Get all main product

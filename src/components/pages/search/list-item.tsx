@@ -6,7 +6,7 @@ import Image from "next/image";
 import { Badge } from "../../ui/badge";
 import { QueryApiSearchByKey } from "@/lib/api/client-side";
 import { useTransClient } from "@/lib/i18n/client";
-import { TypeItemCategoryProduct } from "@/lib/type";
+import { TypeItemCategoryProduct } from "@/lib/type/type";
 import { useSearchParams } from "next/navigation";
 import LeftFilterProduct from "./left-filter";
 import nProgress from "nprogress";

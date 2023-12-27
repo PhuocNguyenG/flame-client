@@ -1,7 +1,8 @@
 "use client";
 import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
-import * as Type from "../type";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import * as Type from "../type/type";
+import { AddOrderDetail } from "../type/orderType";
 
 // Config
 const axiosDefault = axios.create({
@@ -39,6 +40,34 @@ export const QueryApiSearchByKey = (key: string, lang: string) => {
       });
     },
   });
+};
+
+export const apiAddOrderDetail = async (data: AddOrderDetail) => {
+  return new Promise<Type.ApiResult>((resolve) => {
+    axiosDefault
+      .post(`/order/add-order-detail`,data)
+      .then((response) => {
+        resolve(response.data);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  });
+};
+/**
+ * Query search by key
+ * @param key Search string
+ * @param lang Language code
+ * @returns Array[]
+ */
+export const MutationApiAddOrderDetail = () => {
+  return useMutation({
+    mutationFn: (data: AddOrderDetail) => {
+      return apiAddOrderDetail(data).then((res) => {
+        return res.result as any;
+      });
+    },
+  })
 };
 
 export const apiCity = async () => {

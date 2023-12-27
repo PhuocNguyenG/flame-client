@@ -84,7 +84,7 @@
   "COD": "Thanh toán khi nhận hàng (COD)",
   "ZALO": "Thanh toán qua ví ZaloPay",
   "MOMO": "Thanh toán qua ví MoMo",
-  "LocalATM": "Thanh toán chuyển khoản qua ngân hàng nội địa",
+  "LOCALATM": "Thanh toán chuyển khoản qua ngân hàng nội địa",
   "ATM": "Thanh toán qua thẻ ngân hàng (VISA, Master, JCB)",
   "UserOrderInfo": "Thông tin người đặt",
   "UserOrderName": "Tên người đặt",
@@ -98,6 +98,6 @@
   "UserReceivePhone": "Số điện thoại người nhận",
   "AddressReceiveDetail": "Địa chỉ cụ thể",
   "Note": "Ghi chú",
-  "PaymentTypeInfo":"Phương thức thanh toán",
-  "NotRequired":"không bắt buộc"
+  "PaymentTypeInfo": "Phương thức thanh toán",
+  "NotRequired": "không bắt buộc"
 }

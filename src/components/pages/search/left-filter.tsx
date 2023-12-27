@@ -1,7 +1,7 @@
 "use client";
 
 import { Locale } from "@/lib/i18n/setting";
-import { TypeItemCategoryProduct } from "@/lib/type";
+import { TypeItemCategoryProduct } from "@/lib/type/type";
 import { RadioGroup, RadioGroupItem } from "../../ui/radio-group";
 import { Label } from "../../ui/label";
 import { useTransClient } from "@/lib/i18n/client";

@@ -15,7 +15,7 @@ import { MagnifyingGlassIcon, SymbolIcon } from "@radix-ui/react-icons";
 import Link from "../../link";
 import { addAccentVietNamese } from "@/lib/utils";
 import { QueryApiSearchByKey } from "@/lib/api/client-side";
-import { TypeItemCategoryProduct } from "@/lib/type";
+import { TypeItemCategoryProduct } from "@/lib/type/type";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import NProgress from "nprogress";
 import CrossIcon from "../../icon/cross-25";
@@ -199,11 +199,7 @@ const SearchDialog = React.memo(function SearchDialog({
                   const cateObject = listCateProduct?.find(
                     (cate) => cate.enSlug === item.productType
                   );
-                  const href = 
-                    lang === "en"
-                      ? item.en.slug
-                      : item.vn.slug
-                  ;
+                  const href = lang === "en" ? item.en.slug : item.vn.slug;
                   return (
                     <Link href={href} lang={lang} key={idx}>
                       <div className="flex flex-row w-full h-fit px-3 py-2 md:py-3 hover:bg-gray-200 rounded-md cursor-pointer border-b">

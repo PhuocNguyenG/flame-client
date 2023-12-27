@@ -47,7 +47,7 @@
   "Zalo": "Zalo",
   "Tax_Code": "Tax code",
   "WhatsApp": "WhatsApp",
-  "InfoWeb": "Flame Agricultural ",
+  "InfoWeb": "Flame Agricultural",
   "DescriptionWeb": "Vietnamese agricultural products are distributed by Phuoc Linh Import Export Service Trading Co., Ltd",
   "NameCompany": "Phuoc Linh Import Export Service Trading Co., Ltd",
   "AddressCompany": "108/14, TX21 Str, Thanh Xuan Ward, 12 District, HCM City, Vietnam",
@@ -83,7 +83,7 @@
   "COD": "Cash on delivery",
   "ZALO": "Payment via ZaloPay",
   "MOMO": "Payment via MoMo",
-  "LocalATM": "Payment by local bank transfer",
+  "LOCALATM": "Payment by local bank transfer",
   "ATM": "Payment by international card (VISA, Master, JCB)",
   "UserOrderInfo": "User order information",
   "UserOrderName": "Name",
@@ -96,5 +96,5 @@
   "AddressReceiveDetail": "Detail address",
   "Note": "Note",
   "PaymentTypeInfo": "Payment type",
-  "NotRequired":"Not required"
+  "NotRequired": "Not required"
 }

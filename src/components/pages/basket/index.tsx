@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
-import { QueryApiCity } from "@/lib/api/client-side";
+import { MutationApiAddOrderDetail, QueryApiCity } from "@/lib/api/client-side";
 import { useTransClient } from "@/lib/i18n/client";
 import { Locale } from "@/lib/i18n/setting";
 import {
@@ -70,7 +70,7 @@ const BasketPage = ({ lang }: { lang: Locale }) => {
       codeType: "momo",
     },
     {
-      textTrans: "LocalATM",
+      textTrans: "LOCALATM",
       codeType: "localatm",
     },
     {
@@ -110,7 +110,6 @@ const BasketPage = ({ lang }: { lang: Locale }) => {
           <span className="mb-5 flex flex-row gap-2 items-center text-xl font-semibold border-b-2 w-fit border-primary">
             <FileTextIcon className="w-5 h-5" />
             <span>
-              {" "}
               {t("ProductList")}({basketData.length})
             </span>
           </span>
@@ -459,7 +458,9 @@ const BasketPage = ({ lang }: { lang: Locale }) => {
                 </span>
               </div>
 
-              <Button>Mua hàng</Button>
+              <Button onClick={() =>{
+                MutationApiAddOrderDetail
+              }}>Mua hàng</Button>
             </div>
           </div>
         </div>

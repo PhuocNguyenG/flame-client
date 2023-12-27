@@ -1,6 +1,6 @@
 import { Locale } from "@/lib/i18n/setting";
 import Link from "../../link";
-import { TypeItemCategoryProduct } from "@/lib/type";
+import { TypeItemCategoryProduct } from "@/lib/type/type";
 import { useTransServer } from "@/lib/i18n/server";
 import { Button } from "../../ui/button";
 import { getListCateProduct } from "@/lib/api/server-side";

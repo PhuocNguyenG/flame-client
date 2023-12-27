@@ -28,7 +28,7 @@ const SideNav = dynamic(() => import("./side-nav"));
 import { useTransClient } from "@/lib/i18n/client";
 import { usePathname } from "next/navigation";
 import Link from "../link";
-import { TypeItemCategoryProduct } from "@/lib/type";
+import { TypeItemCategoryProduct } from "@/lib/type/type";
 import { setSlugCategoriesTrans } from "@/lib/redux/slice/router";
 import { RootState, useAppDispatch } from "@/lib/redux/store";
 import HotLine from "./hot-line";
@@ -406,9 +406,9 @@ export function MainNavBar({
                 dimension={dimension}
               />
             </div>
-            
-              <Basket />
-            
+
+            <Basket />
+
             {/* <div className="hidden min481:flex w-fit h-fit">
               <AccountDropdown
                 callbackOpenLogin={(value) => setOpenLogin(value)}

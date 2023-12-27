@@ -223,7 +223,7 @@ export default async function Footer({ lang }: { lang: Locale }) {
       </div>
       <Separator className="w-full bg-primary-foreground/10" />
       <div className="w-full flex-row hidden sm:flex container text-secondary-foreground/80 py-3 justify-center">
-        ©{new Date().getFullYear()} - {t("NameCompany")}
+        ©{new Date().getFullYear()} - {t("InfoWeb")}
       </div>
     </footer>
   );

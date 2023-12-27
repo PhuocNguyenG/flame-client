@@ -6,11 +6,11 @@ export type BasketItemType = {
   banner: string;
   en: {
     name: string;
-    slug:string;
+    slug: string;
   };
   vn: {
     name: string;
-    slug:string;
+    slug: string;
   };
   price: number;
   quantity: number;
@@ -90,7 +90,7 @@ export const basketSlice = createSlice({
       saveBasketProductsToLocalStorage(state.listItem);
     },
     setBasketFromLocal: (state, action: PayloadAction<BasketItemType[]>) => {
-      if ((state.listItem.length == 0))
+      if (state.listItem.length == 0)
         return {
           ...state,
           listItem: action.payload,

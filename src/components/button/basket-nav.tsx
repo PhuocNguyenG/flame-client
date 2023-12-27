@@ -48,11 +48,14 @@ const Basket = () => {
   const basket = useAppSelector(selectBasket);
   const basketData = useAppSelector(selectBasket).listItem;
   const basketTotalPriceData = useAppSelector(selectBasketTotalPrice);
+
   const ls = typeof window !== "undefined" ? window.localStorage : null;
+
   React.useEffect(() => {
     if (open) setOpen(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
+
   React.useEffect(() => {
     if (basket.open) {
       setOpen(true);
