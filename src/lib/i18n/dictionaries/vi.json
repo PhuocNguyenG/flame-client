@@ -72,7 +72,6 @@
   "Dev_Phone": "097 5889699",
   "ExperienceIssue": "Góp ý / Phản ánh về dịch vụ",
   "AddToBasket": "Chọn mua",
-  "AddToBasketSuccess": "Đã thêm vào giỏ hàng",
   "Clear": "Xóa tất cả",
   "NothingInBasket": "Hiện chưa có sản phẩm nào",
   "Quantity": "Số lượng",
@@ -99,5 +98,7 @@
   "AddressReceiveDetail": "Địa chỉ cụ thể",
   "Note": "Ghi chú",
   "PaymentTypeInfo": "Phương thức thanh toán",
-  "NotRequired": "không bắt buộc"
+  "NotRequired": "không bắt buộc",
+  "---Notification---":"---Notification---",
+  "AddToBasketSuccess": "Đã thêm vào giỏ hàng"
 }

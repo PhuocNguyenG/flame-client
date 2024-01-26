@@ -5,3 +5,7 @@ export const TAGS = {
   exports: "exports",
   privacy: "privacy",
 };
+
+export const QUERY_KEY = {
+  orders: "orders",
+};

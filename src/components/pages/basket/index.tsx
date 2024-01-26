@@ -17,7 +17,12 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
-import { MutationApiAddOrderDetail, QueryApiCity } from "@/lib/api/client-side";
+import { toast } from "@/components/ui/use-toast";
+import {
+  useAddOrderDetail,
+  QueryApiCity,
+  apiAddOrderDetail,
+} from "@/lib/api/client-side";
 import { useTransClient } from "@/lib/i18n/client";
 import { Locale } from "@/lib/i18n/setting";
 import {
@@ -28,6 +33,7 @@ import {
   updateQuantityBasketById,
 } from "@/lib/redux/slice/basket";
 import { useAppDispatch, useAppSelector } from "@/lib/redux/store";
+import { AddOrderDetail } from "@/lib/type/orderType";
 import { convertToVND } from "@/lib/utils";
 import {
   ArchiveIcon,
@@ -36,6 +42,7 @@ import {
   PersonIcon,
   ReaderIcon,
 } from "@radix-ui/react-icons";
+import { useMutation } from "@tanstack/react-query";
 import Image from "next/image";
 import React from "react";
 
@@ -46,9 +53,43 @@ const BasketPage = ({ lang }: { lang: Locale }) => {
     district: "",
     ward: "",
   });
+
+  const [orderData, setOrderData] = React.useState({
+    identityPhone: "",
+    orderPayment: {
+      type: "cod",
+      paymentCode: "",
+      amount: 0,
+      tax: 0,
+      shippingFee: 0,
+      total: 0,
+    },
+
+    orderProducts: [
+      {
+        _id: "",
+        unitPrice: 10000,
+        quantity: 0,
+      },
+    ],
+    orderShipment: {
+      nameOrderer: "",
+      phoneOrderer: "",
+      emailOrderer: "",
+      nameReceiver: "",
+      phoneReceiver: "",
+      city: "",
+      district: "",
+      ward: "",
+      address: "",
+      note: "",
+    },
+    note: "",
+  });
+
   const { t } = useTransClient(lang);
   const dispatch = useAppDispatch();
-  const { data } = QueryApiCity();
+  const { data: dataCity } = QueryApiCity();
 
   const basket = useAppSelector(selectBasket);
   const basketData = useAppSelector(selectBasket).listItem;
@@ -78,12 +119,57 @@ const BasketPage = ({ lang }: { lang: Locale }) => {
       codeType: "atm",
     },
   ];
+
+  React.useEffect(() => {
+    console.log(orderData);
+  }, [orderData]);
+
   React.useEffect(() => {
     if (ls && ls.getItem("addressReceive")) {
       setAddressState(JSON.parse(ls.getItem("addressReceive") || ""));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const {
+    mutate: addOrder,
+    isSuccess,
+    isIdle,
+    isPending,
+  } = useMutation({
+    mutationFn: async (data: AddOrderDetail) => {
+      console.log(data);
+
+      const res = await apiAddOrderDetail(data);
+      return res as any;
+    },
+    onSuccess: (res) => {
+      console.log(res);
+
+      toast({
+        title: "thanhc ong",
+      });
+    },
+    onError: () => {
+      toast({
+        title: "Đã có lỗi! Xin vui lòng thử lại!",
+      });
+    },
+  });
+
+  const handleAddOrder = () => {
+    addOrder({
+      ...orderData,
+      identityPhone: orderData.orderShipment.phoneOrderer,
+      orderProducts: basketData.map((x) => {
+        return {
+          _id: x._id,
+          quantity: x.quantity,
+          unitPrice: x.price,
+        };
+      }),
+    });
+  };
 
   return (
     <div className="flex flex-col w-full h-full transition-all duration-500 space-y-3 pr-2 pb-2">
@@ -286,20 +372,58 @@ const BasketPage = ({ lang }: { lang: Locale }) => {
                 <Label htmlFor="UserOrderName">
                   {t("UserOrderName")}&nbsp;*
                 </Label>
-                <Input id="UserOrderName" placeholder={t("Name")} />
+                <Input
+                  id="UserOrderName"
+                  placeholder={t("Name")}
+                  onChange={(value) =>
+                    setOrderData({
+                      ...orderData,
+                      orderShipment: {
+                        ...orderData.orderShipment,
+                        nameOrderer: value.target.value,
+                      },
+                    })
+                  }
+                  required
+                />
               </div>
               <div className="grid w-1/2">
                 <Label htmlFor="UserOrderPhone">
                   {t("UserOrderPhone")}&nbsp;*
                 </Label>
-                <Input id="UserOrderPhone" placeholder={t("Phone")} />
+                <Input
+                  id="UserOrderPhone"
+                  placeholder={t("Phone")}
+                  onChange={(value) =>
+                    setOrderData({
+                      ...orderData,
+                      orderShipment: {
+                        ...orderData.orderShipment,
+                        phoneOrderer: value.target.value,
+                      },
+                    })
+                  }
+                  required
+                />
               </div>
             </div>
             <div className="grid w-full">
               <Label htmlFor="UserOrderEmail">
                 {t("UserOrderEmail")}&nbsp;({t("NotRequired")})
               </Label>
-              <Input id="UserOrderEmail" placeholder={t("Email")} />
+              <Input
+                id="UserOrderEmail"
+                placeholder={t("Email")}
+                onChange={(value) =>
+                  setOrderData({
+                    ...orderData,
+                    orderShipment: {
+                      ...orderData.orderShipment,
+                      emailOrderer: value.target.value,
+                    },
+                  })
+                }
+              />
             </div>
             <div className="flex flex-row gap-2 items-center text-xl font-semibold border-b-2 w-fit border-primary">
               <ArchiveIcon className="w-5 h-5" />
@@ -310,13 +434,39 @@ const BasketPage = ({ lang }: { lang: Locale }) => {
                 <Label htmlFor="UserReceiveName">
                   {t("UserReceiveName")}&nbsp;*
                 </Label>
-                <Input id="UserReceiveName" placeholder={t("Name")} />
+                <Input
+                  id="UserReceiveName"
+                  placeholder={t("Name")}
+                  onChange={(value) =>
+                    setOrderData({
+                      ...orderData,
+                      orderShipment: {
+                        ...orderData.orderShipment,
+                        nameReceiver: value.target.value,
+                      },
+                    })
+                  }
+                  required
+                />
               </div>
               <div className="grid w-1/2">
                 <Label htmlFor="UserReceivePhone">
                   {t("UserReceivePhone")}&nbsp;*
                 </Label>
-                <Input id="UserReceivePhone" placeholder={t("Phone")} />
+                <Input
+                  id="UserReceivePhone"
+                  placeholder={t("Phone")}
+                  onChange={(value) =>
+                    setOrderData({
+                      ...orderData,
+                      orderShipment: {
+                        ...orderData.orderShipment,
+                        phoneReceiver: value.target.value,
+                      },
+                    })
+                  }
+                  required
+                />
               </div>
             </div>
             <div className="grid">
@@ -326,17 +476,26 @@ const BasketPage = ({ lang }: { lang: Locale }) => {
                   defaultValue={addressState.city}
                   onValueChange={(value) => {
                     setAddressState({ ...addressState, city: value });
+                    setOrderData({
+                      ...orderData,
+                      orderShipment: {
+                        ...orderData.orderShipment,
+                        city:
+                          dataCity?.find((x) => x.Id === value)?.Name || value,
+                      },
+                    });
                     ls?.setItem(
                       "addressReceive",
                       JSON.stringify({ ...addressState, city: value })
                     );
                   }}
+                  required
                 >
                   <SelectTrigger className="w-1/2 ">
                     <SelectValue placeholder="Thành phố" />
                   </SelectTrigger>
                   <SelectContent position="item-aligned">
-                    {data?.map((item) => {
+                    {dataCity?.map((item) => {
                       return (
                         <SelectItem value={item.Id} key={item.Id}>
                           {item.Name}
@@ -349,17 +508,29 @@ const BasketPage = ({ lang }: { lang: Locale }) => {
                   defaultValue={addressState.district}
                   onValueChange={(value) => {
                     setAddressState({ ...addressState, district: value });
+                    setOrderData({
+                      ...orderData,
+                      orderShipment: {
+                        ...orderData.orderShipment,
+                        district:
+                          dataCity
+                            ?.find((city) => city.Id === addressState.city)
+                            ?.Districts?.find((x) => x.Id === value)?.Name ||
+                          value,
+                      },
+                    });
                     ls?.setItem(
                       "addressReceive",
                       JSON.stringify({ ...addressState, district: value })
                     );
                   }}
+                  required
                 >
                   <SelectTrigger className="w-1/2 ">
                     <SelectValue placeholder="Quận/Huyện" />
                   </SelectTrigger>
                   <SelectContent position="item-aligned">
-                    {data
+                    {dataCity
                       ?.find((city) => city.Id === addressState.city)
                       ?.Districts.map((item) => {
                         return (
@@ -371,7 +542,7 @@ const BasketPage = ({ lang }: { lang: Locale }) => {
                   </SelectContent>
                 </Select>
               </div>
-              {data
+              {dataCity
                 ?.find((city) => city.Id === addressState.city)
                 ?.Districts.find(
                   (district) => district.Id === addressState.district
@@ -380,17 +551,32 @@ const BasketPage = ({ lang }: { lang: Locale }) => {
                   defaultValue={addressState.ward}
                   onValueChange={(value) => {
                     setAddressState({ ...addressState, ward: value });
+                    setOrderData({
+                      ...orderData,
+                      orderShipment: {
+                        ...orderData.orderShipment,
+                        ward:
+                          dataCity
+                            ?.find((city) => city.Id === addressState.city)
+                            ?.Districts.find(
+                              (district) =>
+                                district.Id === addressState.district
+                            )
+                            ?.Wards?.find((x) => x.Id === value)?.Name || value,
+                      },
+                    });
                     ls?.setItem(
                       "addressReceive",
                       JSON.stringify({ ...addressState, ward: value })
                     );
                   }}
+                  required
                 >
                   <SelectTrigger className="w-full mt-3">
                     <SelectValue placeholder="Phường" />
                   </SelectTrigger>
                   <SelectContent position="item-aligned">
-                    {data
+                    {dataCity
                       ?.find((city) => city.Id === addressState.city)
                       ?.Districts.find(
                         (district) => district.Id === addressState.district
@@ -410,11 +596,34 @@ const BasketPage = ({ lang }: { lang: Locale }) => {
               <Label htmlFor="AddressReceiveDetail">
                 {t("AddressReceiveDetail")}&nbsp;*
               </Label>
-              <Input id="AddressReceiveDetail" />
+              <Input
+                id="AddressReceiveDetail"
+                onChange={(value) =>
+                  setOrderData({
+                    ...orderData,
+                    orderShipment: {
+                      ...orderData.orderShipment,
+                      address: value.target.value,
+                    },
+                  })
+                }
+                required
+              />
             </div>
             <div className="grid w-full">
               <Label htmlFor="Note">{t("Note")}</Label>
-              <Textarea id="Note" />
+              <Textarea
+                id="Note"
+                onChange={(value) =>
+                  setOrderData({
+                    ...orderData,
+                    orderShipment: {
+                      ...orderData.orderShipment,
+                      note: value.target.value,
+                    },
+                  })
+                }
+              />
             </div>
           </div>
           <div className="flex flex-col w-full md:w-1/3 h-full gap-3 sticky  top-[60px]">
@@ -423,7 +632,19 @@ const BasketPage = ({ lang }: { lang: Locale }) => {
               <span>{t("PaymentTypeInfo")}</span>
             </div>
             <div>
-              <RadioGroup className="[&_a]:opacity-70 [&_a:has([data-state=checked])]:opacity-100 [&_label]:text-base [&_label]:leading-none [&_label]:font-semibold">
+              <RadioGroup
+                className="[&_a]:opacity-70 [&_a:has([data-state=checked])]:opacity-100 [&_label]:text-base [&_label]:leading-none [&_label]:font-semibold"
+                defaultValue={orderData.orderPayment.type}
+                onValueChange={(value) => {
+                  setOrderData({
+                    ...orderData,
+                    orderPayment: {
+                      ...orderData.orderPayment,
+                      type: value,
+                    },
+                  });
+                }}
+              >
                 {paymentType.map((item) => {
                   return (
                     <Label
@@ -451,16 +672,21 @@ const BasketPage = ({ lang }: { lang: Locale }) => {
                 <span>Miễn phí</span>
               </div>
               <Separator />
-              <div className="flex flex-row justify-between items-center text-lg font-semibold">
+              <div className="flex flex-row justify-between items-center text-lg font-semibold ">
                 <span>Thành tiền:</span>
                 <span className="text-xl text-price">
                   {convertToVND(basketTotalPriceData)} đ
                 </span>
               </div>
 
-              <Button onClick={() =>{
-                MutationApiAddOrderDetail
-              }}>Mua hàng</Button>
+              <Button
+                onClick={handleAddOrder}
+                loading={isPending}
+                classNameLoading="text-primary-foreground"
+                // disabled={isSuccess}
+              >
+                Mua hàng
+              </Button>
             </div>
           </div>
         </div>

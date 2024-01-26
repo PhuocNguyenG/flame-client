@@ -1,8 +1,10 @@
 "use client";
 import axios from "axios";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import * as Type from "../type/type";
 import { AddOrderDetail } from "../type/orderType";
+import CityData from "../../assets/city-data.json";
+import { QUERY_KEY } from "../contants";
 
 // Config
 const axiosDefault = axios.create({
@@ -45,7 +47,7 @@ export const QueryApiSearchByKey = (key: string, lang: string) => {
 export const apiAddOrderDetail = async (data: AddOrderDetail) => {
   return new Promise<Type.ApiResult>((resolve) => {
     axiosDefault
-      .post(`/order/add-order-detail`,data)
+      .post(`/order/add-order-detail`, data)
       .then((response) => {
         resolve(response.data);
       })
@@ -54,20 +56,22 @@ export const apiAddOrderDetail = async (data: AddOrderDetail) => {
       });
   });
 };
-/**
- * Query search by key
- * @param key Search string
- * @param lang Language code
- * @returns Array[]
- */
-export const MutationApiAddOrderDetail = () => {
-  return useMutation({
-    mutationFn: (data: AddOrderDetail) => {
-      return apiAddOrderDetail(data).then((res) => {
-        return res.result as any;
-      });
+
+export const useAddOrderDetail = (onSuccessFn?:object) => {
+  const {
+    mutate: addOrder,
+    isSuccess,
+    isIdle,
+    isPending,
+  } = useMutation({
+    mutationFn: async (data: AddOrderDetail) => {
+      const res = await apiAddOrderDetail(data);
+      return res.result as any;
     },
-  })
+    onSuccess: () => onSuccessFn,
+  });
+
+  return { addOrder, isSuccess, isIdle, isPending };
 };
 
 export const apiCity = async () => {
@@ -82,22 +86,7 @@ export const apiCity = async () => {
       }[];
     }[]
   >((resolve) => {
-    axios
-      .get(
-        `https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json`,
-        {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json;charset=UTF-8",
-          },
-        }
-      )
-      .then((response) => {
-        resolve(response.data);
-      })
-      .catch((err) => {
-        console.log(err.response);
-      });
+    resolve(CityData as any);
   });
 };
 /**

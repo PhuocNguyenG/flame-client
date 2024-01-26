@@ -140,7 +140,7 @@ type Toast = Omit<ToasterToast, "id">;
  * @param title title*
  * @param description Description
  * @param action Need to use 'ToastAction' component 
- * @param variant Default value: "default"
+ * @param variant Default style: 'Black', success: 'Green', Error: 'Red'
  */
 function toast({ variant = "default", ...props }: Toast) {
   const id = genId();

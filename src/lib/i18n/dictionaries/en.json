@@ -71,7 +71,6 @@
   "Dev_Phone": "(+84)97 5889699",
   "ExperienceIssue": "Report on Issues",
   "AddToBasket": "Add to basket",
-  "AddToBasketSuccess": "Added to basket",
   "Clear": "Clear",
   "NothingInBasket": "Basket is empty",
   "Quantity": "Quantity",
@@ -96,5 +95,7 @@
   "AddressReceiveDetail": "Detail address",
   "Note": "Note",
   "PaymentTypeInfo": "Payment type",
-  "NotRequired": "Not required"
+  "NotRequired": "Not required",
+  "---Notification---":"---Notification---",
+  "AddToBasketSuccess": "Added to basket"
 }
