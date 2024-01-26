@@ -1,7 +1,7 @@
 export const cateringMenuData = [
   {
     name: "Menu 1",
-    price: "1.980.000",
+    price: "2.180.000",
     dishes: [
       "Súp gân nai nấm nhĩ",
       "Gỏi ngó sen bao tử",
@@ -14,7 +14,7 @@ export const cateringMenuData = [
   },
   {
     name: "Menu 2",
-    price: "2.160.000",
+    price: "2.360.000",
     dishes: [
       "Soup hải sâm nấm đông cô",
       "Cải mầm trộn thịt bò",
@@ -27,7 +27,7 @@ export const cateringMenuData = [
   },
   {
     name: "Menu 3",
-    price: "1.640.000",
+    price: "1.740.000",
     dishes: [
       "Sup bắp cua gà xé",
       "Khai vị 2 món (Cải mầm bò - Chả giò hải sản)",
@@ -39,7 +39,7 @@ export const cateringMenuData = [
   },
   {
     name: "Menu 4",
-    price: "1.980.000",
+    price: "2.160.000",
     dishes: [
       "Khai vị 4 món (Gỏi bao tử - Chả giò – Chả quế – Tôm cuộn)",
       "Mực hấp gừng",
@@ -51,7 +51,7 @@ export const cateringMenuData = [
   },
   {
     name: "Menu 5",
-    price: "2.280.000",
+    price: "2.380.000",
     dishes: [
       "Khai vị 4 món (Chả quế miền Trung - Chả giò hải sản – Cải mầm trộn thịt bò – Tôm cuộn khoai tây)",
       "Tôm càng nướng muối ớt",
@@ -88,7 +88,7 @@ export const cateringMenuData = [
   },
   {
     name: "Menu 8",
-    price: "2.080.000",
+    price: "2.280.000",
     dishes: [
       "Khai vị 4 món (Chả quế thơm - Cải mầm trộn thịt bò - Tôm cuộn khoai tây - Chả giò hải sản)",
       "Gà ủ muối hoa tiêu ",
@@ -113,7 +113,7 @@ export const cateringMenuData = [
   },
   {
     name: "Menu 10",
-    price: "1.980.000",
+    price: "2.180.000",
     dishes: [
       "Khai vị 4 món (Chả quế miền Trung - Giò bê Nghệ An - Tôm cuộn chiên - Cải mầm thịt bò)",
       "Tôm hấp nước dừa",
@@ -125,7 +125,7 @@ export const cateringMenuData = [
   },
   {
     name: "Menu 11",
-    price: "1.650.000",
+    price: "1.850.000",
     dishes: [
       "Khai vị 2 món (Chả quế miền Trung - Tôm cuộn khoai tây)",
       "Gỏi sứa ngũ sắc",
